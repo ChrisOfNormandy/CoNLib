@@ -1,0 +1,6 @@
+{
+    "parent":"item/generated",
+    "textures": {
+        "layer0": "MODNAME:item/example_item"
+    }
+}

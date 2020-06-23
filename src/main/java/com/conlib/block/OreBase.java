@@ -1,4 +1,4 @@
-package com.conmod.conlib.block;
+package com.conlib.block;
 
 // import net.minecraft.block.OreBlock;
 import net.minecraft.block.Block.Properties;
