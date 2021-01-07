@@ -1,4 +1,4 @@
-package com.conmod.redemption;
+package com.github.chrisofnormandy.conlib;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;

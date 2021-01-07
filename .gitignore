@@ -25,3 +25,4 @@ mod/eclipse
 mod/run
 mod/.vscode
 mod/logs
+.vscode
