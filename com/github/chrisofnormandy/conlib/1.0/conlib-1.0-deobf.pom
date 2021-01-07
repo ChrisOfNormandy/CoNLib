@@ -6,10 +6,4 @@
   <artifactId>conlib</artifactId>
   <version>1.0</version>
   <description>POM was created from install:install-file</description>
-  <properties>
-    <finalName>${project.artifactId}-${project.version}-deobf</finalName>
-  </properties>
-  <build>
-      <finalName>${finalName}</finalName>
-  </build>
 </project>

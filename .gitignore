@@ -1,28 +1,25 @@
-maven/jars
-maven/run.bat
-
 # eclipse
-mod/bin
-mod/*.launch
-mod/.settings
-mod/.metadata
-mod/.classpath
-mod/.project
+bin
+*.launch
+.settings
+.metadata
+.classpath
+.project
 
 # idea
-mod/out
-mod/*.ipr
-mod/*.iws
-mod/*.iml
-mod/.idea
+out
+*.ipr
+*.iws
+*.iml
+.idea
 
 # gradle
-mod/build
-mod/.gradle
+build
+.gradle
 
 # other
-mod/eclipse
-mod/run
-mod/.vscode
-mod/logs
+eclipse
+run
+.vscode
+logs
 .vscode
