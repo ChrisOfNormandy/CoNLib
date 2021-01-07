@@ -1,28 +1,27 @@
+maven/jars
+maven/run.bat
+
 # eclipse
-bin
-*.launch
-.settings
-.metadata
-.classpath
-.project
+mod/bin
+mod/*.launch
+mod/.settings
+mod/.metadata
+mod/.classpath
+mod/.project
 
 # idea
-out
-*.ipr
-*.iws
-*.iml
-.idea
+mod/out
+mod/*.ipr
+mod/*.iws
+mod/*.iml
+mod/.idea
 
 # gradle
-build
-.gradle
+mod/build
+mod/.gradle
 
 # other
-eclipse
-run
-
-# Files from Forge MDK
-forge*changelog.txt
-
-jars
-run.bat
+mod/eclipse
+mod/run
+mod/.vscode
+mod/logs
