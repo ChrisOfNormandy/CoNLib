@@ -96,7 +96,7 @@ public class Main
         @SubscribeEvent
         public static void onBlocksRegistry(final RegistryEvent.Register<Block> blockRegistryEvent) {
             // register a new block here
-            ModRegister.Init();
+            ModRegister.Init(MOD_ID);
         }
     }
 }

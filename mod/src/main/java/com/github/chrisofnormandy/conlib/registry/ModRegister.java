@@ -1,6 +1,9 @@
 package com.github.chrisofnormandy.conlib.registry;
 
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.annotation.Nullable;
 
 import com.github.chrisofnormandy.conlib.block.Node;
@@ -31,11 +34,13 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class ModRegister {
+    private static String mod_id;
+
     public ModRegister() {
-        
     }
 
-    public static void Init() {
+    public static void Init(String modId) {
+        mod_id = modId;
         MinecraftForge.EVENT_BUS.register(BlockBreak.class);
     }
 

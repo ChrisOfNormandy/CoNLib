@@ -11,44 +11,47 @@ import net.minecraft.block.SlabBlock;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.StairsBlock;
 import net.minecraft.block.WallBlock;
-import net.minecraft.block.AbstractBlock.Properties;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.ItemGroup;
+import net.minecraftforge.common.ToolType;
 
 public class Main {
     public static String[] dyes = com.github.chrisofnormandy.conlib.item.Main.dyes;
 
     public static Block create_rock(int harvestLevel) {
-        return new Block(Properties.create(Material.ROCK).hardnessAndResistance(3.0f).sound(SoundType.STONE)
-                .harvestLevel(harvestLevel));
+        return new Block(Block.Properties.create(Material.ROCK)
+            .hardnessAndResistance(3.0f)
+            .sound(SoundType.STONE)
+            .harvestTool(ToolType.PICKAXE)
+            .harvestLevel(harvestLevel));
     }
 
     public static Block create_brick() {
-        return new Block(Properties.from(Blocks.BRICKS));
+        return new Block(Block.Properties.from(Blocks.BRICKS));
     }
 
     public static Block create_wood() {
-        return new Block(Properties.create(Material.WOOD).hardnessAndResistance(2.0f).sound(SoundType.WOOD));
+        return new Block(Block.Properties.create(Material.WOOD).hardnessAndResistance(2.0f).sound(SoundType.WOOD));
     }
 
     public static Block create_slab(Block parent) {
-        return new SlabBlock(Properties.from(parent));
+        return new SlabBlock(Block.Properties.from(parent));
     }
 
     public static Block create_stairs(Block parent) {
-        return new StairsBlock(() -> parent.getDefaultState(), Properties.from(parent));
+        return new StairsBlock(() -> parent.getDefaultState(), Block.Properties.from(parent));
     }
 
     public static Block create_wall(Block parent) {
-        return new WallBlock(Properties.from(parent));
+        return new WallBlock(Block.Properties.from(parent));
     }
 
     public static Block create_fence(Block parent) {
-        return new FenceBlock(Properties.from(parent));
+        return new FenceBlock(Block.Properties.from(parent));
     }
 
     public static Block create_fenceGate(Block parent) {
-        return new FenceGateBlock(Properties.from(parent));
+        return new FenceGateBlock(Block.Properties.from(parent));
     }
 
     /**
@@ -87,12 +90,12 @@ public class Main {
 
         registerBlockWithProducts(name, block, groups);
         if (includeBase) {
-            registerBlockWithProducts("mossy_" + name, new Block(Properties.from(block)), groups);
-            registerBlockWithProducts("cracked_" + name, new Block(Properties.from(block)), groups);
+            registerBlockWithProducts("mossy_" + name, new Block(Block.Properties.from(block)), groups);
+            registerBlockWithProducts("cracked_" + name, new Block(Block.Properties.from(block)), groups);
         }
-        registerBlockWithProducts(name + "_bricks", new Block(Properties.from(block)), groups);
-        registerBlockWithProducts("mossy_" + name + "_bricks", new Block(Properties.from(block)), groups);
-        registerBlockWithProducts("cracked_" + name + "_bricks", new Block(Properties.from(block)), groups);
+        registerBlockWithProducts(name + "_bricks", new Block(Block.Properties.from(block)), groups);
+        registerBlockWithProducts("mossy_" + name + "_bricks", new Block(Block.Properties.from(block)), groups);
+        registerBlockWithProducts("cracked_" + name + "_bricks", new Block(Block.Properties.from(block)), groups);
     }
 
     public static void registerBrickSuite(String name, ItemGroup[] groups) {
@@ -104,10 +107,10 @@ public class Main {
 
     public static void registerBrickSuite(String name, Block block, ItemGroup[] groups) {
         registerBlockWithProducts(name, block, groups);
-        registerBlockWithProducts(name + "_bricks", new Block(Properties.from(block)), groups);
-        registerBlockWithProducts(name + "_bricks_large", new Block(Properties.from(block)), groups);
-        registerBlockWithProducts(name + "_bricks_large_tile", new Block(Properties.from(block)), groups);
-        registerBlockWithProducts(name + "_bricks_mixed", new Block(Properties.from(block)), groups);
+        registerBlockWithProducts(name + "_bricks", new Block(Block.Properties.from(block)), groups);
+        registerBlockWithProducts(name + "_bricks_large", new Block(Block.Properties.from(block)), groups);
+        registerBlockWithProducts(name + "_bricks_large_tile", new Block(Block.Properties.from(block)), groups);
+        registerBlockWithProducts(name + "_bricks_mixed", new Block(Block.Properties.from(block)), groups);
     }
 
     public static void registerWoodSuite(String name, ItemGroup group) {
@@ -125,12 +128,12 @@ public class Main {
 
     public static void registerDyedSuite(String name, Block parent, ItemGroup group) {
         for (int i = 0; i < dyes.length; i++) {
-            ModRegister.registerBlock(dyes[i] + "_" + name, new Block(Properties.from(parent)), group);
+            ModRegister.registerBlock(dyes[i] + "_" + name, new Block(Block.Properties.from(parent)), group);
         }
     }
 
     public static Node create_node(Block parent, Node.Tier tier, int damage) {
-        return new Node(Properties.from(parent), tier, damage, parent.asItem());
+        return new Node(Block.Properties.from(parent), tier, damage, parent.asItem());
     }
 
     public static void registerNode(String name, Block parent, Node.Tier tier, ItemGroup group) {
