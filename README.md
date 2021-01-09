@@ -11,7 +11,7 @@ The directory used is ./com/github/chrisofnormandy/conlib/1.0 and can be importe
 ```
 repositories{
     maven {
-        url "https://raw.githubusercontent.com/ChrisOfNormandy/CoNLib/master"
+        url "https://raw.githubusercontent.com/ChrisOfNormandy/CoNLib/dev"
     }
 }
 ...

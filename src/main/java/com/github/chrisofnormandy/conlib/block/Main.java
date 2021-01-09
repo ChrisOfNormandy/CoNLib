@@ -1,193 +1,125 @@
 package com.github.chrisofnormandy.conlib.block;
 
+import java.util.List;
+
+import com.github.chrisofnormandy.conlib.block.types.Bricks;
+import com.github.chrisofnormandy.conlib.block.types.Rock;
+import com.github.chrisofnormandy.conlib.block.types.Wood;
 import com.github.chrisofnormandy.conlib.config.Config;
 import com.github.chrisofnormandy.conlib.registry.ModRegister;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.FenceBlock;
-import net.minecraft.block.FenceGateBlock;
-import net.minecraft.block.SlabBlock;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.StairsBlock;
-import net.minecraft.block.WallBlock;
-import net.minecraft.block.material.Material;
 import net.minecraft.item.ItemGroup;
-import net.minecraftforge.common.ToolType;
 
 public class Main {
     public static String[] dyes = com.github.chrisofnormandy.conlib.item.Main.dyes;
 
-    public static Block create_rock(int harvestLevel) {
-        return new Block(Block.Properties.create(Material.ROCK)
-            .hardnessAndResistance(3.0f)
-            .sound(SoundType.STONE)
-            .harvestTool(ToolType.PICKAXE)
-            .harvestLevel(harvestLevel));
-    }
-
-    public static Block create_brick() {
-        return new Block(Block.Properties.from(Blocks.BRICKS));
-    }
-
-    public static Block create_wood() {
-        return new Block(Block.Properties.create(Material.WOOD).hardnessAndResistance(2.0f).sound(SoundType.WOOD));
-    }
-
-    public static Block create_slab(Block parent) {
-        return new SlabBlock(Block.Properties.from(parent));
-    }
-
-    public static Block create_stairs(Block parent) {
-        return new StairsBlock(() -> parent.getDefaultState(), Block.Properties.from(parent));
-    }
-
-    public static Block create_wall(Block parent) {
-        return new WallBlock(Block.Properties.from(parent));
-    }
-
-    public static Block create_fence(Block parent) {
-        return new FenceBlock(Block.Properties.from(parent));
-    }
-
-    public static Block create_fenceGate(Block parent) {
-        return new FenceGateBlock(Block.Properties.from(parent));
-    }
-
-    /**
-     * 
-     * @param name
-     * @param harvestLevel
-     * @param groups        0: Blocks, 1: Slabs, 2: Stairs, 3: Walls
-     */
-    static void registerBlockWithProducts(String name, Block block, ItemGroup[] groups) {
-        ModRegister.registerBlock(name, block, groups[0]);
-        ModRegister.registerBlock(name + "_slab", create_slab(block), groups[1]);
-        ModRegister.registerBlock(name + "_stairs", create_stairs(block), groups[2]);
-        ModRegister.registerBlock(name + "_wall", create_wall(block), groups[3]);
-    }
-
-    /**
-     * 
-     * @param name
-     * @param harvestLevel
-     * @param groups        0: Blocks, 1: Slabs, 2: Stairs, 3: Walls
-     */
-    public static void registerRockSuite(String name, int harvestLevel, ItemGroup[] groups) {
-        Block block = create_rock(harvestLevel);
-        registerBlockWithProducts(name, block, groups);
-    }
-
-    /**
-     * 
-     * @param name
-     * @param harvestLevel
-     * @param groups        0: Blocks, 1: Slabs, 2: Stairs, 3: Walls
-     * @param includeBase   Whether or not to register mossy and cracked versions of the standard block
-     */
-    public static void registerRockSuite_withProducts(String name, int harvestLevel, ItemGroup[] groups, boolean includeBase) {
-        Block block = create_rock(harvestLevel);
-
-        registerBlockWithProducts(name, block, groups);
-        if (includeBase) {
-            registerBlockWithProducts("mossy_" + name, new Block(Block.Properties.from(block)), groups);
-            registerBlockWithProducts("cracked_" + name, new Block(Block.Properties.from(block)), groups);
+    public static class Rock_ {
+        public static Block create(int harvestLevel) {
+            return Rock.create(harvestLevel);
         }
-        registerBlockWithProducts(name + "_bricks", new Block(Block.Properties.from(block)), groups);
-        registerBlockWithProducts("mossy_" + name + "_bricks", new Block(Block.Properties.from(block)), groups);
-        registerBlockWithProducts("cracked_" + name + "_bricks", new Block(Block.Properties.from(block)), groups);
-    }
 
-    public static void registerBrickSuite(String name, ItemGroup[] groups) {
-        registerBlockWithProducts(name + "_bricks", create_brick(), groups);
-        registerBlockWithProducts(name + "_bricks_large", create_brick(), groups);
-        registerBlockWithProducts(name + "_bricks_large_tile", create_brick(), groups);
-        registerBlockWithProducts(name + "_bricks_mixed", create_brick(), groups);
-    }
+        public static List<Block> createProducts(Block parent) {
+            return Rock.createProducts(parent);
+        }
 
-    public static void registerBrickSuite(String name, Block block, ItemGroup[] groups) {
-        registerBlockWithProducts(name, block, groups);
-        registerBlockWithProducts(name + "_bricks", new Block(Block.Properties.from(block)), groups);
-        registerBlockWithProducts(name + "_bricks_large", new Block(Block.Properties.from(block)), groups);
-        registerBlockWithProducts(name + "_bricks_large_tile", new Block(Block.Properties.from(block)), groups);
-        registerBlockWithProducts(name + "_bricks_mixed", new Block(Block.Properties.from(block)), groups);
-    }
+        public static Block register(String name, int harvestLevel, ItemGroup group) {
+            return Rock.Register.single(name, harvestLevel, group);
+        }
 
-    public static void registerWoodSuite(String name, ItemGroup group) {
-        Block log = create_wood();
-        Block planks = create_wood();
+        public static List<Block> registerSuite(String name, int harvestLevel, List<ItemGroup> groups) {
+            return Rock.Register.suite(name, harvestLevel, groups);
+        }
 
-        ModRegister.registerBlock(name + "_log", log, group);
-
-        ModRegister.registerBlock(name + "_planks", planks);
-        ModRegister.registerBlock(name + "_slab", create_slab(planks), group);
-        ModRegister.registerBlock(name + "_stairs", create_stairs(planks), group);
-        ModRegister.registerBlock(name + "_fence", create_fence(planks), group);
-        ModRegister.registerBlock(name + "_fence_gate", create_fenceGate(planks), group);
-    }
-
-    public static void registerDyedSuite(String name, Block parent, ItemGroup group) {
-        for (int i = 0; i < dyes.length; i++) {
-            ModRegister.registerBlock(dyes[i] + "_" + name, new Block(Block.Properties.from(parent)), group);
+        public static List<Block> registerSuiteWithVariants(String name, int harvestLevel, List<ItemGroup> groups) {
+            return Rock.Register.suiteWithVariants(name, harvestLevel, groups);
         }
     }
 
-    public static Node create_node(Block parent, Node.Tier tier, int damage) {
-        return new Node(Block.Properties.from(parent), tier, damage, parent.asItem());
+    public static class Wood_ {
+        public static Block create(int harvestLevel) {
+            return Wood.create(harvestLevel);
+        }
+
+        public static List<Block> createProducts(Block parent) {
+            return Wood.createProducts(parent);
+        }
+
+        public static Block register(String name, int harvestLevel, ItemGroup group) {
+            return Wood.Register.single(name, harvestLevel, group);
+        }
+
+        public static List<Block> registerSuite(String name, int harvestLevel, List<ItemGroup> groups) {
+            return Wood.Register.suite(name, harvestLevel, groups);
+        }
     }
 
-    public static void registerNode(String name, Block parent, Node.Tier tier, ItemGroup group) {
-        int crude = Config.getRangeValue("nodes_crude_tiers");
-        int normal = Config.getRangeValue("nodes_normal_tiers");
-        int rich = Config.getRangeValue("nodes_rich_tiers");
+    public static class Bricks_ {
+        public static Block create(int harvestLevel) {
+            return Bricks.create(harvestLevel);
+        }
 
-        int count = 0;
+        public static List<Block> createProducts(Block parent) {
+            return Bricks.createProducts(parent);
+        }
 
-        switch (tier) {
-            case CRUDE: {
-                count = crude;
-                break;
+        public static Block register(String name, int harvestLevel, ItemGroup group) {
+            return Bricks.Register.single(name, harvestLevel, group);
+        }
+
+        public static List<Block> registerSuite(String name, int harvestLevel, List<ItemGroup> groups) {
+            return Bricks.Register.suite(name, harvestLevel, groups);
+        }
+
+        public static List<Block> registerSuiteWithVariants(String name, int harvestLevel, List<ItemGroup> groups) {
+            return Bricks.Register.suiteWithVariants(name, harvestLevel, groups);
+        }
+    }
+
+    public static class Node_ {
+        public static Node create(Block parent, Node.Tier tier, int damage) {
+            return new Node(Block.Properties.from(parent), tier, damage, parent.asItem());
+        }
+
+        public static void register(String name, Block parent, Node.Tier tier, ItemGroup group) {
+            int crude = Config.getRangeValue("nodes_crude_tiers");
+            int normal = Config.getRangeValue("nodes_normal_tiers");
+            int rich = Config.getRangeValue("nodes_rich_tiers");
+    
+            int count = 0;
+    
+            switch (tier) {
+                case CRUDE: {
+                    count = crude;
+                    break;
+                }
+                case NORMAL: {
+                    count = normal;
+                    break;
+                }
+                case RICH: {
+                    count = rich;
+                    break;
+                }
             }
-            case NORMAL: {
-                count = normal;
-                break;
-            }
-            case RICH: {
-                count = rich;
-                break;
+    
+            Node n = create(parent, tier, count);
+    
+            Block node = ModRegister.registerBlock(name, n, group);
+            ModRegister.nodes.put(node.getRegistryName().toString(), n);
+    
+            Block old_ = node;
+            Block new_ = null;
+    
+            for (int i = count - 1; i >= 0; i--) {
+                new_ = (i > 0)
+                    ? ModRegister.registerBlock(name + "_" + i, create(parent, tier, i))
+                    : parent;
+    
+                old_ = ModRegister.setBlock_replaceable(old_, new_);
+    
+                ModRegister.registerNode(new_.getRegistryName().toString(), n);
             }
         }
-
-        Node n = create_node(parent, tier, count);
-
-        Block node = ModRegister.registerBlock(name, n, group);
-        ModRegister.nodes.put(node.getRegistryName().toString(), n);
-
-        Block old_ = node;
-        Block new_ = null;
-
-        for (int i = count - 1; i >= 0; i--) {
-            new_ = (i > 0)
-                ? ModRegister.registerBlock(name + "_" + i, create_node(parent, tier, i))
-                : parent;
-
-            old_ = ModRegister.setBlock_replaceable(old_, new_);
-
-            ModRegister.registerNode(new_.getRegistryName().toString(), n);
-        }
     }
-
-    // public static Block create_ore_gem(String name, int minXp, int maxXp, ItemGroup group, Properties properties) {
-    //     Block block = ModRegister.registerOre(name, minXp, maxXp, properties, "gem", group);
-
-    //     return block;
-    // }
-
-    // public static Block create_ore_resource() {
-
-    // }
-
-    // public static Block create_ore_fuel() {
-
-    // }
 }

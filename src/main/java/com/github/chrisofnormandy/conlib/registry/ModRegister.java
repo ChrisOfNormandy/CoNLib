@@ -1,8 +1,6 @@
 package com.github.chrisofnormandy.conlib.registry;
 
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Set;
 
 import javax.annotation.Nullable;
 
@@ -220,11 +218,11 @@ public class ModRegister {
     // WORLD GEN
     public static HashMap<String, Feature<?>> generators = new HashMap<String, Feature<?>>();
 
-    public static Feature<NoFeatureConfig> registerPlantGen(String name, String mod_id, Feature<NoFeatureConfig> feature) {
-        return registerGenFeature(name, mod_id, feature);
+    public static Feature<NoFeatureConfig> registerPlantGen(String name, Feature<NoFeatureConfig> feature) {
+        return registerGenFeature(name, feature);
     }
 
-    public static Feature<NoFeatureConfig> registerGenFeature(String name, String mod_id, Feature<NoFeatureConfig> entry) {
+    public static Feature<NoFeatureConfig> registerGenFeature(String name, Feature<NoFeatureConfig> entry) {
         entry.setRegistryName(new ResourceLocation(mod_id, name));
         ForgeRegistries.FEATURES.register(entry);
         generators.put(name, entry);
