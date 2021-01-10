@@ -63,17 +63,10 @@ public class BricksBase {
         public static List<Block> suiteWithVariants(String name, int harvestLevel, GroupList groups) {
             List<Block> list = new LinkedList<Block>();
             
-            Block self = single(name, harvestLevel, groups.blocks);
-            Block mossy = single("mossy_" + name, harvestLevel, groups.blocks);
-            Block cracked = single("cracked_" + name, harvestLevel, groups.blocks);
-
             List<Block> selfSuite = suite(name, harvestLevel, groups);
             List<Block> mossySuite = suite("mossy_" + name, harvestLevel, groups);
             List<Block> crackedSuite = suite("cracked_" + name, harvestLevel, groups);
 
-            list.add(self);
-            list.add(mossy);
-            list.add(cracked);
             list.addAll(selfSuite);
             list.addAll(mossySuite);
             list.addAll(crackedSuite);
