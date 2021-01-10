@@ -2,77 +2,78 @@ package com.github.chrisofnormandy.conlib.block;
 
 import java.util.List;
 
-import com.github.chrisofnormandy.conlib.block.types.Bricks;
-import com.github.chrisofnormandy.conlib.block.types.Rock;
-import com.github.chrisofnormandy.conlib.block.types.Wood;
+import com.github.chrisofnormandy.conlib.block.types.BricksBase;
+import com.github.chrisofnormandy.conlib.block.types.RockBase;
+import com.github.chrisofnormandy.conlib.block.types.WoodBase;
 import com.github.chrisofnormandy.conlib.config.Config;
+import com.github.chrisofnormandy.conlib.itemgroup.GroupList;
+import com.github.chrisofnormandy.conlib.itemgroup.Groups;
 import com.github.chrisofnormandy.conlib.registry.ModRegister;
 
 import net.minecraft.block.Block;
-import net.minecraft.item.ItemGroup;
 
 public class Main {
     public static String[] dyes = com.github.chrisofnormandy.conlib.item.Main.dyes;
 
-    public static class Rock_ {
+    public static class Rock {
         public static Block create(int harvestLevel) {
-            return Rock.create(harvestLevel);
+            return RockBase.create(harvestLevel);
         }
 
         public static List<Block> createProducts(Block parent) {
-            return Rock.createProducts(parent);
+            return RockBase.createProducts(parent);
         }
 
-        public static Block register(String name, int harvestLevel, ItemGroup group) {
-            return Rock.Register.single(name, harvestLevel, group);
+        public static Block register(String name, int harvestLevel, Groups group) {
+            return RockBase.Register.single(name, harvestLevel, group);
         }
 
-        public static List<Block> registerSuite(String name, int harvestLevel, List<ItemGroup> groups) {
-            return Rock.Register.suite(name, harvestLevel, groups);
+        public static List<Block> registerSuite(String name, int harvestLevel, GroupList groups) {
+            return RockBase.Register.suite(name, harvestLevel, groups);
         }
 
-        public static List<Block> registerSuiteWithVariants(String name, int harvestLevel, List<ItemGroup> groups) {
-            return Rock.Register.suiteWithVariants(name, harvestLevel, groups);
+        public static List<Block> registerSuiteWithVariants(String name, int harvestLevel, GroupList groups) {
+            return RockBase.Register.suiteWithVariants(name, harvestLevel, groups);
         }
     }
 
-    public static class Wood_ {
+    public static class Wood {
         public static Block create(int harvestLevel) {
-            return Wood.create(harvestLevel);
+            return WoodBase.create(harvestLevel);
         }
 
         public static List<Block> createProducts(Block parent) {
-            return Wood.createProducts(parent);
+            return WoodBase.createProducts(parent);
         }
 
-        public static Block register(String name, int harvestLevel, ItemGroup group) {
-            return Wood.Register.single(name, harvestLevel, group);
+        public static Block register(String name, int harvestLevel, Groups group) {
+            return WoodBase.Register.single(name, harvestLevel, group);
         }
 
-        public static List<Block> registerSuite(String name, int harvestLevel, List<ItemGroup> groups) {
-            return Wood.Register.suite(name, harvestLevel, groups);
+        public static List<Block> registerSuite(String name, int harvestLevel, GroupList groups) {
+            return WoodBase.Register.suite(name, harvestLevel, groups);
         }
     }
 
-    public static class Bricks_ {
+    public static class Bricks {
         public static Block create(int harvestLevel) {
-            return Bricks.create(harvestLevel);
+            return BricksBase.create(harvestLevel);
         }
 
         public static List<Block> createProducts(Block parent) {
-            return Bricks.createProducts(parent);
+            return BricksBase.createProducts(parent);
         }
 
-        public static Block register(String name, int harvestLevel, ItemGroup group) {
-            return Bricks.Register.single(name, harvestLevel, group);
+        public static Block register(String name, int harvestLevel, Groups group) {
+            return BricksBase.Register.single(name, harvestLevel, group);
         }
 
-        public static List<Block> registerSuite(String name, int harvestLevel, List<ItemGroup> groups) {
-            return Bricks.Register.suite(name, harvestLevel, groups);
+        public static List<Block> registerSuite(String name, int harvestLevel, GroupList groups) {
+            return BricksBase.Register.suite(name, harvestLevel, groups);
         }
 
-        public static List<Block> registerSuiteWithVariants(String name, int harvestLevel, List<ItemGroup> groups) {
-            return Bricks.Register.suiteWithVariants(name, harvestLevel, groups);
+        public static List<Block> registerSuiteWithVariants(String name, int harvestLevel, GroupList groups) {
+            return BricksBase.Register.suiteWithVariants(name, harvestLevel, groups);
         }
     }
 
@@ -81,7 +82,7 @@ public class Main {
             return new Node(Block.Properties.from(parent), tier, damage, parent.asItem());
         }
 
-        public static void register(String name, Block parent, Node.Tier tier, ItemGroup group) {
+        public static void register(String name, Block parent, Node.Tier tier, Groups group) {
             int crude = Config.getRangeValue("nodes_crude_tiers");
             int normal = Config.getRangeValue("nodes_normal_tiers");
             int rich = Config.getRangeValue("nodes_rich_tiers");
