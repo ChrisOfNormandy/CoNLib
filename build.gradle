@@ -12,7 +12,7 @@ apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
-version = '1.0'
+version = '1.1'
 group = 'com.github.chrisofnormandy'
 archivesBaseName = 'conlib'
 
@@ -68,7 +68,7 @@ minecraft {
 }
 
 dependencies {
-        minecraft 'net.minecraftforge:forge:1.16.5-36.0.46'
+        minecraft 'net.minecraftforge:forge:1.16.5-36.1.0'
 }
 
 jar {
@@ -76,7 +76,7 @@ jar {
         attributes([
             "Specification-Title": "conlib",
             "Specification-Vendor": "github",
-            "Specification-Version": "'1.0", // We are version 1 of ourselves
+            "Specification-Version": "'1.1", // We are version 1 of ourselves
             "Implementation-Title": project.name,
             "Implementation-Version": "${version}",
             "Implementation-Vendor" :"conlib",
