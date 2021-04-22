@@ -5,10 +5,8 @@ import java.util.List;
 import com.github.chrisofnormandy.conlib.block.types.BricksBase;
 import com.github.chrisofnormandy.conlib.block.types.RockBase;
 import com.github.chrisofnormandy.conlib.block.types.WoodBase;
-import com.github.chrisofnormandy.conlib.config.Config;
 import com.github.chrisofnormandy.conlib.itemgroup.GroupList;
 import com.github.chrisofnormandy.conlib.itemgroup.Groups;
-import com.github.chrisofnormandy.conlib.registry.ModRegister;
 
 import net.minecraft.block.Block;
 
@@ -83,44 +81,44 @@ public class Main {
         }
 
         public static void register(String name, Block parent, Node.Tier tier, Groups group) {
-            int crude = Config.getRangeValue("nodes_crude_tiers");
-            int normal = Config.getRangeValue("nodes_normal_tiers");
-            int rich = Config.getRangeValue("nodes_rich_tiers");
+            // int crude = Config.getRangeValue("nodes_crude_tiers");
+            // int normal = Config.getRangeValue("nodes_normal_tiers");
+            // int rich = Config.getRangeValue("nodes_rich_tiers");
     
-            int count = 0;
+            // int count = 0;
     
-            switch (tier) {
-                case CRUDE: {
-                    count = crude;
-                    break;
-                }
-                case NORMAL: {
-                    count = normal;
-                    break;
-                }
-                case RICH: {
-                    count = rich;
-                    break;
-                }
-            }
+            // switch (tier) {
+            //     case CRUDE: {
+            //         count = crude;
+            //         break;
+            //     }
+            //     case NORMAL: {
+            //         count = normal;
+            //         break;
+            //     }
+            //     case RICH: {
+            //         count = rich;
+            //         break;
+            //     }
+            // }
     
-            Node n = create(parent, tier, count);
+            // Node n = create(parent, tier, count);
     
-            Block node = ModRegister.registerBlock(name, n, group);
-            ModRegister.nodes.put(node.getRegistryName().toString(), n);
+            // Block node = ModRegister.registerBlock(name, n, group);
+            // ModRegister.nodes.put(node.getRegistryName().toString(), n);
     
-            Block old_ = node;
-            Block new_ = null;
+            // Block old_ = node;
+            // Block new_ = null;
     
-            for (int i = count - 1; i >= 0; i--) {
-                new_ = (i > 0)
-                    ? ModRegister.registerBlock(name + "_" + i, create(parent, tier, i))
-                    : parent;
+            // for (int i = count - 1; i >= 0; i--) {
+            //     new_ = (i > 0)
+            //         ? ModRegister.registerBlock(name + "_" + i, create(parent, tier, i))
+            //         : parent;
     
-                old_ = ModRegister.setBlock_replaceable(old_, new_);
+            //     old_ = ModRegister.setBlock_replaceable(old_, new_);
     
-                ModRegister.registerNode(new_.getRegistryName().toString(), n);
-            }
+            //     ModRegister.registerNode(new_.getRegistryName().toString(), n);
+            // }
         }
     }
 }
