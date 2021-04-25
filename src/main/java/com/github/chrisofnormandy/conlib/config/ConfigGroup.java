@@ -12,6 +12,7 @@ public class ConfigGroup {
     public ConfigGroup() {}
 
     public ForgeConfigSpec CONFIG;
+	public HashMap<String, ConfigGroup> subgroups = new HashMap<String, ConfigGroup>();
 
     public HashMap<String, ForgeConfigSpec.IntValue> ranges = new HashMap<String, ForgeConfigSpec.IntValue>();
 	public HashMap<String, ForgeConfigSpec.ConfigValue<Boolean>> flags = new HashMap<String, ForgeConfigSpec.ConfigValue<Boolean>>();
@@ -32,8 +33,18 @@ public class ConfigGroup {
     public HashMap<String, Tuple<String, List<String>>> arrayLists_string_unbuilt = new HashMap<String, Tuple<String, List<String>>>();
 
 
+
+	public void addSubgroup(String name) {
+		subgroups.put(name, new ConfigGroup());
+	}
+
+	public ConfigGroup getSubgroup(String name) {
+		return subgroups.get(name);
+	}
+
+
     
-    public void addRange(String key, int min, int max, int defaultValue, String comment) {
+    public void addRange(String key, Integer min, Integer max, Integer defaultValue, String comment) {
 		ranges_unbuilt.put(key, new Quartet<String,Integer,Integer,Integer>(comment, defaultValue, min, max));
 	}
 
@@ -59,7 +70,7 @@ public class ConfigGroup {
 
 
 
-	public int getRangeValue(String key) {
+	public Integer getRangeValue(String key) {
 		return ranges.get(key).get();
 	}
 
