@@ -40,7 +40,7 @@ public class Config {
 		config.setConfig(file);
 	}
 
-	private void createConfig() {
+	private void createConfig(Type type) {
 		String fileName = this.name + ".toml";
 
 		if (this.path != "") {
@@ -53,7 +53,7 @@ public class Config {
 			fileName = this.path + "/" + fileName;
 		}
 
-		ModLoadingContext.get().registerConfig(Type.SERVER, config.CONFIG, fileName);
+		ModLoadingContext.get().registerConfig(type, config.CONFIG, fileName);
 		this.loadConfig(config.CONFIG, FMLPaths.CONFIGDIR.get().resolve(fileName).toString());
 	}
 
@@ -111,6 +111,19 @@ public class Config {
 
 			BUILDER.pop();
 		}
+
+		if (!group.floats_unbuilt.isEmpty()) {
+
+			BUILDER.push("Floats");
+			for (HashMap.Entry<String, Tuple<String, Float>> entry : group.floats_unbuilt.entrySet()) {
+				String key = entry.getKey();
+				Tuple<String, Float> value = entry.getValue();
+
+				group.floats.put(key, BUILDER.comment(value.x).define(key, value.y));
+			}
+
+			BUILDER.pop();
+		}
 	}
 
 	private void BuildLists(ForgeConfigSpec.Builder BUILDER, ConfigGroup group) {
@@ -142,6 +155,11 @@ public class Config {
 		}
 	}
 
+	private void BuildAll(ForgeConfigSpec.Builder BUILDER, ConfigGroup group) {
+		BuildVars(BUILDER, group);
+		BuildLists(BUILDER, group);
+	}
+
 	public void Build() {
 		ForgeConfigSpec.Builder BUILDER = new ForgeConfigSpec.Builder();
 
@@ -150,13 +168,30 @@ public class Config {
 
 		this.config.subgroups.forEach((String name, ConfigGroup group) -> {
 			BUILDER.push(name);
-			this.BuildVars(BUILDER, group);
+			this.BuildAll(BUILDER, group);
 			BUILDER.pop();
 		});
 
 		this.config.CONFIG = BUILDER.build();
 
-		this.createConfig();
+		this.createConfig(Type.COMMON);
+	}
+
+	public void Build(Type type) {
+		ForgeConfigSpec.Builder BUILDER = new ForgeConfigSpec.Builder();
+
+		this.BuildVars(BUILDER, this.config);
+		this.BuildLists(BUILDER, this.config);
+
+		this.config.subgroups.forEach((String name, ConfigGroup group) -> {
+			BUILDER.push(name);
+			this.BuildAll(BUILDER, group);
+			BUILDER.pop();
+		});
+
+		this.config.CONFIG = BUILDER.build();
+
+		this.createConfig(type);
 	}
 
 	public void addRange(String key, Integer min, Integer max, Integer defaultValue,
@@ -170,6 +205,10 @@ public class Config {
 
 	public void addInteger(String key, Integer value, String comment) {
 		this.config.addInteger(key, value, comment);
+	}
+
+	public void addFloat(String key, Float value, String comment) {
+		this.config.addFloat(key, value, comment);
 	}
 
 	public void addFlag(String key, Boolean value, String comment) {
@@ -196,6 +235,10 @@ public class Config {
 		return this.config.getIntegerValue(key);
 	}
 
+	public Float getFloatValue(String key) {
+		return this.config.getFloatValue(key);
+	}
+
 	public Boolean getFlagValue(String key) {
 		return this.config.getFlagValue(key);
 	}
@@ -208,8 +251,8 @@ public class Config {
 		return this.config.getStringListValue(key);
 	}
 
-	public void addSubgroup(String name) {
-		this.config.addSubgroup(name);
+	public void addSubgroup(String name, ConfigGroup group) {
+		this.config.addSubgroup(name, group);
 	}
 
 	public ConfigGroup getSubgroup(String name) {

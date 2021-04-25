@@ -14,9 +14,17 @@ import net.minecraft.block.material.Material;
 import net.minecraftforge.common.ToolType;
 
 public class RockBase {
-    public static Block create(int harvestLevel) {
+    public static Block create(Integer harvestLevel) {
         return new Block(Block.Properties.create(Material.ROCK)
-            .hardnessAndResistance(3.0f)
+            .hardnessAndResistance(1.5f)
+            .sound(SoundType.STONE)
+            .harvestTool(ToolType.PICKAXE)
+            .harvestLevel(harvestLevel));
+    }
+
+    public static Block create(Integer harvestLevel, Float hardness) {
+        return new Block(Block.Properties.create(Material.ROCK)
+            .hardnessAndResistance(hardness)
             .sound(SoundType.STONE)
             .harvestTool(ToolType.PICKAXE)
             .harvestLevel(harvestLevel));
@@ -33,7 +41,7 @@ public class RockBase {
     }
 
     public static class Register {
-        public static Block single(String name, int harvestLevel, Groups group) {
+        public static Block single(String name, Integer harvestLevel, Groups group) {
             return ModRegister.registerBlock(name, create(harvestLevel), group);
         }
 
@@ -48,9 +56,7 @@ public class RockBase {
             return list;
         }
 
-        public static List<Block> suite(String name, int harvestLevel, GroupList groups) {
-            Block parent = single(name, harvestLevel, groups.blocks);
-            
+        public static List<Block> suite(String name, Block parent, GroupList groups) {           
             List<Block> products = products(name, parent, groups);
 
             List<Block> list = new LinkedList<Block>();
@@ -60,12 +66,12 @@ public class RockBase {
             return list;
         }
 
-        public static List<Block> suiteWithVariants(String name, int harvestLevel, GroupList groups) {
+        public static List<Block> suiteWithVariants(String name, Block parent, GroupList groups) {
             List<Block> list = new LinkedList<Block>();
 
-            List<Block> selfSuite = suite(name, harvestLevel, groups);
-            List<Block> mossySuite = suite("mossy_" + name, harvestLevel, groups);
-            List<Block> crackedSuite = suite("cracked_" + name, harvestLevel, groups);
+            List<Block> selfSuite = suite(name, parent, groups);
+            List<Block> mossySuite = suite("mossy_" + name, parent, groups);
+            List<Block> crackedSuite = suite("cracked_" + name, parent, groups);
 
             list.addAll(selfSuite);
             list.addAll(mossySuite);

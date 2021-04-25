@@ -17,6 +17,7 @@ public class ConfigGroup {
     public HashMap<String, ForgeConfigSpec.IntValue> ranges = new HashMap<String, ForgeConfigSpec.IntValue>();
 	public HashMap<String, ForgeConfigSpec.ConfigValue<Boolean>> flags = new HashMap<String, ForgeConfigSpec.ConfigValue<Boolean>>();
 	public HashMap<String, ForgeConfigSpec.ConfigValue<Integer>> integers = new HashMap<String, ForgeConfigSpec.ConfigValue<Integer>>();
+	public HashMap<String, ForgeConfigSpec.ConfigValue<Float>> floats = new HashMap<String, ForgeConfigSpec.ConfigValue<Float>>();
 	public HashMap<String, ForgeConfigSpec.ConfigValue<String>> strings = new HashMap<String, ForgeConfigSpec.ConfigValue<String>>();
 
 	public HashMap<String, ForgeConfigSpec.ConfigValue<List<Integer>>> arrayLists_int = new HashMap<String, ForgeConfigSpec.ConfigValue<List<Integer>>>();
@@ -27,6 +28,7 @@ public class ConfigGroup {
 	public HashMap<String, Quartet<String, Integer, Integer, Integer>> ranges_unbuilt = new HashMap<String, Quartet<String, Integer, Integer, Integer>>();
 	public HashMap<String, Tuple<String, String>> strings_unbuilt = new HashMap<String, Tuple<String, String>>();
 	public HashMap<String, Tuple<String, Integer>> integers_unbuilt = new HashMap<String, Tuple<String, Integer>>();
+	public HashMap<String, Tuple<String, Float>> floats_unbuilt = new HashMap<String, Tuple<String, Float>>();
 	public HashMap<String, Tuple<String, Boolean>> flags_unbuilt = new HashMap<String, Tuple<String, Boolean>>();
 
     public HashMap<String, Tuple<String, List<Integer>>> arrayLists_int_unbuilt = new HashMap<String, Tuple<String, List<Integer>>>();
@@ -34,8 +36,8 @@ public class ConfigGroup {
 
 
 
-	public void addSubgroup(String name) {
-		subgroups.put(name, new ConfigGroup());
+	public void addSubgroup(String name, ConfigGroup group) {
+		subgroups.put(name, group);
 	}
 
 	public ConfigGroup getSubgroup(String name) {
@@ -54,6 +56,10 @@ public class ConfigGroup {
 
 	public void addInteger(String key, Integer value, String comment) {
 		integers_unbuilt.put(key, new Tuple<String, Integer>(comment, value));
+	}
+
+	public void addFloat(String key, Float value, String comment) {
+		floats_unbuilt.put(key, new Tuple<String, Float>(comment, value));
 	}
 
 	public void addFlag(String key, Boolean value, String comment) {
@@ -80,6 +86,10 @@ public class ConfigGroup {
 	
 	public Integer getIntegerValue(String key) {
 		return integers.get(key).get();
+	}
+
+	public Float getFloatValue(String key) {
+		return floats.get(key).get();
 	}
 
 	public Boolean getFlagValue(String key) {

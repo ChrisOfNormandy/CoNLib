@@ -2,14 +2,12 @@ package com.github.chrisofnormandy.conlib.registry;
 
 import java.util.HashMap;
 
-import javax.annotation.Nullable;
-
-import com.github.chrisofnormandy.conlib.block.Node;
-import com.github.chrisofnormandy.conlib.block.OreBase;
+import com.github.chrisofnormandy.conlib.block.types.NodeBase;
+import com.github.chrisofnormandy.conlib.block.types.OreBase;
 import com.github.chrisofnormandy.conlib.event.BlockBreak;
 import com.github.chrisofnormandy.conlib.itemgroup.Groups;
 import com.github.chrisofnormandy.conlib.tool.CraftingTool;
-import com.github.chrisofnormandy.conlib.tool.Tool;
+import com.github.chrisofnormandy.conlib.tool.ToolBase;
 import com.github.chrisofnormandy.conlib.tool.ToolMaterial;
 import net.minecraft.block.Block;
 import net.minecraft.block.CropsBlock;
@@ -87,35 +85,12 @@ public class ModRegister {
         return material;
     }
 
-    /**
-     * 
-     * @param name
-     * @param oreBase
-     * @param group
-     * @return
-     */
     public static Block registerOre(String name, OreBase oreBase, ItemGroup group) {
         Block block = registerBlock(name, oreBase, group);
         return block;
     }
 
-    /**
-     * 
-     * @param name Only supply the pure resource name
-     * @param toolMaterial Use registerToolMaterial
-     * @param oreBase Use registerOre
-     * @param isFuel
-     * @param generateTools
-     */
-    public static void registerResource(String name, ToolMaterial toolMaterial, @Nullable OreBase oreBase, ItemGroup group, boolean generateTools) {
-        if (generateTools) {
-            registerTool(name + "_shovel", toolMaterial, ToolType.SHOVEL, toolMaterial.level(), group);
-            registerTool(name + "_pickaxe", toolMaterial, ToolType.PICKAXE, toolMaterial.level(), group);
-            registerTool(name + "_axe", toolMaterial, ToolType.AXE, toolMaterial.level(), group);
-            registerTool(name + "_hoe", toolMaterial, ToolType.HOE, toolMaterial.level(), group);
-        }
-    }
-
+    // PLANTS
     // public static Block registerPlant(String name, PlantType plantType, ItemGroup group) {
     //     Block.Properties properties = Block.Properties.create(Material.PLANTS).sound(SoundType.PLANT).hardnessAndResistance(0.0F).doesNotBlockMovement();
     //     return registerBlock(new PlantBase(properties, name, plantType), name, group);
@@ -196,9 +171,17 @@ public class ModRegister {
     }
 
     public static Item registerTool(String name, ToolMaterial toolMaterial, ToolType toolType, int level, ItemGroup group) {
-        Tool item = new Tool(toolMaterial.getProperties().group(group), toolType, level);
+        ToolBase item = new ToolBase(toolMaterial.getProperties().group(group), toolType, level);
         tools.put(name, item);
         return registerItem(name, item);
+    }
+
+    public static void registerTools(String name, ToolMaterial material, ItemGroup group) {
+        registerTool(name + "_shovel", material, ToolType.SHOVEL, material.level(), group);
+        registerTool(name + "_pickaxe", material, ToolType.PICKAXE, material.level(), group);
+        registerTool(name + "_axe", material, ToolType.AXE, material.level(), group);
+        registerTool(name + "_hoe", material, ToolType.HOE, material.level(), group);
+        // Sword?
     }
 
     // FOODS
@@ -236,7 +219,7 @@ public class ModRegister {
     // SPECIAL
     public static HashMap<String, Block> blocks_unbreakable = new HashMap<String, Block>();
     public static HashMap<String, Block> blocks_replaceable = new HashMap<String, Block>();
-    public static HashMap<String, Node> nodes = new HashMap<String, Node>();
+    public static HashMap<String, NodeBase> nodes = new HashMap<String, NodeBase>();
 
     public static <T extends Block> T setBlock_unbreakable(T block) {
         blocks_unbreakable.put(block.getRegistryName().toString(), block);
@@ -248,7 +231,7 @@ public class ModRegister {
         return blockOut;
     }
 
-    public static Node registerNode(String name, Node node) {
+    public static NodeBase registerNode(String name, NodeBase node) {
         LOG.info("Registered node: " + name + " -> " + node.getRegistryName().toString());
         nodes.put(name, node);
         return node;

@@ -1,4 +1,4 @@
-package com.github.chrisofnormandy.conlib.block;
+package com.github.chrisofnormandy.conlib.block.types;
 
 import java.util.Random;
 
@@ -8,7 +8,7 @@ import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-public class Node extends Block {
+public class NodeBase extends Block {
     public enum Tier{CRUDE, NORMAL, RICH};
 
     private Tier tier;
@@ -16,7 +16,7 @@ public class Node extends Block {
 
     private Item item;
 
-    public Node(Properties properties, Tier tier, int damage, Item drop) {
+    public NodeBase(Properties properties, Tier tier, int damage, Item drop) {
         super(properties);
 
         this.tier = tier;

@@ -6,7 +6,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.Item.Properties;
 
-public class Main {
+public class ModItem {
     public static String[] dyes = new String[] {"red", "orange", "yellow", "lime", "green", "cyan", "light_blue", "blue", "magenta", "purple", "pink", "white", "light_gray", "gray", "black", "brown"};
 
     public static Item create(String name, Properties properties, ItemGroup group) {

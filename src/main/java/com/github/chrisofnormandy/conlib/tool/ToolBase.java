@@ -7,14 +7,14 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ToolType;
 
-public class Tool extends Item {
+public class ToolBase extends Item {
     /**
      * 
      * @param properties Should use com.github.chrisofnormandy.conlib.tool.Material.setProperties(...)
      * @param toolType
      * @param level
      */
-    public Tool(Item.Properties properties, ToolType toolType, int level) {
+    public ToolBase(Item.Properties properties, ToolType toolType, int level) {
         super(properties.addToolType(toolType, level));
     }
 

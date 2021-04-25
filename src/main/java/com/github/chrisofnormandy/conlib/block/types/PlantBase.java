@@ -1,4 +1,4 @@
-package com.github.chrisofnormandy.conlib.block;
+package com.github.chrisofnormandy.conlib.block.types;
 
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
