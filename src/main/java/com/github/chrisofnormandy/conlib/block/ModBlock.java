@@ -209,7 +209,7 @@ public class ModBlock {
 
         public static Block registerMetal(String name, String oreName, OreBase block, ToolMaterial material,
                 Groups itemGroup, Groups toolGroup, Groups blockGroup) {
-            return OreBase.Register.asGem(name, oreName, block, material, itemGroup, toolGroup, blockGroup);
+            return OreBase.Register.asMetal(name, oreName, block, material, itemGroup, toolGroup, blockGroup);
         }
     }
 
