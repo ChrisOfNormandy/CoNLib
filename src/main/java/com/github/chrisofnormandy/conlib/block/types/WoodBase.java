@@ -15,8 +15,8 @@ import net.minecraftforge.common.ToolType;
 
 public class WoodBase {
     public static Block create(int harvestLevel) {
-        return new Block(Block.Properties.create(Material.WOOD)
-            .hardnessAndResistance(2.0f)
+        return new Block(Block.Properties.of(Material.WOOD)
+            // .hardnessAndResistance(2.0f)
             .sound(SoundType.WOOD)
             .harvestTool(ToolType.AXE)
             .harvestLevel(harvestLevel));
@@ -26,7 +26,7 @@ public class WoodBase {
         List<Block> list = new LinkedList<Block>();
 
         list.add(Subsets.create_slab(parent));
-        list.add(Subsets.create_stairs(parent));
+        // list.add(Subsets.create_stairs(parent));
         list.add(Subsets.create_fence(parent));
         list.add(Subsets.create_fenceGate(parent));
 

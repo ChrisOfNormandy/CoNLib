@@ -24,10 +24,10 @@ public class ToolMaterial {
         this.noRepair = noRepair;
         this.resource_type = resource_type;
         
-        this.properties = new Properties().maxDamage(maxDamage).rarity(rarity);
+        this.properties = new Properties().durability(maxDamage).rarity(rarity);
 
         if (immuneToFire)
-            this.properties = properties.isImmuneToFire();
+            this.properties = properties.fireResistant();
         if (noRepair)
             this.properties = properties.setNoRepair();
     }

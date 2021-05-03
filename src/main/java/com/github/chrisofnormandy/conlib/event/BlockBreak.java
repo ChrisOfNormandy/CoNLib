@@ -33,19 +33,19 @@ public class BlockBreak {
 
         if (ModRegister.blocks_replaceable.containsKey(blockIn.getRegistryName().toString())) {
 
-            if (player.getHeldItemMainhand() != null) {
-                Item heldItem = player.getHeldItemMainhand().getItem();
+            // if (player.getHeldItemMainhand() != null) {
+            //     Item heldItem = player.getHeldItemMainhand().getItem();
     
-                if (heldItem.getHarvestLevel(player.getHeldItemMainhand(), ToolType.PICKAXE, player, blockIn.getDefaultState()) != -1) {
-                    Random rand = new Random();
-                    event.setCanceled(true);
+            //     if (heldItem.getHarvestLevel(player.getHeldItemMainhand(), ToolType.PICKAXE, player, blockIn.getDefaultState()) != -1) {
+            //         Random rand = new Random();
+            //         event.setCanceled(true);
 
-                    event.getWorld().setBlockState(event.getPos(), ModRegister.blocks_replaceable.get(blockIn.getRegistryName().toString()).getDefaultState(), 1);
+            //         event.getWorld().setBlockState(event.getPos(), ModRegister.blocks_replaceable.get(blockIn.getRegistryName().toString()).getDefaultState(), 1);
 
-                    event.getPlayer().addItemStackToInventory(ModRegister.nodes.get(blockIn.getRegistryName().toString()).getDrop(rand));
-                    // event.getWorld().playSound(player, event.getPos(), new SoundEvent(new ResourceLocation("minecraft", "entity.item.pickup")), SoundCategory.NEUTRAL, 1.0f, 1.0f);
-                }
-            }
+            //         event.getPlayer().addItemStackToInventory(ModRegister.nodes.get(blockIn.getRegistryName().toString()).getDrop(rand));
+            //         // event.getWorld().playSound(player, event.getPos(), new SoundEvent(new ResourceLocation("minecraft", "entity.item.pickup")), SoundCategory.NEUTRAL, 1.0f, 1.0f);
+            //     }
+            // }
         }
     }
 }

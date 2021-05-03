@@ -24,6 +24,7 @@ public class Main {
 
     public Main() {
         config.Init();
+        Mod_Biomes.Init();
 
         // Register the setup method for modloading
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);

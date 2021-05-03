@@ -12,8 +12,8 @@ import net.minecraft.world.IBlockReader;
 public class CropBase extends CropsBlock {
 
     public CropBase () {
-        super(Block.Properties.create(Material.PLANTS).doesNotBlockMovement().hardnessAndResistance(0).tickRandomly().sound(SoundType.PLANT));
-        this.setDefaultState(this.stateContainer.getBaseState().with(this.getAgeProperty(), Integer.valueOf(0)));
+        super(Block.Properties.of(Material.PLANT).sound(SoundType.GRASS));
+        // this.setDefaultState(this.stateContainer.getBaseState().with(this.getAgeProperty(), Integer.valueOf(0)));
     }
 
     protected boolean validGround(BlockState state, IBlockReader worldIn, BlockPos pos) {

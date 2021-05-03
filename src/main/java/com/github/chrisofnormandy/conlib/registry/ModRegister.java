@@ -1,7 +1,12 @@
 package com.github.chrisofnormandy.conlib.registry;
 
 import java.util.HashMap;
+import java.util.stream.Stream;
 
+import com.github.chrisofnormandy.conlib.biome.Biomes;
+import com.github.chrisofnormandy.conlib.biome.ModBiome;
+import com.github.chrisofnormandy.conlib.biome.ModClimate;
+import com.github.chrisofnormandy.conlib.biome.Terrain;
 import com.github.chrisofnormandy.conlib.block.types.NodeBase;
 import com.github.chrisofnormandy.conlib.block.types.OreBase;
 import com.github.chrisofnormandy.conlib.event.BlockBreak;
@@ -9,22 +14,36 @@ import com.github.chrisofnormandy.conlib.itemgroup.Groups;
 import com.github.chrisofnormandy.conlib.tool.CraftingTool;
 import com.github.chrisofnormandy.conlib.tool.ToolBase;
 import com.github.chrisofnormandy.conlib.tool.ToolMaterial;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.CropsBlock;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraft.block.material.PushReaction;
+import net.minecraft.entity.item.PaintingType;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.Item.Properties;
 import net.minecraft.item.Food;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.Rarity;
+import net.minecraft.util.RegistryKey;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.registry.Registry;
+import net.minecraft.util.registry.WorldGenRegistries;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.Biome.Category;
+import net.minecraft.world.biome.Biome.RainType;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
+import net.minecraft.world.gen.surfacebuilders.ConfiguredSurfaceBuilder;
+import net.minecraft.world.gen.surfacebuilders.ISurfaceBuilderConfig;
+import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
+import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
+import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.ToolType;
+import net.minecraftforge.common.BiomeDictionary.Type;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -109,7 +128,7 @@ public class ModRegister {
      */
     public static Block registerBlock(String name, Block block, ItemGroup group)
     {
-        BlockItem itemBlock = new BlockItem(block, new Item.Properties().group(group));
+        BlockItem itemBlock = new BlockItem(block, new Item.Properties().tab(group));
         block.setRegistryName(name);
         itemBlock.setRegistryName(name);
         ForgeRegistries.BLOCKS.register(block);
@@ -141,7 +160,7 @@ public class ModRegister {
     public static HashMap<String, Item> items = new HashMap<String, Item>();
 
     public static Item registerItem(String name, Properties properties, ItemGroup group) {
-        Item item = new Item(properties.group(group)).setRegistryName(name);
+        Item item = new Item(properties.tab(group)).setRegistryName(name);
         ForgeRegistries.ITEMS.register(item);
         items.put(name, item);
         return item;
@@ -165,13 +184,13 @@ public class ModRegister {
     public static HashMap<String, Item> tools = new HashMap<String, Item>();
 
     public static Item registerCraftingTool(String name, Properties properties, ItemGroup group) {
-        CraftingTool item = new CraftingTool(properties.group(group));
+        CraftingTool item = new CraftingTool(properties.tab(group));
         tools.put(name, item);
         return registerItem(name, item);
     }
 
     public static Item registerTool(String name, ToolMaterial toolMaterial, ToolType toolType, int level, ItemGroup group) {
-        ToolBase item = new ToolBase(toolMaterial.getProperties().group(group), toolType, level);
+        ToolBase item = new ToolBase(toolMaterial.getProperties().tab(group), toolType, level);
         tools.put(name, item);
         return registerItem(name, item);
     }
@@ -186,11 +205,11 @@ public class ModRegister {
 
     // FOODS
     public static Food registerFoodNoItem(int hunger, float saturation) {
-        return (new Food.Builder()).saturation(saturation).hunger(hunger).build();
+        return (new Food.Builder()).saturationMod(saturation).nutrition(hunger).build();
     }
 
     public static Item registerFood(String name, int hunger, float saturation, ItemGroup group) {
-        Food food = (new Food.Builder()).saturation(saturation).hunger(hunger).build();
+        Food food = (new Food.Builder()).saturationMod(saturation).nutrition(hunger).build();
         return registerItem(name, new Item.Properties().food(food), group);
     }
 
@@ -199,7 +218,17 @@ public class ModRegister {
     }
 
     // WORLD GEN
+    public static HashMap<String, Biome> biomes = new HashMap<String, Biome>();
+    public static HashMap<String, RegistryKey<Biome>> biomeKeys = new HashMap<String, RegistryKey<Biome>>();
+    public static HashMap<String, ModBiome> modBiomes = new HashMap<String, ModBiome>();
+
+    public static HashMap<String, ModClimate> climates = new HashMap<String, ModClimate>();
+
     public static HashMap<String, Feature<?>> generators = new HashMap<String, Feature<?>>();
+
+    public static HashMap<String, SurfaceBuilder<?>> surfaceBuilders = new HashMap<String, SurfaceBuilder<?>>();
+    public static HashMap<String, SurfaceBuilderConfig> surfaceBuilderConfigs = new HashMap<String, SurfaceBuilderConfig>();
+    public static HashMap<String, ConfiguredSurfaceBuilder<?>> configSurfaceBuilders = new HashMap<String, ConfiguredSurfaceBuilder<?>>();
 
     public static Feature<NoFeatureConfig> registerPlantGen(String name, Feature<NoFeatureConfig> feature) {
         return registerGenFeature(name, feature);
@@ -212,8 +241,65 @@ public class ModRegister {
         return entry;
     }
 
-    // EVENTS
+    public static SurfaceBuilderConfig registerSurfaceBuilderConfig(String name, SurfaceBuilderConfig config) {
+        surfaceBuilderConfigs.put(name, config);
+        return config;
+    }
 
+    public static <A extends ISurfaceBuilderConfig, B extends ConfiguredSurfaceBuilder<A>> B registerConfiguredSurfaceBuilder(String name, B builder) {
+        Registry.register(WorldGenRegistries.CONFIGURED_SURFACE_BUILDER, new ResourceLocation(mod_id, name), builder);
+        configSurfaceBuilders.put(name, builder);
+        return builder;
+    }
+
+    public static <A extends ISurfaceBuilderConfig, B extends SurfaceBuilder<A>> B registerSurfaceBuilder(String name, B builder) {
+        builder.setRegistryName(new ResourceLocation(mod_id, name));
+        ForgeRegistries.SURFACE_BUILDERS.register(builder);
+        surfaceBuilders.put(name, builder);
+        return builder;
+    }
+
+    public static Biome registerBiome(String name, Biome biome, Type...types) {
+        biome.setRegistryName(new ResourceLocation(mod_id, name));
+        biomes.put(name, biome);
+        ForgeRegistries.BIOMES.register(biome);
+        RegistryKey<Biome> key = Biomes.Helpers.createKey(biome);
+        biomeKeys.put(name, key);
+        BiomeDictionary.addTypes(key, types);
+        return biome;
+    }
+
+    public static Stream<RegistryKey<Biome>> getBiomeKeys() {
+        return biomeKeys.values().stream();
+    }
+
+    public static ModBiome registerBiome(String name, Category category, RainType rainType, ModClimate climate, Integer weight, Terrain terrain, Float depth, Float scale, Float temperature, Float downfall) {
+        ModBiome biome = new ModBiome(climate, weight, terrain);
+        biome.configure(depth, scale, temperature, downfall);
+        Biomes.register(name, biome, category, rainType);
+        modBiomes.put(name, biome);
+        return biome;
+    }
+
+    public static void registerBiome(String name, ModBiome biome, Category category, RainType rainType) {
+        Biomes.register(name, biome, category, rainType);
+    }
+
+    public static void registerBiomes() {
+        Biomes.registerAll();
+    }
+
+    public static ModClimate registerClimate(String name, ModClimate climate) {
+        climates.put(name, climate);
+        return climate;
+    }
+
+    // EVENTS
+    public static PaintingType registerPainting(String name, PaintingType painting) {
+        painting.setRegistryName(new ResourceLocation(mod_id, name));
+        ForgeRegistries.PAINTING_TYPES.register(painting);
+        return painting;
+    }
     
 
     // SPECIAL
@@ -236,4 +322,7 @@ public class ModRegister {
         nodes.put(name, node);
         return node;
     }
+
+    // MISC
+
 }

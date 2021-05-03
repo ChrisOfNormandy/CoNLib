@@ -17,9 +17,4 @@ public class ToolBase extends Item {
     public ToolBase(Item.Properties properties, ToolType toolType, int level) {
         super(properties.addToolType(toolType, level));
     }
-
-    @Override
-    public void onCreated(ItemStack stack, World worldIn, PlayerEntity playerIn) {
-        
-    }
 }

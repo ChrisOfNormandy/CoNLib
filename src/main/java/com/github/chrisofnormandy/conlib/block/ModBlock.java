@@ -31,42 +31,6 @@ public class ModBlock {
             return RockBase.create(harvestLevel);
         }
 
-        /**
-         * @param harvestLevel
-         * <p>Gold: 0</p>
-         * <p>Wood: 0</p>
-         * <p>Stone: 1</p>
-         * <p>Iron: 2</p>
-         * <p>Diamond: 3</p>
-         * <p>Netherite: 4</p>
-         * @param hardness
-         * <p>Obsidian: 50</p>
-         * <p>Ancient Debris: 30</p>
-         * <p>Ender Chest: 22.5</p>
-         * <p>Block of Iron: 5</p>
-         * <p>Cobweb: 4</p>
-         * <p>Furnace: 3.5</p>
-         * <p>Iron Ore: 3</p>
-         * <p>Crafting Table: 2.5</p>
-         * <p>Bricks: 2</p>
-         * <p>Concrete: 1.8</p>
-         * <p>Stone: 1.5</p>
-         * <p>Pumpkin: 1</p>
-         * <p>Sandstone: 0.8</p>
-         * <p>Rail: 0.7</p>
-         * <p>Clay: 0.6</p>
-         * <p>Dirt: 0.5</p>
-         * <p>Netherrack: 0.4</p>
-         * <p>Glass: 0.3</p>
-         * <p>Leaves: 0.2</p>
-         * <p>Carpet: 0.1</p>
-         * <p>Fire: 0</p>
-         * @return A block.
-         */
-        public static Block create(Integer harvestLevel, Float hardness) {
-            return RockBase.create(harvestLevel, hardness);
-        }
-
         public static List<Block> createProducts(Block parent) {
             return RockBase.createProducts(parent);
         }
@@ -153,49 +117,8 @@ public class ModBlock {
             return new OreBase(minXP, maxXP, harvestLevel);
         }
 
-        /**
-         * @param harvestLevel
-         * <p>Gold: 0</p>
-         * <p>Wood: 0</p>
-         * <p>Stone: 1</p>
-         * <p>Iron: 2</p>
-         * <p>Diamond: 3</p>
-         * <p>Netherite: 4</p>
-         * @param hardness
-         * <p>Obsidian: 50</p>
-         * <p>Ancient Debris: 30</p>
-         * <p>Ender Chest: 22.5</p>
-         * <p>Block of Iron: 5</p>
-         * <p>Cobweb: 4</p>
-         * <p>Furnace: 3.5</p>
-         * <p>Iron Ore: 3</p>
-         * <p>Crafting Table: 2.5</p>
-         * <p>Bricks: 2</p>
-         * <p>Concrete: 1.8</p>
-         * <p>Stone: 1.5</p>
-         * <p>Pumpkin: 1</p>
-         * <p>Sandstone: 0.8</p>
-         * <p>Rail: 0.7</p>
-         * <p>Clay: 0.6</p>
-         * <p>Dirt: 0.5</p>
-         * <p>Netherrack: 0.4</p>
-         * <p>Glass: 0.3</p>
-         * <p>Leaves: 0.2</p>
-         * <p>Carpet: 0.1</p>
-         * <p>Fire: 0</p>
-         * @return A block.
-         */
-        public static Block create(Integer minXP, Integer maxXP, Integer harvestLevel, Float hardness) {
-            return new OreBase(minXP, maxXP, harvestLevel, hardness);
-        }
-
         public static Block register(String name, Integer minXP, Integer maxXP, Integer harvestLevel, Groups group) {
             return OreBase.Register.single(name, minXP, maxXP, harvestLevel, group);
-        }
-
-        public static Block register(String name, Integer minXP, Integer maxXP, Integer harvestLevel, Float hardness,
-                Groups group) {
-            return OreBase.Register.single(name, minXP, maxXP, harvestLevel, hardness, group);
         }
 
         public static Block register(String name, OreBase block, Groups group) {
@@ -215,7 +138,7 @@ public class ModBlock {
 
     public static class Node_ {
         public static NodeBase create(Block parent, NodeBase.Tier tier, Integer damage) {
-            return new NodeBase(Block.Properties.from(parent), tier, damage, parent.asItem());
+            return new NodeBase(Block.Properties.copy(parent), tier, damage, parent.asItem());
         }
 
         public static void register(String name, Block parent, NodeBase.Tier tier, Groups group) {

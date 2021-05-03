@@ -34,7 +34,7 @@ public class Groups extends ItemGroup {
     }
 
     @Override
-    public ItemStack createIcon() {
+    public ItemStack makeIcon() {
         return displayStack.get();
     }
 }

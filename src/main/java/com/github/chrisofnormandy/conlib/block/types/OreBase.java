@@ -17,14 +17,8 @@ public class OreBase extends OreBlock {
   private Integer minXP;
   private Integer maxXP;
 
-  public OreBase(Integer minXP, Integer maxXP, Integer harvestLevel, Float hardness) {
-    super(Properties.create(Material.ROCK).hardnessAndResistance(hardness).sound(SoundType.STONE).harvestLevel(harvestLevel));
-    this.minXP = minXP;
-    this.maxXP = maxXP;
-  }
-
   public OreBase(Integer minXP, Integer maxXP, Integer harvestLevel) {
-    super(Properties.create(Material.ROCK).hardnessAndResistance(3.0f).sound(SoundType.STONE).harvestLevel(harvestLevel));
+    super(Properties.of(Material.STONE).sound(SoundType.STONE).harvestLevel(harvestLevel));
     this.minXP = minXP;
     this.maxXP = maxXP;
   }
@@ -32,11 +26,6 @@ public class OreBase extends OreBlock {
   public static class Register {
     public static Block single(String name, Integer minXP, Integer maxXP, Integer harvestLevel, Groups group) {
       return ModRegister.registerOre(name, new OreBase(minXP, maxXP, harvestLevel), group);
-    }
-
-    public static Block single(String name, Integer minXP, Integer maxXP, Integer harvestLevel, Float hardness,
-        Groups group) {
-      return ModRegister.registerOre(name, new OreBase(minXP, maxXP, harvestLevel, hardness), group);
     }
 
     public static Block single(String name, OreBase block, Groups group) {
@@ -57,8 +46,8 @@ public class OreBase extends OreBlock {
     }
   }
 
-  @Override
-  protected int getExperience(Random rand) {
-    return MathHelper.nextInt(rand, minXP, maxXP);
-  }
+  // @Override
+  // protected int getExperience(Random rand) {
+  //   return MathHelper.nextInt(rand, minXP, maxXP);
+  // }
 }

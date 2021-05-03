@@ -15,16 +15,8 @@ import net.minecraftforge.common.ToolType;
 
 public class RockBase {
     public static Block create(Integer harvestLevel) {
-        return new Block(Block.Properties.create(Material.ROCK)
-            .hardnessAndResistance(1.5f)
-            .sound(SoundType.STONE)
-            .harvestTool(ToolType.PICKAXE)
-            .harvestLevel(harvestLevel));
-    }
-
-    public static Block create(Integer harvestLevel, Float hardness) {
-        return new Block(Block.Properties.create(Material.ROCK)
-            .hardnessAndResistance(hardness)
+        return new Block(Block.Properties.of(Material.STONE)
+            // .hardnessAndResistance(1.5f)
             .sound(SoundType.STONE)
             .harvestTool(ToolType.PICKAXE)
             .harvestLevel(harvestLevel));
@@ -34,7 +26,7 @@ public class RockBase {
         List<Block> list = new LinkedList<Block>();
 
         list.add(Subsets.create_slab(parent));
-        list.add(Subsets.create_stairs(parent));
+        // list.add(Subsets.create_stairs(parent));
         list.add(Subsets.create_wall(parent));
 
         return list;
