@@ -1,4 +1,4 @@
-package com.github.chrisofnormandy.conlib.world.generator;
+package com.github.chrisofnormandy.conlib.world.generators;
 
 import java.util.HashMap;
 

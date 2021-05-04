@@ -1,4 +1,4 @@
-package com.github.chrisofnormandy.conlib.world.layer;
+package com.github.chrisofnormandy.conlib.world.layers.overworld;
 
 import net.minecraft.world.gen.INoiseRandom;
 import net.minecraft.world.gen.layer.traits.ICastleTransformer;

@@ -1,4 +1,4 @@
-package com.github.chrisofnormandy.conlib.world.layer;
+package com.github.chrisofnormandy.conlib.world.layers.overworld;
 
 import com.github.chrisofnormandy.conlib.world.transformers.AreaTransformer3;
 

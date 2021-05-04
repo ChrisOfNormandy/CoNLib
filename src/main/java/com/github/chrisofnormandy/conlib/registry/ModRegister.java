@@ -219,7 +219,12 @@ public class ModRegister {
 
     // WORLD GEN
     public static HashMap<String, Biome> biomes = new HashMap<String, Biome>();
-    public static HashMap<String, RegistryKey<Biome>> biomeKeys = new HashMap<String, RegistryKey<Biome>>();
+
+    public static HashMap<String, RegistryKey<Biome>> overworldKeys = new HashMap<String, RegistryKey<Biome>>();
+    public static HashMap<String, RegistryKey<Biome>> netherKeys = new HashMap<String, RegistryKey<Biome>>();
+    public static HashMap<String, RegistryKey<Biome>> endKeys = new HashMap<String, RegistryKey<Biome>>();
+    public static HashMap<String, RegistryKey<Biome>> customKeys = new HashMap<String, RegistryKey<Biome>>();
+
     public static HashMap<String, ModBiome> modBiomes = new HashMap<String, ModBiome>();
 
     public static HashMap<String, ModClimate> climates = new HashMap<String, ModClimate>();
@@ -259,18 +264,46 @@ public class ModRegister {
         return builder;
     }
 
-    public static Biome registerBiome(String name, Biome biome, Type...types) {
+    public static Biome registerOverworldBiome(String name, Biome biome, Type...types) {
         biome.setRegistryName(new ResourceLocation(mod_id, name));
         biomes.put(name, biome);
         ForgeRegistries.BIOMES.register(biome);
         RegistryKey<Biome> key = Biomes.Helpers.createKey(biome);
-        biomeKeys.put(name, key);
+        overworldKeys.put(name, key);
         BiomeDictionary.addTypes(key, types);
         return biome;
     }
 
-    public static Stream<RegistryKey<Biome>> getBiomeKeys() {
-        return biomeKeys.values().stream();
+    public static Biome registerNetherBiome(String name, Biome biome, Type...types) {
+        biome.setRegistryName(new ResourceLocation(mod_id, name));
+        biomes.put(name, biome);
+        ForgeRegistries.BIOMES.register(biome);
+        RegistryKey<Biome> key = Biomes.Helpers.createKey(biome);
+        netherKeys.put(name, key);
+        BiomeDictionary.addTypes(key, types);
+        return biome;
+    }
+
+    public static Biome registerEndBiome(String name, Biome biome, Type...types) {
+        biome.setRegistryName(new ResourceLocation(mod_id, name));
+        biomes.put(name, biome);
+        ForgeRegistries.BIOMES.register(biome);
+        RegistryKey<Biome> key = Biomes.Helpers.createKey(biome);
+        endKeys.put(name, key);
+        BiomeDictionary.addTypes(key, types);
+        return biome;
+    }
+
+    public static Stream<RegistryKey<Biome>> getOverworldBiomes() {
+        return overworldKeys.values().stream();
+    }
+
+    public static Stream<RegistryKey<Biome>> getNetherBiomes() {
+        return netherKeys.values().stream();
+    }
+
+    public static Stream<RegistryKey<Biome>> getEndBiomes() {
+        return endKeys.values().stream();
     }
 
     public static ModBiome registerBiome(String name, Category category, RainType rainType, ModClimate climate, Integer weight, Terrain terrain, Float depth, Float scale, Float temperature, Float downfall) {

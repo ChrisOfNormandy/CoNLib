@@ -1,11 +1,11 @@
-package com.github.chrisofnormandy.conlib.world.layer;
+package com.github.chrisofnormandy.conlib.world.layers.overworld;
 
 import net.minecraft.world.gen.INoiseRandom;
 import net.minecraft.world.gen.area.IArea;
 import net.minecraft.world.gen.layer.traits.IAreaTransformer2;
-import net.minecraft.world.gen.layer.traits.IDimOffset1Transformer;
+import net.minecraft.world.gen.layer.traits.IDimOffset0Transformer;
 
-public enum ModSubBiomeLayer implements IAreaTransformer2, IDimOffset1Transformer {
+public enum ModRiverLayer implements IAreaTransformer2, IDimOffset0Transformer {
     INSTANCE;
 
     @Override

@@ -7,9 +7,8 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import com.github.chrisofnormandy.conlib.registry.ModRegister;
-import com.github.chrisofnormandy.conlib.world.factories.ContextFactory;
-import com.github.chrisofnormandy.conlib.world.factories.ModFactories;
-import com.github.chrisofnormandy.conlib.world.generator.GeneratorSettings;
+import com.github.chrisofnormandy.conlib.world.generators.GeneratorSettings;
+import com.github.chrisofnormandy.conlib.world.layers.LayerHelper;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 
@@ -19,8 +18,6 @@ import net.minecraft.util.registry.RegistryLookupCodec;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.Biomes;
 import net.minecraft.world.biome.provider.BiomeProvider;
-import net.minecraft.world.gen.IExtendedNoiseRandom;
-import net.minecraft.world.gen.area.IArea;
 import net.minecraft.world.gen.layer.Layer;
 
 public class ModBiomeProvider extends BiomeProvider {
@@ -47,7 +44,7 @@ public class ModBiomeProvider extends BiomeProvider {
             Biomes.MODIFIED_BADLANDS_PLATEAU));
 
     public ModBiomeProvider(long seed, Registry<Biome> biomeRegistry) {
-        super(Stream.concat(vanillaBiomes.stream(), ModRegister.getBiomeKeys()).map(biomeRegistry::get).collect(Collectors.toList()));
+        super(Stream.concat(vanillaBiomes.stream(), ModRegister.getOverworldBiomes()).map(biomeRegistry::get).collect(Collectors.toList()));
         this.seed = seed;
         this.layer = LayerHelper.createLayer(seed, new GeneratorSettings());
         this.biomeRegistry = biomeRegistry;
@@ -78,18 +75,5 @@ public class ModBiomeProvider extends BiomeProvider {
     @Override
     public BiomeProvider withSeed(long seed) {
         return new ModBiomeProvider(seed, this.biomeRegistry);
-    }
-
-    public static class LayerHelper {
-
-        public static Layer createLayer(long seed, GeneratorSettings settings) {
-            return new Layer(ModFactories.createAreaFactories(settings, (seedModifier) -> {
-                return new ContextFactory(1, seed, seedModifier);
-            }));
-        }
-
-        public interface AreaInterface<T extends IArea> extends IExtendedNoiseRandom<T> {
-            Long getWorldSeed();
-        }
     }
 }
