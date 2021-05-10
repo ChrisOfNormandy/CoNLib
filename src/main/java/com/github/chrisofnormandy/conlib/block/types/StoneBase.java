@@ -13,7 +13,7 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraftforge.common.ToolType;
 
-public class RockBase {
+public class StoneBase {
     public static Block create(Integer harvestLevel) {
         return new Block(Block.Properties.of(Material.STONE)
             // .hardnessAndResistance(1.5f)
@@ -26,7 +26,7 @@ public class RockBase {
         List<Block> list = new LinkedList<Block>();
 
         list.add(Subsets.create_slab(parent));
-        // list.add(Subsets.create_stairs(parent));
+        list.add(Subsets.create_stairs(parent));
         list.add(Subsets.create_wall(parent));
 
         return list;

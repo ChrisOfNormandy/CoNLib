@@ -26,7 +26,7 @@ public class WoodBase {
         List<Block> list = new LinkedList<Block>();
 
         list.add(Subsets.create_slab(parent));
-        // list.add(Subsets.create_stairs(parent));
+        list.add(Subsets.create_stairs(parent));
         list.add(Subsets.create_fence(parent));
         list.add(Subsets.create_fenceGate(parent));
 

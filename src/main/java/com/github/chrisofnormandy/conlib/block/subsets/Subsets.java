@@ -12,9 +12,9 @@ public class Subsets {
         return new SlabBlock(Block.Properties.copy(parent));
     }
 
-    // public static Block create_stairs(Block parent) {
-    //     return new StairsBlock(() -> parent.getDefaultState(), Block.Properties.copy(parent));
-    // }
+    public static Block create_stairs(Block parent) {
+        return new StairsBlock(() -> parent.defaultBlockState(), Block.Properties.copy(parent));
+    }
 
     public static Block create_wall(Block parent) {
         return new WallBlock(Block.Properties.copy(parent));

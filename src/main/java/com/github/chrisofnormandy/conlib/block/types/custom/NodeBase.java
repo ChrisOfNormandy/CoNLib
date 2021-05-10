@@ -1,4 +1,4 @@
-package com.github.chrisofnormandy.conlib.block.types;
+package com.github.chrisofnormandy.conlib.block.types.custom;
 
 import java.util.Random;
 

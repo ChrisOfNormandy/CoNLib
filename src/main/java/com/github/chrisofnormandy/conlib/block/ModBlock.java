@@ -3,10 +3,10 @@ package com.github.chrisofnormandy.conlib.block;
 import java.util.List;
 
 import com.github.chrisofnormandy.conlib.block.types.BricksBase;
-import com.github.chrisofnormandy.conlib.block.types.NodeBase;
 import com.github.chrisofnormandy.conlib.block.types.OreBase;
-import com.github.chrisofnormandy.conlib.block.types.RockBase;
+import com.github.chrisofnormandy.conlib.block.types.StoneBase;
 import com.github.chrisofnormandy.conlib.block.types.WoodBase;
+import com.github.chrisofnormandy.conlib.block.types.custom.NodeBase;
 import com.github.chrisofnormandy.conlib.itemgroup.GroupList;
 import com.github.chrisofnormandy.conlib.itemgroup.Groups;
 import com.github.chrisofnormandy.conlib.tool.ToolMaterial;
@@ -16,7 +16,7 @@ import net.minecraft.block.Block;
 public class ModBlock {
     public static String[] dyes = com.github.chrisofnormandy.conlib.item.ModItem.dyes;
 
-    public static class Rock {
+    public static class Stone {
         /**
          * @param harvestLevel
          * <p>Gold: 0</p>
@@ -28,15 +28,15 @@ public class ModBlock {
          * @return A block with default 1.5 hardness - stone.
          */
         public static Block create(Integer harvestLevel) {
-            return RockBase.create(harvestLevel);
+            return StoneBase.create(harvestLevel);
         }
 
         public static List<Block> createProducts(Block parent) {
-            return RockBase.createProducts(parent);
+            return StoneBase.createProducts(parent);
         }
 
         public static Block register(String name, Integer harvestLevel, Groups group) {
-            return RockBase.Register.single(name, harvestLevel, group);
+            return StoneBase.Register.single(name, harvestLevel, group);
         }
 
         /**
@@ -47,7 +47,7 @@ public class ModBlock {
          * @return
          */
         public static List<Block> registerSuite(String name, Block parent, GroupList groups) {
-            return RockBase.Register.suite(name, parent, groups);
+            return StoneBase.Register.suite(name, parent, groups);
         }
 
         /**
@@ -58,7 +58,7 @@ public class ModBlock {
          * @return
          */
         public static List<Block> registerSuiteWithVariants(String name, Block parent, GroupList groups) {
-            return RockBase.Register.suiteWithVariants(name, parent, groups);
+            return StoneBase.Register.suiteWithVariants(name, parent, groups);
         }
     }
 
@@ -113,8 +113,8 @@ public class ModBlock {
          * <p>Netherite: 4</p>
          * @return A block with default 3 hardness - iron ore.
          */
-        public static Block create(Integer minXP, Integer maxXP, Integer harvestLevel) {
-            return new OreBase(minXP, maxXP, harvestLevel);
+        public static Block create(Integer harvestLevel) {
+            return new OreBase(harvestLevel);
         }
 
         public static Block register(String name, Integer minXP, Integer maxXP, Integer harvestLevel, Groups group) {

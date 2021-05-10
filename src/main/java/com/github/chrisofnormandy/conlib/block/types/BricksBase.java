@@ -15,7 +15,7 @@ import net.minecraftforge.common.ToolType;
 
 public class BricksBase {
     public static Block create(int harvestLevel) {
-        return new Block(Block.Properties.of(Material.WOOD)
+        return new Block(Block.Properties.of(Material.STONE)
             // .hardnessAndResistance(2.0f)
             .sound(SoundType.STONE)
             .harvestTool(ToolType.PICKAXE)
@@ -26,7 +26,7 @@ public class BricksBase {
         List<Block> list = new LinkedList<Block>();
 
         list.add(Subsets.create_slab(parent));
-        // list.add(Subsets.create_stairs(parent));
+        list.add(Subsets.create_stairs(parent));
         list.add(Subsets.create_wall(parent));
 
         return list;
