@@ -16,7 +16,17 @@ import net.minecraftforge.common.ToolType;
 public class StoneBase {
     public static Block create(Integer harvestLevel) {
         return new Block(Block.Properties.of(Material.STONE)
-            // .hardnessAndResistance(1.5f)
+            .requiresCorrectToolForDrops()
+            .strength(1.5f)
+            .sound(SoundType.STONE)
+            .harvestTool(ToolType.PICKAXE)
+            .harvestLevel(harvestLevel));
+    }
+
+    public static Block create(Integer harvestLevel, Float strength) {
+        return new Block(Block.Properties.of(Material.STONE)
+            .requiresCorrectToolForDrops()
+            .strength(strength)
             .sound(SoundType.STONE)
             .harvestTool(ToolType.PICKAXE)
             .harvestLevel(harvestLevel));
@@ -35,6 +45,10 @@ public class StoneBase {
     public static class Register {
         public static Block single(String name, Integer harvestLevel, Groups group) {
             return ModRegister.registerBlock(name, create(harvestLevel), group);
+        }
+
+        public static Block single(String name, Integer harvestLevel, Float strength, Groups group) {
+            return ModRegister.registerBlock(name, create(harvestLevel, strength), group);
         }
 
         public static List<Block> products(String name, Block parent, GroupList groups) {

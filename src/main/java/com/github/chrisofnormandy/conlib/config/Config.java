@@ -31,7 +31,7 @@ public class Config {
 		this.name = name;
 	}
 
-	private void loadConfig(ForgeConfigSpec config, String path) {
+	private void loadConfig(ForgeConfigSpec config, Path path) {
 		CommentedFileConfig file = CommentedFileConfig.builder(path).sync().autosave().writingMode(WritingMode.REPLACE)
 				.build();
 
@@ -54,7 +54,7 @@ public class Config {
 		}
 
 		ModLoadingContext.get().registerConfig(type, config.CONFIG, fileName);
-		this.loadConfig(config.CONFIG, FMLPaths.CONFIGDIR.get().resolve(fileName).toString());
+		this.loadConfig(config.CONFIG, FMLPaths.CONFIGDIR.get().resolve(fileName));
 	}
 
 	private void BuildVars(ForgeConfigSpec.Builder BUILDER, ConfigGroup group) {
@@ -112,14 +112,14 @@ public class Config {
 			BUILDER.pop();
 		}
 
-		if (!group.floats_unbuilt.isEmpty()) {
+		if (!group.doubles_unbuilt.isEmpty()) {
 
-			BUILDER.push("Floats");
-			for (HashMap.Entry<String, Tuple<String, Float>> entry : group.floats_unbuilt.entrySet()) {
+			BUILDER.push("Doubles");
+			for (HashMap.Entry<String, Tuple<String, Double>> entry : group.doubles_unbuilt.entrySet()) {
 				String key = entry.getKey();
-				Tuple<String, Float> value = entry.getValue();
+				Tuple<String, Double> value = entry.getValue();
 
-				group.floats.put(key, BUILDER.comment(value.x).define(key, value.y));
+				group.doubles.put(key, BUILDER.comment(value.x).define(key, value.y));
 			}
 
 			BUILDER.pop();
@@ -207,8 +207,8 @@ public class Config {
 		this.config.addInteger(key, value, comment);
 	}
 
-	public void addFloat(String key, Float value, String comment) {
-		this.config.addFloat(key, value, comment);
+	public void addDouble(String key, Double value, String comment) {
+		this.config.addDouble(key, value, comment);
 	}
 
 	public void addFlag(String key, Boolean value, String comment) {
@@ -235,8 +235,8 @@ public class Config {
 		return this.config.getIntegerValue(key);
 	}
 
-	public Float getFloatValue(String key) {
-		return this.config.getFloatValue(key);
+	public Double getDoubleValue(String key) {
+		return this.config.getDoubleValue(key);
 	}
 
 	public Boolean getFlagValue(String key) {

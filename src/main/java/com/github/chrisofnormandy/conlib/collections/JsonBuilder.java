@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.github.chrisofnormandy.conlib.Main;
+import com.github.chrisofnormandy.conlib.common.Files;
 
 public class JsonBuilder {
     public JsonObject createJsonObject() {
@@ -40,16 +41,12 @@ public class JsonBuilder {
         return a;
     }
 
-    public void write(String name, String json) {
-        try {
-            PrintWriter out = new PrintWriter(name + ".json");
-            out.write(json);
-            out.close();
-        }
-        catch (Exception err) {
-            Main.LOG.error("Failed to write JSON to file: " + name + ".json");
-            Main.LOG.error(err);
-        }
+    public void write(String path, String name, JsonObject json) {
+        Files.write(path, name, stringify(json), ".json");
+    }
+
+    public void write(String path, String name, JsonArray json) {
+        Files.write(path, name, stringify(json), ".json");
     }
 
     public class JsonArray {

@@ -14,9 +14,17 @@ import net.minecraft.block.material.Material;
 import net.minecraftforge.common.ToolType;
 
 public class WoodBase {
-    public static Block create(int harvestLevel) {
+    public static Block create(Integer harvestLevel) {
         return new Block(Block.Properties.of(Material.WOOD)
-            // .hardnessAndResistance(2.0f)
+            .strength(2.0f)
+            .sound(SoundType.WOOD)
+            .harvestTool(ToolType.AXE)
+            .harvestLevel(harvestLevel));
+    }
+
+    public static Block create(Integer harvestLevel, Float strength) {
+        return new Block(Block.Properties.of(Material.WOOD)
+            .strength(strength)
             .sound(SoundType.WOOD)
             .harvestTool(ToolType.AXE)
             .harvestLevel(harvestLevel));
@@ -36,6 +44,10 @@ public class WoodBase {
     public static class Register {
         public static Block single(String name, int harvestLevel, Groups group) {
             return ModRegister.registerBlock(name, create(harvestLevel), group);
+        }
+
+        public static Block single(String name, int harvestLevel, Float strength, Groups group) {
+            return ModRegister.registerBlock(name, create(harvestLevel, strength), group);
         }
 
         public static List<Block> products(String name, Block parent, GroupList groups) {

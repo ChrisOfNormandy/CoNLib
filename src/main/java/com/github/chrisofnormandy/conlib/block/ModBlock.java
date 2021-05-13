@@ -31,12 +31,20 @@ public class ModBlock {
             return StoneBase.create(harvestLevel);
         }
 
+        public static Block create(Integer harvestLevel, Float strength) {
+            return StoneBase.create(harvestLevel, strength);
+        }
+
         public static List<Block> createProducts(Block parent) {
             return StoneBase.createProducts(parent);
         }
 
         public static Block register(String name, Integer harvestLevel, Groups group) {
             return StoneBase.Register.single(name, harvestLevel, group);
+        }
+
+        public static Block register(String name, Integer harvestLevel, Float strength, Groups group) {
+            return StoneBase.Register.single(name, harvestLevel, strength, group);
         }
 
         /**
@@ -67,12 +75,20 @@ public class ModBlock {
             return WoodBase.create(harvestLevel);
         }
 
+        public static Block create(Integer harvestLevel, Float strength) {
+            return WoodBase.create(harvestLevel, strength);
+        }
+
         public static List<Block> createProducts(Block parent) {
             return WoodBase.createProducts(parent);
         }
 
         public static Block register(String name, Integer harvestLevel, Groups group) {
             return WoodBase.Register.single(name, harvestLevel, group);
+        }
+
+        public static Block register(String name, Integer harvestLevel, Float strength, Groups group) {
+            return WoodBase.Register.single(name, harvestLevel, strength, group);
         }
 
         public static List<Block> registerSuite(String name, Integer harvestLevel, GroupList groups) {
@@ -85,12 +101,20 @@ public class ModBlock {
             return BricksBase.create(harvestLevel);
         }
 
+        public static Block create(Integer harvestLevel, Float strength) {
+            return BricksBase.create(harvestLevel, strength);
+        }
+
         public static List<Block> createProducts(Block parent) {
             return BricksBase.createProducts(parent);
         }
 
         public static Block register(String name, Integer harvestLevel, Groups group) {
             return BricksBase.Register.single(name, harvestLevel, group);
+        }
+
+        public static Block register(String name, Integer harvestLevel, Float strength, Groups group) {
+            return BricksBase.Register.single(name, harvestLevel, strength, group);
         }
 
         public static List<Block> registerSuite(String name, Integer harvestLevel, GroupList groups) {
@@ -117,8 +141,16 @@ public class ModBlock {
             return new OreBase(harvestLevel);
         }
 
-        public static Block register(String name, Integer minXP, Integer maxXP, Integer harvestLevel, Groups group) {
-            return OreBase.Register.single(name, minXP, maxXP, harvestLevel, group);
+        public static Block create(Integer harvestLevel, Float strength) {
+            return new OreBase(harvestLevel, strength);
+        }
+
+        public static Block register(String name, Integer harvestLevel, Groups group) {
+            return OreBase.Register.single(name, harvestLevel, group);
+        }
+
+        public static Block register(String name, Integer harvestLevel, Float strength, Groups group) {
+            return OreBase.Register.single(name, harvestLevel, strength, group);
         }
 
         public static Block register(String name, OreBase block, Groups group) {

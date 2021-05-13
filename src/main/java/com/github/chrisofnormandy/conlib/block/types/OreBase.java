@@ -12,12 +12,20 @@ import com.github.chrisofnormandy.conlib.tool.ToolMaterial;
 
 public class OreBase extends OreBlock {
   public OreBase(Integer harvestLevel) {
-    super(Properties.of(Material.STONE).sound(SoundType.STONE).harvestLevel(harvestLevel));
+    super(Properties.of(Material.STONE).requiresCorrectToolForDrops().strength(3.0f).sound(SoundType.STONE).harvestLevel(harvestLevel));
+  }
+
+  public OreBase(Integer harvestLevel, Float strength) {
+    super(Properties.of(Material.STONE).requiresCorrectToolForDrops().strength(strength).sound(SoundType.STONE).harvestLevel(harvestLevel));
   }
 
   public static class Register {
-    public static Block single(String name, Integer minXP, Integer maxXP, Integer harvestLevel, Groups group) {
+    public static Block single(String name, Integer harvestLevel, Groups group) {
       return ModRegister.registerOre(name, new OreBase(harvestLevel), group);
+    }
+
+    public static Block single(String name, Integer harvestLevel, Float strength, Groups group) {
+      return ModRegister.registerOre(name, new OreBase(harvestLevel, strength), group);
     }
 
     public static Block single(String name, OreBase block, Groups group) {
