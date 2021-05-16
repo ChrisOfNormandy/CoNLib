@@ -2,7 +2,6 @@ package com.github.chrisofnormandy.conlib.biome;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 import java.util.function.Consumer;
 
 import com.github.chrisofnormandy.conlib.Main;
@@ -11,7 +10,6 @@ import net.minecraft.util.RegistryKey;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.biome.Biome;
-import net.minecraftforge.common.world.ForgeWorldType;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public class Biomes {

@@ -1,11 +1,9 @@
 package com.github.chrisofnormandy.conlib.collections;
 
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import com.github.chrisofnormandy.conlib.Main;
 import com.github.chrisofnormandy.conlib.common.Files;
 
 public class JsonBuilder {

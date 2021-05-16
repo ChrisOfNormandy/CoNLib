@@ -20,16 +20,18 @@ repositories{
 }
 ...
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.16.4-35.1.4'
-    compile 'com.github.chrisofnormandy:conlib:#.#:deobf'
+    minecraft 'net.minecraftforge:forge:1.16.5-36.1.0'
+    compile 'com.github.chrisofnormandy:conlib:1.1:deobf'
 }
 ```
 
 Given Forge versioning and the frequent changes to this library, ensure the Forge version is correct in the dependencies. Too, that any mod referencing this library uses the same version.
 
-When making edits to the library in development, push to the `dev` branch. When using this branch during development, replace {BRANCH} with `dev` in the maven repo settings.
+When making edits to the library in development, push to the MC version branch. When using this branch during development, replace {BRANCH} with the Minecraft version (`1.16.5`) in the maven repo settings.
+If you want to use this library locally as an in-dev release, you can replace the maven url with a direct path to the repository directory of this project.
 
 The master branch is used for full releases and should be referenced by the maven repo.
+Else, use the version number of the Minecraft release, such as `1.16.5`.
 
 When releasing a new jar, run the `release.bat` script. It will build a deobf version of the mod using the version defined by the `build.gradle` file. When running the command `release` you must supply a version number equal to the one defined in the build script. For instance, `release 1.1` will run the deobf build, maven build, then rename the deobf files to version 1.1.
 
@@ -41,7 +43,7 @@ By standard, the root class for each mod is the `Main.java` file.
 
 Most things can be registered using a method defined in `conlib/registry/ModRegister.java`, but there are other areas that define more complex and / or refined methods.
 
-For instance, `block/ModBlock.java` provides a handful of preset methods for registering new block types like stones / rock, wood, bricks and ore. Too, some custom block types I developed are accessable via this interface. 
+For instance, `block/ModBlock.java` provides a handful of preset methods for registering new block types like stone, wood, bricks and ore. Too, some custom block types I developed are accessable via this interface. 
 
 Some of these presets have even more generous registration capabilities, such as `Ore`, which allows the registration of various resources associated with ore blocks. Things like tools, ingots, nuggets, armour, the base item, etc...
 
@@ -52,6 +54,8 @@ Given my dedication to provide avenues of Minecraft modding for less-technical M
 Furthermore, config properties are stored in a `HashMap` accessable by the `ConfigGroup` class, each defined by their data type. For example, boolean values (flags) are stored under the `flags` map.
 
 Going beyond this, it is possible to define lists within configs, allowing the ability to generate new configs and resources based on definitions within a config. This should be used with caution, however, as registering new content using this method is dangerous if done impropperly. The methods are fairly simple, and they are easily modified. However, once a resource has been registered to the mod and loaded within a world, that resource cannot change without adverse affects to the save. As such, all configuration settings should be supplied **BEFORE** a new world is created.
+
+***
 
 Below is an example config that generates additional configs:
 ```java
@@ -99,6 +103,8 @@ Now we can generate all our individual configs. Since we have a list of values, 
 Next, we build our config similarly to the main config. You can create a helper method that does this for you.
 
 Finally, we build the config and place it in a separate config map under a unique name. These configs can be placed within the same map as the previous, but for the sake of "cleanliness," I prefer placing registered objects within approprate, unique locations. This allows the ability to register multiple configs for a single reference element, such as individual configs for ore generation, tools, armour, etc...
+
+***
 
 # Public Usage
 

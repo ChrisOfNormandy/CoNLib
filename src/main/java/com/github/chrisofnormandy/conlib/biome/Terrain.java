@@ -1,6 +1,5 @@
 package com.github.chrisofnormandy.conlib.biome;
 
-import java.util.HashMap;
 import java.util.Random;
 
 import com.github.chrisofnormandy.conlib.registry.ModRegister;

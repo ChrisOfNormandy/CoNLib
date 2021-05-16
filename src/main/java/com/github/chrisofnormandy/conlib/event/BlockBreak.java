@@ -4,9 +4,6 @@ import java.util.Random;
 
 import com.github.chrisofnormandy.conlib.registry.ModRegister;
 
-// import org.apache.logging.log4j.LogManager;
-// import org.apache.logging.log4j.Logger;
-
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
