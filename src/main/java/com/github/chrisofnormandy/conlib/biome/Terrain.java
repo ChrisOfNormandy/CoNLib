@@ -2,7 +2,7 @@ package com.github.chrisofnormandy.conlib.biome;
 
 import java.util.Random;
 
-import com.github.chrisofnormandy.conlib.registry.ModRegister;
+import com.github.chrisofnormandy.conlib.registry.WorldGen;
 import com.mojang.serialization.Codec;
 
 import net.minecraft.block.BlockState;
@@ -32,11 +32,11 @@ public class Terrain {
         s.primary = primary;
         s.secondary = secondary;
 
-        return ModRegister.registerSurfaceBuilder(name, s);
+        return WorldGen.registerSurfaceBuilder(name, s);
     }
 
     public ConfiguredSurfaceBuilder registerConfiguredSurface(String name, Surface surface, SurfaceBuilderConfig config) {
-        return ModRegister.registerConfiguredSurfaceBuilder(name, new ConfiguredSurfaceBuilder(surface, config));
+        return WorldGen.registerConfiguredSurfaceBuilder(name, new ConfiguredSurfaceBuilder(surface, config));
     }
 
     public Terrain(String name, SurfaceBuilderConfig primary, SurfaceBuilderConfig secondary, Double limit) {

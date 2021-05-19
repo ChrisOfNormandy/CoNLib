@@ -6,7 +6,7 @@ import java.util.List;
 import com.github.chrisofnormandy.conlib.block.subsets.Subsets;
 import com.github.chrisofnormandy.conlib.itemgroup.GroupList;
 import com.github.chrisofnormandy.conlib.itemgroup.Groups;
-import com.github.chrisofnormandy.conlib.registry.ModRegister;
+import com.github.chrisofnormandy.conlib.registry.Blocks;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
@@ -14,24 +14,32 @@ import net.minecraft.block.material.Material;
 import net.minecraftforge.common.ToolType;
 
 public class BricksBase {
+    /**
+     * 
+     * @param harvestLevel
+     * @return
+     */
     public static Block create(Integer harvestLevel) {
-        return new Block(Block.Properties.of(Material.STONE)
-            .requiresCorrectToolForDrops()
-            .strength(2.0f)
-            .sound(SoundType.STONE)
-            .harvestTool(ToolType.PICKAXE)
-            .harvestLevel(harvestLevel));
+        return new Block(Block.Properties.of(Material.STONE).requiresCorrectToolForDrops().strength(2.0f)
+                .sound(SoundType.STONE).harvestTool(ToolType.PICKAXE).harvestLevel(harvestLevel));
     }
 
+    /**
+     * 
+     * @param harvestLevel
+     * @param strength
+     * @return
+     */
     public static Block create(Integer harvestLevel, Float strength) {
-        return new Block(Block.Properties.of(Material.STONE)
-            .requiresCorrectToolForDrops()
-            .strength(strength)
-            .sound(SoundType.STONE)
-            .harvestTool(ToolType.PICKAXE)
-            .harvestLevel(harvestLevel));
+        return new Block(Block.Properties.of(Material.STONE).requiresCorrectToolForDrops().strength(strength)
+                .sound(SoundType.STONE).harvestTool(ToolType.PICKAXE).harvestLevel(harvestLevel));
     }
 
+    /**
+     * 
+     * @param parent
+     * @return
+     */
     public static List<Block> createProducts(Block parent) {
         List<Block> list = new LinkedList<Block>();
 
@@ -43,28 +51,57 @@ public class BricksBase {
     }
 
     public static class Register {
+        /**
+         * 
+         * @param name
+         * @param harvestLevel
+         * @param group
+         * @return
+         */
         public static Block single(String name, int harvestLevel, Groups group) {
-            return ModRegister.registerBlock(name, create(harvestLevel), group);
+            return Blocks.register(name, create(harvestLevel), group);
         }
 
+        /**
+         * 
+         * @param name
+         * @param harvestLevel
+         * @param strength
+         * @param group
+         * @return
+         */
         public static Block single(String name, int harvestLevel, Float strength, Groups group) {
-            return ModRegister.registerBlock(name, create(harvestLevel, strength), group);
+            return Blocks.register(name, create(harvestLevel, strength), group);
         }
 
+        /**
+         * 
+         * @param name
+         * @param parent
+         * @param groups
+         * @return
+         */
         public static List<Block> products(String name, Block parent, GroupList groups) {
             List<Block> products = createProducts(parent);
             List<Block> list = new LinkedList<Block>();
 
-            list.add(ModRegister.registerBlock(name + "_slab", products.get(0), groups.slabs));
-            list.add(ModRegister.registerBlock(name + "_stairs", products.get(1), groups.stairs));
-            list.add(ModRegister.registerBlock(name + "_wall", products.get(2), groups.walls));
+            list.add(Blocks.register(name + "_slab", products.get(0), groups.slabs));
+            list.add(Blocks.register(name + "_stairs", products.get(1), groups.stairs));
+            list.add(Blocks.register(name + "_wall", products.get(2), groups.walls));
 
             return list;
         }
 
+        /**
+         * 
+         * @param name
+         * @param harvestLevel
+         * @param groups
+         * @return
+         */
         public static List<Block> suite(String name, int harvestLevel, GroupList groups) {
             Block parent = single(name, harvestLevel, groups.blocks);
-            
+
             List<Block> products = products(name, parent, groups);
 
             List<Block> list = new LinkedList<Block>();
@@ -74,9 +111,16 @@ public class BricksBase {
             return list;
         }
 
+        /**
+         * 
+         * @param name
+         * @param harvestLevel
+         * @param groups
+         * @return
+         */
         public static List<Block> suiteWithVariants(String name, int harvestLevel, GroupList groups) {
             List<Block> list = new LinkedList<Block>();
-            
+
             List<Block> selfSuite = suite(name, harvestLevel, groups);
             List<Block> mossySuite = suite("mossy_" + name, harvestLevel, groups);
             List<Block> crackedSuite = suite("cracked_" + name, harvestLevel, groups);

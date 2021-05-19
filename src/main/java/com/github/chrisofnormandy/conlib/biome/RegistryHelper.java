@@ -1,6 +1,6 @@
 package com.github.chrisofnormandy.conlib.biome;
 
-import com.github.chrisofnormandy.conlib.registry.ModRegister;
+import com.github.chrisofnormandy.conlib.registry.WorldGen;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityType;
@@ -52,7 +52,7 @@ public class RegistryHelper {
     }
 
     public SurfaceBuilderConfig surfaceBuilder(String name, Block surface, Block underground, Block underwater) {
-        return ModRegister.registerSurfaceBuilderConfig(name, new SurfaceBuilderConfig(surface.defaultBlockState(), underground.defaultBlockState(), underwater.defaultBlockState()));
+        return WorldGen.registerSurfaceBuilderConfig(name, new SurfaceBuilderConfig(surface.defaultBlockState(), underground.defaultBlockState(), underwater.defaultBlockState()));
     }
 
     public void setPrimarySurface(SurfaceBuilderConfig config) {
@@ -76,7 +76,7 @@ public class RegistryHelper {
     public ModClimate climateBuilder(String name, BiomeType type, Integer weight) {
         this.weight = weight;
         this.climate = new ModClimate(name, type);
-        return ModRegister.registerClimate(name, this.climate);
+        return WorldGen.registerClimate(name, this.climate);
     }
 
     public ModBiome biomeBuilder(Float depth, Float scale, Float temperature, Float downfall) {
@@ -115,7 +115,7 @@ public class RegistryHelper {
     }
 
     public ModBiome register() {
-        ModRegister.registerBiome(this.name, this.biome, this.biome.category, this.biome.rainType);
+        WorldGen.registerBiome(this.name, this.biome, this.biome.category, this.biome.rainType);
         return this.biome;
     }
 
