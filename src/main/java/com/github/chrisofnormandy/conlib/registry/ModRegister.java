@@ -7,10 +7,12 @@ import com.github.chrisofnormandy.conlib.Main;
 import com.github.chrisofnormandy.conlib.biome.ModBiome;
 import com.github.chrisofnormandy.conlib.biome.ModClimate;
 import com.github.chrisofnormandy.conlib.collections.Tuple;
+import com.github.chrisofnormandy.conlib.collections.JsonBuilder.JsonObject;
 import com.github.chrisofnormandy.conlib.event.BlockBreak;
 import com.github.chrisofnormandy.conlib.tool.ToolMaterial;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
@@ -26,6 +28,7 @@ public class ModRegister {
 
     public static String getModId() {
         return mod_id;
+        
     }
 
     public static void Init() {
@@ -83,6 +86,8 @@ public class ModRegister {
     public static HashMap<String, SurfaceBuilder<?>> surfaceBuilders = new HashMap<String, SurfaceBuilder<?>>();
     public static HashMap<String, SurfaceBuilderConfig> surfaceBuilderConfigs = new HashMap<String, SurfaceBuilderConfig>();
     public static HashMap<String, ConfiguredSurfaceBuilder<?>> configSurfaceBuilders = new HashMap<String, ConfiguredSurfaceBuilder<?>>();
+
+    public static HashMap<String, JsonObject> worldgen_biome = new HashMap<String, JsonObject>();
 
     /**
      * 

@@ -202,6 +202,37 @@ public class JsonBuilder {
             return arr;
         }
 
+        public Boolean contains(Object value) {
+            if (first == null)
+                return false;
+
+            Node current = first;
+            while (current != null) {
+                if (current.value.equals(value))
+                    return true;
+                current = current.getNext();
+            }
+
+            return false;
+        }
+
+        public Integer indexOf(Object value) {
+            if (first == null)
+                return -1;
+
+            Integer index = 0;
+
+            Node current = first;
+            while (current != null) {
+                if (current.value.equals(value))
+                    return index;
+                current = current.getNext();
+                index++;
+            }
+            
+            return -1;
+        }
+
         public Object get(Integer index) {
             if (first == null || index < 0)
                 return null;
@@ -236,7 +267,11 @@ public class JsonBuilder {
 
             Node current = first;
             while (current != null) {
-                list.add(current.get().toString());
+                if (current.get() instanceof String)
+                    list.add("\"" + current.get().toString() + "\"");
+                else
+                    list.add(current.get().toString());
+                    
                 current = current.getNext();
             }
 
@@ -266,17 +301,21 @@ public class JsonBuilder {
             return arr;
         }
 
+        public Boolean contains(String key) {
+            return map.containsKey(key);
+        }
+
         public Object get(String key) {
-            return map.get(key);
+            return map.containsKey(key) ? map.get(key) : null;
         }
 
         public JsonObject getObject(String key) {
-            Object value = map.get(key);
+            Object value = map.containsKey(key) ? map.get(key) : null;
             return value instanceof JsonObject ? JsonObject.class.cast(value) : null;
         }
 
         public JsonArray getArray(String key) {
-            Object value = map.get(key);
+            Object value = map.containsKey(key) ? map.get(key) : null;
             return value instanceof JsonArray ? JsonArray.class.cast(value) : null;
         }
 

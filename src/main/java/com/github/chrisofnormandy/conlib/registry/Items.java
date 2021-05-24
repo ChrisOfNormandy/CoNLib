@@ -30,7 +30,7 @@ public class Items {
      * @return Item
      */
     public static Item register(String name, Properties properties) {
-        return register(name, new Item(properties).setRegistryName(name));
+        return register(name, new Item(properties));
     }
 
     /**
@@ -41,7 +41,7 @@ public class Items {
      * @return Item
      */
     public static Item register(String name, Properties properties, ItemGroup group) {
-        return register(name, new Item(properties.tab(group)).setRegistryName(name));
+        return register(name, new Item(properties.tab(group)));
     }
 
     /**

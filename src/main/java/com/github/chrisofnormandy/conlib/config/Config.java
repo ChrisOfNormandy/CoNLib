@@ -158,6 +158,12 @@ public class Config {
 	private void BuildAll(ForgeConfigSpec.Builder BUILDER, ConfigGroup group) {
 		BuildVars(BUILDER, group);
 		BuildLists(BUILDER, group);
+		
+		group.subgroups.forEach((String name, ConfigGroup group_) -> {
+			BUILDER.push(name);
+			this.BuildAll(BUILDER, group_);
+			BUILDER.pop();
+		});
 	}
 
 	public void Build() {
