@@ -6,6 +6,7 @@ import java.util.stream.Stream;
 import com.github.chrisofnormandy.conlib.Main;
 import com.github.chrisofnormandy.conlib.biome.ModBiome;
 import com.github.chrisofnormandy.conlib.biome.ModClimate;
+import com.github.chrisofnormandy.conlib.biome.helpers.BiomeBuilder;
 import com.github.chrisofnormandy.conlib.collections.Tuple;
 import com.github.chrisofnormandy.conlib.collections.JsonBuilder.JsonObject;
 import com.github.chrisofnormandy.conlib.event.BlockBreak;
@@ -28,7 +29,6 @@ public class ModRegister {
 
     public static String getModId() {
         return mod_id;
-        
     }
 
     public static void Init() {
@@ -72,10 +72,12 @@ public class ModRegister {
     // WORLD GEN
     public static HashMap<String, Biome> biomes = new HashMap<String, Biome>();
 
+    public static HashMap<RegistryKey<Biome>, BiomeBuilder> biomeBuilders = new HashMap<RegistryKey<Biome>, BiomeBuilder>();
     public static HashMap<String, RegistryKey<Biome>> overworldKeys = new HashMap<String, RegistryKey<Biome>>();
     public static HashMap<String, RegistryKey<Biome>> netherKeys = new HashMap<String, RegistryKey<Biome>>();
     public static HashMap<String, RegistryKey<Biome>> endKeys = new HashMap<String, RegistryKey<Biome>>();
     public static HashMap<String, RegistryKey<Biome>> customKeys = new HashMap<String, RegistryKey<Biome>>();
+    public static HashMap<RegistryKey<Biome>, RegistryKey<Biome>> biomeRemaps = new HashMap<>();
 
     public static HashMap<String, ModBiome> modBiomes = new HashMap<String, ModBiome>();
 

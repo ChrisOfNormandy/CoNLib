@@ -77,9 +77,9 @@ public class ModClimate {
         return this.biomes.contains(biome);
     }
 
-    public void addBiome(Biome biome) {
-        this.biomes.add(Biomes.Helpers.createKey(biome));
-    }
+    // public void addBiome(Biome biome) {
+    //     this.biomes.add(Biomes.Helpers.createKey(biome));
+    // }
 
     public void setTemperature(Integer value) {
         this.temperature = value;

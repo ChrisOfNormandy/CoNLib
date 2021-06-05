@@ -73,54 +73,54 @@ public class RegistryHelper {
         return this.terrain;
     }
 
-    public ModClimate climateBuilder(String name, BiomeType type, Integer weight) {
-        this.weight = weight;
-        this.climate = new ModClimate(name, type);
-        return WorldGen.registerClimate(name, this.climate);
-    }
+    // public ModClimate climateBuilder(String name, BiomeType type, Integer weight) {
+    //     this.weight = weight;
+    //     this.climate = new ModClimate(name, type);
+    //     return WorldGen.registerClimate(name, this.climate);
+    // }
 
-    public ModBiome biomeBuilder(Float depth, Float scale, Float temperature, Float downfall) {
-        this.biome = new ModBiome(this.climate, this.weight, this.terrain);
-        this.biome.configure(depth, scale, temperature, downfall);
-        return this.biome;
-    }
+    // public ModBiome biomeBuilder(Float depth, Float scale, Float temperature, Float downfall) {
+    //     this.biome = new ModBiome(this.climate, this.weight, this.terrain);
+    //     this.biome.configure(depth, scale, temperature, downfall);
+    //     return this.biome;
+    // }
 
-    public ModBiome configureClient(Integer waterColor, Integer waterFogColor, Integer fogColor, Integer skyColor) {
-        this.biome.configureClient(waterColor, waterFogColor, fogColor, skyColor);
-        return this.biome;
-    }
+    // public ModBiome configureClient(Integer waterColor, Integer waterFogColor, Integer fogColor, Integer skyColor) {
+    //     this.biome.configureClient(waterColor, waterFogColor, fogColor, skyColor);
+    //     return this.biome;
+    // }
 
-    public void isFrozen() {
-        this.biome.isFrozen();
-    }
+    // public void isFrozen() {
+    //     this.biome.isFrozen();
+    // }
 
-    public void setRainType(RainType rainType) {
-        this.biome.setRainType(rainType);
-    }
+    // public void setRainType(RainType rainType) {
+    //     this.biome.setRainType(rainType);
+    // }
 
-    public void setAmbience(MoodSoundAmbience ambience) {
-        this.biome.setAmbience(ambience);
-    }
+    // public void setAmbience(MoodSoundAmbience ambience) {
+    //     this.biome.setAmbience(ambience);
+    // }
 
-    public void addVegetation(ConfiguredFeature<?, ?> feature) {
-        this.biome.addVegetation(feature);
-    }
+    // public void addVegetation(ConfiguredFeature<?, ?> feature) {
+    //     this.biome.addVegetation(feature);
+    // }
 
-    public void addSturcture(ConfiguredFeature<?, ?> feature) {
-        this.biome.addStructure(feature);
-    }
+    // public void addSturcture(ConfiguredFeature<?, ?> feature) {
+    //     this.biome.addStructure(feature);
+    // }
 
-    public void addMobSpawn(EntityType<?> mob, Integer weight, Integer min, Integer max) {
-        this.biome.addSpawnableMob(mob, weight, min, max);
-    }
+    // public void addMobSpawn(EntityType<?> mob, Integer weight, Integer min, Integer max) {
+    //     this.biome.addSpawnableMob(mob, weight, min, max);
+    // }
 
-    public ModBiome register() {
-        WorldGen.registerBiome(this.name, this.biome, this.biome.category, this.biome.rainType);
-        return this.biome;
-    }
+    // public ModBiome register() {
+    //     WorldGen.registerBiome(this.name, this.biome, this.biome.category, this.biome.rainType);
+    //     return this.biome;
+    // }
 
-    public Integer floatToInt(float f) {
-        Float x = MathHelper.clamp(f / 3.0F, -1.0F, 1.0F);
-        return MathHelper.hsvToRgb(0.62222224F - x * 0.05F, 0.5F + x * 0.1F, 1.0F);
-    }
+    // public Integer floatToInt(float f) {
+    //     Float x = MathHelper.clamp(f / 3.0F, -1.0F, 1.0F);
+    //     return MathHelper.hsvToRgb(0.62222224F - x * 0.05F, 0.5F + x * 0.1F, 1.0F);
+    // }
 }

@@ -1,15 +1,19 @@
 package com.github.chrisofnormandy.conlib.registry;
 
-import com.github.chrisofnormandy.conlib.biome.Biomes;
+import com.github.chrisofnormandy.conlib.biome.BiomeBase;
 import com.github.chrisofnormandy.conlib.biome.ModBiome;
 import com.github.chrisofnormandy.conlib.biome.ModClimate;
 import com.github.chrisofnormandy.conlib.biome.Terrain;
+import com.github.chrisofnormandy.conlib.biome.helpers.BiomeBuilder;
+import com.github.chrisofnormandy.conlib.biome.helpers.BiomeUtil;
 
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.WorldGenRegistries;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.BiomeGenerationSettings;
+import net.minecraft.world.biome.MobSpawnInfo;
 import net.minecraft.world.biome.Biome.Category;
 import net.minecraft.world.biome.Biome.RainType;
 import net.minecraft.world.gen.feature.Feature;
@@ -20,6 +24,9 @@ import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeDictionary.Type;
+import net.minecraftforge.common.BiomeManager.BiomeType;
+import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public class WorldGen {
@@ -88,105 +95,26 @@ public class WorldGen {
         return builder;
     }
 
-    /**
-     * 
-     * @param name
-     * @param biome
-     * @param types
-     * @return
-     */
-    public static Biome registerOverworldBiome(String name, Biome biome, Type... types) {
-        biome.setRegistryName(new ResourceLocation(ModRegister.getModId(), name));
-        ModRegister.biomes.put(name, biome);
-        ForgeRegistries.BIOMES.register(biome);
-        RegistryKey<Biome> key = Biomes.Helpers.createKey(biome);
+    public static BiomeBuilder create(String name) {
+        RegistryKey<Biome> key = BiomeUtil.createKey(name);
+
+        BiomeBuilder builder = BiomeUtil.getBuilder(key);
+
         ModRegister.overworldKeys.put(name, key);
-        BiomeDictionary.addTypes(key, types);
-        return biome;
+
+        return builder;
     }
 
-    /**
-     * 
-     * @param name
-     * @param biome
-     * @param types
-     * @return
-     */
-    public static Biome registerNetherBiome(String name, Biome biome, Type... types) {
-        biome.setRegistryName(new ResourceLocation(ModRegister.getModId(), name));
-        ModRegister.biomes.put(name, biome);
-        ForgeRegistries.BIOMES.register(biome);
-        RegistryKey<Biome> key = Biomes.Helpers.createKey(biome);
-        ModRegister.netherKeys.put(name, key);
-        BiomeDictionary.addTypes(key, types);
-        return biome;
+    private static void register(RegistryEvent.Register<Biome> event, RegistryKey<Biome> key, BiomeBuilder builder) {
+        event.getRegistry().register(builder.build(key));
+        builder.registerTypes(key);
+        builder.registerWeight(key);
+
+        ModRegister.biomeRemaps.put(key, builder.getParentKey());
     }
 
-    /**
-     * 
-     * @param name
-     * @param biome
-     * @param types
-     * @return
-     */
-    public static Biome registerEndBiome(String name, Biome biome, Type... types) {
-        biome.setRegistryName(new ResourceLocation(ModRegister.getModId(), name));
-        ModRegister.biomes.put(name, biome);
-        ForgeRegistries.BIOMES.register(biome);
-        RegistryKey<Biome> key = Biomes.Helpers.createKey(biome);
-        ModRegister.endKeys.put(name, key);
-        BiomeDictionary.addTypes(key, types);
-        return biome;
-    }
-
-    /**
-     * 
-     * @param name
-     * @param category
-     * @param rainType
-     * @param climate
-     * @param weight
-     * @param terrain
-     * @param depth
-     * @param scale
-     * @param temperature
-     * @param downfall
-     * @return
-     */
-    public static ModBiome registerBiome(String name, Category category, RainType rainType, ModClimate climate, Integer weight, Terrain terrain, Float depth, Float scale, Float temperature, Float downfall) {
-        ModBiome biome = new ModBiome(climate, weight, terrain);
-        biome.configure(depth, scale, temperature, downfall);
-        Biomes.register(name, biome, category, rainType);
-        ModRegister.modBiomes.put(name, biome);
-        return biome;
-    }
-
-    /**
-     * 
-     * @param name
-     * @param biome
-     * @param category
-     * @param rainType
-     */
-    public static void registerBiome(String name, ModBiome biome, Category category, RainType rainType) {
-        Biomes.register(name, biome, category, rainType);
-    }
-
-    /**
-     * 
-     */
-    public static void registerBiomes() {
-        Biomes.registerAll();
-    }
-
-    /**
-     * 
-     * @param name
-     * @param climate
-     * @return
-     */
-    public static ModClimate registerClimate(String name, ModClimate climate) {
-        ModRegister.climates.put(name, climate);
-        return climate;
+    @SubscribeEvent
+    public static void register(RegistryEvent.Register<Biome> event) {
+        ModRegister.overworldKeys.forEach((String name, RegistryKey<Biome> key) -> register(event, key, ModRegister.biomeBuilders.get(key)));
     }
 }

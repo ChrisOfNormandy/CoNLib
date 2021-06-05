@@ -1,10 +1,11 @@
 package com.github.chrisofnormandy.conlib.biome;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
-import com.github.chrisofnormandy.conlib.collections.Quartet;
+import com.github.chrisofnormandy.conlib.biome.helpers.BiomeBuilder;
+import com.github.chrisofnormandy.conlib.biome.helpers.BiomeUtil;
+import com.github.chrisofnormandy.conlib.collections.Tuple;
 
 import net.minecraft.util.RegistryKey;
 import net.minecraft.world.biome.Biome;
@@ -14,139 +15,259 @@ import net.minecraft.world.biome.Biomes;
 import net.minecraft.world.biome.DefaultBiomeFeatures;
 import net.minecraft.world.biome.MobSpawnInfo;
 import net.minecraft.world.biome.MoodSoundAmbience;
+// import net.minecraft.world.biome.ParticleEffectAmbience;
+// import net.minecraft.world.biome.SoundAdditionsAmbience;
 import net.minecraft.world.biome.Biome.TemperatureModifier;
+// import net.minecraft.world.biome.BiomeAmbience.GrassColorModifier.ColorModifier;
+import net.minecraft.world.biome.MobSpawnInfo.Spawners;
+import net.minecraft.world.gen.GenerationStage.Carving;
 import net.minecraft.world.gen.GenerationStage.Decoration;
+import net.minecraft.world.gen.carver.ConfiguredCarver;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 
 public class BiomeBase {
-    RegistryKey<Biome> biome;
+    private RegistryKey<Biome> key;
 
-    RegistryKey<Biome> beach = Biomes.BEACH;
-    RegistryKey<Biome> river = Biomes.RIVER;
+    private Float depth;
+    private Float scale;
+    private Biome.RainType precipitation;
+    private Biome.Category category;
+    private Float temperature;
+    private TemperatureModifier temperatureModifier = TemperatureModifier.NONE;
+    private Float downfall;
+    private Boolean playerCanSpawn = true;
+    // private Float creatureSpawnProbability = 0.0f;
 
-    HashMap<ModClimate, Integer> climates = new HashMap<ModClimate, Integer>();
+    private Integer fogColor;
+    private Integer foliageColor = null;
+    private Integer grassColor = null;
+    private Integer skyColor;
+    private Integer waterColor;
+    private Integer waterFogColor;
+    // private ColorModifier grassColorModifier;
+    // private ParticleEffectAmbience particle;
+    // private SoundAdditionsAmbience ambientSound;
+    private MoodSoundAmbience moodSound;
 
-    Biome.RainType rainType = Biome.RainType.RAIN;
-    Biome.Category category = Biome.Category.NONE;
+    private Boolean useDefaults = false;
 
-    Float depth;
-    Float scale;
-    Float temperature;
-    Float downfall;
+    private List<ConfiguredCarver<?>> airCarvers = new ArrayList<ConfiguredCarver<?>>();
+    private List<ConfiguredCarver<?>> liquidCarvers = new ArrayList<ConfiguredCarver<?>>();
 
-    TemperatureModifier temperatureModifier = TemperatureModifier.NONE;
-    MoodSoundAmbience ambience = MoodSoundAmbience.LEGACY_CAVE_SETTINGS;
+    private List<Tuple<EntityClassification, Spawners>> spawners = new ArrayList<Tuple<EntityClassification, Spawners>>();
 
-    Integer waterColor;
-    Integer waterFogColor;
-    Integer fogColor;
-    Integer skyColor;
+    private Terrain terrain;
 
-    Terrain terrain;
+    private List<ConfiguredFeature<?, ?>> rawGeneration = new ArrayList<ConfiguredFeature<?, ?>>();
+    private List<ConfiguredFeature<?, ?>> lakes = new ArrayList<ConfiguredFeature<?, ?>>();
+    private List<ConfiguredFeature<?, ?>> localModifications = new ArrayList<ConfiguredFeature<?, ?>>();
+    private List<ConfiguredFeature<?, ?>> undergroundStructures = new ArrayList<ConfiguredFeature<?, ?>>();
+    private List<ConfiguredFeature<?, ?>> surfaceStructures = new ArrayList<ConfiguredFeature<?, ?>>();
+    private List<ConfiguredFeature<?, ?>> strongholds = new ArrayList<ConfiguredFeature<?, ?>>();
+    private List<ConfiguredFeature<?, ?>> undergroundOres = new ArrayList<ConfiguredFeature<?, ?>>();
+    private List<ConfiguredFeature<?, ?>> undergroundDecoration = new ArrayList<ConfiguredFeature<?, ?>>();
+    private List<ConfiguredFeature<?, ?>> vegetalDecoration = new ArrayList<ConfiguredFeature<?, ?>>();
+    private List<ConfiguredFeature<?, ?>> topLayerModification = new ArrayList<ConfiguredFeature<?, ?>>();
 
-    public BiomeBase(Terrain terrain) {
-        this.terrain = terrain;
+    private BiomeBuilder builder;
+
+    public BiomeBase(RegistryKey<Biome> key) {
+        this.key = key;
+        this.builder = new BiomeBuilder(key, BiomeUtil.biomeFromKey(Biomes.THE_VOID));
+    }
+
+    public BiomeBuilder getBuilder() {
+        return this.builder;
     }
 
     public RegistryKey<Biome> getKey() {
-        return this.biome;
+        return this.key;
     }
 
-    public HashMap<ModClimate, Integer> getClimates() {
-        return this.climates;
+    public BiomeBase depth(Float value) {
+        this.depth = value;
+        return this;
     }
 
-    public void addClimate(ModClimate climate, Integer weight) {
-        this.climates.put(climate, weight);
+    public BiomeBase scale(Float value) {
+        this.scale = value;
+        return this;
     }
 
-    public Integer getClimateWeight(ModClimate climate) {
-        return this.climates.get(climate);
+    public BiomeBase precipitation(Biome.RainType value) {
+        this.precipitation = value;
+        return this;
     }
 
-    List<Quartet<EntityType<?>, Integer, Integer, Integer>> spawnable = new ArrayList<Quartet<EntityType<?>, Integer, Integer, Integer>>();
-
-    public void addSpawnableMob(EntityType<?> mob, Integer weight, Integer min, Integer max) {
-        Quartet<EntityType<?>, Integer, Integer, Integer> mobItem = new Quartet<EntityType<?>, Integer, Integer, Integer>(mob, weight, min, max);
-        spawnable.add(mobItem);
+    public BiomeBase category(Biome.Category value) {
+        this.category = value;
+        return this;
     }
 
-    List<ConfiguredFeature<?, ?>> vegetation = new ArrayList<ConfiguredFeature<?, ?>>();
-
-    public void addVegetation(ConfiguredFeature<?, ?> feature) {
-        vegetation.add(feature);
+    public BiomeBase temperature(Float value) {
+        this.temperature = value;
+        return this;
     }
 
-    List<ConfiguredFeature<?, ?>> undergroundResources = new ArrayList<ConfiguredFeature<?, ?>>();
+    public BiomeBase fogColor(Integer value) {
+        this.fogColor = value;
+        return this;
+    };
 
-    public void addResource(ConfiguredFeature<?, ?> feature) {
-        undergroundResources.add(feature);
+    public BiomeBase foliageColor(Integer value) {
+        this.foliageColor = value;
+        return this;
+    };
+
+    public BiomeBase grassColor(Integer value) {
+        this.grassColor = value;
+        return this;
+    };
+
+    public BiomeBase skyColor(Integer value) {
+        this.skyColor = value;
+        return this;
+    };
+
+    public BiomeBase waterColor(Integer value) {
+        this.waterColor = value;
+        return this;
+    };
+
+    public BiomeBase waterFogColor(Integer value) {
+        this.waterFogColor = value;
+        return this;
+    };
+
+    public BiomeBase moodSound(MoodSoundAmbience value) {
+        this.moodSound = value;
+        return this;
     }
 
-    List<ConfiguredFeature<?, ?>> structures = new ArrayList<ConfiguredFeature<?, ?>>();
+    public BiomeBase temperatureModifier(TemperatureModifier value) {
+        this.temperatureModifier = value;
+        return this;
+    }    
 
-    public void addStructure(ConfiguredFeature<?, ?> feature) {
-        structures.add(feature);
+    public BiomeBase downfall(Float value) {
+        this.downfall = value;
+        return this;
     }
 
-    private Biome.Builder biomeSetup(Biome.Builder builder) {
-        builder.precipitation(this.rainType).biomeCategory(this.category).depth(this.depth).scale(this.scale).temperature(this.temperature).downfall(this.downfall).temperatureAdjustment(this.temperatureModifier);
-        builder.specialEffects(new BiomeAmbience.Builder().waterColor(this.waterColor).waterFogColor(this.waterFogColor).fogColor(this.fogColor).skyColor(this.skyColor).ambientMoodSound(this.ambience).build());
+    public BiomeBase denyPlayerSpawn() {
+        this.playerCanSpawn = false;
+        return this;
+    }
+
+    public BiomeBase addMobSpawn(EntityType<?> mob, Integer weight, Integer min, Integer max) {
+        spawners.add(new Tuple<EntityClassification, Spawners>(mob.getCategory(), new Spawners(mob, weight, min, max)));
+        return this;
+    }
+
+    public BiomeBase addRawGeneration(ConfiguredFeature<?, ?> feature) {
+        rawGeneration.add(feature);
+        return this;
+    }
+
+    public BiomeBase addLake(ConfiguredFeature<?, ?> feature) {
+        lakes.add(feature);
+        return this;
+    }
+
+    public BiomeBase addLocalModification(ConfiguredFeature<?, ?> feature) {
+        localModifications.add(feature);
+        return this;
+    }
+
+    public BiomeBase addSurfaceStructure(ConfiguredFeature<?, ?> feature) {
+        surfaceStructures.add(feature);
+        return this;
+    }
+
+    public BiomeBase addStronghold(ConfiguredFeature<?, ?> feature) {
+        strongholds.add(feature);
+        return this;
+    }
+
+    public BiomeBase addUndergroundOre(ConfiguredFeature<?, ?> feature) {
+        undergroundOres.add(feature);
+        return this;
+    }
+
+    public BiomeBase addUndergroundDecoration(ConfiguredFeature<?, ?> feature) {
+        undergroundDecoration.add(feature);
+        return this;
+    }
+
+    public BiomeBase addVegetation(ConfiguredFeature<?, ?> feature) {
+        vegetalDecoration.add(feature);
+        return this;
+    }
+
+    public BiomeBase addTopLayerModification(ConfiguredFeature<?, ?> feature) {
+        topLayerModification.add(feature);
+        return this;
+    }
+
+    public BiomeBase setSurfaceBuilder(Terrain terrain) {
+        this.terrain = terrain;
+        return this;
+    }
+
+    public BiomeBase useDefaults() {
+        this.useDefaults = true;
+        return this;
+    }
+
+    public BiomeBuilder biomeSetup(BiomeBuilder builder) {
+        builder.precipitation(this.precipitation).biomeCategory(this.category).depth(this.depth).scale(this.scale)
+                .temperature(this.temperature).downfall(this.downfall).temperatureAdjustment(this.temperatureModifier);
+
+        BiomeAmbience.Builder effects = new BiomeAmbience.Builder().waterColor(this.waterColor).waterFogColor(this.waterFogColor)
+        .fogColor(this.fogColor).skyColor(this.skyColor).ambientMoodSound(this.moodSound);
+
+        if (foliageColor != null)
+            effects.foliageColorOverride(foliageColor);
+        if (grassColor != null)
+            effects.grassColorOverride(grassColor);
+
+        builder.specialEffects(effects.build());
+
         return builder;
     }
 
-    private BiomeGenerationSettings.Builder genSetup(BiomeGenerationSettings.Builder builder) {
-
+    public BiomeGenerationSettings.Builder genSetup(BiomeGenerationSettings.Builder builder) {
         builder.surfaceBuilder(this.terrain.builder);
 
-        DefaultBiomeFeatures.addDefaultOverworldLandStructures(builder);
+        if (this.useDefaults)
+            DefaultBiomeFeatures.addDefaultOverworldLandStructures(builder);
 
-        undergroundResources.forEach((ConfiguredFeature<?, ?> feature) -> {
-            builder.addFeature(Decoration.UNDERGROUND_ORES, feature);
-        });
+        rawGeneration.forEach((ConfiguredFeature<?, ?> feature) -> builder.addFeature(Decoration.RAW_GENERATION, feature));
+        lakes.forEach((ConfiguredFeature<?, ?> feature) -> builder.addFeature(Decoration.LAKES, feature));
+        localModifications.forEach((ConfiguredFeature<?, ?> feature) -> builder.addFeature(Decoration.LOCAL_MODIFICATIONS, feature));
+        undergroundStructures.forEach((ConfiguredFeature<?, ?> feature) -> builder.addFeature(Decoration.UNDERGROUND_STRUCTURES, feature));
+        surfaceStructures.forEach((ConfiguredFeature<?, ?> feature) -> builder.addFeature(Decoration.SURFACE_STRUCTURES, feature));
+        strongholds.forEach((ConfiguredFeature<?, ?> feature) -> builder.addFeature(Decoration.STRONGHOLDS, feature));
+        undergroundOres.forEach((ConfiguredFeature<?, ?> feature) -> builder.addFeature(Decoration.UNDERGROUND_ORES, feature));
+        undergroundDecoration.forEach((ConfiguredFeature<?, ?> feature) -> builder.addFeature(Decoration.UNDERGROUND_DECORATION, feature));
+        vegetalDecoration.forEach((ConfiguredFeature<?, ?> feature) -> builder.addFeature(Decoration.VEGETAL_DECORATION, feature));
+        topLayerModification.forEach((ConfiguredFeature<?, ?> feature) -> builder.addFeature(Decoration.TOP_LAYER_MODIFICATION, feature));
 
-        vegetation.forEach((ConfiguredFeature<?, ?> feature) -> {
-            builder.addFeature(Decoration.VEGETAL_DECORATION, feature);
-        });
-
-        structures.forEach((ConfiguredFeature<?, ?> feature) -> {
-            builder.addFeature(Decoration.SURFACE_STRUCTURES, feature);
-        });
-        
-        return builder;
-    }
-
-    private MobSpawnInfo.Builder spawnSetup(MobSpawnInfo.Builder builder) {
-        spawnable.forEach((Quartet<EntityType<?>, Integer, Integer, Integer> mob) -> {
-            builder.addSpawn(mob.w.getCategory(), new MobSpawnInfo.Spawners(mob.w, mob.x, mob.y, mob.z));
-        });
-
-        builder.setPlayerCanSpawn();
+        airCarvers.forEach((ConfiguredCarver<?> carver) -> builder.addCarver(Carving.AIR, carver));
+        liquidCarvers.forEach((ConfiguredCarver<?> carver) -> builder.addCarver(Carving.LIQUID, carver));
 
         return builder;
     }
 
-    public Biome Build() {
-        Biome.Builder builder = new Biome.Builder();
-        BiomeGenerationSettings.Builder genBuilder = new BiomeGenerationSettings.Builder();
-        MobSpawnInfo.Builder spawnBuilder = new MobSpawnInfo.Builder();
+    public MobSpawnInfo.Builder spawnSetup(MobSpawnInfo.Builder builder) {
+        spawners.forEach((Tuple<EntityClassification, Spawners> spawner) -> builder.addSpawn(spawner.x, spawner.y));
 
-        builder.generationSettings(genSetup(genBuilder).build());
-        builder.mobSpawnSettings(spawnSetup(spawnBuilder).build());
+        if (playerCanSpawn)
+            builder.setPlayerCanSpawn();
 
-        return biomeSetup(builder).build();
-    }
-
-    public void setBeach(RegistryKey<Biome> beach) {
-        this.beach = beach;
-    }
-
-    public void setRiver(RegistryKey<Biome> river) {
-        this.river = river;
-    }
-
-    public void setBiome(RegistryKey<Biome> biome) {
-        this.biome = biome;
+        return builder;
     }
 }
