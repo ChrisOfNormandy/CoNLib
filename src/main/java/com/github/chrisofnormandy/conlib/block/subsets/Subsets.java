@@ -1,6 +1,7 @@
 package com.github.chrisofnormandy.conlib.block.subsets;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.DoorBlock;
 import net.minecraft.block.FenceBlock;
 import net.minecraft.block.FenceGateBlock;
 import net.minecraft.block.SlabBlock;
@@ -26,5 +27,9 @@ public class Subsets {
 
     public static Block create_fenceGate(Block parent) {
         return new FenceGateBlock(Block.Properties.copy(parent));
+    }
+
+    public static Block create_door(Block parent) {
+        return new DoorBlock(Block.Properties.copy(parent));
     }
 }

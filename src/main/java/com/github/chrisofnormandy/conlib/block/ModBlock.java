@@ -2,6 +2,7 @@ package com.github.chrisofnormandy.conlib.block;
 
 import java.util.List;
 
+import com.github.chrisofnormandy.conlib.block.subsets.Subsets;
 import com.github.chrisofnormandy.conlib.block.types.BricksBase;
 import com.github.chrisofnormandy.conlib.block.types.OreBase;
 import com.github.chrisofnormandy.conlib.block.types.StoneBase;
@@ -9,9 +10,11 @@ import com.github.chrisofnormandy.conlib.block.types.WoodBase;
 import com.github.chrisofnormandy.conlib.block.types.custom.NodeBase;
 import com.github.chrisofnormandy.conlib.itemgroup.GroupList;
 import com.github.chrisofnormandy.conlib.itemgroup.Groups;
+import com.github.chrisofnormandy.conlib.registry.Blocks;
 import com.github.chrisofnormandy.conlib.tool.ToolMaterial;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.AbstractBlock.Properties;
 
 public class ModBlock {
     public static String[] dyes = com.github.chrisofnormandy.conlib.item.ModItem.dyes;
@@ -165,6 +168,64 @@ public class ModBlock {
         public static Block registerMetal(String name, String oreName, OreBase block, ToolMaterial material,
                 Groups itemGroup, Groups toolGroup, Groups blockGroup) {
             return OreBase.Register.asMetal(name, oreName, block, material, itemGroup, toolGroup, blockGroup);
+        }
+    }
+
+    public static class Generic {
+        public static Block create(String name, Properties properties) {
+            return Blocks.register(name, new Block(properties));
+        }
+
+        public static Block create(String name, Properties properties, Groups group) {
+            return Blocks.register(name, new Block(properties), group);
+        }
+
+        public static Block createSlab(String name, Block parent) {
+            return Blocks.register(name, Subsets.create_slab(parent));
+        }
+
+        public static Block createSlab(String name, Block parent, Groups group) {
+            return Blocks.register(name, Subsets.create_slab(parent), group);
+        }
+
+        public static Block createStairs(String name, Block parent) {
+            return Blocks.register(name, Subsets.create_stairs(parent));
+        }
+
+        public static Block createStairs(String name, Block parent, Groups group) {
+            return Blocks.register(name, Subsets.create_stairs(parent), group);
+        }
+
+        public static Block createWall(String name, Block parent) {
+            return Blocks.register(name, Subsets.create_wall(parent));
+        }
+
+        public static Block createWall(String name, Block parent, Groups group) {
+            return Blocks.register(name, Subsets.create_wall(parent), group);
+        }
+
+        public static Block createFence(String name, Block parent) {
+            return Blocks.register(name, Subsets.create_fence(parent));
+        }
+
+        public static Block createFence(String name, Block parent, Groups group) {
+            return Blocks.register(name, Subsets.create_fence(parent), group);
+        }
+
+        public static Block createFenceGate(String name, Block parent) {
+            return Blocks.register(name, Subsets.create_fenceGate(parent));
+        }
+
+        public static Block createFenceGate(String name, Block parent, Groups group) {
+            return Blocks.register(name, Subsets.create_fenceGate(parent), group);
+        }
+
+        public static Block createDoor(String name, Block parent) {
+            return Blocks.register(name, Subsets.create_door(parent));
+        }
+
+        public static Block createDoor(String name, Block parent, Groups group) {
+            return Blocks.register(name, Subsets.create_door(parent), group);
         }
     }
 
