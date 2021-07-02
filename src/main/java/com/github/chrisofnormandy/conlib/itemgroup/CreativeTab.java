@@ -9,28 +9,28 @@ import net.minecraft.item.ItemStack;
 
 import com.github.chrisofnormandy.conlib.registry.ModRegister;
 
-public class Groups extends ItemGroup {
+public class CreativeTab extends ItemGroup {
     private Supplier<ItemStack> displayStack;
 
-    private Groups(String label, Supplier<ItemStack> icon) {
+    private CreativeTab(String label, Supplier<ItemStack> icon) {
         super(label);
         this.displayStack = icon;
     }
 
-    public static final Groups createGroup(String name, String icon_itemName) {
+    public static final CreativeTab createGroup(String name, String icon_itemName) {
         Item item = ModRegister.items.containsKey(icon_itemName)
             ? ModRegister.items.get(icon_itemName)
             : ModRegister.blocks.get(icon_itemName).asItem();
-        return new Groups(name, () -> new ItemStack(item));
+        return new CreativeTab(name, () -> new ItemStack(item));
     }
 
-    public static final Groups createGroup(String name, Block block) {
+    public static final CreativeTab createGroup(String name, Block block) {
         Item item = block.asItem();
-        return new Groups(name, () -> new ItemStack(item));
+        return new CreativeTab(name, () -> new ItemStack(item));
     }
 
-    public static final Groups createGroup(String name, Item item) {
-        return new Groups(name, () -> new ItemStack(item));
+    public static final CreativeTab createGroup(String name, Item item) {
+        return new CreativeTab(name, () -> new ItemStack(item));
     }
 
     @Override

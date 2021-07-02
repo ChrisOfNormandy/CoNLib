@@ -1,9 +1,5 @@
 package com.github.chrisofnormandy.conlib.registry;
 
-import com.github.chrisofnormandy.conlib.biome.BiomeBase;
-import com.github.chrisofnormandy.conlib.biome.ModBiome;
-import com.github.chrisofnormandy.conlib.biome.ModClimate;
-import com.github.chrisofnormandy.conlib.biome.Terrain;
 import com.github.chrisofnormandy.conlib.biome.helpers.BiomeBuilder;
 import com.github.chrisofnormandy.conlib.biome.helpers.BiomeUtil;
 
@@ -12,19 +8,12 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.WorldGenRegistries;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.BiomeGenerationSettings;
-import net.minecraft.world.biome.MobSpawnInfo;
-import net.minecraft.world.biome.Biome.Category;
-import net.minecraft.world.biome.Biome.RainType;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 import net.minecraft.world.gen.surfacebuilders.ConfiguredSurfaceBuilder;
 import net.minecraft.world.gen.surfacebuilders.ISurfaceBuilderConfig;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
-import net.minecraftforge.common.BiomeDictionary;
-import net.minecraftforge.common.BiomeDictionary.Type;
-import net.minecraftforge.common.BiomeManager.BiomeType;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.registries.ForgeRegistries;

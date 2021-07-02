@@ -12,7 +12,7 @@ apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
-version = '1.2'
+version = '1.3'
 group = 'com.github.chrisofnormandy'
 archivesBaseName = 'conlib'
 
@@ -80,7 +80,7 @@ jar {
         attributes([
             "Specification-Title": "conlib",
             "Specification-Vendor": "github",
-            "Specification-Version": "'1.2",
+            "Specification-Version": "'1.3",
             "Implementation-Title": project.name,
             "Implementation-Version": "${version}",
             "Implementation-Vendor" :"conlib",

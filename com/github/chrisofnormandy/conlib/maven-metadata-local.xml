@@ -3,10 +3,10 @@
   <groupId>com.github.chrisofnormandy</groupId>
   <artifactId>conlib</artifactId>
   <versioning>
-    <release>1.2</release>
+    <release>1.3</release>
     <versions>
-      <version>1.2</version>
+      <version>1.3</version>
     </versions>
-    <lastUpdated>20210619234928</lastUpdated>
+    <lastUpdated>20210702150622</lastUpdated>
   </versioning>
 </metadata>

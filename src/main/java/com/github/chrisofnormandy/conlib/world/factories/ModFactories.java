@@ -8,7 +8,6 @@ import com.github.chrisofnormandy.conlib.world.generators.GeneratorSettings;
 import com.github.chrisofnormandy.conlib.world.layers.ModClimateLayer;
 import com.github.chrisofnormandy.conlib.world.layers.RainfallLayer;
 import com.github.chrisofnormandy.conlib.world.layers.TemperatureLayer;
-import com.github.chrisofnormandy.conlib.world.layers.overworld.ModBeachLayer;
 import com.github.chrisofnormandy.conlib.world.layers.overworld.ModBiomeLayer;
 import com.github.chrisofnormandy.conlib.world.layers.overworld.ModEdgeBiomeLayer;
 import com.github.chrisofnormandy.conlib.world.layers.overworld.ModIslandLayer;

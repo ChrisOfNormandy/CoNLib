@@ -1,8 +1,5 @@
 package com.github.chrisofnormandy.conlib.registry;
 
-import com.github.chrisofnormandy.conlib.itemgroup.Groups;
-
-import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.Item.Properties;
@@ -46,38 +43,10 @@ public class Items {
 
     /**
      * 
-     * @param name          The generic creative tab name, such as "my_item."
-     * @param icon_itemName The generic item or block name, such as "my_item" or
-     *                      "my_block."
-     * @return ItemGroup
+     * @param name The generic item name, such as "my_item."
+     * @return Item
      */
-    public static Groups createGroup(String name, String icon_itemName) {
-        Groups group = Groups.createGroup(name, icon_itemName);
-        ModRegister.groups.put(name, group);
-        return group;
-    }
-
-    /**
-     * 
-     * @param name  The generic creative tab name, such as "my_item."
-     * @param block The generic block name, such as "my_block."
-     * @return ItemGroup
-     */
-    public static Groups createGroup(String name, Block block) {
-        Groups group = Groups.createGroup(name, block);
-        ModRegister.groups.put(name, group);
-        return group;
-    }
-
-    /**
-     * 
-     * @param name The generic creative tab name, such as "my_item."
-     * @param item The generic item name, such as "my_item."
-     * @return ItemGroup
-     */
-    public static Groups createGroup(String name, Item item) {
-        Groups group = Groups.createGroup(name, item);
-        ModRegister.groups.put(name, group);
-        return group;
+    public static Item register(String name) {
+        return register(name, new Item(new Properties()));
     }
 }

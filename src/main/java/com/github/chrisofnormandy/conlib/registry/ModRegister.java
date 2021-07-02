@@ -13,7 +13,6 @@ import com.github.chrisofnormandy.conlib.event.BlockBreak;
 import com.github.chrisofnormandy.conlib.tool.ToolMaterial;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;

@@ -5,8 +5,8 @@ import net.minecraft.block.OreBlock;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemGroup;
 
-import com.github.chrisofnormandy.conlib.itemgroup.Groups;
 import com.github.chrisofnormandy.conlib.registry.Items;
 import com.github.chrisofnormandy.conlib.registry.Ores;
 import com.github.chrisofnormandy.conlib.registry.Tools;
@@ -40,7 +40,7 @@ public class OreBase extends OreBlock {
      * @param group
      * @return
      */
-    public static Block single(String name, Integer harvestLevel, Groups group) {
+    public static Block single(String name, Integer harvestLevel, ItemGroup group) {
       return Ores.register(name, new OreBase(harvestLevel), group);
     }
 
@@ -52,7 +52,7 @@ public class OreBase extends OreBlock {
      * @param group
      * @return
      */
-    public static Block single(String name, Integer harvestLevel, Float strength, Groups group) {
+    public static Block single(String name, Integer harvestLevel, Float strength, ItemGroup group) {
       return Ores.register(name, new OreBase(harvestLevel, strength), group);
     }
 
@@ -63,7 +63,7 @@ public class OreBase extends OreBlock {
      * @param group
      * @return
      */
-    public static Block single(String name, OreBase block, Groups group) {
+    public static Block single(String name, OreBase block, ItemGroup group) {
       return Ores.register(name, block, group);
     }
 
@@ -78,8 +78,8 @@ public class OreBase extends OreBlock {
      * @param blockGroup
      * @return
      */
-    public static Block asGem(String name, String oreName, OreBase block, ToolMaterial material, Groups itemGroup,
-        Groups toolGroup, Groups blockGroup) {
+    public static Block asGem(String name, String oreName, OreBase block, ToolMaterial material, ItemGroup itemGroup,
+        ItemGroup toolGroup, ItemGroup blockGroup) {
       Items.register(name, new Item.Properties(), itemGroup);
       Tools.registerAll(name, material, toolGroup);
       return single(oreName, block, blockGroup);
@@ -96,8 +96,8 @@ public class OreBase extends OreBlock {
      * @param blockGroup
      * @return
      */
-    public static Block asMetal(String name, String oreName, OreBase block, ToolMaterial material, Groups itemGroup,
-        Groups toolGroup, Groups blockGroup) {
+    public static Block asMetal(String name, String oreName, OreBase block, ToolMaterial material, ItemGroup itemGroup,
+        ItemGroup toolGroup, ItemGroup blockGroup) {
       Items.register(name + "_ingot", new Item.Properties(), itemGroup);
       Items.register(name + "_nugget", new Item.Properties(), itemGroup);
       Tools.registerAll(name, material, toolGroup);

@@ -3,13 +3,7 @@ package com.github.chrisofnormandy.conlib.biome;
 import com.github.chrisofnormandy.conlib.registry.WorldGen;
 
 import net.minecraft.block.Block;
-import net.minecraft.entity.EntityType;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.world.biome.MoodSoundAmbience;
-import net.minecraft.world.biome.Biome.RainType;
-import net.minecraft.world.gen.feature.ConfiguredFeature;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
-import net.minecraftforge.common.BiomeManager.BiomeType;
 
 public class RegistryHelper {
     String name;
