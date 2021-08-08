@@ -61,7 +61,7 @@ public class Subsets {
      * @return
      */
     public static Block create_door(Block parent) {
-        return new DoorBlock(Block.Properties.copy(parent));
+        return new DoorBlock(Block.Properties.copy(parent).noCollission());
     }
 
     /**
@@ -70,6 +70,6 @@ public class Subsets {
      * @return
      */
     public static Block create_trapdoor(Block parent) {
-        return new TrapDoorBlock(Block.Properties.copy(parent));
+        return new TrapDoorBlock(Block.Properties.copy(parent).noCollission());
     }
 }

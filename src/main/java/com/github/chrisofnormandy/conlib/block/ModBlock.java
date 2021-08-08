@@ -1,7 +1,7 @@
 package com.github.chrisofnormandy.conlib.block;
 
 import com.github.chrisofnormandy.conlib.block.decoration.Utility;
-import com.github.chrisofnormandy.conlib.block.subsets.Subsets;
+import com.github.chrisofnormandy.conlib.block.subsets.*;
 import com.github.chrisofnormandy.conlib.block.types.OreBase;
 import com.github.chrisofnormandy.conlib.block.types.custom.NodeBase;
 import com.github.chrisofnormandy.conlib.registry.Blocks;
@@ -19,12 +19,24 @@ public class ModBlock {
     public static class Ore {
         /**
          * @param harvestLevel
-         * <p>Gold: 0</p>
-         * <p>Wood: 0</p>
-         * <p>Stone: 1</p>
-         * <p>Iron: 2</p>
-         * <p>Diamond: 3</p>
-         * <p>Netherite: 4</p>
+         *                     <p>
+         *                     Gold: 0
+         *                     </p>
+         *                     <p>
+         *                     Wood: 0
+         *                     </p>
+         *                     <p>
+         *                     Stone: 1
+         *                     </p>
+         *                     <p>
+         *                     Iron: 2
+         *                     </p>
+         *                     <p>
+         *                     Diamond: 3
+         *                     </p>
+         *                     <p>
+         *                     Netherite: 4
+         *                     </p>
          * @return A block with default 3 hardness - iron ore.
          */
         public static Block create(Integer harvestLevel) {
@@ -116,19 +128,39 @@ public class ModBlock {
         }
 
         public static Block createDoor(String name, Block parent) {
-            return Blocks.register(name, Subsets.create_door(parent));
+            return Blocks.register(name, Subsets.create_door(parent), true);
         }
 
         public static Block createDoor(String name, Block parent, ItemGroup group) {
-            return Blocks.register(name, Subsets.create_door(parent), group);
+            return Blocks.register(name, Subsets.create_door(parent), group, true);
         }
 
         public static Block createTrapdoor(String name, Block parent) {
-            return Blocks.register(name, Subsets.create_trapdoor(parent));
+            return Blocks.register(name, Subsets.create_trapdoor(parent), true);
         }
 
         public static Block createTrapdoor(String name, Block parent, ItemGroup group) {
-            return Blocks.register(name, Subsets.create_trapdoor(parent), group);
+            return Blocks.register(name, Subsets.create_trapdoor(parent), group, true);
+        }
+
+        public static Block createPressurePlate_stone(String name, Block parent, ItemGroup group) {
+            return Blocks.register(name, Redstone.create_pressurePlate_stone(parent), group);
+        }
+
+        public static Block createPressurePlate_wood(String name, Block parent, ItemGroup group) {
+            return Blocks.register(name, Redstone.create_pressurePlate_wood(parent), group);
+        }
+
+        public static Block createButton_stone(String name, Block parent, ItemGroup group) {
+            return Blocks.register(name, Redstone.create_button_stone(parent), group);
+        }
+
+        public static Block createButton_wood(String name, Block parent, ItemGroup group) {
+            return Blocks.register(name, Redstone.create_button_wood(parent), group);
+        }
+
+        public static Block createLever(String name, Block parent, ItemGroup group) {
+            return Blocks.register(name, Redstone.create_lever(parent), group);
         }
     }
 
@@ -159,40 +191,40 @@ public class ModBlock {
             // Integer crude = Config.getRangeValue("nodes_crude_tiers");
             // Integer normal = Config.getRangeValue("nodes_normal_tiers");
             // Integer rich = Config.getRangeValue("nodes_rich_tiers");
-    
+
             // Integer count = 0;
-    
+
             // switch (tier) {
-            //     case CRUDE: {
-            //         count = crude;
-            //         break;
-            //     }
-            //     case NORMAL: {
-            //         count = normal;
-            //         break;
-            //     }
-            //     case RICH: {
-            //         count = rich;
-            //         break;
-            //     }
+            // case CRUDE: {
+            // count = crude;
+            // break;
             // }
-    
+            // case NORMAL: {
+            // count = normal;
+            // break;
+            // }
+            // case RICH: {
+            // count = rich;
+            // break;
+            // }
+            // }
+
             // Node n = create(parent, tier, count);
-    
+
             // Block node = ModRegister.registerBlock(name, n, group);
             // ModRegister.nodes.put(node.getRegistryName().toString(), n);
-    
+
             // Block old_ = node;
             // Block new_ = null;
-    
+
             // for (Integer i = count - 1; i >= 0; i--) {
-            //     new_ = (i > 0)
-            //         ? ModRegister.registerBlock(name + "_" + i, create(parent, tier, i))
-            //         : parent;
-    
-            //     old_ = ModRegister.setBlock_replaceable(old_, new_);
-    
-            //     ModRegister.registerNode(new_.getRegistryName().toString(), n);
+            // new_ = (i > 0)
+            // ? ModRegister.registerBlock(name + "_" + i, create(parent, tier, i))
+            // : parent;
+
+            // old_ = ModRegister.setBlock_replaceable(old_, new_);
+
+            // ModRegister.registerNode(new_.getRegistryName().toString(), n);
             // }
         }
     }

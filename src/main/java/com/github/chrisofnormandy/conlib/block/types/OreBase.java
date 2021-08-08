@@ -9,7 +9,7 @@ import net.minecraft.item.ItemGroup;
 
 import com.github.chrisofnormandy.conlib.registry.Items;
 import com.github.chrisofnormandy.conlib.registry.Ores;
-import com.github.chrisofnormandy.conlib.registry.Tools;
+// import com.github.chrisofnormandy.conlib.registry.Tools;
 import com.github.chrisofnormandy.conlib.tool.ToolMaterial;
 
 public class OreBase extends OreBlock {
@@ -81,7 +81,7 @@ public class OreBase extends OreBlock {
     public static Block asGem(String name, String oreName, OreBase block, ToolMaterial material, ItemGroup itemGroup,
         ItemGroup toolGroup, ItemGroup blockGroup) {
       Items.register(name, new Item.Properties(), itemGroup);
-      Tools.registerAll(name, material, toolGroup);
+      // Tools.registerAll(name, material, toolGroup);
       return single(oreName, block, blockGroup);
     }
 
@@ -100,7 +100,7 @@ public class OreBase extends OreBlock {
         ItemGroup toolGroup, ItemGroup blockGroup) {
       Items.register(name + "_ingot", new Item.Properties(), itemGroup);
       Items.register(name + "_nugget", new Item.Properties(), itemGroup);
-      Tools.registerAll(name, material, toolGroup);
+      // Tools.registerAll(name, material, toolGroup);
       return single(oreName, block, blockGroup);
     }
   }

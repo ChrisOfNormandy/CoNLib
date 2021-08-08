@@ -32,7 +32,7 @@ public class ModRegister {
 
     public static void Init() {
         mod_id = Main.MOD_ID;
-        
+
         events.put("block_break", BlockBreak.class);
 
         events.forEach((String key, Object event) -> Events.register(event));
@@ -40,7 +40,7 @@ public class ModRegister {
 
     public static void Init(String modId) {
         mod_id = modId;
-        
+
         events.put("block_break", BlockBreak.class);
 
         events.forEach((String key, Object event) -> Events.register(event));
@@ -58,6 +58,7 @@ public class ModRegister {
 
     // BLOCKS
     public static HashMap<String, Block> blocks = new HashMap<String, Block>();
+    public static HashMap<String, Block> transparentBlocks = new HashMap<String, Block>();
 
     // ITEMS
     public static HashMap<String, Item> items = new HashMap<String, Item>();
@@ -120,7 +121,7 @@ public class ModRegister {
 
     /**
      * 
-     * @param <T> Any class that extends the Minecraft Block class.
+     * @param <T>   Any class that extends the Minecraft Block class.
      * @param block The block instance.
      * @return
      */
@@ -131,8 +132,8 @@ public class ModRegister {
 
     /**
      * 
-     * @param <T> Any class that extends the Minecraft Block class.
-     * @param blockIn The block being broken.
+     * @param <T>      Any class that extends the Minecraft Block class.
+     * @param blockIn  The block being broken.
      * @param blockOut The block that replaces the broken block.
      * @return
      */

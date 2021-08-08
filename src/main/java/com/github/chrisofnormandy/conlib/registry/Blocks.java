@@ -18,10 +18,13 @@ public class Blocks {
      * @param block
      * @return
      */
-    private static Block _block(String name, Block block) {
+    private static Block _block(String name, Block block, Boolean transparent) {
         block.setRegistryName(name);
         ForgeRegistries.BLOCKS.register(block);
         ModRegister.blocks.put(name, block);
+
+        if (transparent)
+            ModRegister.transparentBlocks.put(name, block);
 
         Main.LOG.info("Registered new block: " + block.getRegistryName());
         return block;
@@ -35,7 +38,24 @@ public class Blocks {
      * @return Block
      */
     public static Block register(String name, Block block, ItemGroup group) {
-        Block b = _block(name, block);
+        Block b = _block(name, block, false);
+
+        BlockItem itemBlock = new BlockItem(b, new Item.Properties().tab(group));
+        Items.register(name, itemBlock);
+
+        return b;
+    }
+
+    /**
+     * 
+     * @param name
+     * @param block
+     * @param group
+     * @param transparent
+     * @return
+     */
+    public static Block register(String name, Block block, ItemGroup group, Boolean transparent) {
+        Block b = _block(name, block, transparent);
 
         BlockItem itemBlock = new BlockItem(b, new Item.Properties().tab(group));
         Items.register(name, itemBlock);
@@ -50,7 +70,18 @@ public class Blocks {
      * @return Block
      */
     public static Block register(String name, Block block) {
-        return _block(name, block);
+        return _block(name, block, false);
+    }
+
+    /**
+     * 
+     * @param name
+     * @param block
+     * @param transparent
+     * @return
+     */
+    public static Block register(String name, Block block, Boolean transparent) {
+        return _block(name, block, transparent);
     }
 
     /**
@@ -62,7 +93,26 @@ public class Blocks {
      * @return Block
      */
     public static Block register(String name, Block block, Item.Properties properties, ItemGroup group) {
-        Block b = _block(name, block);
+        Block b = _block(name, block, false);
+
+        BlockItem itemBlock = new BlockItem(b, properties.tab(group));
+        Items.register(name, itemBlock);
+
+        return b;
+    }
+
+    /**
+     * 
+     * @param name
+     * @param block
+     * @param properties
+     * @param group
+     * @param transparent
+     * @return
+     */
+    public static Block register(String name, Block block, Item.Properties properties, ItemGroup group,
+            Boolean transparent) {
+        Block b = _block(name, block, transparent);
 
         BlockItem itemBlock = new BlockItem(b, properties.tab(group));
         Items.register(name, itemBlock);
@@ -78,7 +128,24 @@ public class Blocks {
      * @return Block
      */
     public static Block register(String name, Block block, Item.Properties properties) {
-        Block b = _block(name, block);
+        Block b = _block(name, block, false);
+
+        BlockItem itemBlock = new BlockItem(b, properties);
+        Items.register(name, itemBlock);
+
+        return b;
+    }
+
+    /**
+     * 
+     * @param name
+     * @param block
+     * @param properties
+     * @param transparent
+     * @return
+     */
+    public static Block register(String name, Block block, Item.Properties properties, Boolean transparent) {
+        Block b = _block(name, block, transparent);
 
         BlockItem itemBlock = new BlockItem(b, properties);
         Items.register(name, itemBlock);

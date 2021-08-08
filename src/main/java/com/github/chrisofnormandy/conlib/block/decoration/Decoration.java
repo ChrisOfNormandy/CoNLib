@@ -3,14 +3,14 @@ package com.github.chrisofnormandy.conlib.block.decoration;
 import java.util.List;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
+// import net.minecraft.block.Blocks;
 import net.minecraft.block.CarpetBlock;
 import net.minecraft.block.FlowerPotBlock;
-import net.minecraft.block.TorchBlock;
-import net.minecraft.block.AbstractBlock.Properties;
-import net.minecraft.client.particle.Particle;
+// import net.minecraft.block.TorchBlock;
+// import net.minecraft.block.AbstractBlock.Properties;
+// import net.minecraft.client.particle.Particle;
 import net.minecraft.item.DyeColor;
-import net.minecraft.particles.IParticleData;
+// import net.minecraft.particles.IParticleData;
 
 public class Decoration {
     /**

@@ -18,250 +18,252 @@ import net.minecraftforge.fml.loading.FMLPaths;
 
 @Mod.EventBusSubscriber
 public class Config {
-	private ConfigGroup config = new ConfigGroup();
-	private String name;
-	private String path = "";
+    private ConfigGroup config = new ConfigGroup();
+    private String name;
+    private String path = "";
 
-	public Config(String name) {
-		this.name = name;
-	}
+    public Config(String name) {
+        this.name = name;
+    }
 
-	public Config(String path, String name) {
-		this.path = path;
-		this.name = name;
-	}
+    public Config(String path, String name) {
+        this.path = path;
+        this.name = name;
+    }
 
-	private void loadConfig(ForgeConfigSpec config, Path path) {
-		CommentedFileConfig file = CommentedFileConfig.builder(path).sync().autosave().writingMode(WritingMode.REPLACE)
-				.build();
+    private void loadConfig(ForgeConfigSpec config, Path path) {
+        CommentedFileConfig file = CommentedFileConfig.builder(path).sync().autosave().writingMode(WritingMode.REPLACE)
+                .build();
 
-		file.load();
+        file.load();
 
-		config.setConfig(file);
-	}
+        config.setConfig(file);
+    }
 
-	private void createConfig(Type type) {
-		String fileName = this.name + ".toml";
+    private void createConfig(Type type) {
+        String fileName = this.name + ".toml";
 
-		if (this.path != "") {
-			Path path = FMLPaths.CONFIGDIR.get().resolve(this.path);
-			final File dir = path.toFile();
-			
-			if (!dir.exists())        
-				dir.mkdirs();
+        if (this.path != "") {
+            Path path = FMLPaths.CONFIGDIR.get().resolve(this.path);
+            final File dir = path.toFile();
 
-			fileName = this.path + "/" + fileName;
-		}
+            if (!dir.exists())
+                dir.mkdirs();
 
-		ModLoadingContext.get().registerConfig(type, config.CONFIG, fileName);
-		this.loadConfig(config.CONFIG, FMLPaths.CONFIGDIR.get().resolve(fileName));
-	}
+            fileName = this.path + "/" + fileName;
+        }
 
-	private void BuildVars(ForgeConfigSpec.Builder BUILDER, ConfigGroup group) {
+        ModLoadingContext.get().registerConfig(type, config.CONFIG, fileName);
+        this.loadConfig(config.CONFIG, FMLPaths.CONFIGDIR.get().resolve(fileName));
+    }
 
-		if (!group.flags_unbuilt.isEmpty()) {
+    private void BuildVars(ForgeConfigSpec.Builder BUILDER, ConfigGroup group) {
 
-			BUILDER.push("Flags");
-			for (HashMap.Entry<String, Tuple<String, Boolean>> entry : group.flags_unbuilt.entrySet()) {
-				String key = entry.getKey();
-				Tuple<String, Boolean> value = entry.getValue();
+        if (!group.flags_unbuilt.isEmpty()) {
 
-				group.flags.put(key, BUILDER.comment(value.x).define(key, value.y));
-			}
+            BUILDER.push("Flags");
+            for (HashMap.Entry<String, Tuple<String, Boolean>> entry : group.flags_unbuilt.entrySet()) {
+                String key = entry.getKey();
+                Tuple<String, Boolean> value = entry.getValue();
 
-			BUILDER.pop();
-		}
+                group.flags.put(key, BUILDER.comment(value.x).define(key, value.y));
+            }
 
-		if (!group.strings_unbuilt.isEmpty()) {
+            BUILDER.pop();
+        }
 
-			BUILDER.push("Strings");
-			for (HashMap.Entry<String, Tuple<String, String>> entry : group.strings_unbuilt.entrySet()) {
-				String key = entry.getKey();
-				Tuple<String, String> value = entry.getValue();
+        if (!group.strings_unbuilt.isEmpty()) {
 
-				group.strings.put(key, BUILDER.comment(value.x).define(key, value.y));
-			}
+            BUILDER.push("Strings");
+            for (HashMap.Entry<String, Tuple<String, String>> entry : group.strings_unbuilt.entrySet()) {
+                String key = entry.getKey();
+                Tuple<String, String> value = entry.getValue();
 
-			BUILDER.pop();
-		}
+                group.strings.put(key, BUILDER.comment(value.x).define(key, value.y));
+            }
 
-		if (!group.integers_unbuilt.isEmpty()) {
+            BUILDER.pop();
+        }
 
-			BUILDER.push("Integers");
-			for (HashMap.Entry<String, Tuple<String, Integer>> entry : group.integers_unbuilt.entrySet()) {
-				String key = entry.getKey();
-				Tuple<String, Integer> value = entry.getValue();
+        if (!group.integers_unbuilt.isEmpty()) {
 
-				group.integers.put(key, BUILDER.comment(value.x).define(key, value.y));
-			}
+            BUILDER.push("Integers");
+            for (HashMap.Entry<String, Tuple<String, Integer>> entry : group.integers_unbuilt.entrySet()) {
+                String key = entry.getKey();
+                Tuple<String, Integer> value = entry.getValue();
 
-			BUILDER.pop();
-		}
+                group.integers.put(key, BUILDER.comment(value.x).define(key, value.y));
+            }
 
-		if (!group.arrayLists_int_unbuilt.isEmpty()) {
+            BUILDER.pop();
+        }
 
-			BUILDER.push("Int Ranges");
-			for (HashMap.Entry<String, Quartet<String, Integer, Integer, Integer>> entry : group.ranges_unbuilt
-					.entrySet()) {
-				String key = entry.getKey();
-				Quartet<String, Integer, Integer, Integer> value = entry.getValue();
+        if (!group.arrayLists_int_unbuilt.isEmpty()) {
 
-				group.ranges.put(key, BUILDER.comment(value.w).defineInRange(key, value.x, value.y, value.z));
-			}
+            BUILDER.push("Int Ranges");
+            for (HashMap.Entry<String, Quartet<String, Integer, Integer, Integer>> entry : group.ranges_unbuilt
+                    .entrySet()) {
+                String key = entry.getKey();
+                Quartet<String, Integer, Integer, Integer> value = entry.getValue();
 
-			BUILDER.pop();
-		}
+                group.ranges.put(key, BUILDER.comment(value.w).defineInRange(key, value.x, value.y, value.z));
+            }
 
-		if (!group.doubles_unbuilt.isEmpty()) {
+            BUILDER.pop();
+        }
 
-			BUILDER.push("Doubles");
-			for (HashMap.Entry<String, Tuple<String, Double>> entry : group.doubles_unbuilt.entrySet()) {
-				String key = entry.getKey();
-				Tuple<String, Double> value = entry.getValue();
+        if (!group.doubles_unbuilt.isEmpty()) {
 
-				group.doubles.put(key, BUILDER.comment(value.x).define(key, value.y));
-			}
+            BUILDER.push("Doubles");
+            for (HashMap.Entry<String, Tuple<String, Double>> entry : group.doubles_unbuilt.entrySet()) {
+                String key = entry.getKey();
+                Tuple<String, Double> value = entry.getValue();
 
-			BUILDER.pop();
-		}
-	}
+                group.doubles.put(key, BUILDER.comment(value.x).define(key, value.y));
+            }
 
-	private void BuildLists(ForgeConfigSpec.Builder BUILDER, ConfigGroup group) {
+            BUILDER.pop();
+        }
+    }
 
-		if (!group.arrayLists_int_unbuilt.isEmpty()) {
+    private void BuildLists(ForgeConfigSpec.Builder BUILDER, ConfigGroup group) {
 
-			BUILDER.push("Int Lists");
-			for (HashMap.Entry<String, Tuple<String, List<Integer>>> entry : group.arrayLists_int_unbuilt.entrySet()) {
-				String key = entry.getKey();
-				Tuple<String, List<Integer>> value = entry.getValue();
+        if (!group.arrayLists_int_unbuilt.isEmpty()) {
 
-				group.arrayLists_int.put(key, BUILDER.comment(value.x).define(key, value.y));
-			}
+            BUILDER.push("Int Lists");
+            for (HashMap.Entry<String, Tuple<String, List<Integer>>> entry : group.arrayLists_int_unbuilt.entrySet()) {
+                String key = entry.getKey();
+                Tuple<String, List<Integer>> value = entry.getValue();
 
-			BUILDER.pop();
-		}
+                group.arrayLists_int.put(key, BUILDER.comment(value.x).define(key, value.y));
+            }
 
-		if (!group.arrayLists_string_unbuilt.isEmpty()) {
+            BUILDER.pop();
+        }
 
-			BUILDER.push("String Lists");
-			for (HashMap.Entry<String, Tuple<String, List<String>>> entry : group.arrayLists_string_unbuilt.entrySet()) {
-				String key = entry.getKey();
-				Tuple<String, List<String>> value = entry.getValue();
+        if (!group.arrayLists_string_unbuilt.isEmpty()) {
 
-				group.arrayLists_string.put(key, BUILDER.comment(value.x).define(key, value.y));
-			}
+            BUILDER.push("String Lists");
+            for (HashMap.Entry<String, Tuple<String, List<String>>> entry : group.arrayLists_string_unbuilt
+                    .entrySet()) {
+                String key = entry.getKey();
+                Tuple<String, List<String>> value = entry.getValue();
 
-			BUILDER.pop();
-		}
-	}
+                group.arrayLists_string.put(key, BUILDER.comment(value.x).define(key, value.y));
+            }
 
-	private void BuildAll(ForgeConfigSpec.Builder BUILDER, ConfigGroup group) {
-		BuildVars(BUILDER, group);
-		BuildLists(BUILDER, group);
-		
-		group.subgroups.forEach((String name, ConfigGroup group_) -> {
-			BUILDER.push(name);
-			this.BuildAll(BUILDER, group_);
-			BUILDER.pop();
-		});
-	}
+            BUILDER.pop();
+        }
+    }
 
-	public void Build() {
-		ForgeConfigSpec.Builder BUILDER = new ForgeConfigSpec.Builder();
+    private void BuildAll(ForgeConfigSpec.Builder BUILDER, ConfigGroup group) {
+        BuildVars(BUILDER, group);
+        BuildLists(BUILDER, group);
 
-		this.BuildVars(BUILDER, this.config);
-		this.BuildLists(BUILDER, this.config);
+        group.subgroups.forEach((String name, ConfigGroup group_) -> {
+            BUILDER.push(name);
+            this.BuildAll(BUILDER, group_);
+            BUILDER.pop();
+        });
+    }
 
-		this.config.subgroups.forEach((String name, ConfigGroup group) -> {
-			BUILDER.push(name);
-			this.BuildAll(BUILDER, group);
-			BUILDER.pop();
-		});
+    public Config Build() {
+        ForgeConfigSpec.Builder BUILDER = new ForgeConfigSpec.Builder();
 
-		this.config.CONFIG = BUILDER.build();
+        this.BuildVars(BUILDER, this.config);
+        this.BuildLists(BUILDER, this.config);
 
-		this.createConfig(Type.COMMON);
-	}
+        this.config.subgroups.forEach((String name, ConfigGroup group) -> {
+            BUILDER.push(name);
+            this.BuildAll(BUILDER, group);
+            BUILDER.pop();
+        });
 
-	public void Build(Type type) {
-		ForgeConfigSpec.Builder BUILDER = new ForgeConfigSpec.Builder();
+        this.config.CONFIG = BUILDER.build();
 
-		this.BuildVars(BUILDER, this.config);
-		this.BuildLists(BUILDER, this.config);
+        this.createConfig(Type.COMMON);
 
-		this.config.subgroups.forEach((String name, ConfigGroup group) -> {
-			BUILDER.push(name);
-			this.BuildAll(BUILDER, group);
-			BUILDER.pop();
-		});
+        return this;
+    }
 
-		this.config.CONFIG = BUILDER.build();
+    public void Build(Type type) {
+        ForgeConfigSpec.Builder BUILDER = new ForgeConfigSpec.Builder();
 
-		this.createConfig(type);
-	}
+        this.BuildVars(BUILDER, this.config);
+        this.BuildLists(BUILDER, this.config);
 
-	public void addRange(String key, Integer min, Integer max, Integer defaultValue,
-			String comment) {
-		this.config.addRange(key, min, max, defaultValue, comment);
-	}
+        this.config.subgroups.forEach((String name, ConfigGroup group) -> {
+            BUILDER.push(name);
+            this.BuildAll(BUILDER, group);
+            BUILDER.pop();
+        });
 
-	public void addString(String key, String value, String comment) {
-		this.config.addString(key, value, comment);
-	}
+        this.config.CONFIG = BUILDER.build();
 
-	public void addInteger(String key, Integer value, String comment) {
-		this.config.addInteger(key, value, comment);
-	}
+        this.createConfig(type);
+    }
 
-	public void addDouble(String key, Double value, String comment) {
-		this.config.addDouble(key, value, comment);
-	}
+    public void addRange(String key, Integer min, Integer max, Integer defaultValue, String comment) {
+        this.config.addRange(key, min, max, defaultValue, comment);
+    }
 
-	public void addFlag(String key, Boolean value, String comment) {
-		this.config.addFlag(key, value, comment);
-	}
+    public void addString(String key, String value, String comment) {
+        this.config.addString(key, value, comment);
+    }
 
-	public void addIntList(String key, List<Integer> value, String comment) {
-		this.config.addIntList(key, value, comment);
-	}
+    public void addInteger(String key, Integer value, String comment) {
+        this.config.addInteger(key, value, comment);
+    }
 
-	public void addStringList(String key, List<String> value, String comment) {
-		this.config.addStringList(key, value, comment);
-	}
+    public void addDouble(String key, Double value, String comment) {
+        this.config.addDouble(key, value, comment);
+    }
 
-	public Integer getRangeValue(String key) {
-		return this.config.getRangeValue(key);
-	}
+    public void addFlag(String key, Boolean value, String comment) {
+        this.config.addFlag(key, value, comment);
+    }
 
-	public String getStringValue(String key) {
-		return this.config.getStringValue(key);
-	}
+    public void addIntList(String key, List<Integer> value, String comment) {
+        this.config.addIntList(key, value, comment);
+    }
 
-	public Integer getIntegerValue(String key) {
-		return this.config.getIntegerValue(key);
-	}
+    public void addStringList(String key, List<String> value, String comment) {
+        this.config.addStringList(key, value, comment);
+    }
 
-	public Double getDoubleValue(String key) {
-		return this.config.getDoubleValue(key);
-	}
+    public Integer getRangeValue(String key) {
+        return this.config.getRangeValue(key);
+    }
 
-	public Boolean getFlagValue(String key) {
-		return this.config.getFlagValue(key);
-	}
+    public String getStringValue(String key) {
+        return this.config.getStringValue(key);
+    }
 
-	public List<Integer> getIntListValue(String key) {
-		return this.config.getIntListValue(key);
-	}
+    public Integer getIntegerValue(String key) {
+        return this.config.getIntegerValue(key);
+    }
 
-	public List<String> getStringListValue(String key) {
-		return this.config.getStringListValue(key);
-	}
+    public Double getDoubleValue(String key) {
+        return this.config.getDoubleValue(key);
+    }
 
-	public void addSubgroup(String name, ConfigGroup group) {
-		this.config.addSubgroup(name, group);
-	}
+    public Boolean getFlagValue(String key) {
+        return this.config.getFlagValue(key);
+    }
 
-	public ConfigGroup getSubgroup(String name) {
-		return this.config.getSubgroup(name);
-	}
+    public List<Integer> getIntListValue(String key) {
+        return this.config.getIntListValue(key);
+    }
+
+    public List<String> getStringListValue(String key) {
+        return this.config.getStringListValue(key);
+    }
+
+    public void addSubgroup(String name, ConfigGroup group) {
+        this.config.addSubgroup(name, group);
+    }
+
+    public ConfigGroup getSubgroup(String name) {
+        return this.config.getSubgroup(name);
+    }
 }

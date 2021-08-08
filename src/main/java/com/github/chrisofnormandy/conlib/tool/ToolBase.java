@@ -1,16 +1,23 @@
 package com.github.chrisofnormandy.conlib.tool;
 
-import net.minecraft.item.Item;
-import net.minecraftforge.common.ToolType;
+import java.util.Set;
 
-public class ToolBase extends Item {
+import net.minecraft.block.Block;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemTier;
+import net.minecraft.item.ToolItem;
+
+public class ToolBase extends ToolItem {
+    
     /**
      * 
-     * @param properties Should use com.github.chrisofnormandy.conlib.tool.Material.setProperties(...)
-     * @param toolType
-     * @param level
+     * @param attackDamage
+     * @param attackSpeed
+     * @param tier
+     * @param blockSet
+     * @param properties
      */
-    public ToolBase(Item.Properties properties, ToolType toolType, int level) {
-        super(properties.addToolType(toolType, level));
+    public ToolBase(Float attackDamage, Float attackSpeed, ItemTier tier, Set<Block> blockSet, Item.Properties properties) {
+        super(attackDamage, attackSpeed, tier, blockSet, properties);
     }
 }
