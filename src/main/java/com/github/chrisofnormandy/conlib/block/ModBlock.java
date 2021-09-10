@@ -14,180 +14,430 @@ import net.minecraft.item.DyeColor;
 import net.minecraft.item.ItemGroup;
 
 public class ModBlock {
-    public static String[] dyes = com.github.chrisofnormandy.conlib.item.ModItem.dyes;
+    public static final String[] dyes = com.github.chrisofnormandy.conlib.item.ModItem.dyes;
 
     public static class Ore {
         /**
+         * 
          * @param harvestLevel
-         *                     <p>
-         *                     Gold: 0
-         *                     </p>
-         *                     <p>
-         *                     Wood: 0
-         *                     </p>
-         *                     <p>
-         *                     Stone: 1
-         *                     </p>
-         *                     <p>
-         *                     Iron: 2
-         *                     </p>
-         *                     <p>
-         *                     Diamond: 3
-         *                     </p>
-         *                     <p>
-         *                     Netherite: 4
-         *                     </p>
-         * @return A block with default 3 hardness - iron ore.
+         * @return
          */
-        public static Block create(Integer harvestLevel) {
+        public static final Block create(Integer harvestLevel) {
             return new OreBase(harvestLevel);
         }
 
-        public static Block create(Integer harvestLevel, Float strength) {
+        /**
+         * 
+         * @param harvestLevel
+         * @param strength
+         * @return
+         */
+        public static final Block create(Integer harvestLevel, Float strength) {
             return new OreBase(harvestLevel, strength);
         }
 
-        public static Block register(String name, Integer harvestLevel, ItemGroup group) {
+        /**
+         * 
+         * @param name
+         * @param harvestLevel
+         * @param group
+         * @return
+         */
+        public static final Block register(String name, Integer harvestLevel, ItemGroup group) {
             return OreBase.Register.single(name, harvestLevel, group);
         }
 
-        public static Block register(String name, Integer harvestLevel, Float strength, ItemGroup group) {
+        /**
+         * 
+         * @param name
+         * @param harvestLevel
+         * @param strength
+         * @param group
+         * @return
+         */
+        public static final Block register(String name, Integer harvestLevel, Float strength, ItemGroup group) {
             return OreBase.Register.single(name, harvestLevel, strength, group);
         }
 
-        public static Block register(String name, OreBase block, ItemGroup group) {
+        /**
+         * 
+         * @param name
+         * @param block
+         * @param group
+         * @return
+         */
+        public static final Block register(String name, OreBase block, ItemGroup group) {
             return OreBase.Register.single(name, block, group);
         }
 
-        public static Block registerGem(String name, String oreName, OreBase block, ToolMaterial material,
+        /**
+         * 
+         * @param name
+         * @param oreName
+         * @param block
+         * @param material
+         * @param itemGroup
+         * @param toolGroup
+         * @param blockGroup
+         * @return
+         */
+        public static final Block registerGem(String name, String oreName, OreBase block, ToolMaterial material,
                 ItemGroup itemGroup, ItemGroup toolGroup, ItemGroup blockGroup) {
             return OreBase.Register.asGem(name, oreName, block, material, itemGroup, toolGroup, blockGroup);
         }
 
-        public static Block registerMetal(String name, String oreName, OreBase block, ToolMaterial material,
+        /**
+         * 
+         * @param name
+         * @param oreName
+         * @param block
+         * @param material
+         * @param itemGroup
+         * @param toolGroup
+         * @param blockGroup
+         * @return
+         */
+        public static final Block registerMetal(String name, String oreName, OreBase block, ToolMaterial material,
                 ItemGroup itemGroup, ItemGroup toolGroup, ItemGroup blockGroup) {
             return OreBase.Register.asMetal(name, oreName, block, material, itemGroup, toolGroup, blockGroup);
         }
     }
 
     public static class Generic {
-        public static Block create(String name, Properties properties) {
+        /**
+         * 
+         * @param name
+         * @param properties
+         * @return
+         */
+        public static final Block create(String name, Properties properties) {
             return Blocks.register(name, new Block(properties));
         }
 
-        public static Block create(String name, Properties properties, ItemGroup group) {
+        /**
+         * 
+         * @param name
+         * @param properties
+         * @param group
+         * @return
+         */
+        public static final Block create(String name, Properties properties, ItemGroup group) {
             return Blocks.register(name, new Block(properties), group);
         }
 
-        public static Block createColumn(String name, Properties properties) {
+        /**
+         * 
+         * @param name
+         * @param properties
+         * @return
+         */
+        public static final Block createColumn(String name, Properties properties) {
             return Blocks.register(name, new RotatedPillarBlock(properties));
         }
 
-        public static Block createColumn(String name, Properties properties, ItemGroup group) {
+        /**
+         * 
+         * @param name
+         * @param properties
+         * @param group
+         * @return
+         */
+        public static final Block createColumn(String name, Properties properties, ItemGroup group) {
             return Blocks.register(name, new RotatedPillarBlock(properties), group);
         }
 
-        public static Block createSlab(String name, Block parent) {
+        /**
+         * 
+         * @param name
+         * @param properties
+         * @return
+         */
+        public static final Block createTransparent(String name, Properties properties) {
+            return Blocks.register(name, new Block(properties.noCollission()), true);
+        }
+
+        /**
+         * 
+         * @param name
+         * @param properties
+         * @param group
+         * @return
+         */
+        public static final Block createTransparent(String name, Properties properties, ItemGroup group) {
+            return Blocks.register(name, new Block(properties.noCollission()), group, true);
+        }
+
+        /**
+         * 
+         * @param name
+         * @param parent
+         * @return
+         */
+        public static final Block createSlab(String name, Block parent) {
             return Blocks.register(name, Subsets.create_slab(parent));
         }
 
-        public static Block createSlab(String name, Block parent, ItemGroup group) {
+        /**
+         * 
+         * @param name
+         * @param parent
+         * @param group
+         * @return
+         */
+        public static final Block createSlab(String name, Block parent, ItemGroup group) {
             return Blocks.register(name, Subsets.create_slab(parent), group);
         }
 
-        public static Block createStairs(String name, Block parent) {
+        /**
+         * 
+         * @param name
+         * @param parent
+         * @return
+         */
+        public static final Block createStairs(String name, Block parent) {
             return Blocks.register(name, Subsets.create_stairs(parent));
         }
 
-        public static Block createStairs(String name, Block parent, ItemGroup group) {
+        /**
+         * 
+         * @param name
+         * @param parent
+         * @param group
+         * @return
+         */
+        public static final Block createStairs(String name, Block parent, ItemGroup group) {
             return Blocks.register(name, Subsets.create_stairs(parent), group);
         }
 
-        public static Block createWall(String name, Block parent) {
+        /**
+         * 
+         * @param name
+         * @param parent
+         * @return
+         */
+        public static final Block createWall(String name, Block parent) {
             return Blocks.register(name, Subsets.create_wall(parent));
         }
 
-        public static Block createWall(String name, Block parent, ItemGroup group) {
+        /**
+         * 
+         * @param name
+         * @param parent
+         * @param group
+         * @return
+         */
+        public static final Block createWall(String name, Block parent, ItemGroup group) {
             return Blocks.register(name, Subsets.create_wall(parent), group);
         }
 
-        public static Block createFence(String name, Block parent) {
+        /**
+         * 
+         * @param name
+         * @param parent
+         * @return
+         */
+        public static final Block createFence(String name, Block parent) {
             return Blocks.register(name, Subsets.create_fence(parent));
         }
 
-        public static Block createFence(String name, Block parent, ItemGroup group) {
+        /**
+         * 
+         * @param name
+         * @param parent
+         * @param group
+         * @return
+         */
+        public static final Block createFence(String name, Block parent, ItemGroup group) {
             return Blocks.register(name, Subsets.create_fence(parent), group);
         }
+    }
 
-        public static Block createFenceGate(String name, Block parent) {
+    public static class RedstoneGeneric {
+        /**
+         * 
+         * @param name
+         * @param parent
+         * @return
+         */
+        public static final Block createFenceGate(String name, Block parent) {
             return Blocks.register(name, Subsets.create_fenceGate(parent));
         }
 
-        public static Block createFenceGate(String name, Block parent, ItemGroup group) {
+        /**
+         * 
+         * @param name
+         * @param parent
+         * @param group
+         * @return
+         */
+        public static final Block createFenceGate(String name, Block parent, ItemGroup group) {
             return Blocks.register(name, Subsets.create_fenceGate(parent), group);
         }
 
-        public static Block createDoor(String name, Block parent) {
+        /**
+         * 
+         * @param name
+         * @param parent
+         * @return
+         */
+        public static final Block createDoor(String name, Block parent) {
             return Blocks.register(name, Subsets.create_door(parent), true);
         }
 
-        public static Block createDoor(String name, Block parent, ItemGroup group) {
+        /**
+         * 
+         * @param name
+         * @param parent
+         * @param group
+         * @return
+         */
+        public static final Block createDoor(String name, Block parent, ItemGroup group) {
             return Blocks.register(name, Subsets.create_door(parent), group, true);
         }
 
-        public static Block createTrapdoor(String name, Block parent) {
+        /**
+         * 
+         * @param name
+         * @param parent
+         * @return
+         */
+        public static final Block createTrapdoor(String name, Block parent) {
             return Blocks.register(name, Subsets.create_trapdoor(parent), true);
         }
 
-        public static Block createTrapdoor(String name, Block parent, ItemGroup group) {
+        /**
+         * 
+         * @param name
+         * @param parent
+         * @param group
+         * @return
+         */
+        public static final Block createTrapdoor(String name, Block parent, ItemGroup group) {
             return Blocks.register(name, Subsets.create_trapdoor(parent), group, true);
         }
 
-        public static Block createPressurePlate_stone(String name, Block parent, ItemGroup group) {
+        /**
+         * 
+         * @param name
+         * @param parent
+         * @param group
+         * @return
+         */
+        public static final Block createPressurePlate_stone(String name, Block parent, ItemGroup group) {
             return Blocks.register(name, Redstone.create_pressurePlate_stone(parent), group);
         }
 
-        public static Block createPressurePlate_wood(String name, Block parent, ItemGroup group) {
+        /**
+         * 
+         * @param name
+         * @param parent
+         * @param group
+         * @return
+         */
+        public static final Block createPressurePlate_wood(String name, Block parent, ItemGroup group) {
             return Blocks.register(name, Redstone.create_pressurePlate_wood(parent), group);
         }
 
-        public static Block createButton_stone(String name, Block parent, ItemGroup group) {
+        /**
+         * 
+         * @param name
+         * @param parent
+         * @param group
+         * @return
+         */
+        public static final Block createButton_stone(String name, Block parent, ItemGroup group) {
             return Blocks.register(name, Redstone.create_button_stone(parent), group);
         }
 
-        public static Block createButton_wood(String name, Block parent, ItemGroup group) {
+        /**
+         * 
+         * @param name
+         * @param parent
+         * @param group
+         * @return
+         */
+        public static final Block createButton_wood(String name, Block parent, ItemGroup group) {
             return Blocks.register(name, Redstone.create_button_wood(parent), group);
         }
 
-        public static Block createLever(String name, Block parent, ItemGroup group) {
+        /**
+         * 
+         * @param name
+         * @param parent
+         * @param group
+         * @return
+         */
+        public static final Block createLever(String name, Block parent, ItemGroup group) {
             return Blocks.register(name, Redstone.create_lever(parent), group);
         }
     }
 
-    public static class Interactive {
-        public static Block createBarrel(String name, Block parent) {
+    public static class Inventory {
+        /**
+         * 
+         * @param name
+         * @param parent
+         * @return
+         */
+        public static final Block createBarrel(String name, Block parent) {
             return Blocks.register(name, Utility.create_barrel(parent));
         }
 
-        public static Block createBarrel(String name, Block parent, ItemGroup group) {
+        /**
+         * 
+         * @param name
+         * @param parent
+         * @param group
+         * @return
+         */
+        public static final Block createBarrel(String name, Block parent, ItemGroup group) {
             return Blocks.register(name, Utility.create_barrel(parent), group);
         }
 
-        public static Block createShulker(String name, DyeColor color, Block parent) {
+        /**
+         * 
+         * @param name
+         * @param color
+         * @param parent
+         * @return
+         */
+        public static final Block createShulker(String name, DyeColor color, Block parent) {
             return Blocks.register(name, Utility.create_shulker(color, parent));
         }
 
-        public static Block createShulker(String name, DyeColor color, Block parent, ItemGroup group) {
+        /**
+         * 
+         * @param name
+         * @param color
+         * @param parent
+         * @param group
+         * @return
+         */
+        public static final Block createShulker(String name, DyeColor color, Block parent, ItemGroup group) {
             return Blocks.register(name, Utility.create_shulker(color, parent), group);
         }
     }
 
     public static class Node_ {
-        public static NodeBase create(Block parent, NodeBase.Tier tier, Integer damage) {
+        /**
+         * 
+         * @param parent
+         * @param tier
+         * @param damage
+         * @return
+         */
+        public static final NodeBase create(Block parent, NodeBase.Tier tier, Integer damage) {
             return new NodeBase(Block.Properties.copy(parent), tier, damage, parent.asItem());
         }
 
-        public static void register(String name, Block parent, NodeBase.Tier tier, ItemGroup group) {
+        /**
+         * 
+         * @param name
+         * @param parent
+         * @param tier
+         * @param group
+         */
+        public static final void register(String name, Block parent, NodeBase.Tier tier, ItemGroup group) {
             // Integer crude = Config.getRangeValue("nodes_crude_tiers");
             // Integer normal = Config.getRangeValue("nodes_normal_tiers");
             // Integer rich = Config.getRangeValue("nodes_rich_tiers");

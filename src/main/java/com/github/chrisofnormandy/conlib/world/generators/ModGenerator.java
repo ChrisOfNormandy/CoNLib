@@ -6,7 +6,8 @@ public class ModGenerator {
 
     HashMap<String, Element> elements = new HashMap<String, Element>();
 
-    public ModGenerator() {}
+    public ModGenerator() {
+    }
 
     public Object getValue(String element) {
         return elements.get(element).getValue();

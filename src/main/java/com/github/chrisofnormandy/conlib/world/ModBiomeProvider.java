@@ -44,7 +44,8 @@ public class ModBiomeProvider extends BiomeProvider {
             Biomes.MODIFIED_BADLANDS_PLATEAU));
 
     public ModBiomeProvider(long seed, Registry<Biome> biomeRegistry) {
-        super(Stream.concat(vanillaBiomes.stream(), ModRegister.getOverworldBiomes()).map(biomeRegistry::get).collect(Collectors.toList()));
+        super(Stream.concat(vanillaBiomes.stream(), ModRegister.getOverworldBiomes()).map(biomeRegistry::get)
+                .collect(Collectors.toList()));
         this.seed = seed;
         this.layer = LayerHelper.createLayer(seed, new GeneratorSettings());
         this.biomeRegistry = biomeRegistry;

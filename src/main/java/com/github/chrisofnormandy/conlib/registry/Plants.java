@@ -12,12 +12,12 @@ import net.minecraftforge.common.PlantType;
 public class Plants {
     /**
      * 
-     * @param name The generic block name, like "my_plant."
-     * @param plantType The type of plant, such as desert, nether or water.
-     * @param group The creative tab the item should be grouped in.
-     * @return Block
+     * @param name
+     * @param plantType
+     * @param group
+     * @return
      */
-    public static Block registerPlant(String name, PlantType plantType, ItemGroup group) {
+    public static final Block registerPlant(String name, PlantType plantType, ItemGroup group) {
         Block.Properties properties = Block.Properties.of(Material.PLANT).sound(SoundType.CROP).strength(0.0F)
                 .noCollission();
         return Blocks.register(name, new PlantBase(properties, plantType), group);
@@ -25,11 +25,11 @@ public class Plants {
 
     /**
      * 
-     * @param name The generic block name, like "my_plant."
-     * @param plantType The type of plant, such as desert, nether or water.
-     * @return Block
+     * @param name
+     * @param plantType
+     * @return
      */
-    public static Block registerPlant(String name, PlantType plantType) {
+    public static final Block registerPlant(String name, PlantType plantType) {
         Block.Properties properties = Block.Properties.of(Material.PLANT).sound(SoundType.CROP).strength(0.0F)
                 .noCollission();
         return Blocks.register(name, new PlantBase(properties, plantType));
@@ -37,11 +37,11 @@ public class Plants {
 
     /**
      * 
-     * @param name The generic crop name, like "my_crop."
-     * @param crop The crop block instance.
-     * @return Block
+     * @param name
+     * @param crop
+     * @return
      */
-    public static Block registerCrop(String name, CropsBlock crop) {
+    public static final Block registerCrop(String name, CropsBlock crop) {
         return Blocks.register(name, crop);
     }
 }

@@ -11,12 +11,15 @@ public class ModClimate {
     public String name;
     public BiomeType type;
     public Integer weight;
-    
+
     public Integer temperature;
     public Integer rainfall;
 
-    private List<RegistryKey<Biome>> biomes = new ArrayList<RegistryKey<Biome>>();
+    private final List<RegistryKey<Biome>> biomes = new ArrayList<RegistryKey<Biome>>();
 
+    /**
+     * 
+     */
     private void setup() {
         switch (this.type) {
             case DESERT: {
@@ -47,6 +50,11 @@ public class ModClimate {
         }
     }
 
+    /**
+     * 
+     * @param name
+     * @param type
+     */
     public ModClimate(String name, BiomeType type) {
         this.name = name;
         this.type = type;
@@ -54,6 +62,12 @@ public class ModClimate {
         setup();
     }
 
+    /**
+     * 
+     * @param name
+     * @param type
+     * @param weight
+     */
     public ModClimate(String name, BiomeType type, Integer weight) {
         this.name = name;
         this.type = type;
@@ -61,30 +75,51 @@ public class ModClimate {
         setup();
     }
 
+    /**
+     * 
+     * @return
+     */
     public String getName() {
         return this.name;
     }
 
+    /**
+     * 
+     * @return
+     */
     public Integer getWeight() {
         return this.weight;
     }
 
+    /**
+     * 
+     * @return
+     */
     public List<RegistryKey<Biome>> getBiomes() {
         return this.biomes;
     }
 
+    /**
+     * 
+     * @param biome
+     * @return
+     */
     public Boolean hasBiome(RegistryKey<Biome> biome) {
         return this.biomes.contains(biome);
     }
 
-    // public void addBiome(Biome biome) {
-    //     this.biomes.add(Biomes.Helpers.createKey(biome));
-    // }
-
+    /**
+     * 
+     * @param value
+     */
     public void setTemperature(Integer value) {
         this.temperature = value;
     }
 
+    /**
+     * 
+     * @param value
+     */
     public void setRainfall(Integer value) {
         this.rainfall = value;
     }

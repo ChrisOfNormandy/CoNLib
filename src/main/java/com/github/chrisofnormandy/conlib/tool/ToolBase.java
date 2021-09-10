@@ -8,7 +8,7 @@ import net.minecraft.item.ItemTier;
 import net.minecraft.item.ToolItem;
 
 public class ToolBase extends ToolItem {
-    
+
     /**
      * 
      * @param attackDamage
@@ -17,7 +17,8 @@ public class ToolBase extends ToolItem {
      * @param blockSet
      * @param properties
      */
-    public ToolBase(Float attackDamage, Float attackSpeed, ItemTier tier, Set<Block> blockSet, Item.Properties properties) {
+    public ToolBase(Float attackDamage, Float attackSpeed, ItemTier tier, Set<Block> blockSet,
+            Item.Properties properties) {
         super(attackDamage, attackSpeed, tier, blockSet, properties);
     }
 }

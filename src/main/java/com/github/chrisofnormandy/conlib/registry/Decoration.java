@@ -7,11 +7,11 @@ import net.minecraftforge.registries.ForgeRegistries;
 public class Decoration {
     /**
      * 
-     * @param name     The painting name.
-     * @param painting The painting instance.
-     * @return PaintingType
+     * @param name
+     * @param painting
+     * @return
      */
-    public static PaintingType registerPainting(String name, PaintingType painting) {
+    public static final PaintingType registerPainting(String name, PaintingType painting) {
         painting.setRegistryName(new ResourceLocation(ModRegister.getModId(), name));
         ForgeRegistries.PAINTING_TYPES.register(painting);
         return painting;

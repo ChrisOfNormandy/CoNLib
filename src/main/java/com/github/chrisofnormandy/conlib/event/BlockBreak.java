@@ -11,10 +11,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
-
 public class BlockBreak {
     @SubscribeEvent
-    public static void cancelBlockBreak(final BlockEvent.BreakEvent event) {
+    public static final void cancelBlockBreak(final BlockEvent.BreakEvent event) {
         Block blockIn = event.getState().getBlock();
 
         if (ModRegister.blocks_unbreakable.containsKey(blockIn.getRegistryName().toString()))
@@ -22,7 +21,7 @@ public class BlockBreak {
     }
 
     @SubscribeEvent
-    public static void replaceBlock(final BlockEvent.BreakEvent event) {
+    public static final void replaceBlock(final BlockEvent.BreakEvent event) {
         Block blockIn = event.getState().getBlock();
         PlayerEntity player = event.getPlayer();
 

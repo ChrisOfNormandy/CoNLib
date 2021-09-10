@@ -22,15 +22,29 @@ public class Config {
     private String name;
     private String path = "";
 
+    /**
+     * 
+     * @param name
+     */
     public Config(String name) {
         this.name = name;
     }
 
+    /**
+     * 
+     * @param path
+     * @param name
+     */
     public Config(String path, String name) {
         this.path = path;
         this.name = name;
     }
 
+    /**
+     * 
+     * @param config
+     * @param path
+     */
     private void loadConfig(ForgeConfigSpec config, Path path) {
         CommentedFileConfig file = CommentedFileConfig.builder(path).sync().autosave().writingMode(WritingMode.REPLACE)
                 .build();
@@ -40,6 +54,10 @@ public class Config {
         config.setConfig(file);
     }
 
+    /**
+     * 
+     * @param type
+     */
     private void createConfig(Type type) {
         String fileName = this.name + ".toml";
 
@@ -57,6 +75,11 @@ public class Config {
         this.loadConfig(config.CONFIG, FMLPaths.CONFIGDIR.get().resolve(fileName));
     }
 
+    /**
+     * 
+     * @param BUILDER
+     * @param group
+     */
     private void BuildVars(ForgeConfigSpec.Builder BUILDER, ConfigGroup group) {
 
         if (!group.flags_unbuilt.isEmpty()) {
@@ -126,6 +149,11 @@ public class Config {
         }
     }
 
+    /**
+     * 
+     * @param BUILDER
+     * @param group
+     */
     private void BuildLists(ForgeConfigSpec.Builder BUILDER, ConfigGroup group) {
 
         if (!group.arrayLists_int_unbuilt.isEmpty()) {
@@ -156,6 +184,11 @@ public class Config {
         }
     }
 
+    /**
+     * 
+     * @param BUILDER
+     * @param group
+     */
     private void BuildAll(ForgeConfigSpec.Builder BUILDER, ConfigGroup group) {
         BuildVars(BUILDER, group);
         BuildLists(BUILDER, group);
@@ -167,6 +200,10 @@ public class Config {
         });
     }
 
+    /**
+     * 
+     * @return
+     */
     public Config Build() {
         ForgeConfigSpec.Builder BUILDER = new ForgeConfigSpec.Builder();
 
@@ -186,6 +223,10 @@ public class Config {
         return this;
     }
 
+    /**
+     * 
+     * @param type
+     */
     public void Build(Type type) {
         ForgeConfigSpec.Builder BUILDER = new ForgeConfigSpec.Builder();
 
@@ -203,66 +244,155 @@ public class Config {
         this.createConfig(type);
     }
 
+    /**
+     * 
+     * @param key
+     * @param min
+     * @param max
+     * @param defaultValue
+     * @param comment
+     */
     public void addRange(String key, Integer min, Integer max, Integer defaultValue, String comment) {
         this.config.addRange(key, min, max, defaultValue, comment);
     }
 
+    /**
+     * 
+     * @param key
+     * @param value
+     * @param comment
+     */
     public void addString(String key, String value, String comment) {
         this.config.addString(key, value, comment);
     }
 
+    /**
+     * 
+     * @param key
+     * @param value
+     * @param comment
+     */
     public void addInteger(String key, Integer value, String comment) {
         this.config.addInteger(key, value, comment);
     }
 
+    /**
+     * 
+     * @param key
+     * @param value
+     * @param comment
+     */
     public void addDouble(String key, Double value, String comment) {
         this.config.addDouble(key, value, comment);
     }
 
+    /**
+     * 
+     * @param key
+     * @param value
+     * @param comment
+     */
     public void addFlag(String key, Boolean value, String comment) {
         this.config.addFlag(key, value, comment);
     }
 
+    /**
+     * 
+     * @param key
+     * @param value
+     * @param comment
+     */
     public void addIntList(String key, List<Integer> value, String comment) {
         this.config.addIntList(key, value, comment);
     }
 
+    /**
+     * 
+     * @param key
+     * @param value
+     * @param comment
+     */
     public void addStringList(String key, List<String> value, String comment) {
         this.config.addStringList(key, value, comment);
     }
 
+    /**
+     * 
+     * @param key
+     * @return
+     */
     public Integer getRangeValue(String key) {
         return this.config.getRangeValue(key);
     }
 
+    /**
+     * 
+     * @param key
+     * @return
+     */
     public String getStringValue(String key) {
         return this.config.getStringValue(key);
     }
 
+    /**
+     * 
+     * @param key
+     * @return
+     */
     public Integer getIntegerValue(String key) {
         return this.config.getIntegerValue(key);
     }
 
+    /**
+     * 
+     * @param key
+     * @return
+     */
     public Double getDoubleValue(String key) {
         return this.config.getDoubleValue(key);
     }
 
+    /**
+     * 
+     * @param key
+     * @return
+     */
     public Boolean getFlagValue(String key) {
         return this.config.getFlagValue(key);
     }
 
+    /**
+     * 
+     * @param key
+     * @return
+     */
     public List<Integer> getIntListValue(String key) {
         return this.config.getIntListValue(key);
     }
 
+    /**
+     * 
+     * @param key
+     * @return
+     */
     public List<String> getStringListValue(String key) {
         return this.config.getStringListValue(key);
     }
 
+    /**
+     * 
+     * @param name
+     * @param group
+     */
     public void addSubgroup(String name, ConfigGroup group) {
         this.config.addSubgroup(name, group);
     }
 
+    /**
+     * 
+     * @param name
+     * @return
+     */
     public ConfigGroup getSubgroup(String name) {
         return this.config.getSubgroup(name);
     }

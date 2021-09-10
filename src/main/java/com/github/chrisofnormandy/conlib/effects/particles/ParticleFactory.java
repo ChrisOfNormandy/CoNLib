@@ -7,6 +7,9 @@ import net.minecraft.client.world.ClientWorld;
 import net.minecraft.particles.BasicParticleType;
 
 public class ParticleFactory implements IParticleFactory<BasicParticleType> {
+    /**
+     * 
+     */
     public ParticleFactory() {
     }
 

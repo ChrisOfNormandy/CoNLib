@@ -29,22 +29,22 @@ public enum ModClimateLayer implements IAreaTransformer2, IDimOffset0Transformer
 
     // @Override
     // public int getParentX(int p_215721_1_) {
-    //     // TODO Auto-generated method stub
-    //     return 0;
+    // // TODO Auto-generated method stub
+    // return 0;
     // }
 
     // @Override
     // public int getParentY(int p_215722_1_) {
-    //     // TODO Auto-generated method stub
-    //     return 0;
+    // // TODO Auto-generated method stub
+    // return 0;
     // }
 
     @Override
     public int applyPixel(INoiseRandom context, IArea temp, IArea rain, int x, int z) {
-    int temperature = temp.get(x, z); // 0 - 8
-    int rainfall = rain.get(x, z); // 0 - 11
-    
-    int index = ( MathHelper.clamp(temperature, 0, 8) * 12 ) + MathHelper.clamp(rainfall, 0, 11);
+        int temperature = temp.get(x, z); // 0 - 8
+        int rainfall = rain.get(x, z); // 0 - 11
+
+        int index = (MathHelper.clamp(temperature, 0, 8) * 12) + MathHelper.clamp(rainfall, 0, 11);
         return this.map[index];
     }
 }

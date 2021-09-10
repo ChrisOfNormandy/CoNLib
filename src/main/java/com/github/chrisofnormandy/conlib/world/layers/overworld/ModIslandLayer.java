@@ -23,18 +23,17 @@ public enum ModIslandLayer implements IAreaTransformer2, IDimOffset1Transformer 
     }
 
     @Override
-    public int applyPixel(INoiseRandom context, IArea terrainArea, IArea climateArea, int x,
-            int z) {
-                int n = terrainArea.get(x + 1, z + 0);
-                int e = terrainArea.get(x + 2, z + 1);
-                int s = terrainArea.get(x + 1, z + 2);
-                int w = terrainArea.get(x + 0, z + 1);
-                int c = terrainArea.get(x + 1, z + 1);
+    public int applyPixel(INoiseRandom context, IArea terrainArea, IArea climateArea, int x, int z) {
+        int n = terrainArea.get(x + 1, z + 0);
+        int e = terrainArea.get(x + 2, z + 1);
+        int s = terrainArea.get(x + 1, z + 2);
+        int w = terrainArea.get(x + 0, z + 1);
+        int c = terrainArea.get(x + 1, z + 1);
 
-                int a = climateArea.get(x, z);
+        int a = climateArea.get(x, z);
 
-                ModClimate climate;
-                
+        ModClimate climate;
+
         return 0;
     }
 }

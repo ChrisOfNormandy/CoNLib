@@ -39,7 +39,8 @@ public class Biome {
     public class Root {
         private JsonObject json = builder.createJsonObject();
 
-        public Root() {}
+        public Root() {
+        }
 
         private Float depth = 0.1f;
         private Float scale = 0.2f;
@@ -197,7 +198,8 @@ public class Biome {
     public class Effects {
         private JsonObject json = builder.createJsonObject();
 
-        public Effects() {}
+        public Effects() {
+        }
 
         private Integer fog_color = -1;
         private Integer foliage_color = -1;
@@ -366,7 +368,8 @@ public class Biome {
     public class Carvers {
         private JsonObject json = builder.createJsonObject();
 
-        public Carvers() {}
+        public Carvers() {
+        }
 
         private JsonArray air = builder.createJsonArray();
         private JsonArray liquid = builder.createJsonArray();
@@ -392,7 +395,8 @@ public class Biome {
     public class Features {
         private JsonArray array = builder.createJsonArray();
 
-        public Features() {}
+        public Features() {
+        }
 
         private JsonArray RAW_GENERATION = array.addArray();
         private JsonArray LAKES = array.addArray();
@@ -463,7 +467,8 @@ public class Biome {
     public class Spawners {
         private JsonObject json = builder.createJsonObject();
 
-        public Spawners() {}
+        public Spawners() {
+        }
 
         private void add(String key, String type, Integer weight, Integer min, Integer max) {
             if (json.get(key) == null)

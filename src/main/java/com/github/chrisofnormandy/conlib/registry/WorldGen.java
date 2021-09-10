@@ -25,7 +25,7 @@ public class WorldGen {
      * @param feature
      * @return
      */
-    public static Feature<NoFeatureConfig> registerPlantGen(String name, Feature<NoFeatureConfig> feature) {
+    public static final Feature<NoFeatureConfig> registerPlantGen(String name, Feature<NoFeatureConfig> feature) {
         return registerGenFeature(name, feature);
     }
 
@@ -35,7 +35,7 @@ public class WorldGen {
      * @param entry
      * @return
      */
-    public static Feature<NoFeatureConfig> registerGenFeature(String name, Feature<NoFeatureConfig> entry) {
+    public static final Feature<NoFeatureConfig> registerGenFeature(String name, Feature<NoFeatureConfig> entry) {
         entry.setRegistryName(new ResourceLocation(ModRegister.getModId(), name));
         ForgeRegistries.FEATURES.register(entry);
         ModRegister.generators.put(name, entry);
@@ -48,7 +48,7 @@ public class WorldGen {
      * @param config
      * @return
      */
-    public static SurfaceBuilderConfig registerSurfaceBuilderConfig(String name, SurfaceBuilderConfig config) {
+    public static final SurfaceBuilderConfig registerSurfaceBuilderConfig(String name, SurfaceBuilderConfig config) {
         ModRegister.surfaceBuilderConfigs.put(name, config);
         return config;
     }
@@ -61,9 +61,10 @@ public class WorldGen {
      * @param builder
      * @return
      */
-    public static <A extends ISurfaceBuilderConfig, B extends ConfiguredSurfaceBuilder<A>> B registerConfiguredSurfaceBuilder(
+    public static final <A extends ISurfaceBuilderConfig, B extends ConfiguredSurfaceBuilder<A>> B registerConfiguredSurfaceBuilder(
             String name, B builder) {
-        Registry.register(WorldGenRegistries.CONFIGURED_SURFACE_BUILDER, new ResourceLocation(ModRegister.getModId(), name), builder);
+        Registry.register(WorldGenRegistries.CONFIGURED_SURFACE_BUILDER,
+                new ResourceLocation(ModRegister.getModId(), name), builder);
         ModRegister.configSurfaceBuilders.put(name, builder);
         return builder;
     }
@@ -76,15 +77,20 @@ public class WorldGen {
      * @param builder
      * @return
      */
-    public static <A extends ISurfaceBuilderConfig, B extends SurfaceBuilder<A>> B registerSurfaceBuilder(String name,
-            B builder) {
+    public static final <A extends ISurfaceBuilderConfig, B extends SurfaceBuilder<A>> B registerSurfaceBuilder(
+            String name, B builder) {
         builder.setRegistryName(new ResourceLocation(ModRegister.getModId(), name));
         ForgeRegistries.SURFACE_BUILDERS.register(builder);
         ModRegister.surfaceBuilders.put(name, builder);
         return builder;
     }
 
-    public static BiomeBuilder create(String name) {
+    /**
+     * 
+     * @param name
+     * @return
+     */
+    public static final BiomeBuilder create(String name) {
         RegistryKey<Biome> key = BiomeUtil.createKey(name);
 
         BiomeBuilder builder = BiomeUtil.getBuilder(key);
@@ -94,7 +100,14 @@ public class WorldGen {
         return builder;
     }
 
-    private static void register(RegistryEvent.Register<Biome> event, RegistryKey<Biome> key, BiomeBuilder builder) {
+    /**
+     * 
+     * @param event
+     * @param key
+     * @param builder
+     */
+    private static final void register(RegistryEvent.Register<Biome> event, RegistryKey<Biome> key,
+            BiomeBuilder builder) {
         event.getRegistry().register(builder.build(key));
         builder.registerTypes(key);
         builder.registerWeight(key);
@@ -103,7 +116,8 @@ public class WorldGen {
     }
 
     @SubscribeEvent
-    public static void register(RegistryEvent.Register<Biome> event) {
-        ModRegister.overworldKeys.forEach((String name, RegistryKey<Biome> key) -> register(event, key, ModRegister.biomeBuilders.get(key)));
+    public static final void register(RegistryEvent.Register<Biome> event) {
+        ModRegister.overworldKeys.forEach(
+                (String name, RegistryKey<Biome> key) -> register(event, key, ModRegister.biomeBuilders.get(key)));
     }
 }

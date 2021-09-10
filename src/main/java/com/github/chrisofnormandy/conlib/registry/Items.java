@@ -8,12 +8,12 @@ import net.minecraftforge.registries.ForgeRegistries;
 public class Items {
     /**
      * 
-     * @param <T>  Any class that extends the Minecraft Item class.
-     * @param name The generic item name, such as "my_item."
-     * @param item The item instance.
-     * @return Item
+     * @param <T>
+     * @param name
+     * @param item
+     * @return
      */
-    public static <T extends Item> T register(String name, T item) {
+    public static final <T extends Item> T register(String name, T item) {
         item.setRegistryName(name);
         ForgeRegistries.ITEMS.register(item);
         ModRegister.items.put(name, item);
@@ -22,31 +22,31 @@ public class Items {
 
     /**
      * 
-     * @param name       The generic item name, such as "my_item."
-     * @param properties A set of properties defining the item.
-     * @return Item
+     * @param name
+     * @param properties
+     * @return
      */
-    public static Item register(String name, Properties properties) {
+    public static final Item register(String name, Properties properties) {
         return register(name, new Item(properties));
     }
 
     /**
      * 
-     * @param name       The generic item name, such as "my_item."
-     * @param properties A set of properties defining the item.
-     * @param group      The creative tab the item should be grouped in.
-     * @return Item
+     * @param name
+     * @param properties
+     * @param group
+     * @return
      */
-    public static Item register(String name, Properties properties, ItemGroup group) {
+    public static final Item register(String name, Properties properties, ItemGroup group) {
         return register(name, new Item(properties.tab(group)));
     }
 
     /**
      * 
-     * @param name The generic item name, such as "my_item."
-     * @return Item
+     * @param name
+     * @return
      */
-    public static Item register(String name) {
+    public static final Item register(String name) {
         return register(name, new Item(new Properties()));
     }
 }

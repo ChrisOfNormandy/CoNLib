@@ -7,6 +7,11 @@ import net.minecraft.util.SoundEvents;
 public class ButtonBase extends AbstractButtonBlock {
     private Boolean wooden = false;
 
+    /**
+     * 
+     * @param isWood
+     * @param properties
+     */
     public ButtonBase(boolean isWood, Properties properties) {
         super(isWood, properties);
         wooden = isWood;
@@ -14,8 +19,7 @@ public class ButtonBase extends AbstractButtonBlock {
 
     @Override
     protected SoundEvent getSound(boolean clicked) {
-        return wooden
-            ? clicked ? SoundEvents.STONE_BUTTON_CLICK_ON : SoundEvents.STONE_BUTTON_CLICK_OFF
-            : clicked ? SoundEvents.WOODEN_BUTTON_CLICK_ON : SoundEvents.WOODEN_BUTTON_CLICK_OFF;
+        return wooden ? clicked ? SoundEvents.STONE_BUTTON_CLICK_ON : SoundEvents.STONE_BUTTON_CLICK_OFF
+                : clicked ? SoundEvents.WOODEN_BUTTON_CLICK_ON : SoundEvents.WOODEN_BUTTON_CLICK_OFF;
     }
 }

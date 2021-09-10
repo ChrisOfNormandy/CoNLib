@@ -4,6 +4,10 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 public class CraftingTool extends Item {
+    /**
+     * 
+     * @param properties
+     */
     public CraftingTool(Item.Properties properties) {
         super(properties);
     }

@@ -9,7 +9,14 @@ import com.github.chrisofnormandy.conlib.Main;
 import net.minecraftforge.fml.loading.FMLPaths;
 
 public class Files {
-    public static void write(String path, String name, String data, String ext) {
+    /**
+     * 
+     * @param path
+     * @param name
+     * @param data
+     * @param ext
+     */
+    public static final void write(String path, String name, String data, String ext) {
         Path p = FMLPaths.GAMEDIR.get().resolve(path);
         final File dir = p.toFile();
 
@@ -26,7 +33,14 @@ public class Files {
         }
     }
 
-    public static void writeToSave(String path, String name, String data, String ext) {
+    /**
+     * 
+     * @param path
+     * @param name
+     * @param data
+     * @param ext
+     */
+    public static final void writeToSave(String path, String name, String data, String ext) {
         File[] saves = new File(FMLPaths.GAMEDIR.get().resolve("saves").toString()).listFiles(File::isDirectory);
 
         for (File file : saves) {

@@ -17,8 +17,6 @@ public class GeneratorSettings {
         generators.put("rainfall", new ModGenerator());
         generators.get("rainfall").add("default", 5);
 
-
-
         TemperatureLayer temp = new TemperatureLayer(1.0d);
         ModFactories.temperatureLayers.put("default", new Tuple<TemperatureLayer, Long>(temp, 5l));
 

@@ -37,13 +37,15 @@ public class RainfallLayer implements AreaTransformer0 {
 
         if (this.seed != seed) {
             Random random = new Random(seed + 123);
-            this.offset = new Tuple<Double, Double>((random.nextDouble() - 0.5) * 8192, (random.nextDouble() - 0.5) * 8192);
+            this.offset = new Tuple<Double, Double>((random.nextDouble() - 0.5) * 8192,
+                    (random.nextDouble() - 0.5) * 8192);
             this.seed = seed;
         }
 
-        Double n = (Noise.noise((x + this.offset.x) * this.frequency, 0, (z + this.offset.y) * this.frequency) + 1) * 0.5;
+        Double n = (Noise.noise((x + this.offset.x) * this.frequency, 0, (z + this.offset.y) * this.frequency) + 1)
+                * 0.5;
         n = this.height * Math.pow(n, this.power);
 
-        return (int)(n % this.height);
+        return (int) (n % this.height);
     }
 }

@@ -8,12 +8,12 @@ import net.minecraft.item.ItemGroup;
 public class Ores {
     /**
      * 
-     * @param name    The generic block name, such as "my_block_ore."
-     * @param oreBase The block instance.
-     * @param group   The creative tab the item should be grouped in.
-     * @return Block
+     * @param name
+     * @param oreBase
+     * @param group
+     * @return
      */
-    public static Block register(String name, OreBase oreBase, ItemGroup group) {
+    public static final Block register(String name, OreBase oreBase, ItemGroup group) {
         return Blocks.register(name, oreBase, group);
     }
 }

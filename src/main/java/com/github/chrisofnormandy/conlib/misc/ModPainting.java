@@ -12,7 +12,7 @@ public class ModPainting {
      * @param height
      * @return
      */
-    public static PaintingType register(String name, Integer width, Integer height) {
+    public static final PaintingType register(String name, Integer width, Integer height) {
         return Decoration.registerPainting(name, new PaintingType(width, height));
     }
 
@@ -22,7 +22,7 @@ public class ModPainting {
      * @param size
      * @return
      */
-    public static PaintingType register(String name, Integer size) {
+    public static final PaintingType register(String name, Integer size) {
         return Decoration.registerPainting(name, new PaintingType(size, size));
     }
 }

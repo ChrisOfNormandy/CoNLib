@@ -5,12 +5,9 @@ import net.minecraftforge.common.MinecraftForge;
 public class Events {
     /**
      * 
-     * @param event The class that defines the event. See
-     *              <strong>com.github.chrisofnormandy.conlib.event.BlockBreak</strong>
-     *              for an example.
+     * @param event
      */
-    public static void register(Object event) {
+    public static final void register(Object event) {
         MinecraftForge.EVENT_BUS.register(event);
-
     }
 }

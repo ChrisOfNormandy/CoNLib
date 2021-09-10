@@ -26,5 +26,5 @@ public enum ModRiverLayer implements IAreaTransformer2, IDimOffset0Transformer {
         // TODO Auto-generated method stub
         return 0;
     }
-    
+
 }

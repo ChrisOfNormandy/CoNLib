@@ -17,13 +17,23 @@ public class Terrain {
 
     Surface surface;
     // At some point allowing more than one surface config should be implemented.
-    // HashMap<Double, SurfaceBuilderConfig> surfaces = new HashMap<Double, SurfaceBuilderConfig>();
+    // HashMap<Double, SurfaceBuilderConfig> surfaces = new HashMap<Double,
+    // SurfaceBuilderConfig>();
     SurfaceBuilderConfig primary;
     SurfaceBuilderConfig secondary;
 
     ConfiguredSurfaceBuilder<?> builder;
 
-    public Surface registerSurface(String name, SurfaceBuilderConfig primary, SurfaceBuilderConfig secondary, Double limit) {
+    /**
+     * 
+     * @param name
+     * @param primary
+     * @param secondary
+     * @param limit
+     * @return
+     */
+    public Surface registerSurface(String name, SurfaceBuilderConfig primary, SurfaceBuilderConfig secondary,
+            Double limit) {
         this.primary = primary;
         this.secondary = secondary;
 
@@ -35,19 +45,37 @@ public class Terrain {
         return WorldGen.registerSurfaceBuilder(name, s);
     }
 
-    public ConfiguredSurfaceBuilder registerConfiguredSurface(String name, Surface surface, SurfaceBuilderConfig config) {
+    /**
+     * 
+     * @param name
+     * @param surface
+     * @param config
+     * @return
+     */
+    public ConfiguredSurfaceBuilder registerConfiguredSurface(String name, Surface surface,
+            SurfaceBuilderConfig config) {
         return WorldGen.registerConfiguredSurfaceBuilder(name, new ConfiguredSurfaceBuilder(surface, config));
     }
 
+    /**
+     * 
+     * @param name
+     * @param primary
+     * @param secondary
+     * @param limit
+     */
     public Terrain(String name, SurfaceBuilderConfig primary, SurfaceBuilderConfig secondary, Double limit) {
         this.surface = registerSurface(name, primary, secondary, limit);
         this.builder = registerConfiguredSurface(name, this.surface, this.primary);
     }
 
+    /**
+     * 
+     */
     public class Surface extends SurfaceBuilder<SurfaceBuilderConfig> {
         SurfaceBuilderConfig primary;
         SurfaceBuilderConfig secondary;
-        
+
         Double limit;
 
         public Surface(Codec<SurfaceBuilderConfig> codec, Double limit) {

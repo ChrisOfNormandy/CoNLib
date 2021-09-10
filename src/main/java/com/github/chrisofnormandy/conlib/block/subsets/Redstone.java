@@ -13,7 +13,7 @@ public class Redstone {
      * @param parent
      * @return
      */
-    public static Block create_pressurePlate_wood(Block parent) {
+    public static final Block create_pressurePlate_wood(Block parent) {
         return new PressurePlateBlock(Sensitivity.EVERYTHING, Block.Properties.copy(parent));
     }
 
@@ -22,7 +22,7 @@ public class Redstone {
      * @param properties
      * @return
      */
-    public static Block create_pressurePlate_wood(Block.Properties properties) {
+    public static final Block create_pressurePlate_wood(Block.Properties properties) {
         return new PressurePlateBlock(Sensitivity.EVERYTHING, properties);
     }
 
@@ -31,7 +31,7 @@ public class Redstone {
      * @param parent
      * @return
      */
-    public static Block create_pressurePlate_stone(Block parent) {
+    public static final Block create_pressurePlate_stone(Block parent) {
         return new PressurePlateBlock(Sensitivity.MOBS, Block.Properties.copy(parent));
     }
 
@@ -40,7 +40,7 @@ public class Redstone {
      * @param properties
      * @return
      */
-    public static Block create_pressurePlate_stone(Block.Properties properties) {
+    public static final Block create_pressurePlate_stone(Block.Properties properties) {
         return new PressurePlateBlock(Sensitivity.MOBS, properties);
     }
 
@@ -49,7 +49,7 @@ public class Redstone {
      * @param parent
      * @return
      */
-    public static Block create_button_wood(Block parent) {
+    public static final Block create_button_wood(Block parent) {
         return new ButtonBase(true, Block.Properties.copy(parent));
     }
 
@@ -58,7 +58,7 @@ public class Redstone {
      * @param properties
      * @return
      */
-    public static Block create_button_wood(Block.Properties properties) {
+    public static final Block create_button_wood(Block.Properties properties) {
         return new ButtonBase(true, properties);
     }
 
@@ -67,7 +67,7 @@ public class Redstone {
      * @param parent
      * @return
      */
-    public static Block create_button_stone(Block parent) {
+    public static final Block create_button_stone(Block parent) {
         return new ButtonBase(false, Block.Properties.copy(parent));
     }
 
@@ -76,7 +76,7 @@ public class Redstone {
      * @param properties
      * @return
      */
-    public static Block create_button_stone(Block.Properties properties) {
+    public static final Block create_button_stone(Block.Properties properties) {
         return new ButtonBase(false, properties);
     }
 
@@ -85,7 +85,7 @@ public class Redstone {
      * @param parent
      * @return
      */
-    public static Block create_lever(Block parent) {
+    public static final Block create_lever(Block parent) {
         return new LeverBlock(Block.Properties.copy(parent));
     }
 
@@ -94,7 +94,7 @@ public class Redstone {
      * @param properties
      * @return
      */
-    public static Block create_lever(Block.Properties properties) {
+    public static final Block create_lever(Block.Properties properties) {
         return new LeverBlock(properties);
     }
 }

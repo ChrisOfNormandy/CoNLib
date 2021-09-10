@@ -26,5 +26,5 @@ public enum ModSubBiomeLayer implements IAreaTransformer2, IDimOffset1Transforme
         // TODO Auto-generated method stub
         return 5;
     }
-    
+
 }
