@@ -9,7 +9,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.item.ItemGroup;
 import net.minecraftforge.common.PlantType;
 
-public class Plants {
+public class PlantRegistry {
     /**
      * 
      * @param name
@@ -20,7 +20,7 @@ public class Plants {
     public static final Block registerPlant(String name, PlantType plantType, ItemGroup group) {
         Block.Properties properties = Block.Properties.of(Material.PLANT).sound(SoundType.CROP).strength(0.0F)
                 .noCollission();
-        return Blocks.register(name, new PlantBase(properties, plantType), group);
+        return BlockRegistry.register(name, new PlantBase(properties, plantType), group);
     }
 
     /**
@@ -32,7 +32,7 @@ public class Plants {
     public static final Block registerPlant(String name, PlantType plantType) {
         Block.Properties properties = Block.Properties.of(Material.PLANT).sound(SoundType.CROP).strength(0.0F)
                 .noCollission();
-        return Blocks.register(name, new PlantBase(properties, plantType));
+        return BlockRegistry.register(name, new PlantBase(properties, plantType));
     }
 
     /**
@@ -42,6 +42,6 @@ public class Plants {
      * @return
      */
     public static final Block registerCrop(String name, CropsBlock crop) {
-        return Blocks.register(name, crop);
+        return BlockRegistry.register(name, crop);
     }
 }

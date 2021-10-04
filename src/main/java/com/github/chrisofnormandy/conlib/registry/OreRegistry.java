@@ -5,7 +5,7 @@ import com.github.chrisofnormandy.conlib.block.types.OreBase;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemGroup;
 
-public class Ores {
+public class OreRegistry {
     /**
      * 
      * @param name
@@ -14,6 +14,6 @@ public class Ores {
      * @return
      */
     public static final Block register(String name, OreBase oreBase, ItemGroup group) {
-        return Blocks.register(name, oreBase, group);
+        return BlockRegistry.register(name, oreBase, group);
     }
 }

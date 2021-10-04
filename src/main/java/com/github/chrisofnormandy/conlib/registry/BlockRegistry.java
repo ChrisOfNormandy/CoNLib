@@ -11,7 +11,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraftforge.registries.ForgeRegistries;
 
-public class Blocks {
+public class BlockRegistry {
     /**
      * 
      * @param name
@@ -42,7 +42,7 @@ public class Blocks {
         Block b = _block(name, block, false);
 
         BlockItem itemBlock = new BlockItem(b, new Item.Properties().tab(group));
-        Items.register(name, itemBlock);
+        ItemRegistry.register(name, itemBlock);
 
         return b;
     }
@@ -59,7 +59,7 @@ public class Blocks {
         Block b = _block(name, block, transparent);
 
         BlockItem itemBlock = new BlockItem(b, new Item.Properties().tab(group));
-        Items.register(name, itemBlock);
+        ItemRegistry.register(name, itemBlock);
 
         return b;
     }
@@ -97,7 +97,7 @@ public class Blocks {
         Block b = _block(name, block, false);
 
         BlockItem itemBlock = new BlockItem(b, properties.tab(group));
-        Items.register(name, itemBlock);
+        ItemRegistry.register(name, itemBlock);
 
         return b;
     }
@@ -116,7 +116,7 @@ public class Blocks {
         Block b = _block(name, block, transparent);
 
         BlockItem itemBlock = new BlockItem(b, properties.tab(group));
-        Items.register(name, itemBlock);
+        ItemRegistry.register(name, itemBlock);
 
         return b;
     }
@@ -132,7 +132,7 @@ public class Blocks {
         Block b = _block(name, block, false);
 
         BlockItem itemBlock = new BlockItem(b, properties);
-        Items.register(name, itemBlock);
+        ItemRegistry.register(name, itemBlock);
 
         return b;
     }
@@ -149,7 +149,7 @@ public class Blocks {
         Block b = _block(name, block, transparent);
 
         BlockItem itemBlock = new BlockItem(b, properties);
-        Items.register(name, itemBlock);
+        ItemRegistry.register(name, itemBlock);
 
         return b;
     }

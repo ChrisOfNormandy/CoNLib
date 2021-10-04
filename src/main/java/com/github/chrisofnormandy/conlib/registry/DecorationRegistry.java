@@ -4,7 +4,7 @@ import net.minecraft.entity.item.PaintingType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.registries.ForgeRegistries;
 
-public class Decoration {
+public class DecorationRegistry {
     /**
      * 
      * @param name

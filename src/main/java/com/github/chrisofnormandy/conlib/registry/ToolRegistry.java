@@ -16,7 +16,7 @@ import net.minecraft.item.ShearsItem;
 import net.minecraft.item.ShovelItem;
 import net.minecraft.item.Item.Properties;
 
-public class Tools {
+public class ToolRegistry {
 
     /**
      * 
@@ -46,7 +46,7 @@ public class Tools {
     public static final Item registerCrafting(String name, Properties properties, ItemGroup group) {
         CraftingTool item = new CraftingTool(properties.tab(group));
         ModRegister.tools.put(name, item);
-        return Items.register(name, item);
+        return ItemRegistry.register(name, item);
     }
 
     /**
@@ -63,7 +63,7 @@ public class Tools {
             Properties properties, ItemGroup group) {
         Item pick = new PickaxeItem(tier, attackDamage, attackSpeed, properties.tab(group));
         ModRegister.tools.put(name, pick);
-        return Items.register(name, pick);
+        return ItemRegistry.register(name, pick);
     }
 
     /**
@@ -80,7 +80,7 @@ public class Tools {
             Properties properties, ItemGroup group) {
         Item pick = new ShovelItem(tier, attackDamage, attackSpeed, properties.tab(group));
         ModRegister.tools.put(name, pick);
-        return Items.register(name, pick);
+        return ItemRegistry.register(name, pick);
     }
 
     /**
@@ -97,7 +97,7 @@ public class Tools {
             Properties properties, ItemGroup group) {
         Item pick = new AxeItem(tier, attackDamage, attackSpeed, properties.tab(group));
         ModRegister.tools.put(name, pick);
-        return Items.register(name, pick);
+        return ItemRegistry.register(name, pick);
     }
 
     /**
@@ -114,7 +114,7 @@ public class Tools {
             Properties properties, ItemGroup group) {
         Item pick = new HoeItem(tier, attackDamage, attackSpeed, properties.tab(group));
         ModRegister.tools.put(name, pick);
-        return Items.register(name, pick);
+        return ItemRegistry.register(name, pick);
     }
 
     /**
@@ -145,7 +145,7 @@ public class Tools {
     public static final Item registerFlintAndSteel(String name, Properties properties, ItemGroup group) {
         Item fas = new FlintAndSteelItem(properties.tab(group));
         ModRegister.tools.put(name, fas);
-        return Items.register(name, fas);
+        return ItemRegistry.register(name, fas);
     }
 
     /**
@@ -158,7 +158,7 @@ public class Tools {
     public static final Item registerFishingRod(String name, Properties properties, ItemGroup group) {
         Item rod = new FishingRodItem(properties.tab(group));
         ModRegister.tools.put(name, rod);
-        return Items.register(name, rod);
+        return ItemRegistry.register(name, rod);
     }
 
     /**
@@ -171,6 +171,6 @@ public class Tools {
     public static final Item registerShearsItem(String name, Properties properties, ItemGroup group) {
         Item shears = new ShearsItem(properties.tab(group));
         ModRegister.tools.put(name, shears);
-        return Items.register(name, shears);
+        return ItemRegistry.register(name, shears);
     }
 }

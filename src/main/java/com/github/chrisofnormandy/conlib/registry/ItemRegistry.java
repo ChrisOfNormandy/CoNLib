@@ -5,7 +5,7 @@ import net.minecraft.item.ItemGroup;
 import net.minecraft.item.Item.Properties;
 import net.minecraftforge.registries.ForgeRegistries;
 
-public class Items {
+public class ItemRegistry {
     /**
      * 
      * @param <T>

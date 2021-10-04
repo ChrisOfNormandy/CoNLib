@@ -2,7 +2,7 @@ package com.github.chrisofnormandy.conlib.registry;
 
 import net.minecraftforge.common.MinecraftForge;
 
-public class Events {
+public class EventRegistry {
     /**
      * 
      * @param event

@@ -1,6 +1,6 @@
 package com.github.chrisofnormandy.conlib.biome;
 
-import com.github.chrisofnormandy.conlib.registry.WorldGen;
+import com.github.chrisofnormandy.conlib.registry.WorldGenRegistry;
 
 import net.minecraft.block.Block;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
@@ -82,7 +82,7 @@ public class RegistryHelper {
      * @return
      */
     public SurfaceBuilderConfig surfaceBuilder(String name, Block surface, Block underground, Block underwater) {
-        return WorldGen.registerSurfaceBuilderConfig(name, new SurfaceBuilderConfig(surface.defaultBlockState(),
+        return WorldGenRegistry.registerSurfaceBuilderConfig(name, new SurfaceBuilderConfig(surface.defaultBlockState(),
                 underground.defaultBlockState(), underwater.defaultBlockState()));
     }
 

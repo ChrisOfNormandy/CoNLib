@@ -13,7 +13,7 @@ import net.minecraft.item.ShieldItem;
 import net.minecraft.item.SwordItem;
 import net.minecraft.item.Item.Properties;
 
-public class Weapons {
+public class WeaponRegistry {
 
     /**
      * 
@@ -47,7 +47,7 @@ public class Weapons {
             Properties properties, ItemGroup group) {
         Item pick = new SwordItem(tier, attackDamage, attackSpeed, properties.tab(group));
         ModRegister.tools.put(name, pick);
-        return Items.register(name, pick);
+        return ItemRegistry.register(name, pick);
     }
 
     /**
@@ -60,7 +60,7 @@ public class Weapons {
     public static final Item registerShield(String name, Properties properties, ItemGroup group) {
         Item shield = new ShieldItem(properties.tab(group));
         ModRegister.weapons.put(name, shield);
-        return Items.register(name, shield);
+        return ItemRegistry.register(name, shield);
     }
 
     /**
@@ -73,7 +73,7 @@ public class Weapons {
     public static final Item registerBow(String name, Properties properties, ItemGroup group) {
         Item bow = new BowItem(properties.tab(group));
         ModRegister.weapons.put(name, bow);
-        return Items.register(name, bow);
+        return ItemRegistry.register(name, bow);
     }
 
     /**
@@ -86,7 +86,7 @@ public class Weapons {
     public static final Item registerCrossbow(String name, Properties properties, ItemGroup group) {
         Item crossbow = new CrossbowItem(properties.tab(group));
         ModRegister.weapons.put(name, crossbow);
-        return Items.register(name, crossbow);
+        return ItemRegistry.register(name, crossbow);
     }
 
     /**
@@ -99,6 +99,6 @@ public class Weapons {
     public static final Item registerArrow(String name, Properties properties, ItemGroup group) {
         Item arrow = new ArrowItem(properties.tab(group));
         ModRegister.weapons.put(name, arrow);
-        return Items.register(name, arrow);
+        return ItemRegistry.register(name, arrow);
     }
 }

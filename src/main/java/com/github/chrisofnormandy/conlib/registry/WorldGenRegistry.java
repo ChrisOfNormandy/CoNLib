@@ -18,7 +18,7 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.registries.ForgeRegistries;
 
-public class WorldGen {
+public class WorldGenRegistry {
     /**
      * 
      * @param name

@@ -4,7 +4,7 @@ import net.minecraft.item.Food;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 
-public class Foods {
+public class FoodRegistry {
     /**
      * 
      * @param hunger
@@ -25,7 +25,7 @@ public class Foods {
      */
     public static final Item registerFood(String name, Integer hunger, Float saturation, ItemGroup group) {
         Food food = (new Food.Builder()).saturationMod(saturation).nutrition(hunger).build();
-        Item item = Items.register(name, new Item.Properties().food(food), group);
+        Item item = ItemRegistry.register(name, new Item.Properties().food(food), group);
         ModRegister.foods.put(name, item);
         return item;
     }
@@ -38,7 +38,7 @@ public class Foods {
      * @return
      */
     public static final Item registerFood(String name, Food food, ItemGroup group) {
-        Item item = Items.register(name, new Item.Properties().food(food), group);
+        Item item = ItemRegistry.register(name, new Item.Properties().food(food), group);
         ModRegister.foods.put(name, item);
         return item;
     }

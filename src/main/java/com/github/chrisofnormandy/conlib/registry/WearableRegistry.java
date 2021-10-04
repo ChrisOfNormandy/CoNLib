@@ -6,7 +6,7 @@ import net.minecraft.item.ArmorMaterial;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.Item.Properties;
 
-public class Wearable {
+public class WearableRegistry {
     /**
      * 
      * @param name
@@ -15,7 +15,7 @@ public class Wearable {
      */
     private static final ArmorItem _register(String name, ArmorItem item) {
         ModRegister.wearable.put(name, item);
-        return Items.register(name, item);
+        return ItemRegistry.register(name, item);
     }
 
     /**

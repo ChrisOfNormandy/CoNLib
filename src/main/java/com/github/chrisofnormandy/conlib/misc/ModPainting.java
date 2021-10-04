@@ -1,6 +1,6 @@
 package com.github.chrisofnormandy.conlib.misc;
 
-import com.github.chrisofnormandy.conlib.registry.Decoration;
+import com.github.chrisofnormandy.conlib.registry.DecorationRegistry;
 
 import net.minecraft.entity.item.PaintingType;
 
@@ -13,7 +13,7 @@ public class ModPainting {
      * @return
      */
     public static final PaintingType register(String name, Integer width, Integer height) {
-        return Decoration.registerPainting(name, new PaintingType(width, height));
+        return DecorationRegistry.registerPainting(name, new PaintingType(width, height));
     }
 
     /**
@@ -23,6 +23,6 @@ public class ModPainting {
      * @return
      */
     public static final PaintingType register(String name, Integer size) {
-        return Decoration.registerPainting(name, new PaintingType(size, size));
+        return DecorationRegistry.registerPainting(name, new PaintingType(size, size));
     }
 }

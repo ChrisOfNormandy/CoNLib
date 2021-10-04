@@ -43,7 +43,7 @@ public class ModRegister {
 
         events.put("block_break", BlockBreak.class);
 
-        events.forEach((String key, Object event) -> Events.register(event));
+        events.forEach((String key, Object event) -> EventRegistry.register(event));
     }
 
     /**
@@ -55,7 +55,7 @@ public class ModRegister {
 
         events.put("block_break", BlockBreak.class);
 
-        events.forEach((String key, Object event) -> Events.register(event));
+        events.forEach((String key, Object event) -> EventRegistry.register(event));
     }
 
     // EVENTS
