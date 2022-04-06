@@ -23,11 +23,30 @@ public class ItemRegistry {
     /**
      * 
      * @param name
+     * @return
+     */
+    public static final Item register(String name) {
+        return register(name, new Item(new Properties()));
+    }
+
+    /**
+     * 
+     * @param name
      * @param properties
      * @return
      */
     public static final Item register(String name, Properties properties) {
         return register(name, new Item(properties));
+    }
+
+    /**
+     * 
+     * @param name
+     * @param group
+     * @return
+     */
+    public static final Item register(String name, ItemGroup group) {
+        return register(name, new Item(new Properties().tab(group)));
     }
 
     /**
@@ -39,14 +58,5 @@ public class ItemRegistry {
      */
     public static final Item register(String name, Properties properties, ItemGroup group) {
         return register(name, new Item(properties.tab(group)));
-    }
-
-    /**
-     * 
-     * @param name
-     * @return
-     */
-    public static final Item register(String name) {
-        return register(name, new Item(new Properties()));
     }
 }

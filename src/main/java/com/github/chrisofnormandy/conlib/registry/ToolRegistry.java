@@ -3,7 +3,10 @@ package com.github.chrisofnormandy.conlib.registry;
 import com.github.chrisofnormandy.conlib.tool.CraftingTool;
 import com.github.chrisofnormandy.conlib.tool.ToolMaterial;
 
+import net.minecraft.fluid.Fluid;
+import net.minecraft.fluid.Fluids;
 import net.minecraft.item.AxeItem;
+import net.minecraft.item.BucketItem;
 import net.minecraft.item.FishingRodItem;
 import net.minecraft.item.FlintAndSteelItem;
 import net.minecraft.item.HoeItem;
@@ -159,6 +162,16 @@ public class ToolRegistry {
         Item rod = new FishingRodItem(properties.tab(group));
         ModRegister.tools.put(name, rod);
         return ItemRegistry.register(name, rod);
+    }
+
+    public static final Item registerBucket(String name, Properties properties, ItemGroup group) {
+        return registerBucket(name, Fluids.EMPTY, properties, group);
+    }
+
+    public static final Item registerBucket(String name, Fluid fluid, Properties properties, ItemGroup group) {
+        Item bucket = new BucketItem(() -> fluid, properties.tab(group));
+        ModRegister.tools.put(name, bucket);
+        return ItemRegistry.register(name, bucket);
     }
 
     /**
