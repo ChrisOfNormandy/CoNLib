@@ -1,6 +1,6 @@
 package com.github.chrisofnormandy.conlib.item;
 
-import net.minecraft.item.Item;
+import net.minecraft.world.item.Item;
 
 public class Fuel extends Item {
     /**

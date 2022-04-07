@@ -2,14 +2,14 @@ package com.github.chrisofnormandy.conlib.itemgroup;
 
 import com.google.common.base.Supplier;
 
-import net.minecraft.block.Block;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.ItemStack;
 
 import com.github.chrisofnormandy.conlib.registry.ModRegister;
 
-public class CreativeTab extends ItemGroup {
+public class CreativeTab extends CreativeModeTab {
     private Supplier<ItemStack> displayStack;
 
     /**

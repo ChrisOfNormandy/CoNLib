@@ -5,9 +5,9 @@ import java.util.Random;
 import com.github.chrisofnormandy.conlib.collections.Tuple;
 import com.github.chrisofnormandy.conlib.registry.ModRegister;
 
-import net.minecraft.block.Block;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
@@ -23,7 +23,7 @@ public class BlockBreak {
     @SubscribeEvent
     public static final void replaceBlock(final BlockEvent.BreakEvent event) {
         Block blockIn = event.getState().getBlock();
-        PlayerEntity player = event.getPlayer();
+        Player player = event.getPlayer();
 
         if (ModRegister.blocks_replaceable.containsKey(blockIn.getRegistryName().toString())) {
 

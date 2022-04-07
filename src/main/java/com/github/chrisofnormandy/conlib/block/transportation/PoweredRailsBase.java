@@ -1,6 +1,6 @@
 package com.github.chrisofnormandy.conlib.block.transportation;
 
-import net.minecraft.block.PoweredRailBlock;
+import net.minecraft.world.level.block.PoweredRailBlock;
 
 public class PoweredRailsBase extends PoweredRailBlock {
     public PoweredRailsBase(Properties properties) {

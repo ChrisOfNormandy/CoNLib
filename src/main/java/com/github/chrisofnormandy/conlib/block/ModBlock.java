@@ -4,8 +4,8 @@ import com.github.chrisofnormandy.conlib.block.types.OreBase;
 import com.github.chrisofnormandy.conlib.block.types.custom.NodeBase;
 import com.github.chrisofnormandy.conlib.tool.ToolMaterial;
 
-import net.minecraft.block.Block;
-import net.minecraft.item.ItemGroup;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.level.block.Block;
 
 public class ModBlock {
     public static final String[] dyes = com.github.chrisofnormandy.conlib.item.ModItem.dyes;
@@ -13,44 +13,40 @@ public class ModBlock {
     public static class Ore {
         /**
          * 
-         * @param harvestLevel
          * @return
          */
-        public static final Block create(Integer harvestLevel) {
-            return new OreBase(harvestLevel);
+        public static final Block create() {
+            return new OreBase();
         }
 
         /**
          * 
-         * @param harvestLevel
          * @param strength
          * @return
          */
-        public static final Block create(Integer harvestLevel, Float strength) {
-            return new OreBase(harvestLevel, strength);
+        public static final Block create(Float strength) {
+            return new OreBase(strength);
         }
 
         /**
          * 
          * @param name
-         * @param harvestLevel
          * @param group
          * @return
          */
-        public static final Block register(String name, Integer harvestLevel, ItemGroup group) {
-            return OreBase.Register.single(name, harvestLevel, group);
+        public static final Block register(String name, CreativeModeTab group) {
+            return OreBase.Register.single(name, group);
         }
 
         /**
          * 
          * @param name
-         * @param harvestLevel
          * @param strength
          * @param group
          * @return
          */
-        public static final Block register(String name, Integer harvestLevel, Float strength, ItemGroup group) {
-            return OreBase.Register.single(name, harvestLevel, strength, group);
+        public static final Block register(String name, Float strength, CreativeModeTab group) {
+            return OreBase.Register.single(name, strength, group);
         }
 
         /**
@@ -60,7 +56,7 @@ public class ModBlock {
          * @param group
          * @return
          */
-        public static final Block register(String name, OreBase block, ItemGroup group) {
+        public static final Block register(String name, OreBase block, CreativeModeTab group) {
             return OreBase.Register.single(name, block, group);
         }
 
@@ -76,7 +72,7 @@ public class ModBlock {
          * @return
          */
         public static final Block registerGem(String name, String oreName, OreBase block, ToolMaterial material,
-                ItemGroup itemGroup, ItemGroup toolGroup, ItemGroup blockGroup) {
+                CreativeModeTab itemGroup, CreativeModeTab toolGroup, CreativeModeTab blockGroup) {
             return OreBase.Register.asGem(name, oreName, block, material, itemGroup, toolGroup, blockGroup);
         }
 
@@ -92,7 +88,7 @@ public class ModBlock {
          * @return
          */
         public static final Block registerMetal(String name, String oreName, OreBase block, ToolMaterial material,
-                ItemGroup itemGroup, ItemGroup toolGroup, ItemGroup blockGroup) {
+                CreativeModeTab itemGroup, CreativeModeTab toolGroup, CreativeModeTab blockGroup) {
             return OreBase.Register.asMetal(name, oreName, block, material, itemGroup, toolGroup, blockGroup);
         }
     }
@@ -116,7 +112,7 @@ public class ModBlock {
          * @param tier
          * @param group
          */
-        public static final void register(String name, Block parent, NodeBase.Tier tier, ItemGroup group) {
+        public static final void register(String name, Block parent, NodeBase.Tier tier, CreativeModeTab group) {
             // Integer crude = Config.getRangeValue("nodes_crude_tiers");
             // Integer normal = Config.getRangeValue("nodes_normal_tiers");
             // Integer rich = Config.getRangeValue("nodes_rich_tiers");

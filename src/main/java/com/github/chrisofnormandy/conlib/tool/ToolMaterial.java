@@ -1,7 +1,7 @@
 package com.github.chrisofnormandy.conlib.tool;
 
-import net.minecraft.item.Rarity;
-import net.minecraft.item.Item.Properties;
+import net.minecraft.world.item.Rarity;
+import net.minecraft.world.item.Item.Properties;
 
 public class ToolMaterial {
 

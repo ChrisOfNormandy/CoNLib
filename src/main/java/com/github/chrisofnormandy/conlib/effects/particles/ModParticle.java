@@ -1,46 +1,26 @@
 package com.github.chrisofnormandy.conlib.effects.particles;
 
-import com.mojang.blaze3d.vertex.IVertexBuilder;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 
-import net.minecraft.client.particle.IParticleRenderType;
+import net.minecraft.client.Camera;
+import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.Particle;
-import net.minecraft.client.renderer.ActiveRenderInfo;
-import net.minecraft.client.world.ClientWorld;
+import net.minecraft.client.particle.ParticleRenderType;
 
 public class ModParticle extends Particle {
-    /**
-     * 
-     * @param worldIn
-     * @param x
-     * @param y
-     * @param z
-     */
-    public ModParticle(ClientWorld worldIn, double x, double y, double z) {
-        super(worldIn, x, y, z);
-    }
 
-    /**
-     * 
-     * @param worldIn
-     * @param x
-     * @param y
-     * @param z
-     * @param xSpeed
-     * @param ySpeed
-     * @param zSpeed
-     */
-    public ModParticle(ClientWorld worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
-        super(worldIn, x, y, z, xSpeed, ySpeed, zSpeed);
+    protected ModParticle(ClientLevel level, double x, double y, double z) {
+        super(level, x, y, z);
     }
 
     @Override
-    public void render(IVertexBuilder p_225606_1_, ActiveRenderInfo p_225606_2_, float p_225606_3_) {
+    public void render(VertexConsumer p_107261_, Camera p_107262_, float p_107263_) {
         // TODO Auto-generated method stub
 
     }
 
     @Override
-    public IParticleRenderType getRenderType() {
+    public ParticleRenderType getRenderType() {
         // TODO Auto-generated method stub
         return null;
     }

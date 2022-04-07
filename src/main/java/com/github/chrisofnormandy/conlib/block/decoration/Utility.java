@@ -2,32 +2,32 @@ package com.github.chrisofnormandy.conlib.block.decoration;
 
 import com.github.chrisofnormandy.conlib.registry.BlockRegistry;
 
-import net.minecraft.block.AnvilBlock;
-import net.minecraft.block.BedBlock;
-import net.minecraft.block.BeehiveBlock;
-import net.minecraft.block.BlastFurnaceBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.BrewingStandBlock;
-import net.minecraft.block.CartographyTableBlock;
-import net.minecraft.block.CauldronBlock;
-import net.minecraft.block.ComposterBlock;
-import net.minecraft.block.CraftingTableBlock;
-import net.minecraft.block.EnchantingTableBlock;
-import net.minecraft.block.EnderChestBlock;
-import net.minecraft.block.FarmlandBlock;
-import net.minecraft.block.FletchingTableBlock;
-import net.minecraft.block.FurnaceBlock;
-import net.minecraft.block.GrindstoneBlock;
-import net.minecraft.block.JukeboxBlock;
-import net.minecraft.block.LoomBlock;
-import net.minecraft.block.RespawnAnchorBlock;
-import net.minecraft.block.SmithingTableBlock;
-import net.minecraft.block.SmokerBlock;
-import net.minecraft.block.StonecutterBlock;
-import net.minecraft.block.AbstractBlock.Properties;
-import net.minecraft.item.DyeColor;
-import net.minecraft.item.ItemGroup;
+import net.minecraft.world.level.block.AnvilBlock;
+import net.minecraft.world.level.block.BedBlock;
+import net.minecraft.world.level.block.BeehiveBlock;
+import net.minecraft.world.level.block.BlastFurnaceBlock;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.BrewingStandBlock;
+import net.minecraft.world.level.block.CartographyTableBlock;
+import net.minecraft.world.level.block.CauldronBlock;
+import net.minecraft.world.level.block.ComposterBlock;
+import net.minecraft.world.level.block.CraftingTableBlock;
+import net.minecraft.world.level.block.EnchantmentTableBlock;
+import net.minecraft.world.level.block.EnderChestBlock;
+import net.minecraft.world.level.block.FarmBlock;
+import net.minecraft.world.level.block.FletchingTableBlock;
+import net.minecraft.world.level.block.FurnaceBlock;
+import net.minecraft.world.level.block.GrindstoneBlock;
+import net.minecraft.world.level.block.JukeboxBlock;
+import net.minecraft.world.level.block.LoomBlock;
+import net.minecraft.world.level.block.RespawnAnchorBlock;
+import net.minecraft.world.level.block.SmithingTableBlock;
+import net.minecraft.world.level.block.SmokerBlock;
+import net.minecraft.world.level.block.StonecutterBlock;
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+import net.minecraft.world.item.DyeColor;
+import net.minecraft.world.item.CreativeModeTab;
 
 public class Utility {
     /**
@@ -45,7 +45,7 @@ public class Utility {
      * @param group
      * @return
      */
-    public static final Block create_craftingTable(String name, ItemGroup group) {
+    public static final Block create_craftingTable(String name, CreativeModeTab group) {
         return BlockRegistry.register(name, new CraftingTableBlock(Properties.copy(Blocks.CRAFTING_TABLE)), group);
     }
 
@@ -66,7 +66,7 @@ public class Utility {
      * @param group
      * @return
      */
-    public static final Block create_craftingTable(String name, Properties properties, ItemGroup group) {
+    public static final Block create_craftingTable(String name, Properties properties, CreativeModeTab group) {
         return BlockRegistry.register(name, new CraftingTableBlock(properties), group);
     }
 
@@ -87,7 +87,7 @@ public class Utility {
      * @param group
      * @return
      */
-    public static final Block create_furnace(String name, ItemGroup group) {
+    public static final Block create_furnace(String name, CreativeModeTab group) {
         return BlockRegistry.register(name, new FurnaceBlock(Properties.copy(Blocks.FURNACE)), group);
     }
 
@@ -108,7 +108,7 @@ public class Utility {
      * @param group
      * @return
      */
-    public static final Block create_furnace(String name, Properties properties, ItemGroup group) {
+    public static final Block create_furnace(String name, Properties properties, CreativeModeTab group) {
         return BlockRegistry.register(name, new FurnaceBlock(properties), group);
     }
 
@@ -129,7 +129,7 @@ public class Utility {
      * @param group
      * @return
      */
-    public static final Block create_anvil(String name, ItemGroup group) {
+    public static final Block create_anvil(String name, CreativeModeTab group) {
         return BlockRegistry.register(name, new AnvilBlock(Properties.copy(Blocks.ANVIL)), group);
     }
 
@@ -150,7 +150,7 @@ public class Utility {
      * @param group
      * @return
      */
-    public static final Block create_anvil(String name, Properties properties, ItemGroup group) {
+    public static final Block create_anvil(String name, Properties properties, CreativeModeTab group) {
         return BlockRegistry.register(name, new AnvilBlock(properties), group);
     }
 
@@ -171,7 +171,7 @@ public class Utility {
      * @param group
      * @return
      */
-    public static final Block create_grindstone(String name, ItemGroup group) {
+    public static final Block create_grindstone(String name, CreativeModeTab group) {
         return BlockRegistry.register(name, new GrindstoneBlock(Properties.copy(Blocks.GRINDSTONE)), group);
     }
 
@@ -192,7 +192,7 @@ public class Utility {
      * @param group
      * @return
      */
-    public static final Block create_grindstone(String name, Properties properties, ItemGroup group) {
+    public static final Block create_grindstone(String name, Properties properties, CreativeModeTab group) {
         return BlockRegistry.register(name, new GrindstoneBlock(properties), group);
     }
 
@@ -213,7 +213,7 @@ public class Utility {
      * @param group
      * @return
      */
-    public static final Block create_composter(String name, ItemGroup group) {
+    public static final Block create_composter(String name, CreativeModeTab group) {
         return BlockRegistry.register(name, new ComposterBlock(Properties.copy(Blocks.COMPOSTER)), group);
     }
 
@@ -234,7 +234,7 @@ public class Utility {
      * @param group
      * @return
      */
-    public static final Block create_composter(String name, Properties properties, ItemGroup group) {
+    public static final Block create_composter(String name, Properties properties, CreativeModeTab group) {
         return BlockRegistry.register(name, new ComposterBlock(properties), group);
     }
 
@@ -255,7 +255,7 @@ public class Utility {
      * @param group
      * @return
      */
-    public static final Block create_brewingStand(String name, ItemGroup group) {
+    public static final Block create_brewingStand(String name, CreativeModeTab group) {
         return BlockRegistry.register(name, new BrewingStandBlock(Properties.copy(Blocks.BREWING_STAND)), group);
     }
 
@@ -276,7 +276,7 @@ public class Utility {
      * @param group
      * @return
      */
-    public static final Block create_brewingStand(String name, Properties properties, ItemGroup group) {
+    public static final Block create_brewingStand(String name, Properties properties, CreativeModeTab group) {
         return BlockRegistry.register(name, new BrewingStandBlock(properties), group);
     }
 
@@ -297,7 +297,7 @@ public class Utility {
      * @param group
      * @return
      */
-    public static final Block create_cauldron(String name, ItemGroup group) {
+    public static final Block create_cauldron(String name, CreativeModeTab group) {
         return BlockRegistry.register(name, new CauldronBlock(Properties.copy(Blocks.CAULDRON)), group);
     }
 
@@ -318,7 +318,7 @@ public class Utility {
      * @param group
      * @return
      */
-    public static final Block create_cauldron(String name, Properties properties, ItemGroup group) {
+    public static final Block create_cauldron(String name, Properties properties, CreativeModeTab group) {
         return BlockRegistry.register(name, new CauldronBlock(properties), group);
     }
 
@@ -339,7 +339,7 @@ public class Utility {
      * @param group
      * @return
      */
-    public static final Block create_stonecutter(String name, ItemGroup group) {
+    public static final Block create_stonecutter(String name, CreativeModeTab group) {
         return BlockRegistry.register(name, new StonecutterBlock(Properties.copy(Blocks.STONECUTTER)), group);
     }
 
@@ -360,7 +360,7 @@ public class Utility {
      * @param group
      * @return
      */
-    public static final Block create_stonecutter(String name, Properties properties, ItemGroup group) {
+    public static final Block create_stonecutter(String name, Properties properties, CreativeModeTab group) {
         return BlockRegistry.register(name, new StonecutterBlock(properties), group);
     }
 
@@ -381,7 +381,7 @@ public class Utility {
      * @param group
      * @return
      */
-    public static final Block create_fletchingTable(String name, ItemGroup group) {
+    public static final Block create_fletchingTable(String name, CreativeModeTab group) {
         return BlockRegistry.register(name, new FletchingTableBlock(Properties.copy(Blocks.FLETCHING_TABLE)), group);
     }
 
@@ -402,7 +402,7 @@ public class Utility {
      * @param group
      * @return
      */
-    public static final Block create_fletchingTable(String name, Properties properties, ItemGroup group) {
+    public static final Block create_fletchingTable(String name, Properties properties, CreativeModeTab group) {
         return BlockRegistry.register(name, new FletchingTableBlock(properties), group);
     }
 
@@ -423,7 +423,7 @@ public class Utility {
      * @param group
      * @return
      */
-    public static final Block create_loom(String name, ItemGroup group) {
+    public static final Block create_loom(String name, CreativeModeTab group) {
         return BlockRegistry.register(name, new LoomBlock(Properties.copy(Blocks.LOOM)), group);
     }
 
@@ -444,7 +444,7 @@ public class Utility {
      * @param group
      * @return
      */
-    public static final Block create_loom(String name, Properties properties, ItemGroup group) {
+    public static final Block create_loom(String name, Properties properties, CreativeModeTab group) {
         return BlockRegistry.register(name, new LoomBlock(properties), group);
     }
 
@@ -465,7 +465,7 @@ public class Utility {
      * @param group
      * @return
      */
-    public static final Block create_smoker(String name, ItemGroup group) {
+    public static final Block create_smoker(String name, CreativeModeTab group) {
         return BlockRegistry.register(name, new SmokerBlock(Properties.copy(Blocks.SMOKER)), group);
     }
 
@@ -486,7 +486,7 @@ public class Utility {
      * @param group
      * @return
      */
-    public static final Block create_smoker(String name, Properties properties, ItemGroup group) {
+    public static final Block create_smoker(String name, Properties properties, CreativeModeTab group) {
         return BlockRegistry.register(name, new SmokerBlock(properties), group);
     }
 
@@ -507,7 +507,7 @@ public class Utility {
      * @param group
      * @return
      */
-    public static final Block create_blastFurnace(String name, ItemGroup group) {
+    public static final Block create_blastFurnace(String name, CreativeModeTab group) {
         return BlockRegistry.register(name, new BlastFurnaceBlock(Properties.copy(Blocks.BLAST_FURNACE)), group);
     }
 
@@ -528,7 +528,7 @@ public class Utility {
      * @param group
      * @return
      */
-    public static final Block create_blastFurnace(String name, Properties properties, ItemGroup group) {
+    public static final Block create_blastFurnace(String name, Properties properties, CreativeModeTab group) {
         return BlockRegistry.register(name, new BlastFurnaceBlock(properties), group);
     }
 
@@ -549,7 +549,7 @@ public class Utility {
      * @param group
      * @return
      */
-    public static final Block create_cartographyTable(String name, ItemGroup group) {
+    public static final Block create_cartographyTable(String name, CreativeModeTab group) {
         return BlockRegistry.register(name, new CartographyTableBlock(Properties.copy(Blocks.CARTOGRAPHY_TABLE)),
                 group);
     }
@@ -571,7 +571,7 @@ public class Utility {
      * @param group
      * @return
      */
-    public static final Block create_cartographyTable(String name, Properties properties, ItemGroup group) {
+    public static final Block create_cartographyTable(String name, Properties properties, CreativeModeTab group) {
         return BlockRegistry.register(name, new CartographyTableBlock(properties), group);
     }
 
@@ -592,7 +592,7 @@ public class Utility {
      * @param group
      * @return
      */
-    public static final Block create_smithingTable(String name, ItemGroup group) {
+    public static final Block create_smithingTable(String name, CreativeModeTab group) {
         return BlockRegistry.register(name, new SmithingTableBlock(Properties.copy(Blocks.SMITHING_TABLE)), group);
     }
 
@@ -613,7 +613,7 @@ public class Utility {
      * @param group
      * @return
      */
-    public static final Block create_smithingTable(String name, Properties properties, ItemGroup group) {
+    public static final Block create_smithingTable(String name, Properties properties, CreativeModeTab group) {
         return BlockRegistry.register(name, new SmithingTableBlock(properties), group);
     }
 
@@ -634,7 +634,7 @@ public class Utility {
      * @param group
      * @return
      */
-    public static final Block create_beehive(String name, ItemGroup group) {
+    public static final Block create_beehive(String name, CreativeModeTab group) {
         return BlockRegistry.register(name, new BeehiveBlock(Properties.copy(Blocks.BEEHIVE)), group);
     }
 
@@ -655,7 +655,7 @@ public class Utility {
      * @param group
      * @return
      */
-    public static final Block create_beehive(String name, Properties properties, ItemGroup group) {
+    public static final Block create_beehive(String name, Properties properties, CreativeModeTab group) {
         return BlockRegistry.register(name, new BeehiveBlock(properties), group);
     }
 
@@ -678,7 +678,7 @@ public class Utility {
      * @param group
      * @return
      */
-    public static final Block create_bed(DyeColor color, String name, ItemGroup group) {
+    public static final Block create_bed(DyeColor color, String name, CreativeModeTab group) {
         return BlockRegistry.register(name, new BedBlock(color, Properties.copy(Blocks.WHITE_BED)), group);
     }
 
@@ -701,7 +701,7 @@ public class Utility {
      * @param group
      * @return
      */
-    public static final Block create_bed(DyeColor color, String name, Properties properties, ItemGroup group) {
+    public static final Block create_bed(DyeColor color, String name, Properties properties, CreativeModeTab group) {
         return BlockRegistry.register(name, new BedBlock(color, properties), group);
     }
 
@@ -713,7 +713,7 @@ public class Utility {
      * @return
      */
     public static final Block create_farmland(String name) {
-        return BlockRegistry.register(name, new FarmlandBlock(Properties.copy(Blocks.FARMLAND)));
+        return BlockRegistry.register(name, new FarmBlock(Properties.copy(Blocks.FARMLAND)));
     }
 
     /**
@@ -722,8 +722,8 @@ public class Utility {
      * @param group
      * @return
      */
-    public static final Block create_farmland(String name, ItemGroup group) {
-        return BlockRegistry.register(name, new FarmlandBlock(Properties.copy(Blocks.FARMLAND)), group);
+    public static final Block create_farmland(String name, CreativeModeTab group) {
+        return BlockRegistry.register(name, new FarmBlock(Properties.copy(Blocks.FARMLAND)), group);
     }
 
     /**
@@ -733,7 +733,7 @@ public class Utility {
      * @return
      */
     public static final Block create_farmland(String name, Properties properties) {
-        return BlockRegistry.register(name, new FarmlandBlock(properties));
+        return BlockRegistry.register(name, new FarmBlock(properties));
     }
 
     /**
@@ -743,8 +743,8 @@ public class Utility {
      * @param group
      * @return
      */
-    public static final Block create_farmland(String name, Properties properties, ItemGroup group) {
-        return BlockRegistry.register(name, new FarmlandBlock(properties), group);
+    public static final Block create_farmland(String name, Properties properties, CreativeModeTab group) {
+        return BlockRegistry.register(name, new FarmBlock(properties), group);
     }
 
     ////
@@ -764,7 +764,7 @@ public class Utility {
      * @param group
      * @return
      */
-    public static final Block create_jukebox(String name, ItemGroup group) {
+    public static final Block create_jukebox(String name, CreativeModeTab group) {
         return BlockRegistry.register(name, new JukeboxBlock(Properties.copy(Blocks.JUKEBOX)), group);
     }
 
@@ -785,7 +785,7 @@ public class Utility {
      * @param group
      * @return
      */
-    public static final Block create_jukebox(String name, Properties properties, ItemGroup group) {
+    public static final Block create_jukebox(String name, Properties properties, CreativeModeTab group) {
         return BlockRegistry.register(name, new JukeboxBlock(properties), group);
     }
 
@@ -797,7 +797,7 @@ public class Utility {
      * @return
      */
     public static final Block create_enchantingTable(String name) {
-        return BlockRegistry.register(name, new EnchantingTableBlock(Properties.copy(Blocks.ENCHANTING_TABLE)));
+        return BlockRegistry.register(name, new EnchantmentTableBlock(Properties.copy(Blocks.ENCHANTING_TABLE)));
     }
 
     /**
@@ -806,8 +806,8 @@ public class Utility {
      * @param group
      * @return
      */
-    public static final Block create_enchantingTable(String name, ItemGroup group) {
-        return BlockRegistry.register(name, new EnchantingTableBlock(Properties.copy(Blocks.ENCHANTING_TABLE)), group);
+    public static final Block create_enchantingTable(String name, CreativeModeTab group) {
+        return BlockRegistry.register(name, new EnchantmentTableBlock(Properties.copy(Blocks.ENCHANTING_TABLE)), group);
     }
 
     /**
@@ -817,7 +817,7 @@ public class Utility {
      * @return
      */
     public static final Block create_enchantingTable(String name, Properties properties) {
-        return BlockRegistry.register(name, new EnchantingTableBlock(properties));
+        return BlockRegistry.register(name, new EnchantmentTableBlock(properties));
     }
 
     /**
@@ -827,8 +827,8 @@ public class Utility {
      * @param group
      * @return
      */
-    public static final Block create_enchantingTable(String name, Properties properties, ItemGroup group) {
-        return BlockRegistry.register(name, new EnchantingTableBlock(properties), group);
+    public static final Block create_enchantingTable(String name, Properties properties, CreativeModeTab group) {
+        return BlockRegistry.register(name, new EnchantmentTableBlock(properties), group);
     }
 
     ////
@@ -848,7 +848,7 @@ public class Utility {
      * @param group
      * @return
      */
-    public static final Block create_enderChest(String name, ItemGroup group) {
+    public static final Block create_enderChest(String name, CreativeModeTab group) {
         return BlockRegistry.register(name, new EnderChestBlock(Properties.copy(Blocks.ENDER_CHEST)), group);
     }
 
@@ -869,7 +869,7 @@ public class Utility {
      * @param group
      * @return
      */
-    public static final Block create_enderChest(String name, Properties properties, ItemGroup group) {
+    public static final Block create_enderChest(String name, Properties properties, CreativeModeTab group) {
         return BlockRegistry.register(name, new EnderChestBlock(properties), group);
     }
 
@@ -890,7 +890,7 @@ public class Utility {
      * @param group
      * @return
      */
-    public static final Block create_respawnAnchor(String name, ItemGroup group) {
+    public static final Block create_respawnAnchor(String name, CreativeModeTab group) {
         return BlockRegistry.register(name, new RespawnAnchorBlock(Properties.copy(Blocks.RESPAWN_ANCHOR)), group);
     }
 
@@ -911,7 +911,7 @@ public class Utility {
      * @param group
      * @return
      */
-    public static final Block create_respawnAnchor(String name, Properties properties, ItemGroup group) {
+    public static final Block create_respawnAnchor(String name, Properties properties, CreativeModeTab group) {
         return BlockRegistry.register(name, new RespawnAnchorBlock(properties), group);
     }
 }

@@ -2,30 +2,33 @@ package com.github.chrisofnormandy.conlib.block.decoration;
 
 import com.github.chrisofnormandy.conlib.registry.BlockRegistry;
 
-import net.minecraft.block.BambooBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.CactusBlock;
-import net.minecraft.block.ChorusPlantBlock;
-import net.minecraft.block.CoralBlock;
-import net.minecraft.block.CoralFanBlock;
-import net.minecraft.block.FlowerBlock;
-import net.minecraft.block.GrassBlock;
-import net.minecraft.block.KelpBlock;
-import net.minecraft.block.LeavesBlock;
-import net.minecraft.block.LilyPadBlock;
-import net.minecraft.block.MushroomBlock;
-// import net.minecraft.block.SaplingBlock;
-import net.minecraft.block.SeaPickleBlock;
-import net.minecraft.block.SugarCaneBlock;
-import net.minecraft.block.TallFlowerBlock;
-import net.minecraft.block.TallGrassBlock;
-import net.minecraft.block.TwistingVinesBlock;
-import net.minecraft.block.VineBlock;
-import net.minecraft.block.WeepingVinesBlock;
-import net.minecraft.block.AbstractBlock.Properties;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.potion.Effect;
+import net.minecraft.world.level.block.BambooBlock;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.CactusBlock;
+import net.minecraft.world.level.block.ChorusPlantBlock;
+import net.minecraft.world.level.block.CoralBlock;
+import net.minecraft.world.level.block.CoralFanBlock;
+import net.minecraft.world.level.block.FlowerBlock;
+import net.minecraft.world.level.block.GrassBlock;
+import net.minecraft.world.level.block.KelpBlock;
+import net.minecraft.world.level.block.LeavesBlock;
+import net.minecraft.world.level.block.MushroomBlock;
+// import net.minecraft.world.level.block.SaplingBlock;
+import net.minecraft.world.level.block.SeaPickleBlock;
+import net.minecraft.world.level.block.SugarCaneBlock;
+import net.minecraft.world.level.block.TallFlowerBlock;
+import net.minecraft.world.level.block.TallGrassBlock;
+import net.minecraft.world.level.block.TwistingVinesBlock;
+import net.minecraft.world.level.block.VineBlock;
+import net.minecraft.world.level.block.WaterlilyBlock;
+import net.minecraft.world.level.block.WeepingVinesBlock;
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.core.Holder;
+import net.minecraft.data.worldgen.features.TreeFeatures;
 
 /*
     Unfinished:
@@ -54,7 +57,8 @@ public class Plants {
     // * @param group
     // * @return
     // */
-    // public static final Block create_sapling(String name, ItemGroup group) {
+    // public static final Block create_sapling(String name, CreativeModeTab group)
+    // {
     // return BlockRegistry.register(name, new SaplingBlock(p_i48337_1_,
     // Properties.copy(Blocks.OAK_SAPLING)), group);
     // }
@@ -79,7 +83,7 @@ public class Plants {
     // * @return
     // */
     // public static final Block create_sapling(String name, Properties properties,
-    // ItemGroup group) {
+    // CreativeModeTab group) {
     // return BlockRegistry.register(name, new SaplingBlock(p_i48337_1_,
     // properties), group);
     // }
@@ -101,7 +105,7 @@ public class Plants {
      * @param group
      * @return
      */
-    public static final Block create_leaves(String name, ItemGroup group) {
+    public static final Block create_leaves(String name, CreativeModeTab group) {
         return BlockRegistry.register(name, new LeavesBlock(Properties.copy(Blocks.OAK_LEAVES)), group);
     }
 
@@ -122,7 +126,7 @@ public class Plants {
      * @param group
      * @return
      */
-    public static final Block create_leaves(String name, Properties properties, ItemGroup group) {
+    public static final Block create_leaves(String name, Properties properties, CreativeModeTab group) {
         return BlockRegistry.register(name, new LeavesBlock(properties), group);
     }
 
@@ -143,7 +147,7 @@ public class Plants {
      * @param group
      * @return
      */
-    public static final Block create_foliage(String name, ItemGroup group) {
+    public static final Block create_foliage(String name, CreativeModeTab group) {
         return BlockRegistry.register(name, new GrassBlock(Properties.copy(Blocks.GRASS)), group);
     }
 
@@ -164,7 +168,7 @@ public class Plants {
      * @param group
      * @return
      */
-    public static final Block create_foliage(String name, Properties properties, ItemGroup group) {
+    public static final Block create_foliage(String name, Properties properties, CreativeModeTab group) {
         return BlockRegistry.register(name, new GrassBlock(properties), group);
     }
 
@@ -185,7 +189,7 @@ public class Plants {
      * @param group
      * @return
      */
-    public static final Block create_seaPickle(String name, ItemGroup group) {
+    public static final Block create_seaPickle(String name, CreativeModeTab group) {
         return BlockRegistry.register(name, new SeaPickleBlock(Properties.copy(Blocks.SEA_PICKLE)), group);
     }
 
@@ -206,7 +210,7 @@ public class Plants {
      * @param group
      * @return
      */
-    public static final Block create_seaPickle(String name, Properties properties, ItemGroup group) {
+    public static final Block create_seaPickle(String name, Properties properties, CreativeModeTab group) {
         return BlockRegistry.register(name, new SeaPickleBlock(properties), group);
     }
 
@@ -217,7 +221,7 @@ public class Plants {
      * @param name
      * @return
      */
-    public static final Block create_flower(String name, Effect effect, Integer duration) {
+    public static final Block create_flower(String name, MobEffect effect, Integer duration) {
         return BlockRegistry.register(name, new FlowerBlock(effect, duration, Properties.copy(Blocks.POPPY)));
     }
 
@@ -227,7 +231,7 @@ public class Plants {
      * @param group
      * @return
      */
-    public static final Block create_flower(String name, Effect effect, Integer duration, ItemGroup group) {
+    public static final Block create_flower(String name, MobEffect effect, Integer duration, CreativeModeTab group) {
         return BlockRegistry.register(name, new FlowerBlock(effect, duration, Properties.copy(Blocks.POPPY)), group);
     }
 
@@ -237,7 +241,7 @@ public class Plants {
      * @param properties
      * @return
      */
-    public static final Block create_flower(String name, Effect effect, Integer duration, Properties properties) {
+    public static final Block create_flower(String name, MobEffect effect, Integer duration, Properties properties) {
         return BlockRegistry.register(name, new FlowerBlock(effect, duration, properties));
     }
 
@@ -248,8 +252,9 @@ public class Plants {
      * @param group
      * @return
      */
-    public static final Block create_flower(String name, Effect effect, Integer duration, Properties properties,
-            ItemGroup group) {
+    public static final Block create_flower(String name,
+            MobEffect effect, Integer duration, Properties properties,
+            CreativeModeTab group) {
         return BlockRegistry.register(name, new FlowerBlock(effect, duration, properties), group);
     }
 
@@ -261,7 +266,9 @@ public class Plants {
      * @return
      */
     public static final Block create_mushroom(String name) {
-        return BlockRegistry.register(name, new MushroomBlock(Properties.copy(Blocks.RED_MUSHROOM)));
+        return BlockRegistry.register(name, new MushroomBlock(Properties.copy(Blocks.RED_MUSHROOM), () -> {
+            return TreeFeatures.HUGE_RED_MUSHROOM;
+        }));
     }
 
     /**
@@ -270,8 +277,10 @@ public class Plants {
      * @param group
      * @return
      */
-    public static final Block create_mushroom(String name, ItemGroup group) {
-        return BlockRegistry.register(name, new MushroomBlock(Properties.copy(Blocks.RED_MUSHROOM)), group);
+    public static final Block create_mushroom(String name, CreativeModeTab group) {
+        return BlockRegistry.register(name, new MushroomBlock(Properties.copy(Blocks.RED_MUSHROOM), () -> {
+            return TreeFeatures.HUGE_RED_MUSHROOM;
+        }), group);
     }
 
     /**
@@ -281,7 +290,9 @@ public class Plants {
      * @return
      */
     public static final Block create_mushroom(String name, Properties properties) {
-        return BlockRegistry.register(name, new MushroomBlock(properties));
+        return BlockRegistry.register(name, new MushroomBlock(properties, () -> {
+            return TreeFeatures.HUGE_RED_MUSHROOM;
+        }));
     }
 
     /**
@@ -291,8 +302,10 @@ public class Plants {
      * @param group
      * @return
      */
-    public static final Block create_mushroom(String name, Properties properties, ItemGroup group) {
-        return BlockRegistry.register(name, new MushroomBlock(properties), group);
+    public static final Block create_mushroom(String name, Properties properties, CreativeModeTab group) {
+        return BlockRegistry.register(name, new MushroomBlock(properties, () -> {
+            return TreeFeatures.HUGE_RED_MUSHROOM;
+        }), group);
     }
 
     ////
@@ -313,7 +326,7 @@ public class Plants {
      * @param group
      * @return
      */
-    public static final Block create_weepingVines(String name, ItemGroup group) {
+    public static final Block create_weepingVines(String name, CreativeModeTab group) {
         return BlockRegistry.register(name, new WeepingVinesBlock(Properties.copy(Blocks.WEEPING_VINES)), group);
     }
 
@@ -334,7 +347,7 @@ public class Plants {
      * @param group
      * @return
      */
-    public static final Block create_weepingVines(String name, Properties properties, ItemGroup group) {
+    public static final Block create_weepingVines(String name, Properties properties, CreativeModeTab group) {
         return BlockRegistry.register(name, new WeepingVinesBlock(properties), group);
     }
 
@@ -356,7 +369,7 @@ public class Plants {
      * @param group
      * @return
      */
-    public static final Block create_twistingVines(String name, ItemGroup group) {
+    public static final Block create_twistingVines(String name, CreativeModeTab group) {
         return BlockRegistry.register(name, new TwistingVinesBlock(Properties.copy(Blocks.TWISTING_VINES)), group);
     }
 
@@ -377,7 +390,7 @@ public class Plants {
      * @param group
      * @return
      */
-    public static final Block create_twistingVines(String name, Properties properties, ItemGroup group) {
+    public static final Block create_twistingVines(String name, Properties properties, CreativeModeTab group) {
         return BlockRegistry.register(name, new TwistingVinesBlock(properties), group);
     }
 
@@ -398,7 +411,7 @@ public class Plants {
      * @param group
      * @return
      */
-    public static final Block create_reeds(String name, ItemGroup group) {
+    public static final Block create_reeds(String name, CreativeModeTab group) {
         return BlockRegistry.register(name, new SugarCaneBlock(Properties.copy(Blocks.SUGAR_CANE)), group);
     }
 
@@ -419,7 +432,7 @@ public class Plants {
      * @param group
      * @return
      */
-    public static final Block create_reeds(String name, Properties properties, ItemGroup group) {
+    public static final Block create_reeds(String name, Properties properties, CreativeModeTab group) {
         return BlockRegistry.register(name, new SugarCaneBlock(properties), group);
     }
 
@@ -440,7 +453,7 @@ public class Plants {
      * @param group
      * @return
      */
-    public static final Block create_kelp(String name, ItemGroup group) {
+    public static final Block create_kelp(String name, CreativeModeTab group) {
         return BlockRegistry.register(name, new KelpBlock(Properties.copy(Blocks.KELP_PLANT)), group);
     }
 
@@ -461,7 +474,7 @@ public class Plants {
      * @param group
      * @return
      */
-    public static final Block create_kelp(String name, Properties properties, ItemGroup group) {
+    public static final Block create_kelp(String name, Properties properties, CreativeModeTab group) {
         return BlockRegistry.register(name, new KelpBlock(properties), group);
     }
 
@@ -482,7 +495,7 @@ public class Plants {
      * @param group
      * @return
      */
-    public static final Block create_bamboo(String name, ItemGroup group) {
+    public static final Block create_bamboo(String name, CreativeModeTab group) {
         return BlockRegistry.register(name, new BambooBlock(Properties.copy(Blocks.BAMBOO)), group);
     }
 
@@ -503,7 +516,7 @@ public class Plants {
      * @param group
      * @return
      */
-    public static final Block create_bamboo(String name, Properties properties, ItemGroup group) {
+    public static final Block create_bamboo(String name, Properties properties, CreativeModeTab group) {
         return BlockRegistry.register(name, new BambooBlock(properties), group);
     }
 
@@ -524,7 +537,7 @@ public class Plants {
      * @param group
      * @return
      */
-    public static final Block create_chorusPlant(String name, ItemGroup group) {
+    public static final Block create_chorusPlant(String name, CreativeModeTab group) {
         return BlockRegistry.register(name, new ChorusPlantBlock(Properties.copy(Blocks.CHORUS_PLANT)), group);
     }
 
@@ -545,7 +558,7 @@ public class Plants {
      * @param group
      * @return
      */
-    public static final Block create_chorusPlant(String name, Properties properties, ItemGroup group) {
+    public static final Block create_chorusPlant(String name, Properties properties, CreativeModeTab group) {
         return BlockRegistry.register(name, new ChorusPlantBlock(properties), group);
     }
 
@@ -566,7 +579,7 @@ public class Plants {
      * @param group
      * @return
      */
-    public static final Block create_cactus(String name, ItemGroup group) {
+    public static final Block create_cactus(String name, CreativeModeTab group) {
         return BlockRegistry.register(name, new CactusBlock(Properties.copy(Blocks.CACTUS)), group);
     }
 
@@ -587,7 +600,7 @@ public class Plants {
      * @param group
      * @return
      */
-    public static final Block create_cactus(String name, Properties properties, ItemGroup group) {
+    public static final Block create_cactus(String name, Properties properties, CreativeModeTab group) {
         return BlockRegistry.register(name, new CactusBlock(properties), group);
     }
 
@@ -608,7 +621,7 @@ public class Plants {
      * @param group
      * @return
      */
-    public static final Block create_vines(String name, ItemGroup group) {
+    public static final Block create_vines(String name, CreativeModeTab group) {
         return BlockRegistry.register(name, new VineBlock(Properties.copy(Blocks.VINE)), group);
     }
 
@@ -629,7 +642,7 @@ public class Plants {
      * @param group
      * @return
      */
-    public static final Block create_vines(String name, Properties properties, ItemGroup group) {
+    public static final Block create_vines(String name, Properties properties, CreativeModeTab group) {
         return BlockRegistry.register(name, new VineBlock(properties), group);
     }
 
@@ -641,7 +654,7 @@ public class Plants {
      * @return
      */
     public static final Block create_lilyPad(String name) {
-        return BlockRegistry.register(name, new LilyPadBlock(Properties.copy(Blocks.LILY_PAD)));
+        return BlockRegistry.register(name, new WaterlilyBlock(Properties.copy(Blocks.LILY_PAD)));
     }
 
     /**
@@ -650,8 +663,8 @@ public class Plants {
      * @param group
      * @return
      */
-    public static final Block create_lilyPad(String name, ItemGroup group) {
-        return BlockRegistry.register(name, new LilyPadBlock(Properties.copy(Blocks.LILY_PAD)), group);
+    public static final Block create_lilyPad(String name, CreativeModeTab group) {
+        return BlockRegistry.register(name, new WaterlilyBlock(Properties.copy(Blocks.LILY_PAD)), group);
     }
 
     /**
@@ -661,7 +674,7 @@ public class Plants {
      * @return
      */
     public static final Block create_lilyPad(String name, Properties properties) {
-        return BlockRegistry.register(name, new LilyPadBlock(properties));
+        return BlockRegistry.register(name, new WaterlilyBlock(properties));
     }
 
     /**
@@ -671,8 +684,8 @@ public class Plants {
      * @param group
      * @return
      */
-    public static final Block create_lilyPad(String name, Properties properties, ItemGroup group) {
-        return BlockRegistry.register(name, new LilyPadBlock(properties), group);
+    public static final Block create_lilyPad(String name, Properties properties, CreativeModeTab group) {
+        return BlockRegistry.register(name, new WaterlilyBlock(properties), group);
     }
 
     ////
@@ -692,7 +705,7 @@ public class Plants {
      * @param group
      * @return
      */
-    public static final Block create_tallGrass(String name, ItemGroup group) {
+    public static final Block create_tallGrass(String name, CreativeModeTab group) {
         return BlockRegistry.register(name, new TallGrassBlock(Properties.copy(Blocks.TALL_GRASS)), group);
     }
 
@@ -713,7 +726,7 @@ public class Plants {
      * @param group
      * @return
      */
-    public static final Block create_tallGrass(String name, Properties properties, ItemGroup group) {
+    public static final Block create_tallGrass(String name, Properties properties, CreativeModeTab group) {
         return BlockRegistry.register(name, new TallGrassBlock(properties), group);
     }
 
@@ -734,7 +747,7 @@ public class Plants {
      * @param group
      * @return
      */
-    public static final Block create_tallFlower(String name, ItemGroup group) {
+    public static final Block create_tallFlower(String name, CreativeModeTab group) {
         return BlockRegistry.register(name, new TallFlowerBlock(Properties.copy(Blocks.ROSE_BUSH)), group);
     }
 
@@ -755,7 +768,7 @@ public class Plants {
      * @param group
      * @return
      */
-    public static final Block create_tallFlower(String name, Properties properties, ItemGroup group) {
+    public static final Block create_tallFlower(String name, Properties properties, CreativeModeTab group) {
         return BlockRegistry.register(name, new TallFlowerBlock(properties), group);
     }
 
@@ -776,7 +789,7 @@ public class Plants {
      * @param group
      * @return
      */
-    public static final Block create_coralBlock(String name, Block deadBlock, ItemGroup group) {
+    public static final Block create_coralBlock(String name, Block deadBlock, CreativeModeTab group) {
         return BlockRegistry.register(name, new CoralBlock(deadBlock, Properties.copy(Blocks.FIRE_CORAL_BLOCK)), group);
     }
 
@@ -797,7 +810,8 @@ public class Plants {
      * @param group
      * @return
      */
-    public static final Block create_coralBlock(String name, Block deadBlock, Properties properties, ItemGroup group) {
+    public static final Block create_coralBlock(String name, Block deadBlock, Properties properties,
+            CreativeModeTab group) {
         return BlockRegistry.register(name, new CoralBlock(deadBlock, properties), group);
     }
 
@@ -809,7 +823,8 @@ public class Plants {
      * @return
      */
     public static final Block create_coralFan(String name) {
-        return BlockRegistry.register(name, new CoralFanBlock(Properties.copy(Blocks.FIRE_CORAL_FAN)));
+        return BlockRegistry.register(name,
+                new CoralFanBlock(Blocks.FIRE_CORAL, Properties.copy(Blocks.FIRE_CORAL_FAN)));
     }
 
     /**
@@ -818,8 +833,9 @@ public class Plants {
      * @param group
      * @return
      */
-    public static final Block create_coralFan(String name, ItemGroup group) {
-        return BlockRegistry.register(name, new CoralFanBlock(Properties.copy(Blocks.FIRE_CORAL_FAN)), group);
+    public static final Block create_coralFan(String name, CreativeModeTab group) {
+        return BlockRegistry.register(name,
+                new CoralFanBlock(Blocks.FIRE_CORAL, Properties.copy(Blocks.FIRE_CORAL_FAN)), group);
     }
 
     /**
@@ -829,7 +845,7 @@ public class Plants {
      * @return
      */
     public static final Block create_coralFan(String name, Properties properties) {
-        return BlockRegistry.register(name, new CoralFanBlock(properties));
+        return BlockRegistry.register(name, new CoralFanBlock(Blocks.FIRE_CORAL, properties));
     }
 
     /**
@@ -839,8 +855,8 @@ public class Plants {
      * @param group
      * @return
      */
-    public static final Block create_coralFan(String name, Properties properties, ItemGroup group) {
-        return BlockRegistry.register(name, new CoralFanBlock(properties), group);
+    public static final Block create_coralFan(String name, Properties properties, CreativeModeTab group) {
+        return BlockRegistry.register(name, new CoralFanBlock(Blocks.FIRE_CORAL, properties), group);
     }
 
     ////
@@ -851,7 +867,7 @@ public class Plants {
      * @return
      */
     public static final Block create_coral(String name) {
-        return BlockRegistry.register(name, new CoralFanBlock(Properties.copy(Blocks.FIRE_CORAL)));
+        return BlockRegistry.register(name, new CoralFanBlock(Blocks.FIRE_CORAL, Properties.copy(Blocks.FIRE_CORAL)));
     }
 
     /**
@@ -860,8 +876,9 @@ public class Plants {
      * @param group
      * @return
      */
-    public static final Block create_coral(String name, ItemGroup group) {
-        return BlockRegistry.register(name, new CoralFanBlock(Properties.copy(Blocks.FIRE_CORAL)), group);
+    public static final Block create_coral(String name, CreativeModeTab group) {
+        return BlockRegistry.register(name, new CoralFanBlock(Blocks.FIRE_CORAL,
+                Properties.copy(Blocks.FIRE_CORAL)), group);
     }
 
     /**
@@ -871,7 +888,7 @@ public class Plants {
      * @return
      */
     public static final Block create_coral(String name, Properties properties) {
-        return BlockRegistry.register(name, new CoralFanBlock(properties));
+        return BlockRegistry.register(name, new CoralFanBlock(Blocks.FIRE_CORAL, properties));
     }
 
     /**
@@ -881,7 +898,7 @@ public class Plants {
      * @param group
      * @return
      */
-    public static final Block create_coral(String name, Properties properties, ItemGroup group) {
-        return BlockRegistry.register(name, new CoralFanBlock(properties), group);
+    public static final Block create_coral(String name, Properties properties, CreativeModeTab group) {
+        return BlockRegistry.register(name, new CoralFanBlock(Blocks.FIRE_CORAL, properties), group);
     }
 }

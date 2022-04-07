@@ -1,11 +1,11 @@
 package com.github.chrisofnormandy.conlib.block.types;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.OreBlock;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.material.Material;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.OreBlock;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.material.Material;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.CreativeModeTab;
 
 import com.github.chrisofnormandy.conlib.registry.ItemRegistry;
 import com.github.chrisofnormandy.conlib.registry.OreRegistry;
@@ -13,47 +13,39 @@ import com.github.chrisofnormandy.conlib.registry.OreRegistry;
 import com.github.chrisofnormandy.conlib.tool.ToolMaterial;
 
 public class OreBase extends OreBlock {
-    /**
-     * 
-     * @param harvestLevel
-     */
-    public OreBase(Integer harvestLevel) {
-        super(Properties.of(Material.STONE).requiresCorrectToolForDrops().strength(3.0f).sound(SoundType.STONE)
-                .harvestLevel(harvestLevel));
+
+    public OreBase() {
+        super(Properties.of(Material.STONE).requiresCorrectToolForDrops().strength(3.0f).sound(SoundType.STONE));
     }
 
     /**
      * 
-     * @param harvestLevel
      * @param strength
      */
-    public OreBase(Integer harvestLevel, Float strength) {
-        super(Properties.of(Material.STONE).requiresCorrectToolForDrops().strength(strength).sound(SoundType.STONE)
-                .harvestLevel(harvestLevel));
+    public OreBase(Float strength) {
+        super(Properties.of(Material.STONE).requiresCorrectToolForDrops().strength(strength).sound(SoundType.STONE));
     }
 
     public static class Register {
         /**
          * 
          * @param name
-         * @param harvestLevel
          * @param group
          * @return
          */
-        public static final Block single(String name, Integer harvestLevel, ItemGroup group) {
-            return OreRegistry.register(name, new OreBase(harvestLevel), group);
+        public static final Block single(String name, CreativeModeTab group) {
+            return OreRegistry.register(name, new OreBase(), group);
         }
 
         /**
          * 
          * @param name
-         * @param harvestLevel
          * @param strength
          * @param group
          * @return
          */
-        public static final Block single(String name, Integer harvestLevel, Float strength, ItemGroup group) {
-            return OreRegistry.register(name, new OreBase(harvestLevel, strength), group);
+        public static final Block single(String name, Float strength, CreativeModeTab group) {
+            return OreRegistry.register(name, new OreBase(strength), group);
         }
 
         /**
@@ -63,7 +55,7 @@ public class OreBase extends OreBlock {
          * @param group
          * @return
          */
-        public static final Block single(String name, OreBase block, ItemGroup group) {
+        public static final Block single(String name, OreBase block, CreativeModeTab group) {
             return OreRegistry.register(name, block, group);
         }
 
@@ -79,7 +71,7 @@ public class OreBase extends OreBlock {
          * @return
          */
         public static final Block asGem(String name, String oreName, OreBase block, ToolMaterial material,
-                ItemGroup itemGroup, ItemGroup toolGroup, ItemGroup blockGroup) {
+                CreativeModeTab itemGroup, CreativeModeTab toolGroup, CreativeModeTab blockGroup) {
             ItemRegistry.register(name, new Item.Properties(), itemGroup);
             // Tools.registerAll(name, material, toolGroup);
             return single(oreName, block, blockGroup);
@@ -97,7 +89,7 @@ public class OreBase extends OreBlock {
          * @return
          */
         public static final Block asMetal(String name, String oreName, OreBase block, ToolMaterial material,
-                ItemGroup itemGroup, ItemGroup toolGroup, ItemGroup blockGroup) {
+                CreativeModeTab itemGroup, CreativeModeTab toolGroup, CreativeModeTab blockGroup) {
             ItemRegistry.register(name + "_ingot", new Item.Properties(), itemGroup);
             ItemRegistry.register(name + "_nugget", new Item.Properties(), itemGroup);
             // Tools.registerAll(name, material, toolGroup);

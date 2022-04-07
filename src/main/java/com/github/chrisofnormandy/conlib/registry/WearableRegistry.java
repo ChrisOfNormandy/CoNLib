@@ -1,10 +1,10 @@
 package com.github.chrisofnormandy.conlib.registry;
 
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.ArmorItem;
-import net.minecraft.item.ArmorMaterial;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.Item.Properties;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.item.ArmorMaterials;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.Item.Properties;
 
 public class WearableRegistry {
     /**
@@ -25,8 +25,8 @@ public class WearableRegistry {
      * @param group
      * @return
      */
-    public static final ArmorItem registerHead(String name, Properties properties, ItemGroup group) {
-        return _register(name, new ArmorItem(ArmorMaterial.CHAIN, EquipmentSlotType.HEAD, properties.tab(group)));
+    public static final ArmorItem registerHead(String name, Properties properties, CreativeModeTab group) {
+        return _register(name, new ArmorItem(ArmorMaterials.CHAIN, EquipmentSlot.HEAD, properties.tab(group)));
     }
 
     /**
@@ -36,8 +36,8 @@ public class WearableRegistry {
      * @param group
      * @return
      */
-    public static final ArmorItem registerChest(String name, Properties properties, ItemGroup group) {
-        return _register(name, new ArmorItem(ArmorMaterial.CHAIN, EquipmentSlotType.CHEST, properties.tab(group)));
+    public static final ArmorItem registerChest(String name, Properties properties, CreativeModeTab group) {
+        return _register(name, new ArmorItem(ArmorMaterials.CHAIN, EquipmentSlot.CHEST, properties.tab(group)));
     }
 
     /**
@@ -47,8 +47,8 @@ public class WearableRegistry {
      * @param group
      * @return
      */
-    public static final ArmorItem registerLegs(String name, Properties properties, ItemGroup group) {
-        return _register(name, new ArmorItem(ArmorMaterial.CHAIN, EquipmentSlotType.LEGS, properties.tab(group)));
+    public static final ArmorItem registerLegs(String name, Properties properties, CreativeModeTab group) {
+        return _register(name, new ArmorItem(ArmorMaterials.CHAIN, EquipmentSlot.LEGS, properties.tab(group)));
     }
 
     /**
@@ -58,7 +58,7 @@ public class WearableRegistry {
      * @param group
      * @return
      */
-    public static final ArmorItem registerFeet(String name, Properties properties, ItemGroup group) {
-        return _register(name, new ArmorItem(ArmorMaterial.CHAIN, EquipmentSlotType.FEET, properties.tab(group)));
+    public static final ArmorItem registerFeet(String name, Properties properties, CreativeModeTab group) {
+        return _register(name, new ArmorItem(ArmorMaterials.CHAIN, EquipmentSlot.FEET, properties.tab(group)));
     }
 }

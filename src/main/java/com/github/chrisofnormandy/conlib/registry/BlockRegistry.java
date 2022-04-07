@@ -2,13 +2,13 @@ package com.github.chrisofnormandy.conlib.registry;
 
 import com.github.chrisofnormandy.conlib.Main;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
-import net.minecraft.block.material.MaterialColor;
-import net.minecraft.block.material.PushReaction;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.material.Material;
+import net.minecraft.world.level.material.MaterialColor;
+import net.minecraft.world.level.material.PushReaction;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.CreativeModeTab;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public class BlockRegistry {
@@ -38,7 +38,7 @@ public class BlockRegistry {
      * @param group
      * @return
      */
-    public static final Block register(String name, Block block, ItemGroup group) {
+    public static final Block register(String name, Block block, CreativeModeTab group) {
         Block b = _block(name, block, false);
 
         BlockItem itemBlock = new BlockItem(b, new Item.Properties().tab(group));
@@ -55,7 +55,7 @@ public class BlockRegistry {
      * @param transparent
      * @return
      */
-    public static final Block register(String name, Block block, ItemGroup group, Boolean transparent) {
+    public static final Block register(String name, Block block, CreativeModeTab group, Boolean transparent) {
         Block b = _block(name, block, transparent);
 
         BlockItem itemBlock = new BlockItem(b, new Item.Properties().tab(group));
@@ -93,7 +93,7 @@ public class BlockRegistry {
      * @param group
      * @return
      */
-    public static final Block register(String name, Block block, Item.Properties properties, ItemGroup group) {
+    public static final Block register(String name, Block block, Item.Properties properties, CreativeModeTab group) {
         Block b = _block(name, block, false);
 
         BlockItem itemBlock = new BlockItem(b, properties.tab(group));
@@ -111,7 +111,8 @@ public class BlockRegistry {
      * @param transparent
      * @return
      */
-    public static final Block register(String name, Block block, Item.Properties properties, ItemGroup group,
+    public static final Block register(String name, Block block, Item.Properties properties,
+            CreativeModeTab group,
             Boolean transparent) {
         Block b = _block(name, block, transparent);
 

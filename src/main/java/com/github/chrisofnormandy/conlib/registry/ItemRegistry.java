@@ -1,8 +1,8 @@
 package com.github.chrisofnormandy.conlib.registry;
 
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.Item.Properties;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.Item.Properties;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public class ItemRegistry {
@@ -45,7 +45,7 @@ public class ItemRegistry {
      * @param group
      * @return
      */
-    public static final Item register(String name, ItemGroup group) {
+    public static final Item register(String name, CreativeModeTab group) {
         return register(name, new Item(new Properties().tab(group)));
     }
 
@@ -56,7 +56,7 @@ public class ItemRegistry {
      * @param group
      * @return
      */
-    public static final Item register(String name, Properties properties, ItemGroup group) {
+    public static final Item register(String name, Properties properties, CreativeModeTab group) {
         return register(name, new Item(properties.tab(group)));
     }
 }

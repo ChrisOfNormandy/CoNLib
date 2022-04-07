@@ -2,11 +2,11 @@ package com.github.chrisofnormandy.conlib.block.generic;
 
 import com.github.chrisofnormandy.conlib.registry.BlockRegistry;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.SlabBlock;
-import net.minecraft.block.StairsBlock;
-import net.minecraft.block.AbstractBlock.Properties;
-import net.minecraft.item.ItemGroup;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.SlabBlock;
+import net.minecraft.world.level.block.StairBlock;
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+import net.minecraft.world.item.CreativeModeTab;
 
 public class Partial {
     /**
@@ -26,7 +26,7 @@ public class Partial {
      * @param group
      * @return
      */
-    public static final Block create_slab(String name, Properties properties, ItemGroup group) {
+    public static final Block create_slab(String name, Properties properties, CreativeModeTab group) {
         return BlockRegistry.register(name, new SlabBlock(properties), group);
     }
 
@@ -38,7 +38,7 @@ public class Partial {
      */
     public static final Block create_stairs(String name, Properties properties) {
         return BlockRegistry.register(name,
-                new StairsBlock(() -> new Block(properties).defaultBlockState(), properties));
+                new StairBlock(() -> new Block(properties).defaultBlockState(), properties));
     }
 
     /**
@@ -48,8 +48,8 @@ public class Partial {
      * @param group
      * @return
      */
-    public static final Block create_stairs(String name, Properties properties, ItemGroup group) {
+    public static final Block create_stairs(String name, Properties properties, CreativeModeTab group) {
         return BlockRegistry.register(name,
-                new StairsBlock(() -> new Block(properties).defaultBlockState(), properties), group);
+                new StairBlock(() -> new Block(properties).defaultBlockState(), properties), group);
     }
 }

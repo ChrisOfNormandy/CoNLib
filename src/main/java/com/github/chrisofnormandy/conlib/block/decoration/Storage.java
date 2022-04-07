@@ -2,15 +2,15 @@ package com.github.chrisofnormandy.conlib.block.decoration;
 
 import com.github.chrisofnormandy.conlib.registry.BlockRegistry;
 
-import net.minecraft.block.BarrelBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.ChestBlock;
-import net.minecraft.block.ShulkerBoxBlock;
-import net.minecraft.block.AbstractBlock.Properties;
-import net.minecraft.item.DyeColor;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.tileentity.TileEntityType;
+import net.minecraft.world.level.block.BarrelBlock;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.ChestBlock;
+import net.minecraft.world.level.block.ShulkerBoxBlock;
+import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+import net.minecraft.world.item.DyeColor;
+import net.minecraft.world.item.CreativeModeTab;
 
 public class Storage {
     /**
@@ -20,7 +20,7 @@ public class Storage {
      */
     public static final Block create_chest(String name) {
         return BlockRegistry.register(name, new ChestBlock(Properties.copy(Blocks.CHEST), () -> {
-            return TileEntityType.CHEST;
+            return BlockEntityType.CHEST;
         }));
     }
 
@@ -30,9 +30,9 @@ public class Storage {
      * @param group
      * @return
      */
-    public static final Block create_chest(String name, ItemGroup group) {
+    public static final Block create_chest(String name, CreativeModeTab group) {
         return BlockRegistry.register(name, new ChestBlock(Properties.copy(Blocks.CHEST), () -> {
-            return TileEntityType.CHEST;
+            return BlockEntityType.CHEST;
         }), group);
     }
 
@@ -44,7 +44,7 @@ public class Storage {
      */
     public static final Block create_chest(String name, Properties properties) {
         return BlockRegistry.register(name, new ChestBlock(properties, () -> {
-            return TileEntityType.CHEST;
+            return BlockEntityType.CHEST;
         }));
     }
 
@@ -55,9 +55,9 @@ public class Storage {
      * @param group
      * @return
      */
-    public static final Block create_chest(String name, Properties properties, ItemGroup group) {
+    public static final Block create_chest(String name, Properties properties, CreativeModeTab group) {
         return BlockRegistry.register(name, new ChestBlock(properties, () -> {
-            return TileEntityType.CHEST;
+            return BlockEntityType.CHEST;
         }), group);
     }
 
@@ -78,7 +78,7 @@ public class Storage {
      * @param group
      * @return
      */
-    public static final Block create_barrel(String name, ItemGroup group) {
+    public static final Block create_barrel(String name, CreativeModeTab group) {
         return BlockRegistry.register(name, new BarrelBlock(Properties.copy(Blocks.BARREL)), group);
     }
 
@@ -99,7 +99,7 @@ public class Storage {
      * @param group
      * @return
      */
-    public static final Block create_barrel(String name, Properties properties, ItemGroup group) {
+    public static final Block create_barrel(String name, Properties properties, CreativeModeTab group) {
         return BlockRegistry.register(name, new BarrelBlock(properties), group);
     }
 
@@ -122,7 +122,7 @@ public class Storage {
      * @param group
      * @return
      */
-    public static final Block create_shulker(String name, DyeColor color, ItemGroup group) {
+    public static final Block create_shulker(String name, DyeColor color, CreativeModeTab group) {
         return BlockRegistry.register(name, new ShulkerBoxBlock(color, Properties.copy(Blocks.WHITE_SHULKER_BOX)),
                 group);
     }
@@ -146,7 +146,8 @@ public class Storage {
      * @param group
      * @return
      */
-    public static final Block create_shulker(String name, DyeColor color, Properties properties, ItemGroup group) {
+    public static final Block create_shulker(String name, DyeColor color, Properties properties,
+            CreativeModeTab group) {
         return BlockRegistry.register(name, new ShulkerBoxBlock(color, properties), group);
     }
 }

@@ -2,9 +2,9 @@ package com.github.chrisofnormandy.conlib.item;
 
 import com.github.chrisofnormandy.conlib.registry.ItemRegistry;
 
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.Item.Properties;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.Item.Properties;
 
 public class ModItem {
     public static final String[] dyes = new String[] { "red", "orange", "yellow", "lime", "green", "cyan", "light_blue",
@@ -17,7 +17,7 @@ public class ModItem {
      * @param group
      * @return
      */
-    public static final Item create(String name, Properties properties, ItemGroup group) {
+    public static final Item create(String name, Properties properties, CreativeModeTab group) {
         Item item = ItemRegistry.register(name, properties, group);
         return item;
     }
@@ -40,7 +40,7 @@ public class ModItem {
      * @param group
      * @return
      */
-    public static final Item[] registerDyedSuite(String name, Properties properties, ItemGroup group) {
+    public static final Item[] registerDyedSuite(String name, Properties properties, CreativeModeTab group) {
         Item[] items = new Item[dyes.length];
 
         for (int i = 0; i < dyes.length; i++) {

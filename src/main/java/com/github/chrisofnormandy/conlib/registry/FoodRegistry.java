@@ -1,8 +1,8 @@
 package com.github.chrisofnormandy.conlib.registry;
 
-import net.minecraft.item.Food;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.food.FoodProperties;
+import net.minecraft.world.item.CreativeModeTab;
 
 public class FoodRegistry {
     /**
@@ -11,8 +11,8 @@ public class FoodRegistry {
      * @param saturation
      * @return
      */
-    public static final Food registerFoodNoItem(Integer hunger, Float saturation) {
-        return (new Food.Builder()).saturationMod(saturation).nutrition(hunger).build();
+    public static final FoodProperties registerFoodNoItem(Integer hunger, Float saturation) {
+        return new FoodProperties.Builder().saturationMod(saturation).nutrition(hunger).build();
     }
 
     /**
@@ -23,8 +23,8 @@ public class FoodRegistry {
      * @param group
      * @return
      */
-    public static final Item registerFood(String name, Integer hunger, Float saturation, ItemGroup group) {
-        Food food = (new Food.Builder()).saturationMod(saturation).nutrition(hunger).build();
+    public static final Item registerFood(String name, Integer hunger, Float saturation, CreativeModeTab group) {
+        FoodProperties food = new FoodProperties.Builder().saturationMod(saturation).nutrition(hunger).build();
         Item item = ItemRegistry.register(name, new Item.Properties().food(food), group);
         ModRegister.foods.put(name, item);
         return item;
@@ -37,7 +37,7 @@ public class FoodRegistry {
      * @param group
      * @return
      */
-    public static final Item registerFood(String name, Food food, ItemGroup group) {
+    public static final Item registerFood(String name, FoodProperties food, CreativeModeTab group) {
         Item item = ItemRegistry.register(name, new Item.Properties().food(food), group);
         ModRegister.foods.put(name, item);
         return item;

@@ -1,10 +1,10 @@
 package com.github.chrisofnormandy.conlib.block.types;
 
-import net.minecraft.block.AbstractButtonBlock;
-import net.minecraft.util.SoundEvent;
-import net.minecraft.util.SoundEvents;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.level.block.ButtonBlock;
 
-public class ButtonBase extends AbstractButtonBlock {
+public class ButtonBase extends ButtonBlock {
     private Boolean wooden = false;
 
     /**

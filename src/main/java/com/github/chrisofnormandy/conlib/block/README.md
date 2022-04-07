@@ -15,7 +15,7 @@
      * @param group
      * @return
      */
-    public static final Block create_(String name, ItemGroup group) {
+    public static final Block create_(String name, CreativeModeTab group) {
         return BlockRegistry.register(name, new , group);
     }
 
@@ -36,7 +36,7 @@
      * @param group
      * @return
      */
-    public static final Block create_(String name, Properties properties, ItemGroup group) {
+    public static final Block create_(String name, Properties properties, CreativeModeTab group) {
         return BlockRegistry.register(name, new , group);
     }
 ```

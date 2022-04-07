@@ -2,13 +2,13 @@ package com.github.chrisofnormandy.conlib.block.redstone;
 
 import com.github.chrisofnormandy.conlib.registry.BlockRegistry;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.DoorBlock;
-import net.minecraft.block.FenceGateBlock;
-import net.minecraft.block.TrapDoorBlock;
-import net.minecraft.block.AbstractBlock.Properties;
-import net.minecraft.item.ItemGroup;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.DoorBlock;
+import net.minecraft.world.level.block.FenceGateBlock;
+import net.minecraft.world.level.block.TrapDoorBlock;
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+import net.minecraft.world.item.CreativeModeTab;
 
 public class Doors {
     /**
@@ -26,7 +26,7 @@ public class Doors {
      * @param group
      * @return
      */
-    public static final Block create_fenceGate(String name, ItemGroup group) {
+    public static final Block create_fenceGate(String name, CreativeModeTab group) {
         return BlockRegistry.register(name, new FenceGateBlock(Properties.copy(Blocks.OAK_FENCE_GATE)), group);
     }
 
@@ -47,7 +47,7 @@ public class Doors {
      * @param group
      * @return
      */
-    public static final Block create_fenceGate(String name, Properties properties, ItemGroup group) {
+    public static final Block create_fenceGate(String name, Properties properties, CreativeModeTab group) {
         return BlockRegistry.register(name, new FenceGateBlock(properties), group);
     }
 
@@ -68,7 +68,7 @@ public class Doors {
      * @param group
      * @return
      */
-    public static final Block create_door(String name, ItemGroup group) {
+    public static final Block create_door(String name, CreativeModeTab group) {
         return BlockRegistry.register(name, new DoorBlock(Properties.copy(Blocks.OAK_DOOR)), group);
     }
 
@@ -89,7 +89,7 @@ public class Doors {
      * @param group
      * @return
      */
-    public static final Block create_door(String name, Properties properties, ItemGroup group) {
+    public static final Block create_door(String name, Properties properties, CreativeModeTab group) {
         return BlockRegistry.register(name, new DoorBlock(properties.noOcclusion()), group);
     }
 
@@ -110,7 +110,7 @@ public class Doors {
      * @param group
      * @return
      */
-    public static final Block create_door_triggered(String name, ItemGroup group) {
+    public static final Block create_door_triggered(String name, CreativeModeTab group) {
         return BlockRegistry.register(name, new DoorBlock(Properties.copy(Blocks.IRON_DOOR)), group);
     }
 
@@ -131,7 +131,7 @@ public class Doors {
      * @param group
      * @return
      */
-    public static final Block create_door_triggered(String name, Properties properties, ItemGroup group) {
+    public static final Block create_door_triggered(String name, Properties properties, CreativeModeTab group) {
         return BlockRegistry.register(name, new DoorBlock(properties.noOcclusion()), group);
     }
 
@@ -152,7 +152,7 @@ public class Doors {
      * @param group
      * @return
      */
-    public static final Block create_trapdoor(String name, ItemGroup group) {
+    public static final Block create_trapdoor(String name, CreativeModeTab group) {
         return BlockRegistry.register(name, new TrapDoorBlock(Properties.copy(Blocks.OAK_TRAPDOOR)), group);
     }
 
@@ -173,7 +173,7 @@ public class Doors {
      * @param group
      * @return
      */
-    public static final Block create_trapdoor(String name, Properties properties, ItemGroup group) {
+    public static final Block create_trapdoor(String name, Properties properties, CreativeModeTab group) {
         return BlockRegistry.register(name, new TrapDoorBlock(properties.noOcclusion()), group);
     }
 
@@ -194,7 +194,7 @@ public class Doors {
      * @param group
      * @return
      */
-    public static final Block create_trapdoor_triggered(String name, ItemGroup group) {
+    public static final Block create_trapdoor_triggered(String name, CreativeModeTab group) {
         return BlockRegistry.register(name, new TrapDoorBlock(Properties.copy(Blocks.IRON_TRAPDOOR)), group);
     }
 
@@ -215,7 +215,7 @@ public class Doors {
      * @param group
      * @return
      */
-    public static final Block create_trapdoor_triggered(String name, Properties properties, ItemGroup group) {
+    public static final Block create_trapdoor_triggered(String name, Properties properties, CreativeModeTab group) {
         return BlockRegistry.register(name, new TrapDoorBlock(properties.noOcclusion()), group);
     }
 }

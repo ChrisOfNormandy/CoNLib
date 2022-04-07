@@ -1,28 +1,21 @@
 package com.github.chrisofnormandy.conlib.registry;
 
 import java.util.HashMap;
-import java.util.stream.Stream;
+// import java.util.stream.Stream;
 
 import com.github.chrisofnormandy.conlib.Main;
-import com.github.chrisofnormandy.conlib.biome.ModBiome;
-import com.github.chrisofnormandy.conlib.biome.ModClimate;
-import com.github.chrisofnormandy.conlib.biome.helpers.BiomeBuilder;
 import com.github.chrisofnormandy.conlib.collections.Tuple;
 import com.github.chrisofnormandy.conlib.collections.JsonBuilder.JsonObject;
 import com.github.chrisofnormandy.conlib.event.BlockBreak;
 import com.github.chrisofnormandy.conlib.tool.ToolMaterial;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
-import net.minecraft.item.ArmorItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.util.RegistryKey;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.surfacebuilders.ConfiguredSurfaceBuilder;
-import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
-import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
+import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.material.Material;
 
 public class ModRegister {
     private static String mod_id;
@@ -62,7 +55,7 @@ public class ModRegister {
     public static final HashMap<String, Object> events = new HashMap<String, Object>();
 
     // ITEM GROUPS
-    public static final HashMap<String, ItemGroup> groups = new HashMap<String, ItemGroup>();
+    public static final HashMap<String, CreativeModeTab> groups = new HashMap<String, CreativeModeTab>();
 
     // MATERIALS
     public static final HashMap<String, Material> materials = new HashMap<String, Material>();
@@ -90,48 +83,59 @@ public class ModRegister {
     // WORLD GEN
     public static final HashMap<String, Biome> biomes = new HashMap<String, Biome>();
 
-    public static final HashMap<RegistryKey<Biome>, BiomeBuilder> biomeBuilders = new HashMap<RegistryKey<Biome>, BiomeBuilder>();
-    public static final HashMap<String, RegistryKey<Biome>> overworldKeys = new HashMap<String, RegistryKey<Biome>>();
-    public static final HashMap<String, RegistryKey<Biome>> netherKeys = new HashMap<String, RegistryKey<Biome>>();
-    public static final HashMap<String, RegistryKey<Biome>> endKeys = new HashMap<String, RegistryKey<Biome>>();
-    public static final HashMap<String, RegistryKey<Biome>> customKeys = new HashMap<String, RegistryKey<Biome>>();
-    public static final HashMap<RegistryKey<Biome>, RegistryKey<Biome>> biomeRemaps = new HashMap<>();
+    // public static final HashMap<RegistryKey<Biome>, BiomeBuilder> biomeBuilders =
+    // new HashMap<RegistryKey<Biome>, BiomeBuilder>();
+    // public static final HashMap<String, RegistryKey<Biome>> overworldKeys = new
+    // HashMap<String, RegistryKey<Biome>>();
+    // public static final HashMap<String, RegistryKey<Biome>> netherKeys = new
+    // HashMap<String, RegistryKey<Biome>>();
+    // public static final HashMap<String, RegistryKey<Biome>> endKeys = new
+    // HashMap<String, RegistryKey<Biome>>();
+    // public static final HashMap<String, RegistryKey<Biome>> customKeys = new
+    // HashMap<String, RegistryKey<Biome>>();
+    // public static final HashMap<RegistryKey<Biome>, RegistryKey<Biome>>
+    // biomeRemaps = new HashMap<>();
 
-    public static final HashMap<String, ModBiome> modBiomes = new HashMap<String, ModBiome>();
+    // public static final HashMap<String, ModBiome> modBiomes = new HashMap<String,
+    // ModBiome>();
 
-    public static final HashMap<String, ModClimate> climates = new HashMap<String, ModClimate>();
+    // public static final HashMap<String, ModClimate> climates = new
+    // HashMap<String, ModClimate>();
 
     public static final HashMap<String, Feature<?>> generators = new HashMap<String, Feature<?>>();
 
-    public static final HashMap<String, SurfaceBuilder<?>> surfaceBuilders = new HashMap<String, SurfaceBuilder<?>>();
-    public static final HashMap<String, SurfaceBuilderConfig> surfaceBuilderConfigs = new HashMap<String, SurfaceBuilderConfig>();
-    public static final HashMap<String, ConfiguredSurfaceBuilder<?>> configSurfaceBuilders = new HashMap<String, ConfiguredSurfaceBuilder<?>>();
+    // public static final HashMap<String, SurfaceBuilder<?>> surfaceBuilders = new
+    // HashMap<String, SurfaceBuilder<?>>();
+    // public static final HashMap<String, SurfaceBuilderConfig>
+    // surfaceBuilderConfigs = new HashMap<String, SurfaceBuilderConfig>();
+    // public static final HashMap<String, ConfiguredSurfaceBuilder<?>>
+    // configSurfaceBuilders = new HashMap<String, ConfiguredSurfaceBuilder<?>>();
 
     public static final HashMap<String, JsonObject> worldgen_biome = new HashMap<String, JsonObject>();
 
-    /**
-     * 
-     * @return
-     */
-    public static final Stream<RegistryKey<Biome>> getOverworldBiomes() {
-        return overworldKeys.values().stream();
-    }
+    // /**
+    // *
+    // * @return
+    // */
+    // public static final Stream<RegistryKey<Biome>> getOverworldBiomes() {
+    // return overworldKeys.values().stream();
+    // }
 
-    /**
-     * 
-     * @return
-     */
-    public static final Stream<RegistryKey<Biome>> getNetherBiomes() {
-        return netherKeys.values().stream();
-    }
+    // /**
+    // *
+    // * @return
+    // */
+    // public static final Stream<RegistryKey<Biome>> getNetherBiomes() {
+    // return netherKeys.values().stream();
+    // }
 
-    /**
-     * 
-     * @return
-     */
-    public static final Stream<RegistryKey<Biome>> getEndBiomes() {
-        return endKeys.values().stream();
-    }
+    // /**
+    // *
+    // * @return
+    // */
+    // public static final Stream<RegistryKey<Biome>> getEndBiomes() {
+    // return endKeys.values().stream();
+    // }
 
     // SPECIAL
     public static final HashMap<String, Block> blocks_unbreakable = new HashMap<String, Block>();

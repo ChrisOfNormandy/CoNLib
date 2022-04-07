@@ -1,8 +1,6 @@
 package com.github.chrisofnormandy.conlib.block.types;
 
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IBlockReader;
-import net.minecraft.block.BushBlock;
+import net.minecraft.world.level.block.BushBlock;
 import net.minecraftforge.common.PlantType;
 
 public class PlantBase extends BushBlock {
@@ -16,12 +14,5 @@ public class PlantBase extends BushBlock {
     public PlantBase(Properties properties, PlantType plantType) {
         super(properties);
         this.plantType = plantType;
-    }
-
-    /**
-     * 
-     */
-    public PlantType getPlantType(IBlockReader world, BlockPos pos) {
-        return this.plantType;
     }
 }

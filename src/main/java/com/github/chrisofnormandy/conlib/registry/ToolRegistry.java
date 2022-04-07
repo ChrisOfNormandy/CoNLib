@@ -3,21 +3,21 @@ package com.github.chrisofnormandy.conlib.registry;
 import com.github.chrisofnormandy.conlib.tool.CraftingTool;
 import com.github.chrisofnormandy.conlib.tool.ToolMaterial;
 
-import net.minecraft.fluid.Fluid;
-import net.minecraft.fluid.Fluids;
-import net.minecraft.item.AxeItem;
-import net.minecraft.item.BucketItem;
-import net.minecraft.item.FishingRodItem;
-import net.minecraft.item.FlintAndSteelItem;
-import net.minecraft.item.HoeItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.ItemTier;
-import net.minecraft.item.PickaxeItem;
-import net.minecraft.item.Rarity;
-import net.minecraft.item.ShearsItem;
-import net.minecraft.item.ShovelItem;
-import net.minecraft.item.Item.Properties;
+import net.minecraft.world.item.AxeItem;
+import net.minecraft.world.item.BucketItem;
+import net.minecraft.world.item.FishingRodItem;
+import net.minecraft.world.item.FlintAndSteelItem;
+import net.minecraft.world.item.HoeItem;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.Tier;
+import net.minecraft.world.item.PickaxeItem;
+import net.minecraft.world.item.Rarity;
+import net.minecraft.world.item.ShearsItem;
+import net.minecraft.world.item.ShovelItem;
+import net.minecraft.world.item.Item.Properties;
+import net.minecraft.world.level.material.Fluid;
+import net.minecraft.world.level.material.Fluids;
 
 public class ToolRegistry {
 
@@ -46,7 +46,7 @@ public class ToolRegistry {
      * @param group
      * @return
      */
-    public static final Item registerCrafting(String name, Properties properties, ItemGroup group) {
+    public static final Item registerCrafting(String name, Properties properties, CreativeModeTab group) {
         CraftingTool item = new CraftingTool(properties.tab(group));
         ModRegister.tools.put(name, item);
         return ItemRegistry.register(name, item);
@@ -62,8 +62,8 @@ public class ToolRegistry {
      * @param group
      * @return
      */
-    public static final Item registerPickaxe(String name, ItemTier tier, Integer attackDamage, Float attackSpeed,
-            Properties properties, ItemGroup group) {
+    public static final Item registerPickaxe(String name, Tier tier, Integer attackDamage, Float attackSpeed,
+            Properties properties, CreativeModeTab group) {
         Item pick = new PickaxeItem(tier, attackDamage, attackSpeed, properties.tab(group));
         ModRegister.tools.put(name, pick);
         return ItemRegistry.register(name, pick);
@@ -79,8 +79,8 @@ public class ToolRegistry {
      * @param group
      * @return
      */
-    public static final Item registerShovel(String name, ItemTier tier, Integer attackDamage, Float attackSpeed,
-            Properties properties, ItemGroup group) {
+    public static final Item registerShovel(String name, Tier tier, Integer attackDamage, Float attackSpeed,
+            Properties properties, CreativeModeTab group) {
         Item pick = new ShovelItem(tier, attackDamage, attackSpeed, properties.tab(group));
         ModRegister.tools.put(name, pick);
         return ItemRegistry.register(name, pick);
@@ -96,8 +96,8 @@ public class ToolRegistry {
      * @param group
      * @return
      */
-    public static final Item registerAxe(String name, ItemTier tier, Integer attackDamage, Float attackSpeed,
-            Properties properties, ItemGroup group) {
+    public static final Item registerAxe(String name, Tier tier, Integer attackDamage, Float attackSpeed,
+            Properties properties, CreativeModeTab group) {
         Item pick = new AxeItem(tier, attackDamage, attackSpeed, properties.tab(group));
         ModRegister.tools.put(name, pick);
         return ItemRegistry.register(name, pick);
@@ -113,8 +113,8 @@ public class ToolRegistry {
      * @param group
      * @return
      */
-    public static final Item registerHoe(String name, ItemTier tier, Integer attackDamage, Float attackSpeed,
-            Properties properties, ItemGroup group) {
+    public static final Item registerHoe(String name, Tier tier, Integer attackDamage, Float attackSpeed,
+            Properties properties, CreativeModeTab group) {
         Item pick = new HoeItem(tier, attackDamage, attackSpeed, properties.tab(group));
         ModRegister.tools.put(name, pick);
         return ItemRegistry.register(name, pick);
@@ -130,8 +130,8 @@ public class ToolRegistry {
      * @param group
      * @return
      */
-    public static final Item[] registerAll(String name, ItemTier tier, Integer attackDamage, Float attackSpeed,
-            Properties properties, ItemGroup group) {
+    public static final Item[] registerAll(String name, Tier tier, Integer attackDamage, Float attackSpeed,
+            Properties properties, CreativeModeTab group) {
         return new Item[] { registerPickaxe(name, tier, attackDamage, attackSpeed, properties, group),
                 registerAxe(name, tier, attackDamage, attackSpeed, properties, group),
                 registerShovel(name, tier, attackDamage, attackSpeed, properties, group),
@@ -145,7 +145,7 @@ public class ToolRegistry {
      * @param group
      * @return
      */
-    public static final Item registerFlintAndSteel(String name, Properties properties, ItemGroup group) {
+    public static final Item registerFlintAndSteel(String name, Properties properties, CreativeModeTab group) {
         Item fas = new FlintAndSteelItem(properties.tab(group));
         ModRegister.tools.put(name, fas);
         return ItemRegistry.register(name, fas);
@@ -158,17 +158,17 @@ public class ToolRegistry {
      * @param group
      * @return
      */
-    public static final Item registerFishingRod(String name, Properties properties, ItemGroup group) {
+    public static final Item registerFishingRod(String name, Properties properties, CreativeModeTab group) {
         Item rod = new FishingRodItem(properties.tab(group));
         ModRegister.tools.put(name, rod);
         return ItemRegistry.register(name, rod);
     }
 
-    public static final Item registerBucket(String name, Properties properties, ItemGroup group) {
+    public static final Item registerBucket(String name, Properties properties, CreativeModeTab group) {
         return registerBucket(name, Fluids.EMPTY, properties, group);
     }
 
-    public static final Item registerBucket(String name, Fluid fluid, Properties properties, ItemGroup group) {
+    public static final Item registerBucket(String name, Fluid fluid, Properties properties, CreativeModeTab group) {
         Item bucket = new BucketItem(() -> fluid, properties.tab(group));
         ModRegister.tools.put(name, bucket);
         return ItemRegistry.register(name, bucket);
@@ -181,7 +181,7 @@ public class ToolRegistry {
      * @param group
      * @return
      */
-    public static final Item registerShearsItem(String name, Properties properties, ItemGroup group) {
+    public static final Item registerShearsItem(String name, Properties properties, CreativeModeTab group) {
         Item shears = new ShearsItem(properties.tab(group));
         ModRegister.tools.put(name, shears);
         return ItemRegistry.register(name, shears);

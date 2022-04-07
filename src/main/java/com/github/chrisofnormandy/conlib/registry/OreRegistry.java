@@ -2,8 +2,8 @@ package com.github.chrisofnormandy.conlib.registry;
 
 import com.github.chrisofnormandy.conlib.block.types.OreBase;
 
-import net.minecraft.block.Block;
-import net.minecraft.item.ItemGroup;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.item.CreativeModeTab;
 
 public class OreRegistry {
     /**
@@ -13,7 +13,7 @@ public class OreRegistry {
      * @param group
      * @return
      */
-    public static final Block register(String name, OreBase oreBase, ItemGroup group) {
+    public static final Block register(String name, OreBase oreBase, CreativeModeTab group) {
         return BlockRegistry.register(name, oreBase, group);
     }
 }
