@@ -2,7 +2,7 @@ package com.github.chrisofnormandy.conlib.block.decoration;
 
 import com.github.chrisofnormandy.conlib.registry.BlockRegistry;
 
-import net.minecraft.world.level.block.BambooBlock;
+import net.minecraft.world.level.block.BambooStalkBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.CactusBlock;
@@ -14,7 +14,6 @@ import net.minecraft.world.level.block.GrassBlock;
 import net.minecraft.world.level.block.KelpBlock;
 import net.minecraft.world.level.block.LeavesBlock;
 import net.minecraft.world.level.block.MushroomBlock;
-// import net.minecraft.world.level.block.SaplingBlock;
 import net.minecraft.world.level.block.SeaPickleBlock;
 import net.minecraft.world.level.block.SugarCaneBlock;
 import net.minecraft.world.level.block.TallFlowerBlock;
@@ -24,10 +23,8 @@ import net.minecraft.world.level.block.VineBlock;
 import net.minecraft.world.level.block.WaterlilyBlock;
 import net.minecraft.world.level.block.WeepingVinesBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
-import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.core.Holder;
 import net.minecraft.data.worldgen.features.TreeFeatures;
 
 /*
@@ -91,7 +88,7 @@ public class Plants {
     ////
 
     /**
-     * 
+     *
      * @param name
      * @return
      */
@@ -100,7 +97,7 @@ public class Plants {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param group
      * @return
@@ -110,7 +107,7 @@ public class Plants {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @return
@@ -120,7 +117,7 @@ public class Plants {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @param group
@@ -133,7 +130,7 @@ public class Plants {
     ////
 
     /**
-     * 
+     *
      * @param name
      * @return
      */
@@ -142,7 +139,7 @@ public class Plants {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param group
      * @return
@@ -152,7 +149,7 @@ public class Plants {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @return
@@ -162,7 +159,7 @@ public class Plants {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @param group
@@ -175,7 +172,7 @@ public class Plants {
     ////
 
     /**
-     * 
+     *
      * @param name
      * @return
      */
@@ -184,7 +181,7 @@ public class Plants {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param group
      * @return
@@ -194,7 +191,7 @@ public class Plants {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @return
@@ -204,7 +201,7 @@ public class Plants {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @param group
@@ -217,36 +214,37 @@ public class Plants {
     ////
 
     /**
-     * 
+     *
      * @param name
      * @return
      */
     public static final Block create_flower(String name, MobEffect effect, Integer duration) {
-        return BlockRegistry.register(name, new FlowerBlock(effect, duration, Properties.copy(Blocks.POPPY)));
+        return BlockRegistry.register(name, new FlowerBlock(() -> effect, duration, Properties.copy(Blocks.POPPY)));
     }
 
     /**
-     * 
+     *
      * @param name
      * @param group
      * @return
      */
     public static final Block create_flower(String name, MobEffect effect, Integer duration, CreativeModeTab group) {
-        return BlockRegistry.register(name, new FlowerBlock(effect, duration, Properties.copy(Blocks.POPPY)), group);
+        return BlockRegistry.register(name, new FlowerBlock(() -> effect, duration, Properties.copy(Blocks.POPPY)),
+                group);
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @return
      */
     public static final Block create_flower(String name, MobEffect effect, Integer duration, Properties properties) {
-        return BlockRegistry.register(name, new FlowerBlock(effect, duration, properties));
+        return BlockRegistry.register(name, new FlowerBlock(() -> effect, duration, properties));
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @param group
@@ -255,63 +253,57 @@ public class Plants {
     public static final Block create_flower(String name,
             MobEffect effect, Integer duration, Properties properties,
             CreativeModeTab group) {
-        return BlockRegistry.register(name, new FlowerBlock(effect, duration, properties), group);
+        return BlockRegistry.register(name, new FlowerBlock(() -> effect, duration, properties), group);
     }
 
     ////
 
     /**
-     * 
+     *
      * @param name
      * @return
      */
     public static final Block create_mushroom(String name) {
-        return BlockRegistry.register(name, new MushroomBlock(Properties.copy(Blocks.RED_MUSHROOM), () -> {
-            return TreeFeatures.HUGE_RED_MUSHROOM;
-        }));
+        return BlockRegistry.register(name,
+                new MushroomBlock(Properties.copy(Blocks.RED_MUSHROOM), TreeFeatures.HUGE_RED_MUSHROOM));
     }
 
     /**
-     * 
+     *
      * @param name
      * @param group
      * @return
      */
     public static final Block create_mushroom(String name, CreativeModeTab group) {
-        return BlockRegistry.register(name, new MushroomBlock(Properties.copy(Blocks.RED_MUSHROOM), () -> {
-            return TreeFeatures.HUGE_RED_MUSHROOM;
-        }), group);
+        return BlockRegistry.register(name,
+                new MushroomBlock(Properties.copy(Blocks.RED_MUSHROOM), TreeFeatures.HUGE_RED_MUSHROOM), group);
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @return
      */
     public static final Block create_mushroom(String name, Properties properties) {
-        return BlockRegistry.register(name, new MushroomBlock(properties, () -> {
-            return TreeFeatures.HUGE_RED_MUSHROOM;
-        }));
+        return BlockRegistry.register(name, new MushroomBlock(properties, TreeFeatures.HUGE_RED_MUSHROOM));
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @param group
      * @return
      */
     public static final Block create_mushroom(String name, Properties properties, CreativeModeTab group) {
-        return BlockRegistry.register(name, new MushroomBlock(properties, () -> {
-            return TreeFeatures.HUGE_RED_MUSHROOM;
-        }), group);
+        return BlockRegistry.register(name, new MushroomBlock(properties, TreeFeatures.HUGE_RED_MUSHROOM), group);
     }
 
     ////
     // These require multiple blocks...
     /**
-     * 
+     *
      * @param name
      * @return
      */
@@ -321,7 +313,7 @@ public class Plants {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param group
      * @return
@@ -331,7 +323,7 @@ public class Plants {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @return
@@ -341,7 +333,7 @@ public class Plants {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @param group
@@ -354,7 +346,7 @@ public class Plants {
     ////
 
     /**
-     * 
+     *
      * @param name
      * @return
      */
@@ -364,7 +356,7 @@ public class Plants {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param group
      * @return
@@ -374,7 +366,7 @@ public class Plants {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @return
@@ -384,7 +376,7 @@ public class Plants {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @param group
@@ -397,7 +389,7 @@ public class Plants {
     ////
 
     /**
-     * 
+     *
      * @param name
      * @return
      */
@@ -406,7 +398,7 @@ public class Plants {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param group
      * @return
@@ -416,7 +408,7 @@ public class Plants {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @return
@@ -426,7 +418,7 @@ public class Plants {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @param group
@@ -439,7 +431,7 @@ public class Plants {
     ////
     // These require multiple too...
     /**
-     * 
+     *
      * @param name
      * @return
      */
@@ -448,7 +440,7 @@ public class Plants {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param group
      * @return
@@ -458,7 +450,7 @@ public class Plants {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @return
@@ -468,7 +460,7 @@ public class Plants {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @param group
@@ -481,49 +473,49 @@ public class Plants {
     ////
     // These have a sapling and multiple blocks...
     /**
-     * 
+     *
      * @param name
      * @return
      */
     public static final Block create_bamboo(String name) {
-        return BlockRegistry.register(name, new BambooBlock(Properties.copy(Blocks.BAMBOO)));
+        return BlockRegistry.register(name, new BambooStalkBlock(Properties.copy(Blocks.BAMBOO)));
     }
 
     /**
-     * 
+     *
      * @param name
      * @param group
      * @return
      */
     public static final Block create_bamboo(String name, CreativeModeTab group) {
-        return BlockRegistry.register(name, new BambooBlock(Properties.copy(Blocks.BAMBOO)), group);
+        return BlockRegistry.register(name, new BambooStalkBlock(Properties.copy(Blocks.BAMBOO)), group);
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @return
      */
     public static final Block create_bamboo(String name, Properties properties) {
-        return BlockRegistry.register(name, new BambooBlock(properties));
+        return BlockRegistry.register(name, new BambooStalkBlock(properties));
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @param group
      * @return
      */
     public static final Block create_bamboo(String name, Properties properties, CreativeModeTab group) {
-        return BlockRegistry.register(name, new BambooBlock(properties), group);
+        return BlockRegistry.register(name, new BambooStalkBlock(properties), group);
     }
 
     ////
     // These have a flower block / sapling
     /**
-     * 
+     *
      * @param name
      * @return
      */
@@ -532,7 +524,7 @@ public class Plants {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param group
      * @return
@@ -542,7 +534,7 @@ public class Plants {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @return
@@ -552,7 +544,7 @@ public class Plants {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @param group
@@ -565,7 +557,7 @@ public class Plants {
     ////
 
     /**
-     * 
+     *
      * @param name
      * @return
      */
@@ -574,7 +566,7 @@ public class Plants {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param group
      * @return
@@ -584,7 +576,7 @@ public class Plants {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @return
@@ -594,7 +586,7 @@ public class Plants {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @param group
@@ -607,7 +599,7 @@ public class Plants {
     ////
 
     /**
-     * 
+     *
      * @param name
      * @return
      */
@@ -616,7 +608,7 @@ public class Plants {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param group
      * @return
@@ -626,7 +618,7 @@ public class Plants {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @return
@@ -636,7 +628,7 @@ public class Plants {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @param group
@@ -649,7 +641,7 @@ public class Plants {
     ////
 
     /**
-     * 
+     *
      * @param name
      * @return
      */
@@ -658,7 +650,7 @@ public class Plants {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param group
      * @return
@@ -668,7 +660,7 @@ public class Plants {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @return
@@ -678,7 +670,7 @@ public class Plants {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @param group
@@ -691,7 +683,7 @@ public class Plants {
     ////
 
     /**
-     * 
+     *
      * @param name
      * @return
      */
@@ -700,7 +692,7 @@ public class Plants {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param group
      * @return
@@ -710,7 +702,7 @@ public class Plants {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @return
@@ -720,7 +712,7 @@ public class Plants {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @param group
@@ -733,7 +725,7 @@ public class Plants {
     ////
 
     /**
-     * 
+     *
      * @param name
      * @return
      */
@@ -742,7 +734,7 @@ public class Plants {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param group
      * @return
@@ -752,7 +744,7 @@ public class Plants {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @return
@@ -762,7 +754,7 @@ public class Plants {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @param group
@@ -775,7 +767,7 @@ public class Plants {
     ////
 
     /**
-     * 
+     *
      * @param name
      * @return
      */
@@ -784,7 +776,7 @@ public class Plants {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param group
      * @return
@@ -794,7 +786,7 @@ public class Plants {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @return
@@ -804,7 +796,7 @@ public class Plants {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @param group
@@ -818,7 +810,7 @@ public class Plants {
     ////
     // Wall version exists too...
     /**
-     * 
+     *
      * @param name
      * @return
      */
@@ -828,7 +820,7 @@ public class Plants {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param group
      * @return
@@ -839,7 +831,7 @@ public class Plants {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @return
@@ -849,7 +841,7 @@ public class Plants {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @param group
@@ -862,7 +854,7 @@ public class Plants {
     ////
 
     /**
-     * 
+     *
      * @param name
      * @return
      */
@@ -871,7 +863,7 @@ public class Plants {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param group
      * @return
@@ -882,7 +874,7 @@ public class Plants {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @return
@@ -892,7 +884,7 @@ public class Plants {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @param group

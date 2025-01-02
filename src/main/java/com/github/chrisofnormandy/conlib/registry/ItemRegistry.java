@@ -7,21 +7,20 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 public class ItemRegistry {
     /**
-     * 
+     *
      * @param <T>
      * @param name
      * @param item
      * @return
      */
     public static final <T extends Item> T register(String name, T item) {
-        item.setRegistryName(name);
-        ForgeRegistries.ITEMS.register(item);
+        ForgeRegistries.ITEMS.register(name, item);
         ModRegister.items.put(name, item);
         return item;
     }
 
     /**
-     * 
+     *
      * @param name
      * @return
      */
@@ -30,7 +29,7 @@ public class ItemRegistry {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @return
@@ -40,7 +39,7 @@ public class ItemRegistry {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param group
      * @return
@@ -50,7 +49,7 @@ public class ItemRegistry {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @param group

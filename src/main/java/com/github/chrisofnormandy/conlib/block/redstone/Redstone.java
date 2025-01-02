@@ -26,110 +26,120 @@ import net.minecraft.world.level.block.WeightedPressurePlateBlock;
 import net.minecraft.world.level.block.PressurePlateBlock.Sensitivity;
 import net.minecraft.world.level.block.piston.PistonBaseBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.item.CreativeModeTab;
 
 public class Redstone {
     /**
-     * 
+     *
      * @param name
      * @return
      */
     public static final Block create_pressurePlate_wood(String name) {
         return BlockRegistry.register(name,
-                new PressurePlateBlock(Sensitivity.EVERYTHING, Properties.copy(Blocks.OAK_PRESSURE_PLATE)));
+                new PressurePlateBlock(Sensitivity.EVERYTHING, Properties.copy(Blocks.OAK_PRESSURE_PLATE),
+                        BlockSetType.OAK));
     }
 
     /**
-     * 
+     *
      * @param name
      * @param group
      * @return
      */
     public static final Block create_pressurePlate_wood(String name, CreativeModeTab group) {
         return BlockRegistry.register(name,
-                new PressurePlateBlock(Sensitivity.EVERYTHING, Properties.copy(Blocks.OAK_PRESSURE_PLATE)), group);
+                new PressurePlateBlock(Sensitivity.EVERYTHING, Properties.copy(Blocks.OAK_PRESSURE_PLATE),
+                        BlockSetType.OAK),
+                group);
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @return
      */
     public static final Block create_pressurePlate_wood(String name, Properties properties) {
-        return BlockRegistry.register(name, new PressurePlateBlock(Sensitivity.EVERYTHING, properties));
+        return BlockRegistry.register(name,
+                new PressurePlateBlock(Sensitivity.EVERYTHING, properties, BlockSetType.OAK));
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @param group
      * @return
      */
     public static final Block create_pressurePlate_wood(String name, Properties properties, CreativeModeTab group) {
-        return BlockRegistry.register(name, new PressurePlateBlock(Sensitivity.EVERYTHING, properties), group);
+        return BlockRegistry.register(name,
+                new PressurePlateBlock(Sensitivity.EVERYTHING, properties, BlockSetType.OAK), group);
     }
 
     ////
 
     /**
-     * 
+     *
      * @param name
      * @return
      */
     public static final Block create_pressurePlate_stone(String name) {
         return BlockRegistry.register(name,
-                new PressurePlateBlock(Sensitivity.MOBS, Properties.copy(Blocks.STONE_PRESSURE_PLATE)));
+                new PressurePlateBlock(Sensitivity.MOBS,
+                        Properties.copy(Blocks.STONE_PRESSURE_PLATE), BlockSetType.STONE));
     }
 
     /**
-     * 
+     *
      * @param name
      * @param group
      * @return
      */
     public static final Block create_pressurePlate_stone(String name, CreativeModeTab group) {
         return BlockRegistry.register(name,
-                new PressurePlateBlock(Sensitivity.MOBS, Properties.copy(Blocks.STONE_PRESSURE_PLATE)), group);
+                new PressurePlateBlock(Sensitivity.MOBS, Properties.copy(Blocks.STONE_PRESSURE_PLATE),
+                        BlockSetType.STONE),
+                group);
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @return
      */
     public static final Block create_pressurePlate_stone(String name, Properties properties) {
-        return BlockRegistry.register(name, new PressurePlateBlock(Sensitivity.MOBS, properties));
+        return BlockRegistry.register(name, new PressurePlateBlock(Sensitivity.MOBS, properties, BlockSetType.STONE));
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @param group
      * @return
      */
     public static final Block create_pressurePlate_stone(String name, Properties properties, CreativeModeTab group) {
-        return BlockRegistry.register(name, new PressurePlateBlock(Sensitivity.MOBS, properties), group);
+        return BlockRegistry.register(name, new PressurePlateBlock(Sensitivity.MOBS, properties, BlockSetType.STONE),
+                group);
     }
 
     ////
 
     /**
-     * 
+     *
      * @param name
      * @param sensitivity
      * @param properties
      * @return
      */
     public static final Block create_pressurePlate(String name, Sensitivity sensitivity, Properties properties) {
-        return BlockRegistry.register(name, new PressurePlateBlock(sensitivity, properties));
+        return BlockRegistry.register(name, new PressurePlateBlock(sensitivity, properties, BlockSetType.STONE));
     }
 
     /**
-     * 
+     *
      * @param name
      * @param sensitivity
      * @param properties
@@ -138,97 +148,97 @@ public class Redstone {
      */
     public static final Block create_pressurePlate(String name, Sensitivity sensitivity, Properties properties,
             CreativeModeTab group) {
-        return BlockRegistry.register(name, new PressurePlateBlock(sensitivity, properties), group);
+        return BlockRegistry.register(name, new PressurePlateBlock(sensitivity, properties, BlockSetType.STONE), group);
     }
 
     ////
 
     /**
-     * 
+     *
      * @param name
      * @return
      */
     public static final Block create_button_wood(String name) {
-        return BlockRegistry.register(name, new ButtonBase(true, Properties.copy(Blocks.OAK_BUTTON)));
+        return BlockRegistry.register(name, new ButtonBase(Properties.copy(Blocks.OAK_BUTTON)));
     }
 
     /**
-     * 
+     *
      * @param name
      * @param group
      * @return
      */
     public static final Block create_button_wood(String name, CreativeModeTab group) {
-        return BlockRegistry.register(name, new ButtonBase(true, Properties.copy(Blocks.OAK_BUTTON)), group);
+        return BlockRegistry.register(name, new ButtonBase(Properties.copy(Blocks.OAK_BUTTON)), group);
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @return
      */
     public static final Block create_button_wood(String name, Properties properties) {
-        return BlockRegistry.register(name, new ButtonBase(true, properties));
+        return BlockRegistry.register(name, new ButtonBase(properties));
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @param group
      * @return
      */
     public static final Block create_button_wood(String name, Properties properties, CreativeModeTab group) {
-        return BlockRegistry.register(name, new ButtonBase(true, properties), group);
+        return BlockRegistry.register(name, new ButtonBase(properties), group);
     }
 
     ////
 
     /**
-     * 
+     *
      * @param name
      * @return
      */
     public static final Block create_button_stone(String name) {
-        return BlockRegistry.register(name, new ButtonBase(false, Properties.copy(Blocks.STONE_BUTTON)));
+        return BlockRegistry.register(name, new ButtonBase(Properties.copy(Blocks.STONE_BUTTON)));
     }
 
     /**
-     * 
+     *
      * @param name
      * @param group
      * @return
      */
     public static final Block create_button_stone(String name, CreativeModeTab group) {
-        return BlockRegistry.register(name, new ButtonBase(false, Properties.copy(Blocks.STONE_BUTTON)), group);
+        return BlockRegistry.register(name, new ButtonBase(Properties.copy(Blocks.STONE_BUTTON)), group);
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @return
      */
     public static final Block create_button_stone(String name, Properties properties) {
-        return BlockRegistry.register(name, new ButtonBase(false, properties));
+        return BlockRegistry.register(name, new ButtonBase(properties));
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @param group
      * @return
      */
     public static final Block create_button_stone(String name, Properties properties, CreativeModeTab group) {
-        return BlockRegistry.register(name, new ButtonBase(false, properties), group);
+        return BlockRegistry.register(name, new ButtonBase(properties), group);
     }
 
     ////
 
     /**
-     * 
+     *
      * @param name
      * @return
      */
@@ -237,7 +247,7 @@ public class Redstone {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param group
      * @return
@@ -247,7 +257,7 @@ public class Redstone {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @return
@@ -257,7 +267,7 @@ public class Redstone {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @param group
@@ -270,7 +280,7 @@ public class Redstone {
     ////
 
     /**
-     * 
+     *
      * @param name
      * @return
      */
@@ -279,7 +289,7 @@ public class Redstone {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param group
      * @return
@@ -289,7 +299,7 @@ public class Redstone {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @return
@@ -299,7 +309,7 @@ public class Redstone {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @param group
@@ -312,7 +322,7 @@ public class Redstone {
     ////
 
     /**
-     * 
+     *
      * @param name
      * @return
      */
@@ -321,7 +331,7 @@ public class Redstone {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param group
      * @return
@@ -331,7 +341,7 @@ public class Redstone {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @return
@@ -341,7 +351,7 @@ public class Redstone {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @param group
@@ -354,7 +364,7 @@ public class Redstone {
     ////
     // Needs head?
     /**
-     * 
+     *
      * @param name
      * @return
      */
@@ -363,7 +373,7 @@ public class Redstone {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param group
      * @return
@@ -373,7 +383,7 @@ public class Redstone {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @return
@@ -383,7 +393,7 @@ public class Redstone {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @param group
@@ -396,7 +406,7 @@ public class Redstone {
     ////
 
     /**
-     * 
+     *
      * @param name
      * @return
      */
@@ -405,7 +415,7 @@ public class Redstone {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param group
      * @return
@@ -415,7 +425,7 @@ public class Redstone {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @return
@@ -425,7 +435,7 @@ public class Redstone {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @param group
@@ -438,7 +448,7 @@ public class Redstone {
     ////
 
     /**
-     * 
+     *
      * @param name
      * @return
      */
@@ -447,7 +457,7 @@ public class Redstone {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param group
      * @return
@@ -457,7 +467,7 @@ public class Redstone {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @return
@@ -467,7 +477,7 @@ public class Redstone {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @param group
@@ -480,7 +490,7 @@ public class Redstone {
     ////
 
     /**
-     * 
+     *
      * @param name
      * @return
      */
@@ -489,7 +499,7 @@ public class Redstone {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param group
      * @return
@@ -499,7 +509,7 @@ public class Redstone {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @return
@@ -509,7 +519,7 @@ public class Redstone {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @param group
@@ -522,7 +532,7 @@ public class Redstone {
     ////
 
     /**
-     * 
+     *
      * @param name
      * @return
      */
@@ -531,7 +541,7 @@ public class Redstone {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param group
      * @return
@@ -541,7 +551,7 @@ public class Redstone {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @return
@@ -551,7 +561,7 @@ public class Redstone {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @param group
@@ -564,7 +574,7 @@ public class Redstone {
     ////
 
     /**
-     * 
+     *
      * @param name
      * @return
      */
@@ -573,7 +583,7 @@ public class Redstone {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param group
      * @return
@@ -583,7 +593,7 @@ public class Redstone {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @return
@@ -593,7 +603,7 @@ public class Redstone {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @param group
@@ -606,7 +616,7 @@ public class Redstone {
     ////
 
     /**
-     * 
+     *
      * @param name
      * @return
      */
@@ -615,7 +625,7 @@ public class Redstone {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param group
      * @return
@@ -625,7 +635,7 @@ public class Redstone {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @return
@@ -635,7 +645,7 @@ public class Redstone {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @param group
@@ -649,7 +659,7 @@ public class Redstone {
     ////
 
     /**
-     * 
+     *
      * @param name
      * @return
      */
@@ -658,7 +668,7 @@ public class Redstone {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param group
      * @return
@@ -668,7 +678,7 @@ public class Redstone {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @return
@@ -678,7 +688,7 @@ public class Redstone {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @param group
@@ -691,39 +701,41 @@ public class Redstone {
     ////
 
     /**
-     * 
+     *
      * @param name
      * @return
      */
     public static final Block create_pressurePlate_weighted(String name, Integer maxWeight) {
         return BlockRegistry.register(name,
-                new WeightedPressurePlateBlock(maxWeight, Properties.copy(Blocks.LIGHT_WEIGHTED_PRESSURE_PLATE)));
+                new WeightedPressurePlateBlock(maxWeight, Properties.copy(Blocks.LIGHT_WEIGHTED_PRESSURE_PLATE),
+                        BlockSetType.IRON));
     }
 
     /**
-     * 
+     *
      * @param name
      * @param group
      * @return
      */
     public static final Block create_pressurePlate_weighted(String name, Integer maxWeight, CreativeModeTab group) {
         return BlockRegistry.register(name,
-                new WeightedPressurePlateBlock(maxWeight, Properties.copy(Blocks.LIGHT_WEIGHTED_PRESSURE_PLATE)),
+                new WeightedPressurePlateBlock(maxWeight, Properties.copy(Blocks.LIGHT_WEIGHTED_PRESSURE_PLATE),
+                        BlockSetType.IRON),
                 group);
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @return
      */
     public static final Block create_pressurePlate_weighted(String name, Integer maxWeight, Properties properties) {
-        return BlockRegistry.register(name, new WeightedPressurePlateBlock(maxWeight, properties));
+        return BlockRegistry.register(name, new WeightedPressurePlateBlock(maxWeight, properties, BlockSetType.IRON));
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @param group
@@ -731,13 +743,14 @@ public class Redstone {
      */
     public static final Block create_pressurePlate_weighted(String name, Integer maxWeight, Properties properties,
             CreativeModeTab group) {
-        return BlockRegistry.register(name, new WeightedPressurePlateBlock(maxWeight, properties), group);
+        return BlockRegistry.register(name, new WeightedPressurePlateBlock(maxWeight, properties, BlockSetType.IRON),
+                group);
     }
 
     ////
 
     /**
-     * 
+     *
      * @param name
      * @return
      */
@@ -746,7 +759,7 @@ public class Redstone {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param group
      * @return
@@ -757,7 +770,7 @@ public class Redstone {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @return
@@ -767,7 +780,7 @@ public class Redstone {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @param group
@@ -780,7 +793,7 @@ public class Redstone {
     ////
 
     /**
-     * 
+     *
      * @param name
      * @return
      */
@@ -789,7 +802,7 @@ public class Redstone {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param group
      * @return
@@ -799,7 +812,7 @@ public class Redstone {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @return
@@ -809,7 +822,7 @@ public class Redstone {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @param group
@@ -822,7 +835,7 @@ public class Redstone {
     ////
 
     /**
-     * 
+     *
      * @param name
      * @return
      */
@@ -831,7 +844,7 @@ public class Redstone {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param group
      * @return
@@ -841,7 +854,7 @@ public class Redstone {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @return
@@ -851,7 +864,7 @@ public class Redstone {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @param group
@@ -864,7 +877,7 @@ public class Redstone {
     ////
 
     /**
-     * 
+     *
      * @param name
      * @return
      */
@@ -873,7 +886,7 @@ public class Redstone {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param group
      * @return
@@ -883,7 +896,7 @@ public class Redstone {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @return
@@ -893,7 +906,7 @@ public class Redstone {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @param group
@@ -906,7 +919,7 @@ public class Redstone {
     ////
 
     /**
-     * 
+     *
      * @param name
      * @return
      */
@@ -915,7 +928,7 @@ public class Redstone {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param group
      * @return
@@ -925,7 +938,7 @@ public class Redstone {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @return
@@ -935,7 +948,7 @@ public class Redstone {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @param group
@@ -948,7 +961,7 @@ public class Redstone {
     ////
 
     /**
-     * 
+     *
      * @param name
      * @return
      */
@@ -957,7 +970,7 @@ public class Redstone {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param group
      * @return
@@ -967,7 +980,7 @@ public class Redstone {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @return
@@ -977,7 +990,7 @@ public class Redstone {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @param group
@@ -1033,7 +1046,7 @@ public class Redstone {
     ////
 
     /**
-     * 
+     *
      * @param name
      * @return
      */
@@ -1042,7 +1055,7 @@ public class Redstone {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param group
      * @return
@@ -1052,7 +1065,7 @@ public class Redstone {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @return
@@ -1062,7 +1075,7 @@ public class Redstone {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @param group

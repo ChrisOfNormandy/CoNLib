@@ -1,25 +1,23 @@
 package com.github.chrisofnormandy.conlib.block.types;
 
-import net.minecraft.sounds.SoundEvent;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.level.block.ButtonBlock;
+import net.minecraft.world.level.block.state.properties.BlockSetType;
 
 public class ButtonBase extends ButtonBlock {
-    private Boolean wooden = false;
 
-    /**
-     * 
-     * @param isWood
-     * @param properties
-     */
-    public ButtonBase(boolean isWood, Properties properties) {
-        super(isWood, properties);
-        wooden = isWood;
+    public ButtonBase(Properties properties) {
+        super(properties, BlockSetType.STONE, 0, true);
     }
 
-    @Override
-    protected SoundEvent getSound(boolean clicked) {
-        return wooden ? clicked ? SoundEvents.STONE_BUTTON_CLICK_ON : SoundEvents.STONE_BUTTON_CLICK_OFF
-                : clicked ? SoundEvents.WOODEN_BUTTON_CLICK_ON : SoundEvents.WOODEN_BUTTON_CLICK_OFF;
+    public ButtonBase(Properties properties, BlockSetType blockSetType) {
+        super(properties, blockSetType, 0, true);
+    }
+
+    public ButtonBase(Properties properties, BlockSetType blockSetType, int tickTime) {
+        super(properties, blockSetType, tickTime, true);
+    }
+
+    public ButtonBase(Properties properties, BlockSetType blockSetType, int tickTime, boolean shootable) {
+        super(properties, blockSetType, tickTime, shootable);
     }
 }

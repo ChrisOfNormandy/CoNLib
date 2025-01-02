@@ -10,20 +10,17 @@ import net.minecraft.world.item.ItemStack;
 import com.github.chrisofnormandy.conlib.registry.ModRegister;
 
 public class CreativeTab extends CreativeModeTab {
-    private Supplier<ItemStack> displayStack;
-
     /**
-     * 
+     *
      * @param label
      * @param icon
      */
     private CreativeTab(String label, Supplier<ItemStack> icon) {
-        super(label);
-        this.displayStack = icon;
+        super(builder());
     }
 
     /**
-     * 
+     *
      * @param name
      * @param icon_itemName
      * @return
@@ -35,7 +32,7 @@ public class CreativeTab extends CreativeModeTab {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param block
      * @return
@@ -46,17 +43,12 @@ public class CreativeTab extends CreativeModeTab {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param item
      * @return
      */
     public static final CreativeTab createGroup(String name, Item item) {
         return new CreativeTab(name, () -> new ItemStack(item));
-    }
-
-    @Override
-    public ItemStack makeIcon() {
-        return displayStack.get();
     }
 }

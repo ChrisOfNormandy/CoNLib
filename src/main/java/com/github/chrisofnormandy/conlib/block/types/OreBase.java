@@ -1,34 +1,33 @@
 package com.github.chrisofnormandy.conlib.block.types;
 
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.OreBlock;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.DropExperienceBlock;
 import net.minecraft.world.level.block.SoundType;
-import net.minecraft.world.level.material.Material;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.CreativeModeTab;
 
 import com.github.chrisofnormandy.conlib.registry.ItemRegistry;
 import com.github.chrisofnormandy.conlib.registry.OreRegistry;
-// import com.github.chrisofnormandy.conlib.registry.Tools;
 import com.github.chrisofnormandy.conlib.tool.ToolMaterial;
 
-public class OreBase extends OreBlock {
+public class OreBase extends DropExperienceBlock {
 
     public OreBase() {
-        super(Properties.of(Material.STONE).requiresCorrectToolForDrops().strength(3.0f).sound(SoundType.STONE));
+        super(Properties.copy(Blocks.IRON_ORE).requiresCorrectToolForDrops().strength(3.0f).sound(SoundType.STONE));
     }
 
     /**
-     * 
+     *
      * @param strength
      */
     public OreBase(Float strength) {
-        super(Properties.of(Material.STONE).requiresCorrectToolForDrops().strength(strength).sound(SoundType.STONE));
+        super(Properties.copy(Blocks.IRON_ORE).requiresCorrectToolForDrops().strength(strength).sound(SoundType.STONE));
     }
 
     public static class Register {
         /**
-         * 
+         *
          * @param name
          * @param group
          * @return
@@ -38,7 +37,7 @@ public class OreBase extends OreBlock {
         }
 
         /**
-         * 
+         *
          * @param name
          * @param strength
          * @param group
@@ -49,7 +48,7 @@ public class OreBase extends OreBlock {
         }
 
         /**
-         * 
+         *
          * @param name
          * @param block
          * @param group
@@ -60,7 +59,7 @@ public class OreBase extends OreBlock {
         }
 
         /**
-         * 
+         *
          * @param name
          * @param oreName
          * @param block
@@ -78,7 +77,7 @@ public class OreBase extends OreBlock {
         }
 
         /**
-         * 
+         *
          * @param name
          * @param oreName
          * @param block

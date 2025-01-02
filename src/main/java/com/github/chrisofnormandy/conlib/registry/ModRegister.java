@@ -15,13 +15,12 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.levelgen.feature.Feature;
-import net.minecraft.world.level.material.Material;
 
 public class ModRegister {
     private static String mod_id;
 
     /**
-     * 
+     *
      * @return
      */
     public static final String getModId() {
@@ -29,7 +28,7 @@ public class ModRegister {
     }
 
     /**
-     * 
+     *
      */
     public static final void Init() {
         mod_id = Main.MOD_ID;
@@ -40,7 +39,7 @@ public class ModRegister {
     }
 
     /**
-     * 
+     *
      * @param modId
      */
     public static final void Init(String modId) {
@@ -58,7 +57,8 @@ public class ModRegister {
     public static final HashMap<String, CreativeModeTab> groups = new HashMap<String, CreativeModeTab>();
 
     // MATERIALS
-    public static final HashMap<String, Material> materials = new HashMap<String, Material>();
+    // public static final HashMap<String, Material> materials = new HashMap<String,
+    // Material>();
     public static final HashMap<String, ToolMaterial> toolMaterials = new HashMap<String, ToolMaterial>();
 
     // BLOCKS
@@ -142,25 +142,25 @@ public class ModRegister {
     public static final HashMap<String, Tuple<Block, Block>> blocks_replaceable = new HashMap<String, Tuple<Block, Block>>();
 
     /**
-     * 
+     *
      * @param <T>
      * @param block
      * @return
      */
     public static final <T extends Block> T setBlock_unbreakable(T block) {
-        blocks_unbreakable.put(block.getRegistryName().toString(), block);
+        blocks_unbreakable.put(block.getName().toString(), block);
         return block;
     }
 
     /**
-     * 
+     *
      * @param <T>
      * @param blockIn
      * @param blockOut
      * @return
      */
     public static final <T extends Block> T setBlock_replaceable(T blockIn, T blockOut) {
-        blocks_replaceable.put(blockIn.getRegistryName().toString(), new Tuple<Block, Block>(blockIn, blockOut));
+        blocks_replaceable.put(blockIn.getName().toString(), new Tuple<Block, Block>(blockIn, blockOut));
         return blockOut;
     }
 }

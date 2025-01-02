@@ -39,7 +39,7 @@ import net.minecraft.core.particles.ParticleTypes;
 
 public class Decoration {
     /**
-     * 
+     *
      * @param name
      * @return
      */
@@ -48,7 +48,7 @@ public class Decoration {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param group
      * @return
@@ -58,7 +58,7 @@ public class Decoration {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @return
@@ -68,7 +68,7 @@ public class Decoration {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @param group
@@ -81,7 +81,7 @@ public class Decoration {
     ////
 
     /**
-     * 
+     *
      * @param name
      * @return
      */
@@ -90,7 +90,7 @@ public class Decoration {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param group
      * @return
@@ -100,7 +100,7 @@ public class Decoration {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @param particle
@@ -111,7 +111,7 @@ public class Decoration {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @param particle
@@ -127,94 +127,102 @@ public class Decoration {
     ////
 
     /**
-     * 
+     *
      * @param name
      * @return
      */
+    @SuppressWarnings("null")
     public static Block create_emptyPot(String name) {
         return BlockRegistry.register(name,
                 new FlowerPotBlock(null, () -> Blocks.AIR, Properties.copy(Blocks.FLOWER_POT)));
     }
 
     /**
-     * 
+     *
      * @param name
      * @param group
      * @return
      */
+    @SuppressWarnings("null")
     public static Block create_emptyPot(String name, CreativeModeTab group) {
         return BlockRegistry.register(name,
                 new FlowerPotBlock(null, () -> Blocks.AIR, Properties.copy(Blocks.FLOWER_POT)), group);
     }
 
     /**
-     * 
+     *
      * @param name
      * @param flower
      * @return
      */
+    @SuppressWarnings("null")
     public static Block create_flowerPot(String name, Block flower) {
         return BlockRegistry.register(name, new FlowerPotBlock(null, () -> flower, Properties.copy(Blocks.FLOWER_POT)));
     }
 
     /**
-     * 
+     *
      * @param name
      * @param flower
      * @param group
      * @return
      */
+    @SuppressWarnings("null")
     public static Block create_flowerPot(String name, Block flower, CreativeModeTab group) {
         return BlockRegistry.register(name, new FlowerPotBlock(null, () -> flower, Properties.copy(Blocks.FLOWER_POT)),
                 group);
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @return
      */
+    @SuppressWarnings("null")
     public static Block create_emptyPot(String name, Properties properties) {
         return BlockRegistry.register(name, new FlowerPotBlock(null, () -> Blocks.AIR, properties));
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @param group
      * @return
      */
+    @SuppressWarnings("null")
     public static Block create_emptyPot(String name, Properties properties, CreativeModeTab group) {
         return BlockRegistry.register(name, new FlowerPotBlock(null, () -> Blocks.AIR, properties), group);
     }
 
     /**
-     * 
+     *
      * @param name
      * @param flower
      * @param properties
      * @return
      */
+    @SuppressWarnings("null")
     public static Block create_flowerPot(String name, Block flower, Properties properties) {
         return BlockRegistry.register(name, new FlowerPotBlock(null, () -> flower, properties));
     }
 
     /**
-     * 
+     *
      * @param name
      * @param flower
      * @param properties
      * @param group
      * @return
      */
+    @SuppressWarnings("null")
     public static Block create_flowerPot(String name, Block flower, Properties properties, CreativeModeTab group) {
         return BlockRegistry.register(name, new FlowerPotBlock(null, () -> flower, properties), group);
     }
 
     /**
-     * 
+     *
      * @param name
      * @param flowers
      * @return
@@ -228,7 +236,7 @@ public class Decoration {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param flowers
      * @param properties
@@ -245,7 +253,7 @@ public class Decoration {
     ////
 
     /**
-     * 
+     *
      * @param name
      * @param color
      * @return
@@ -255,7 +263,7 @@ public class Decoration {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param color
      * @param group
@@ -266,7 +274,7 @@ public class Decoration {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param color
      * @param properties
@@ -277,7 +285,7 @@ public class Decoration {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param color
      * @param properties
@@ -291,7 +299,7 @@ public class Decoration {
     ////
 
     /**
-     * 
+     *
      * @param name
      * @return
      */
@@ -300,7 +308,7 @@ public class Decoration {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param group
      * @return
@@ -310,7 +318,7 @@ public class Decoration {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @return
@@ -320,7 +328,7 @@ public class Decoration {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @param group
@@ -333,7 +341,7 @@ public class Decoration {
     ////
 
     /**
-     * 
+     *
      * @param name
      * @return
      */
@@ -342,7 +350,7 @@ public class Decoration {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param group
      * @return
@@ -352,7 +360,7 @@ public class Decoration {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @return
@@ -362,7 +370,7 @@ public class Decoration {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @param group
@@ -375,7 +383,7 @@ public class Decoration {
     ////
 
     /**
-     * 
+     *
      * @param name
      * @return
      */
@@ -384,7 +392,7 @@ public class Decoration {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param group
      * @return
@@ -394,7 +402,7 @@ public class Decoration {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @return
@@ -404,7 +412,7 @@ public class Decoration {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @param group
@@ -417,7 +425,7 @@ public class Decoration {
     ////
 
     /**
-     * 
+     *
      * @param name
      * @return
      */
@@ -426,7 +434,7 @@ public class Decoration {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param group
      * @return
@@ -436,7 +444,7 @@ public class Decoration {
     }
 
     /**
-     * 
+     *
      * @param name
      * @return
      */
@@ -445,7 +453,7 @@ public class Decoration {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param group
      * @return
@@ -455,7 +463,7 @@ public class Decoration {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @return
@@ -465,7 +473,7 @@ public class Decoration {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @param group
@@ -478,7 +486,7 @@ public class Decoration {
     ////
 
     /**
-     * 
+     *
      * @param name
      * @return
      */
@@ -487,7 +495,7 @@ public class Decoration {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param group
      * @return
@@ -497,7 +505,7 @@ public class Decoration {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @return
@@ -507,7 +515,7 @@ public class Decoration {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @param group
@@ -520,7 +528,7 @@ public class Decoration {
     ////
 
     /**
-     * 
+     *
      * @param name
      * @return
      */
@@ -529,7 +537,7 @@ public class Decoration {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param group
      * @return
@@ -539,7 +547,7 @@ public class Decoration {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @return
@@ -549,7 +557,7 @@ public class Decoration {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @param group
@@ -562,7 +570,7 @@ public class Decoration {
     ////
 
     /**
-     * 
+     *
      * @param name
      * @return
      */
@@ -571,7 +579,7 @@ public class Decoration {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param group
      * @return
@@ -581,7 +589,7 @@ public class Decoration {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @return
@@ -591,7 +599,7 @@ public class Decoration {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @param group
@@ -604,7 +612,7 @@ public class Decoration {
     ////
 
     /**
-     * 
+     *
      * @param name
      * @return
      */
@@ -613,7 +621,7 @@ public class Decoration {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param group
      * @return
@@ -623,7 +631,7 @@ public class Decoration {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @return
@@ -633,7 +641,7 @@ public class Decoration {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @param group
@@ -693,7 +701,7 @@ public class Decoration {
     ////
 
     /**
-     * 
+     *
      * @param name
      * @return
      */
@@ -702,7 +710,7 @@ public class Decoration {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param group
      * @return
@@ -712,7 +720,7 @@ public class Decoration {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @return
@@ -722,7 +730,7 @@ public class Decoration {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @param group
@@ -735,7 +743,7 @@ public class Decoration {
     ////
 
     /**
-     * 
+     *
      * @param name
      * @return
      */
@@ -744,7 +752,7 @@ public class Decoration {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param group
      * @return
@@ -754,7 +762,7 @@ public class Decoration {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @return
@@ -764,7 +772,7 @@ public class Decoration {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @param group
@@ -777,7 +785,7 @@ public class Decoration {
     ////
 
     /**
-     * 
+     *
      * @param name
      * @return
      */
@@ -786,7 +794,7 @@ public class Decoration {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param group
      * @return
@@ -796,7 +804,7 @@ public class Decoration {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @return
@@ -806,7 +814,7 @@ public class Decoration {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @param group
@@ -819,7 +827,7 @@ public class Decoration {
     ////
 
     /**
-     * 
+     *
      * @param name
      * @return
      */
@@ -829,7 +837,7 @@ public class Decoration {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param group
      * @return
@@ -841,7 +849,7 @@ public class Decoration {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @return
@@ -852,7 +860,7 @@ public class Decoration {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @param group
@@ -866,7 +874,7 @@ public class Decoration {
     ////
 
     /**
-     * 
+     *
      * @param name
      * @return
      */
@@ -875,7 +883,7 @@ public class Decoration {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param group
      * @return
@@ -885,7 +893,7 @@ public class Decoration {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @return
@@ -895,7 +903,7 @@ public class Decoration {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @param group

@@ -3,36 +3,35 @@ package com.github.chrisofnormandy.conlib.registry;
 import com.github.chrisofnormandy.conlib.Main;
 
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.material.Material;
-import net.minecraft.world.level.material.MaterialColor;
 import net.minecraft.world.level.material.PushReaction;
+import net.minecraft.client.resources.model.Material;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public class BlockRegistry {
     /**
-     * 
+     *
      * @param name
      * @param block
      * @param transparent
      * @return
      */
     private static final Block _block(String name, Block block, Boolean transparent) {
-        block.setRegistryName(name);
-        ForgeRegistries.BLOCKS.register(block);
+        ForgeRegistries.BLOCKS.register(name, block);
         ModRegister.blocks.put(name, block);
 
         if (transparent)
             ModRegister.transparentBlocks.put(name, block);
 
-        Main.LOG.info("Registered new block: " + block.getRegistryName());
+        Main.LOG.info("Registered new block: " + block.getName());
         return block;
     }
 
     /**
-     * 
+     *
      * @param name
      * @param block
      * @param group
@@ -48,7 +47,7 @@ public class BlockRegistry {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param block
      * @param group
@@ -58,14 +57,14 @@ public class BlockRegistry {
     public static final Block register(String name, Block block, CreativeModeTab group, Boolean transparent) {
         Block b = _block(name, block, transparent);
 
-        BlockItem itemBlock = new BlockItem(b, new Item.Properties().tab(group));
-        ItemRegistry.register(name, itemBlock);
+        BlockItem itemBlock = new BlockItem(b, new Item.Properties());
+        itemBlock.ItemRegistry.register(name, itemBlock);
 
         return b;
     }
 
     /**
-     * 
+     *
      * @param name
      * @param block
      * @return
@@ -75,7 +74,7 @@ public class BlockRegistry {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param block
      * @param transparent
@@ -86,7 +85,7 @@ public class BlockRegistry {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param block
      * @param properties
@@ -103,7 +102,7 @@ public class BlockRegistry {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param block
      * @param properties
@@ -123,7 +122,7 @@ public class BlockRegistry {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param block
      * @param properties
@@ -139,7 +138,7 @@ public class BlockRegistry {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param block
      * @param properties
@@ -153,27 +152,5 @@ public class BlockRegistry {
         ItemRegistry.register(name, itemBlock);
 
         return b;
-    }
-
-    /**
-     * 
-     * @param name
-     * @param color
-     * @param isLiquid
-     * @param isSolid
-     * @param blocksMovement
-     * @param isOpaque
-     * @param flammable
-     * @param replaceable
-     * @param pushReaction
-     * @return
-     */
-    public static final Material registerMaterial(String name, MaterialColor color, Boolean isLiquid, Boolean isSolid,
-            Boolean blocksMovement, Boolean isOpaque, Boolean flammable, Boolean replaceable,
-            PushReaction pushReaction) {
-        Material material = new Material(color, isLiquid, isSolid, blocksMovement, isOpaque, flammable, replaceable,
-                pushReaction);
-        ModRegister.materials.put(name, material);
-        return material;
     }
 }
