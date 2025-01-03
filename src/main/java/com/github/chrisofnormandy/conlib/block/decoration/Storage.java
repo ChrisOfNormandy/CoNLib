@@ -10,11 +10,12 @@ import net.minecraft.world.level.block.ShulkerBoxBlock;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 import net.minecraft.world.item.DyeColor;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.CreativeModeTab;
 
 public class Storage {
     /**
-     * 
+     *
      * @param name
      * @return
      */
@@ -25,19 +26,19 @@ public class Storage {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param group
      * @return
      */
-    public static final Block create_chest(String name, CreativeModeTab group) {
+    public static final Block create_chest(String name, ResourceKey<CreativeModeTab> creativeTab) {
         return BlockRegistry.register(name, new ChestBlock(Properties.copy(Blocks.CHEST), () -> {
             return BlockEntityType.CHEST;
-        }), group);
+        }), creativeTab);
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @return
@@ -49,22 +50,23 @@ public class Storage {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @param group
      * @return
      */
-    public static final Block create_chest(String name, Properties properties, CreativeModeTab group) {
+    public static final Block create_chest(String name, Properties properties,
+            ResourceKey<CreativeModeTab> creativeTab) {
         return BlockRegistry.register(name, new ChestBlock(properties, () -> {
             return BlockEntityType.CHEST;
-        }), group);
+        }), creativeTab);
     }
 
     ////
 
     /**
-     * 
+     *
      * @param name
      * @return
      */
@@ -73,17 +75,17 @@ public class Storage {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param group
      * @return
      */
-    public static final Block create_barrel(String name, CreativeModeTab group) {
-        return BlockRegistry.register(name, new BarrelBlock(Properties.copy(Blocks.BARREL)), group);
+    public static final Block create_barrel(String name, ResourceKey<CreativeModeTab> creativeTab) {
+        return BlockRegistry.register(name, new BarrelBlock(Properties.copy(Blocks.BARREL)), creativeTab);
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @return
@@ -93,20 +95,21 @@ public class Storage {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @param group
      * @return
      */
-    public static final Block create_barrel(String name, Properties properties, CreativeModeTab group) {
-        return BlockRegistry.register(name, new BarrelBlock(properties), group);
+    public static final Block create_barrel(String name, Properties properties,
+            ResourceKey<CreativeModeTab> creativeTab) {
+        return BlockRegistry.register(name, new BarrelBlock(properties), creativeTab);
     }
 
     ////
 
     /**
-     * 
+     *
      * @param name
      * @param color
      * @return
@@ -116,19 +119,19 @@ public class Storage {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param color
      * @param group
      * @return
      */
-    public static final Block create_shulker(String name, DyeColor color, CreativeModeTab group) {
+    public static final Block create_shulker(String name, DyeColor color, ResourceKey<CreativeModeTab> creativeTab) {
         return BlockRegistry.register(name, new ShulkerBoxBlock(color, Properties.copy(Blocks.WHITE_SHULKER_BOX)),
-                group);
+                creativeTab);
     }
 
     /**
-     * 
+     *
      * @param name
      * @param color
      * @param properties
@@ -139,7 +142,7 @@ public class Storage {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param color
      * @param properties
@@ -147,7 +150,7 @@ public class Storage {
      * @return
      */
     public static final Block create_shulker(String name, DyeColor color, Properties properties,
-            CreativeModeTab group) {
-        return BlockRegistry.register(name, new ShulkerBoxBlock(color, properties), group);
+            ResourceKey<CreativeModeTab> creativeTab) {
+        return BlockRegistry.register(name, new ShulkerBoxBlock(color, properties), creativeTab);
     }
 }

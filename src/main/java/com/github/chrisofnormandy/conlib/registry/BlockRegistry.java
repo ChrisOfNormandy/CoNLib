@@ -3,12 +3,10 @@ package com.github.chrisofnormandy.conlib.registry;
 import com.github.chrisofnormandy.conlib.Main;
 
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.material.PushReaction;
-import net.minecraft.client.resources.model.Material;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public class BlockRegistry {
@@ -37,10 +35,10 @@ public class BlockRegistry {
      * @param group
      * @return
      */
-    public static final Block register(String name, Block block, CreativeModeTab group) {
+    public static final Block register(String name, Block block, ResourceKey<CreativeModeTab> creativeTab) {
         Block b = _block(name, block, false);
 
-        BlockItem itemBlock = new BlockItem(b, new Item.Properties().tab(group));
+        BlockItem itemBlock = new BlockItem(b, new Item.Properties());
         ItemRegistry.register(name, itemBlock);
 
         return b;
@@ -58,7 +56,7 @@ public class BlockRegistry {
         Block b = _block(name, block, transparent);
 
         BlockItem itemBlock = new BlockItem(b, new Item.Properties());
-        itemBlock.ItemRegistry.register(name, itemBlock);
+        ItemRegistry.register(name, itemBlock);
 
         return b;
     }
@@ -92,11 +90,12 @@ public class BlockRegistry {
      * @param group
      * @return
      */
-    public static final Block register(String name, Block block, Item.Properties properties, CreativeModeTab group) {
+    public static final Block register(String name, Block block, Item.Properties properties,
+            ResourceKey<CreativeModeTab> creativeTab) {
         Block b = _block(name, block, false);
 
-        BlockItem itemBlock = new BlockItem(b, properties.tab(group));
-        ItemRegistry.register(name, itemBlock);
+        BlockItem itemBlock = new BlockItem(b, properties);
+        ItemRegistry.register(name, itemBlock, creativeTab);
 
         return b;
     }
@@ -111,12 +110,12 @@ public class BlockRegistry {
      * @return
      */
     public static final Block register(String name, Block block, Item.Properties properties,
-            CreativeModeTab group,
+            ResourceKey<CreativeModeTab> creativeTab,
             Boolean transparent) {
         Block b = _block(name, block, transparent);
 
-        BlockItem itemBlock = new BlockItem(b, properties.tab(group));
-        ItemRegistry.register(name, itemBlock);
+        BlockItem itemBlock = new BlockItem(b, properties);
+        ItemRegistry.register(name, itemBlock, creativeTab);
 
         return b;
     }

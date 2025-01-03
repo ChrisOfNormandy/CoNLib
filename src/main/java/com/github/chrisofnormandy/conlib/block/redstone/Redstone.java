@@ -27,6 +27,7 @@ import net.minecraft.world.level.block.PressurePlateBlock.Sensitivity;
 import net.minecraft.world.level.block.piston.PistonBaseBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.CreativeModeTab;
 
 public class Redstone {
@@ -47,11 +48,11 @@ public class Redstone {
      * @param group
      * @return
      */
-    public static final Block create_pressurePlate_wood(String name, CreativeModeTab group) {
+    public static final Block create_pressurePlate_wood(String name, ResourceKey<CreativeModeTab> creativeTab) {
         return BlockRegistry.register(name,
                 new PressurePlateBlock(Sensitivity.EVERYTHING, Properties.copy(Blocks.OAK_PRESSURE_PLATE),
                         BlockSetType.OAK),
-                group);
+                creativeTab);
     }
 
     /**
@@ -72,9 +73,10 @@ public class Redstone {
      * @param group
      * @return
      */
-    public static final Block create_pressurePlate_wood(String name, Properties properties, CreativeModeTab group) {
+    public static final Block create_pressurePlate_wood(String name, Properties properties,
+            ResourceKey<CreativeModeTab> creativeTab) {
         return BlockRegistry.register(name,
-                new PressurePlateBlock(Sensitivity.EVERYTHING, properties, BlockSetType.OAK), group);
+                new PressurePlateBlock(Sensitivity.EVERYTHING, properties, BlockSetType.OAK), creativeTab);
     }
 
     ////
@@ -96,11 +98,11 @@ public class Redstone {
      * @param group
      * @return
      */
-    public static final Block create_pressurePlate_stone(String name, CreativeModeTab group) {
+    public static final Block create_pressurePlate_stone(String name, ResourceKey<CreativeModeTab> creativeTab) {
         return BlockRegistry.register(name,
                 new PressurePlateBlock(Sensitivity.MOBS, Properties.copy(Blocks.STONE_PRESSURE_PLATE),
                         BlockSetType.STONE),
-                group);
+                creativeTab);
     }
 
     /**
@@ -120,9 +122,10 @@ public class Redstone {
      * @param group
      * @return
      */
-    public static final Block create_pressurePlate_stone(String name, Properties properties, CreativeModeTab group) {
+    public static final Block create_pressurePlate_stone(String name, Properties properties,
+            ResourceKey<CreativeModeTab> creativeTab) {
         return BlockRegistry.register(name, new PressurePlateBlock(Sensitivity.MOBS, properties, BlockSetType.STONE),
-                group);
+                creativeTab);
     }
 
     ////
@@ -147,8 +150,9 @@ public class Redstone {
      * @return
      */
     public static final Block create_pressurePlate(String name, Sensitivity sensitivity, Properties properties,
-            CreativeModeTab group) {
-        return BlockRegistry.register(name, new PressurePlateBlock(sensitivity, properties, BlockSetType.STONE), group);
+            ResourceKey<CreativeModeTab> creativeTab) {
+        return BlockRegistry.register(name, new PressurePlateBlock(sensitivity, properties, BlockSetType.STONE),
+                creativeTab);
     }
 
     ////
@@ -168,8 +172,8 @@ public class Redstone {
      * @param group
      * @return
      */
-    public static final Block create_button_wood(String name, CreativeModeTab group) {
-        return BlockRegistry.register(name, new ButtonBase(Properties.copy(Blocks.OAK_BUTTON)), group);
+    public static final Block create_button_wood(String name, ResourceKey<CreativeModeTab> creativeTab) {
+        return BlockRegistry.register(name, new ButtonBase(Properties.copy(Blocks.OAK_BUTTON)), creativeTab);
     }
 
     /**
@@ -189,8 +193,9 @@ public class Redstone {
      * @param group
      * @return
      */
-    public static final Block create_button_wood(String name, Properties properties, CreativeModeTab group) {
-        return BlockRegistry.register(name, new ButtonBase(properties), group);
+    public static final Block create_button_wood(String name, Properties properties,
+            ResourceKey<CreativeModeTab> creativeTab) {
+        return BlockRegistry.register(name, new ButtonBase(properties), creativeTab);
     }
 
     ////
@@ -210,8 +215,8 @@ public class Redstone {
      * @param group
      * @return
      */
-    public static final Block create_button_stone(String name, CreativeModeTab group) {
-        return BlockRegistry.register(name, new ButtonBase(Properties.copy(Blocks.STONE_BUTTON)), group);
+    public static final Block create_button_stone(String name, ResourceKey<CreativeModeTab> creativeTab) {
+        return BlockRegistry.register(name, new ButtonBase(Properties.copy(Blocks.STONE_BUTTON)), creativeTab);
     }
 
     /**
@@ -231,8 +236,9 @@ public class Redstone {
      * @param group
      * @return
      */
-    public static final Block create_button_stone(String name, Properties properties, CreativeModeTab group) {
-        return BlockRegistry.register(name, new ButtonBase(properties), group);
+    public static final Block create_button_stone(String name, Properties properties,
+            ResourceKey<CreativeModeTab> creativeTab) {
+        return BlockRegistry.register(name, new ButtonBase(properties), creativeTab);
     }
 
     ////
@@ -252,8 +258,8 @@ public class Redstone {
      * @param group
      * @return
      */
-    public static final Block create_lever(String name, CreativeModeTab group) {
-        return BlockRegistry.register(name, new LeverBlock(Properties.copy(Blocks.LEVER)), group);
+    public static final Block create_lever(String name, ResourceKey<CreativeModeTab> creativeTab) {
+        return BlockRegistry.register(name, new LeverBlock(Properties.copy(Blocks.LEVER)), creativeTab);
     }
 
     /**
@@ -273,8 +279,9 @@ public class Redstone {
      * @param group
      * @return
      */
-    public static final Block create_lever(String name, Properties properties, CreativeModeTab group) {
-        return BlockRegistry.register(name, new LeverBlock(properties), group);
+    public static final Block create_lever(String name, Properties properties,
+            ResourceKey<CreativeModeTab> creativeTab) {
+        return BlockRegistry.register(name, new LeverBlock(properties), creativeTab);
     }
 
     ////
@@ -294,8 +301,8 @@ public class Redstone {
      * @param group
      * @return
      */
-    public static final Block create_dispenser(String name, CreativeModeTab group) {
-        return BlockRegistry.register(name, new DispenserBlock(Properties.copy(Blocks.DISPENSER)), group);
+    public static final Block create_dispenser(String name, ResourceKey<CreativeModeTab> creativeTab) {
+        return BlockRegistry.register(name, new DispenserBlock(Properties.copy(Blocks.DISPENSER)), creativeTab);
     }
 
     /**
@@ -315,8 +322,9 @@ public class Redstone {
      * @param group
      * @return
      */
-    public static final Block create_dispenser(String name, Properties properties, CreativeModeTab group) {
-        return BlockRegistry.register(name, new DispenserBlock(properties), group);
+    public static final Block create_dispenser(String name, Properties properties,
+            ResourceKey<CreativeModeTab> creativeTab) {
+        return BlockRegistry.register(name, new DispenserBlock(properties), creativeTab);
     }
 
     ////
@@ -336,8 +344,8 @@ public class Redstone {
      * @param group
      * @return
      */
-    public static final Block create_noteBlock(String name, CreativeModeTab group) {
-        return BlockRegistry.register(name, new NoteBlock(Properties.copy(Blocks.NOTE_BLOCK)), group);
+    public static final Block create_noteBlock(String name, ResourceKey<CreativeModeTab> creativeTab) {
+        return BlockRegistry.register(name, new NoteBlock(Properties.copy(Blocks.NOTE_BLOCK)), creativeTab);
     }
 
     /**
@@ -357,8 +365,9 @@ public class Redstone {
      * @param group
      * @return
      */
-    public static final Block create_noteBlock(String name, Properties properties, CreativeModeTab group) {
-        return BlockRegistry.register(name, new NoteBlock(properties), group);
+    public static final Block create_noteBlock(String name, Properties properties,
+            ResourceKey<CreativeModeTab> creativeTab) {
+        return BlockRegistry.register(name, new NoteBlock(properties), creativeTab);
     }
 
     ////
@@ -378,8 +387,8 @@ public class Redstone {
      * @param group
      * @return
      */
-    public static final Block create_stickyPiston(String name, CreativeModeTab group) {
-        return BlockRegistry.register(name, new PistonBaseBlock(true, Properties.copy(Blocks.PISTON)), group);
+    public static final Block create_stickyPiston(String name, ResourceKey<CreativeModeTab> creativeTab) {
+        return BlockRegistry.register(name, new PistonBaseBlock(true, Properties.copy(Blocks.PISTON)), creativeTab);
     }
 
     /**
@@ -399,8 +408,9 @@ public class Redstone {
      * @param group
      * @return
      */
-    public static final Block create_stickyPiston(String name, Properties properties, CreativeModeTab group) {
-        return BlockRegistry.register(name, new PistonBaseBlock(true, properties), group);
+    public static final Block create_stickyPiston(String name, Properties properties,
+            ResourceKey<CreativeModeTab> creativeTab) {
+        return BlockRegistry.register(name, new PistonBaseBlock(true, properties), creativeTab);
     }
 
     ////
@@ -420,8 +430,8 @@ public class Redstone {
      * @param group
      * @return
      */
-    public static final Block create_piston(String name, CreativeModeTab group) {
-        return BlockRegistry.register(name, new PistonBaseBlock(false, Properties.copy(Blocks.PISTON)), group);
+    public static final Block create_piston(String name, ResourceKey<CreativeModeTab> creativeTab) {
+        return BlockRegistry.register(name, new PistonBaseBlock(false, Properties.copy(Blocks.PISTON)), creativeTab);
     }
 
     /**
@@ -441,8 +451,9 @@ public class Redstone {
      * @param group
      * @return
      */
-    public static final Block create_piston(String name, Properties properties, CreativeModeTab group) {
-        return BlockRegistry.register(name, new PistonBaseBlock(false, properties), group);
+    public static final Block create_piston(String name, Properties properties,
+            ResourceKey<CreativeModeTab> creativeTab) {
+        return BlockRegistry.register(name, new PistonBaseBlock(false, properties), creativeTab);
     }
 
     ////
@@ -462,8 +473,8 @@ public class Redstone {
      * @param group
      * @return
      */
-    public static final Block create_tnt(String name, CreativeModeTab group) {
-        return BlockRegistry.register(name, new TntBlock(Properties.copy(Blocks.TNT)), group);
+    public static final Block create_tnt(String name, ResourceKey<CreativeModeTab> creativeTab) {
+        return BlockRegistry.register(name, new TntBlock(Properties.copy(Blocks.TNT)), creativeTab);
     }
 
     /**
@@ -483,8 +494,8 @@ public class Redstone {
      * @param group
      * @return
      */
-    public static final Block create_tnt(String name, Properties properties, CreativeModeTab group) {
-        return BlockRegistry.register(name, new TntBlock(properties), group);
+    public static final Block create_tnt(String name, Properties properties, ResourceKey<CreativeModeTab> creativeTab) {
+        return BlockRegistry.register(name, new TntBlock(properties), creativeTab);
     }
 
     ////
@@ -504,8 +515,9 @@ public class Redstone {
      * @param group
      * @return
      */
-    public static final Block create_redstoneTorch(String name, CreativeModeTab group) {
-        return BlockRegistry.register(name, new RedstoneTorchBlock(Properties.copy(Blocks.REDSTONE_TORCH)), group);
+    public static final Block create_redstoneTorch(String name, ResourceKey<CreativeModeTab> creativeTab) {
+        return BlockRegistry.register(name, new RedstoneTorchBlock(Properties.copy(Blocks.REDSTONE_TORCH)),
+                creativeTab);
     }
 
     /**
@@ -525,8 +537,9 @@ public class Redstone {
      * @param group
      * @return
      */
-    public static final Block create_redstoneTorch(String name, Properties properties, CreativeModeTab group) {
-        return BlockRegistry.register(name, new RedstoneTorchBlock(properties), group);
+    public static final Block create_redstoneTorch(String name, Properties properties,
+            ResourceKey<CreativeModeTab> creativeTab) {
+        return BlockRegistry.register(name, new RedstoneTorchBlock(properties), creativeTab);
     }
 
     ////
@@ -546,8 +559,8 @@ public class Redstone {
      * @param group
      * @return
      */
-    public static final Block create_lamp(String name, CreativeModeTab group) {
-        return BlockRegistry.register(name, new RedstoneLampBlock(Properties.copy(Blocks.REDSTONE_LAMP)), group);
+    public static final Block create_lamp(String name, ResourceKey<CreativeModeTab> creativeTab) {
+        return BlockRegistry.register(name, new RedstoneLampBlock(Properties.copy(Blocks.REDSTONE_LAMP)), creativeTab);
     }
 
     /**
@@ -567,8 +580,9 @@ public class Redstone {
      * @param group
      * @return
      */
-    public static final Block create_lamp(String name, Properties properties, CreativeModeTab group) {
-        return BlockRegistry.register(name, new RedstoneLampBlock(properties), group);
+    public static final Block create_lamp(String name, Properties properties,
+            ResourceKey<CreativeModeTab> creativeTab) {
+        return BlockRegistry.register(name, new RedstoneLampBlock(properties), creativeTab);
     }
 
     ////
@@ -588,8 +602,8 @@ public class Redstone {
      * @param group
      * @return
      */
-    public static final Block create_tripwireHook(String name, CreativeModeTab group) {
-        return BlockRegistry.register(name, new TripWireHookBlock(Properties.copy(Blocks.TRIPWIRE_HOOK)), group);
+    public static final Block create_tripwireHook(String name, ResourceKey<CreativeModeTab> creativeTab) {
+        return BlockRegistry.register(name, new TripWireHookBlock(Properties.copy(Blocks.TRIPWIRE_HOOK)), creativeTab);
     }
 
     /**
@@ -609,8 +623,9 @@ public class Redstone {
      * @param group
      * @return
      */
-    public static final Block create_tripwireHook(String name, Properties properties, CreativeModeTab group) {
-        return BlockRegistry.register(name, new TripWireHookBlock(properties), group);
+    public static final Block create_tripwireHook(String name, Properties properties,
+            ResourceKey<CreativeModeTab> creativeTab) {
+        return BlockRegistry.register(name, new TripWireHookBlock(properties), creativeTab);
     }
 
     ////
@@ -630,8 +645,10 @@ public class Redstone {
      * @param group
      * @return
      */
-    public static final Block create_tripwire(String name, TripWireHookBlock hookBlock, CreativeModeTab group) {
-        return BlockRegistry.register(name, new TripWireBlock(hookBlock, Properties.copy(Blocks.TRIPWIRE)), group);
+    public static final Block create_tripwire(String name, TripWireHookBlock hookBlock,
+            ResourceKey<CreativeModeTab> creativeTab) {
+        return BlockRegistry.register(name, new TripWireBlock(hookBlock, Properties.copy(Blocks.TRIPWIRE)),
+                creativeTab);
     }
 
     /**
@@ -652,8 +669,8 @@ public class Redstone {
      * @return
      */
     public static final Block create_tripwire(String name, TripWireHookBlock hookBlock, Properties properties,
-            CreativeModeTab group) {
-        return BlockRegistry.register(name, new TripWireBlock(hookBlock, properties), group);
+            ResourceKey<CreativeModeTab> creativeTab) {
+        return BlockRegistry.register(name, new TripWireBlock(hookBlock, properties), creativeTab);
     }
 
     ////
@@ -673,8 +690,8 @@ public class Redstone {
      * @param group
      * @return
      */
-    public static final Block create_trappedChest(String name, CreativeModeTab group) {
-        return BlockRegistry.register(name, new TrappedChestBlock(Properties.copy(Blocks.TRAPPED_CHEST)), group);
+    public static final Block create_trappedChest(String name, ResourceKey<CreativeModeTab> creativeTab) {
+        return BlockRegistry.register(name, new TrappedChestBlock(Properties.copy(Blocks.TRAPPED_CHEST)), creativeTab);
     }
 
     /**
@@ -694,8 +711,9 @@ public class Redstone {
      * @param group
      * @return
      */
-    public static final Block create_trappedChest(String name, Properties properties, CreativeModeTab group) {
-        return BlockRegistry.register(name, new TrappedChestBlock(properties), group);
+    public static final Block create_trappedChest(String name, Properties properties,
+            ResourceKey<CreativeModeTab> creativeTab) {
+        return BlockRegistry.register(name, new TrappedChestBlock(properties), creativeTab);
     }
 
     ////
@@ -717,11 +735,12 @@ public class Redstone {
      * @param group
      * @return
      */
-    public static final Block create_pressurePlate_weighted(String name, Integer maxWeight, CreativeModeTab group) {
+    public static final Block create_pressurePlate_weighted(String name, Integer maxWeight,
+            ResourceKey<CreativeModeTab> creativeTab) {
         return BlockRegistry.register(name,
                 new WeightedPressurePlateBlock(maxWeight, Properties.copy(Blocks.LIGHT_WEIGHTED_PRESSURE_PLATE),
                         BlockSetType.IRON),
-                group);
+                creativeTab);
     }
 
     /**
@@ -742,9 +761,9 @@ public class Redstone {
      * @return
      */
     public static final Block create_pressurePlate_weighted(String name, Integer maxWeight, Properties properties,
-            CreativeModeTab group) {
+            ResourceKey<CreativeModeTab> creativeTab) {
         return BlockRegistry.register(name, new WeightedPressurePlateBlock(maxWeight, properties, BlockSetType.IRON),
-                group);
+                creativeTab);
     }
 
     ////
@@ -764,9 +783,9 @@ public class Redstone {
      * @param group
      * @return
      */
-    public static final Block create_daylightDetector(String name, CreativeModeTab group) {
+    public static final Block create_daylightDetector(String name, ResourceKey<CreativeModeTab> creativeTab) {
         return BlockRegistry.register(name, new DaylightDetectorBlock(Properties.copy(Blocks.DAYLIGHT_DETECTOR)),
-                group);
+                creativeTab);
     }
 
     /**
@@ -786,8 +805,9 @@ public class Redstone {
      * @param group
      * @return
      */
-    public static final Block create_daylightDetector(String name, Properties properties, CreativeModeTab group) {
-        return BlockRegistry.register(name, new DaylightDetectorBlock(properties), group);
+    public static final Block create_daylightDetector(String name, Properties properties,
+            ResourceKey<CreativeModeTab> creativeTab) {
+        return BlockRegistry.register(name, new DaylightDetectorBlock(properties), creativeTab);
     }
 
     ////
@@ -807,8 +827,8 @@ public class Redstone {
      * @param group
      * @return
      */
-    public static final Block create_hopper(String name, CreativeModeTab group) {
-        return BlockRegistry.register(name, new HopperBlock(Properties.copy(Blocks.HOPPER)), group);
+    public static final Block create_hopper(String name, ResourceKey<CreativeModeTab> creativeTab) {
+        return BlockRegistry.register(name, new HopperBlock(Properties.copy(Blocks.HOPPER)), creativeTab);
     }
 
     /**
@@ -828,8 +848,9 @@ public class Redstone {
      * @param group
      * @return
      */
-    public static final Block create_hopper(String name, Properties properties, CreativeModeTab group) {
-        return BlockRegistry.register(name, new HopperBlock(properties), group);
+    public static final Block create_hopper(String name, Properties properties,
+            ResourceKey<CreativeModeTab> creativeTab) {
+        return BlockRegistry.register(name, new HopperBlock(properties), creativeTab);
     }
 
     ////
@@ -849,8 +870,8 @@ public class Redstone {
      * @param group
      * @return
      */
-    public static final Block create_dropper(String name, CreativeModeTab group) {
-        return BlockRegistry.register(name, new DropperBlock(Properties.copy(Blocks.DROPPER)), group);
+    public static final Block create_dropper(String name, ResourceKey<CreativeModeTab> creativeTab) {
+        return BlockRegistry.register(name, new DropperBlock(Properties.copy(Blocks.DROPPER)), creativeTab);
     }
 
     /**
@@ -870,8 +891,9 @@ public class Redstone {
      * @param group
      * @return
      */
-    public static final Block create_dropper(String name, Properties properties, CreativeModeTab group) {
-        return BlockRegistry.register(name, new DropperBlock(properties), group);
+    public static final Block create_dropper(String name, Properties properties,
+            ResourceKey<CreativeModeTab> creativeTab) {
+        return BlockRegistry.register(name, new DropperBlock(properties), creativeTab);
     }
 
     ////
@@ -891,8 +913,8 @@ public class Redstone {
      * @param group
      * @return
      */
-    public static final Block create_observer(String name, CreativeModeTab group) {
-        return BlockRegistry.register(name, new ObserverBlock(Properties.copy(Blocks.OBSERVER)), group);
+    public static final Block create_observer(String name, ResourceKey<CreativeModeTab> creativeTab) {
+        return BlockRegistry.register(name, new ObserverBlock(Properties.copy(Blocks.OBSERVER)), creativeTab);
     }
 
     /**
@@ -912,8 +934,9 @@ public class Redstone {
      * @param group
      * @return
      */
-    public static final Block create_observer(String name, Properties properties, CreativeModeTab group) {
-        return BlockRegistry.register(name, new ObserverBlock(properties), group);
+    public static final Block create_observer(String name, Properties properties,
+            ResourceKey<CreativeModeTab> creativeTab) {
+        return BlockRegistry.register(name, new ObserverBlock(properties), creativeTab);
     }
 
     ////
@@ -933,8 +956,8 @@ public class Redstone {
      * @param group
      * @return
      */
-    public static final Block create_repeater(String name, CreativeModeTab group) {
-        return BlockRegistry.register(name, new RepeaterBlock(Properties.copy(Blocks.REPEATER)), group);
+    public static final Block create_repeater(String name, ResourceKey<CreativeModeTab> creativeTab) {
+        return BlockRegistry.register(name, new RepeaterBlock(Properties.copy(Blocks.REPEATER)), creativeTab);
     }
 
     /**
@@ -954,8 +977,9 @@ public class Redstone {
      * @param group
      * @return
      */
-    public static final Block create_repeater(String name, Properties properties, CreativeModeTab group) {
-        return BlockRegistry.register(name, new RepeaterBlock(properties), group);
+    public static final Block create_repeater(String name, Properties properties,
+            ResourceKey<CreativeModeTab> creativeTab) {
+        return BlockRegistry.register(name, new RepeaterBlock(properties), creativeTab);
     }
 
     ////
@@ -975,8 +999,8 @@ public class Redstone {
      * @param group
      * @return
      */
-    public static final Block create_comparator(String name, CreativeModeTab group) {
-        return BlockRegistry.register(name, new ComparatorBlock(Properties.copy(Blocks.COMPARATOR)), group);
+    public static final Block create_comparator(String name, ResourceKey<CreativeModeTab> creativeTab) {
+        return BlockRegistry.register(name, new ComparatorBlock(Properties.copy(Blocks.COMPARATOR)), creativeTab);
     }
 
     /**
@@ -996,8 +1020,9 @@ public class Redstone {
      * @param group
      * @return
      */
-    public static final Block create_comparator(String name, Properties properties, CreativeModeTab group) {
-        return BlockRegistry.register(name, new ComparatorBlock(properties), group);
+    public static final Block create_comparator(String name, Properties properties,
+            ResourceKey<CreativeModeTab> creativeTab) {
+        return BlockRegistry.register(name, new ComparatorBlock(properties), creativeTab);
     }
 
     ////
@@ -1017,7 +1042,8 @@ public class Redstone {
     // * @param group
     // * @return
     // */
-    // public static final Block create_wire(String name, CreativeModeTab group) {
+    // public static final Block create_wire(String name,
+    // ResourceKey<CreativeModeTab> creativeTab) {
     // return BlockRegistry.register(name, new , group);
     // }
 
@@ -1039,7 +1065,7 @@ public class Redstone {
     // * @return
     // */
     // public static final Block create_wire(String name, Properties properties,
-    // CreativeModeTab group) {
+    // ResourceKey<CreativeModeTab> creativeTab) {
     // return BlockRegistry.register(name, new , group);
     // }
 
@@ -1060,8 +1086,8 @@ public class Redstone {
      * @param group
      * @return
      */
-    public static final Block create_targetBlock(String name, CreativeModeTab group) {
-        return BlockRegistry.register(name, new TargetBlock(Properties.copy(Blocks.TARGET)), group);
+    public static final Block create_targetBlock(String name, ResourceKey<CreativeModeTab> creativeTab) {
+        return BlockRegistry.register(name, new TargetBlock(Properties.copy(Blocks.TARGET)), creativeTab);
     }
 
     /**
@@ -1081,7 +1107,8 @@ public class Redstone {
      * @param group
      * @return
      */
-    public static final Block create_targetBlock(String name, Properties properties, CreativeModeTab group) {
-        return BlockRegistry.register(name, new TargetBlock(properties), group);
+    public static final Block create_targetBlock(String name, Properties properties,
+            ResourceKey<CreativeModeTab> creativeTab) {
+        return BlockRegistry.register(name, new TargetBlock(properties), creativeTab);
     }
 }

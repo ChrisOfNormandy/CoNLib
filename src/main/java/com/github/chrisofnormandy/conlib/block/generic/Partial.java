@@ -6,11 +6,12 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.StairBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.CreativeModeTab;
 
 public class Partial {
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @return
@@ -20,18 +21,19 @@ public class Partial {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @param group
      * @return
      */
-    public static final Block create_slab(String name, Properties properties, CreativeModeTab group) {
-        return BlockRegistry.register(name, new SlabBlock(properties), group);
+    public static final Block create_slab(String name, Properties properties,
+            ResourceKey<CreativeModeTab> creativeTab) {
+        return BlockRegistry.register(name, new SlabBlock(properties), creativeTab);
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @return
@@ -42,14 +44,15 @@ public class Partial {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @param group
      * @return
      */
-    public static final Block create_stairs(String name, Properties properties, CreativeModeTab group) {
+    public static final Block create_stairs(String name, Properties properties,
+            ResourceKey<CreativeModeTab> creativeTab) {
         return BlockRegistry.register(name,
-                new StairBlock(() -> new Block(properties).defaultBlockState(), properties), group);
+                new StairBlock(() -> new Block(properties).defaultBlockState(), properties), creativeTab);
     }
 }

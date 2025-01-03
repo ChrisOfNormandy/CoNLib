@@ -26,6 +26,7 @@ import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.data.worldgen.features.TreeFeatures;
+import net.minecraft.resources.ResourceKey;
 
 /*
     Unfinished:
@@ -54,7 +55,8 @@ public class Plants {
     // * @param group
     // * @return
     // */
-    // public static final Block create_sapling(String name, CreativeModeTab group)
+    // public static final Block create_sapling(String name,
+    // ResourceKey<CreativeModeTab> creativeTab)
     // {
     // return BlockRegistry.register(name, new SaplingBlock(p_i48337_1_,
     // Properties.copy(Blocks.OAK_SAPLING)), group);
@@ -80,7 +82,7 @@ public class Plants {
     // * @return
     // */
     // public static final Block create_sapling(String name, Properties properties,
-    // CreativeModeTab group) {
+    // ResourceKey<CreativeModeTab> creativeTab) {
     // return BlockRegistry.register(name, new SaplingBlock(p_i48337_1_,
     // properties), group);
     // }
@@ -102,8 +104,8 @@ public class Plants {
      * @param group
      * @return
      */
-    public static final Block create_leaves(String name, CreativeModeTab group) {
-        return BlockRegistry.register(name, new LeavesBlock(Properties.copy(Blocks.OAK_LEAVES)), group);
+    public static final Block create_leaves(String name, ResourceKey<CreativeModeTab> creativeTab) {
+        return BlockRegistry.register(name, new LeavesBlock(Properties.copy(Blocks.OAK_LEAVES)), creativeTab);
     }
 
     /**
@@ -123,8 +125,9 @@ public class Plants {
      * @param group
      * @return
      */
-    public static final Block create_leaves(String name, Properties properties, CreativeModeTab group) {
-        return BlockRegistry.register(name, new LeavesBlock(properties), group);
+    public static final Block create_leaves(String name, Properties properties,
+            ResourceKey<CreativeModeTab> creativeTab) {
+        return BlockRegistry.register(name, new LeavesBlock(properties), creativeTab);
     }
 
     ////
@@ -144,8 +147,8 @@ public class Plants {
      * @param group
      * @return
      */
-    public static final Block create_foliage(String name, CreativeModeTab group) {
-        return BlockRegistry.register(name, new GrassBlock(Properties.copy(Blocks.GRASS)), group);
+    public static final Block create_foliage(String name, ResourceKey<CreativeModeTab> creativeTab) {
+        return BlockRegistry.register(name, new GrassBlock(Properties.copy(Blocks.GRASS)), creativeTab);
     }
 
     /**
@@ -165,8 +168,9 @@ public class Plants {
      * @param group
      * @return
      */
-    public static final Block create_foliage(String name, Properties properties, CreativeModeTab group) {
-        return BlockRegistry.register(name, new GrassBlock(properties), group);
+    public static final Block create_foliage(String name, Properties properties,
+            ResourceKey<CreativeModeTab> creativeTab) {
+        return BlockRegistry.register(name, new GrassBlock(properties), creativeTab);
     }
 
     ////
@@ -186,8 +190,8 @@ public class Plants {
      * @param group
      * @return
      */
-    public static final Block create_seaPickle(String name, CreativeModeTab group) {
-        return BlockRegistry.register(name, new SeaPickleBlock(Properties.copy(Blocks.SEA_PICKLE)), group);
+    public static final Block create_seaPickle(String name, ResourceKey<CreativeModeTab> creativeTab) {
+        return BlockRegistry.register(name, new SeaPickleBlock(Properties.copy(Blocks.SEA_PICKLE)), creativeTab);
     }
 
     /**
@@ -207,8 +211,9 @@ public class Plants {
      * @param group
      * @return
      */
-    public static final Block create_seaPickle(String name, Properties properties, CreativeModeTab group) {
-        return BlockRegistry.register(name, new SeaPickleBlock(properties), group);
+    public static final Block create_seaPickle(String name, Properties properties,
+            ResourceKey<CreativeModeTab> creativeTab) {
+        return BlockRegistry.register(name, new SeaPickleBlock(properties), creativeTab);
     }
 
     ////
@@ -228,9 +233,10 @@ public class Plants {
      * @param group
      * @return
      */
-    public static final Block create_flower(String name, MobEffect effect, Integer duration, CreativeModeTab group) {
+    public static final Block create_flower(String name, MobEffect effect, Integer duration,
+            ResourceKey<CreativeModeTab> creativeTab) {
         return BlockRegistry.register(name, new FlowerBlock(() -> effect, duration, Properties.copy(Blocks.POPPY)),
-                group);
+                creativeTab);
     }
 
     /**
@@ -252,8 +258,8 @@ public class Plants {
      */
     public static final Block create_flower(String name,
             MobEffect effect, Integer duration, Properties properties,
-            CreativeModeTab group) {
-        return BlockRegistry.register(name, new FlowerBlock(() -> effect, duration, properties), group);
+            ResourceKey<CreativeModeTab> creativeTab) {
+        return BlockRegistry.register(name, new FlowerBlock(() -> effect, duration, properties), creativeTab);
     }
 
     ////
@@ -274,9 +280,9 @@ public class Plants {
      * @param group
      * @return
      */
-    public static final Block create_mushroom(String name, CreativeModeTab group) {
+    public static final Block create_mushroom(String name, ResourceKey<CreativeModeTab> creativeTab) {
         return BlockRegistry.register(name,
-                new MushroomBlock(Properties.copy(Blocks.RED_MUSHROOM), TreeFeatures.HUGE_RED_MUSHROOM), group);
+                new MushroomBlock(Properties.copy(Blocks.RED_MUSHROOM), TreeFeatures.HUGE_RED_MUSHROOM), creativeTab);
     }
 
     /**
@@ -296,8 +302,9 @@ public class Plants {
      * @param group
      * @return
      */
-    public static final Block create_mushroom(String name, Properties properties, CreativeModeTab group) {
-        return BlockRegistry.register(name, new MushroomBlock(properties, TreeFeatures.HUGE_RED_MUSHROOM), group);
+    public static final Block create_mushroom(String name, Properties properties,
+            ResourceKey<CreativeModeTab> creativeTab) {
+        return BlockRegistry.register(name, new MushroomBlock(properties, TreeFeatures.HUGE_RED_MUSHROOM), creativeTab);
     }
 
     ////
@@ -318,8 +325,8 @@ public class Plants {
      * @param group
      * @return
      */
-    public static final Block create_weepingVines(String name, CreativeModeTab group) {
-        return BlockRegistry.register(name, new WeepingVinesBlock(Properties.copy(Blocks.WEEPING_VINES)), group);
+    public static final Block create_weepingVines(String name, ResourceKey<CreativeModeTab> creativeTab) {
+        return BlockRegistry.register(name, new WeepingVinesBlock(Properties.copy(Blocks.WEEPING_VINES)), creativeTab);
     }
 
     /**
@@ -339,8 +346,9 @@ public class Plants {
      * @param group
      * @return
      */
-    public static final Block create_weepingVines(String name, Properties properties, CreativeModeTab group) {
-        return BlockRegistry.register(name, new WeepingVinesBlock(properties), group);
+    public static final Block create_weepingVines(String name, Properties properties,
+            ResourceKey<CreativeModeTab> creativeTab) {
+        return BlockRegistry.register(name, new WeepingVinesBlock(properties), creativeTab);
     }
 
     ////
@@ -361,8 +369,9 @@ public class Plants {
      * @param group
      * @return
      */
-    public static final Block create_twistingVines(String name, CreativeModeTab group) {
-        return BlockRegistry.register(name, new TwistingVinesBlock(Properties.copy(Blocks.TWISTING_VINES)), group);
+    public static final Block create_twistingVines(String name, ResourceKey<CreativeModeTab> creativeTab) {
+        return BlockRegistry.register(name, new TwistingVinesBlock(Properties.copy(Blocks.TWISTING_VINES)),
+                creativeTab);
     }
 
     /**
@@ -382,8 +391,9 @@ public class Plants {
      * @param group
      * @return
      */
-    public static final Block create_twistingVines(String name, Properties properties, CreativeModeTab group) {
-        return BlockRegistry.register(name, new TwistingVinesBlock(properties), group);
+    public static final Block create_twistingVines(String name, Properties properties,
+            ResourceKey<CreativeModeTab> creativeTab) {
+        return BlockRegistry.register(name, new TwistingVinesBlock(properties), creativeTab);
     }
 
     ////
@@ -403,8 +413,8 @@ public class Plants {
      * @param group
      * @return
      */
-    public static final Block create_reeds(String name, CreativeModeTab group) {
-        return BlockRegistry.register(name, new SugarCaneBlock(Properties.copy(Blocks.SUGAR_CANE)), group);
+    public static final Block create_reeds(String name, ResourceKey<CreativeModeTab> creativeTab) {
+        return BlockRegistry.register(name, new SugarCaneBlock(Properties.copy(Blocks.SUGAR_CANE)), creativeTab);
     }
 
     /**
@@ -424,8 +434,9 @@ public class Plants {
      * @param group
      * @return
      */
-    public static final Block create_reeds(String name, Properties properties, CreativeModeTab group) {
-        return BlockRegistry.register(name, new SugarCaneBlock(properties), group);
+    public static final Block create_reeds(String name, Properties properties,
+            ResourceKey<CreativeModeTab> creativeTab) {
+        return BlockRegistry.register(name, new SugarCaneBlock(properties), creativeTab);
     }
 
     ////
@@ -445,8 +456,8 @@ public class Plants {
      * @param group
      * @return
      */
-    public static final Block create_kelp(String name, CreativeModeTab group) {
-        return BlockRegistry.register(name, new KelpBlock(Properties.copy(Blocks.KELP_PLANT)), group);
+    public static final Block create_kelp(String name, ResourceKey<CreativeModeTab> creativeTab) {
+        return BlockRegistry.register(name, new KelpBlock(Properties.copy(Blocks.KELP_PLANT)), creativeTab);
     }
 
     /**
@@ -466,8 +477,9 @@ public class Plants {
      * @param group
      * @return
      */
-    public static final Block create_kelp(String name, Properties properties, CreativeModeTab group) {
-        return BlockRegistry.register(name, new KelpBlock(properties), group);
+    public static final Block create_kelp(String name, Properties properties,
+            ResourceKey<CreativeModeTab> creativeTab) {
+        return BlockRegistry.register(name, new KelpBlock(properties), creativeTab);
     }
 
     ////
@@ -487,8 +499,8 @@ public class Plants {
      * @param group
      * @return
      */
-    public static final Block create_bamboo(String name, CreativeModeTab group) {
-        return BlockRegistry.register(name, new BambooStalkBlock(Properties.copy(Blocks.BAMBOO)), group);
+    public static final Block create_bamboo(String name, ResourceKey<CreativeModeTab> creativeTab) {
+        return BlockRegistry.register(name, new BambooStalkBlock(Properties.copy(Blocks.BAMBOO)), creativeTab);
     }
 
     /**
@@ -508,8 +520,9 @@ public class Plants {
      * @param group
      * @return
      */
-    public static final Block create_bamboo(String name, Properties properties, CreativeModeTab group) {
-        return BlockRegistry.register(name, new BambooStalkBlock(properties), group);
+    public static final Block create_bamboo(String name, Properties properties,
+            ResourceKey<CreativeModeTab> creativeTab) {
+        return BlockRegistry.register(name, new BambooStalkBlock(properties), creativeTab);
     }
 
     ////
@@ -529,8 +542,8 @@ public class Plants {
      * @param group
      * @return
      */
-    public static final Block create_chorusPlant(String name, CreativeModeTab group) {
-        return BlockRegistry.register(name, new ChorusPlantBlock(Properties.copy(Blocks.CHORUS_PLANT)), group);
+    public static final Block create_chorusPlant(String name, ResourceKey<CreativeModeTab> creativeTab) {
+        return BlockRegistry.register(name, new ChorusPlantBlock(Properties.copy(Blocks.CHORUS_PLANT)), creativeTab);
     }
 
     /**
@@ -550,8 +563,9 @@ public class Plants {
      * @param group
      * @return
      */
-    public static final Block create_chorusPlant(String name, Properties properties, CreativeModeTab group) {
-        return BlockRegistry.register(name, new ChorusPlantBlock(properties), group);
+    public static final Block create_chorusPlant(String name, Properties properties,
+            ResourceKey<CreativeModeTab> creativeTab) {
+        return BlockRegistry.register(name, new ChorusPlantBlock(properties), creativeTab);
     }
 
     ////
@@ -571,8 +585,8 @@ public class Plants {
      * @param group
      * @return
      */
-    public static final Block create_cactus(String name, CreativeModeTab group) {
-        return BlockRegistry.register(name, new CactusBlock(Properties.copy(Blocks.CACTUS)), group);
+    public static final Block create_cactus(String name, ResourceKey<CreativeModeTab> creativeTab) {
+        return BlockRegistry.register(name, new CactusBlock(Properties.copy(Blocks.CACTUS)), creativeTab);
     }
 
     /**
@@ -592,8 +606,9 @@ public class Plants {
      * @param group
      * @return
      */
-    public static final Block create_cactus(String name, Properties properties, CreativeModeTab group) {
-        return BlockRegistry.register(name, new CactusBlock(properties), group);
+    public static final Block create_cactus(String name, Properties properties,
+            ResourceKey<CreativeModeTab> creativeTab) {
+        return BlockRegistry.register(name, new CactusBlock(properties), creativeTab);
     }
 
     ////
@@ -613,8 +628,8 @@ public class Plants {
      * @param group
      * @return
      */
-    public static final Block create_vines(String name, CreativeModeTab group) {
-        return BlockRegistry.register(name, new VineBlock(Properties.copy(Blocks.VINE)), group);
+    public static final Block create_vines(String name, ResourceKey<CreativeModeTab> creativeTab) {
+        return BlockRegistry.register(name, new VineBlock(Properties.copy(Blocks.VINE)), creativeTab);
     }
 
     /**
@@ -634,8 +649,9 @@ public class Plants {
      * @param group
      * @return
      */
-    public static final Block create_vines(String name, Properties properties, CreativeModeTab group) {
-        return BlockRegistry.register(name, new VineBlock(properties), group);
+    public static final Block create_vines(String name, Properties properties,
+            ResourceKey<CreativeModeTab> creativeTab) {
+        return BlockRegistry.register(name, new VineBlock(properties), creativeTab);
     }
 
     ////
@@ -655,8 +671,8 @@ public class Plants {
      * @param group
      * @return
      */
-    public static final Block create_lilyPad(String name, CreativeModeTab group) {
-        return BlockRegistry.register(name, new WaterlilyBlock(Properties.copy(Blocks.LILY_PAD)), group);
+    public static final Block create_lilyPad(String name, ResourceKey<CreativeModeTab> creativeTab) {
+        return BlockRegistry.register(name, new WaterlilyBlock(Properties.copy(Blocks.LILY_PAD)), creativeTab);
     }
 
     /**
@@ -676,8 +692,9 @@ public class Plants {
      * @param group
      * @return
      */
-    public static final Block create_lilyPad(String name, Properties properties, CreativeModeTab group) {
-        return BlockRegistry.register(name, new WaterlilyBlock(properties), group);
+    public static final Block create_lilyPad(String name, Properties properties,
+            ResourceKey<CreativeModeTab> creativeTab) {
+        return BlockRegistry.register(name, new WaterlilyBlock(properties), creativeTab);
     }
 
     ////
@@ -697,8 +714,8 @@ public class Plants {
      * @param group
      * @return
      */
-    public static final Block create_tallGrass(String name, CreativeModeTab group) {
-        return BlockRegistry.register(name, new TallGrassBlock(Properties.copy(Blocks.TALL_GRASS)), group);
+    public static final Block create_tallGrass(String name, ResourceKey<CreativeModeTab> creativeTab) {
+        return BlockRegistry.register(name, new TallGrassBlock(Properties.copy(Blocks.TALL_GRASS)), creativeTab);
     }
 
     /**
@@ -718,8 +735,9 @@ public class Plants {
      * @param group
      * @return
      */
-    public static final Block create_tallGrass(String name, Properties properties, CreativeModeTab group) {
-        return BlockRegistry.register(name, new TallGrassBlock(properties), group);
+    public static final Block create_tallGrass(String name, Properties properties,
+            ResourceKey<CreativeModeTab> creativeTab) {
+        return BlockRegistry.register(name, new TallGrassBlock(properties), creativeTab);
     }
 
     ////
@@ -739,8 +757,8 @@ public class Plants {
      * @param group
      * @return
      */
-    public static final Block create_tallFlower(String name, CreativeModeTab group) {
-        return BlockRegistry.register(name, new TallFlowerBlock(Properties.copy(Blocks.ROSE_BUSH)), group);
+    public static final Block create_tallFlower(String name, ResourceKey<CreativeModeTab> creativeTab) {
+        return BlockRegistry.register(name, new TallFlowerBlock(Properties.copy(Blocks.ROSE_BUSH)), creativeTab);
     }
 
     /**
@@ -760,8 +778,9 @@ public class Plants {
      * @param group
      * @return
      */
-    public static final Block create_tallFlower(String name, Properties properties, CreativeModeTab group) {
-        return BlockRegistry.register(name, new TallFlowerBlock(properties), group);
+    public static final Block create_tallFlower(String name, Properties properties,
+            ResourceKey<CreativeModeTab> creativeTab) {
+        return BlockRegistry.register(name, new TallFlowerBlock(properties), creativeTab);
     }
 
     ////
@@ -781,8 +800,10 @@ public class Plants {
      * @param group
      * @return
      */
-    public static final Block create_coralBlock(String name, Block deadBlock, CreativeModeTab group) {
-        return BlockRegistry.register(name, new CoralBlock(deadBlock, Properties.copy(Blocks.FIRE_CORAL_BLOCK)), group);
+    public static final Block create_coralBlock(String name, Block deadBlock,
+            ResourceKey<CreativeModeTab> creativeTab) {
+        return BlockRegistry.register(name, new CoralBlock(deadBlock, Properties.copy(Blocks.FIRE_CORAL_BLOCK)),
+                creativeTab);
     }
 
     /**
@@ -803,8 +824,8 @@ public class Plants {
      * @return
      */
     public static final Block create_coralBlock(String name, Block deadBlock, Properties properties,
-            CreativeModeTab group) {
-        return BlockRegistry.register(name, new CoralBlock(deadBlock, properties), group);
+            ResourceKey<CreativeModeTab> creativeTab) {
+        return BlockRegistry.register(name, new CoralBlock(deadBlock, properties), creativeTab);
     }
 
     ////
@@ -825,9 +846,9 @@ public class Plants {
      * @param group
      * @return
      */
-    public static final Block create_coralFan(String name, CreativeModeTab group) {
+    public static final Block create_coralFan(String name, ResourceKey<CreativeModeTab> creativeTab) {
         return BlockRegistry.register(name,
-                new CoralFanBlock(Blocks.FIRE_CORAL, Properties.copy(Blocks.FIRE_CORAL_FAN)), group);
+                new CoralFanBlock(Blocks.FIRE_CORAL, Properties.copy(Blocks.FIRE_CORAL_FAN)), creativeTab);
     }
 
     /**
@@ -847,8 +868,9 @@ public class Plants {
      * @param group
      * @return
      */
-    public static final Block create_coralFan(String name, Properties properties, CreativeModeTab group) {
-        return BlockRegistry.register(name, new CoralFanBlock(Blocks.FIRE_CORAL, properties), group);
+    public static final Block create_coralFan(String name, Properties properties,
+            ResourceKey<CreativeModeTab> creativeTab) {
+        return BlockRegistry.register(name, new CoralFanBlock(Blocks.FIRE_CORAL, properties), creativeTab);
     }
 
     ////
@@ -868,9 +890,9 @@ public class Plants {
      * @param group
      * @return
      */
-    public static final Block create_coral(String name, CreativeModeTab group) {
+    public static final Block create_coral(String name, ResourceKey<CreativeModeTab> creativeTab) {
         return BlockRegistry.register(name, new CoralFanBlock(Blocks.FIRE_CORAL,
-                Properties.copy(Blocks.FIRE_CORAL)), group);
+                Properties.copy(Blocks.FIRE_CORAL)), creativeTab);
     }
 
     /**
@@ -890,7 +912,8 @@ public class Plants {
      * @param group
      * @return
      */
-    public static final Block create_coral(String name, Properties properties, CreativeModeTab group) {
-        return BlockRegistry.register(name, new CoralFanBlock(Blocks.FIRE_CORAL, properties), group);
+    public static final Block create_coral(String name, Properties properties,
+            ResourceKey<CreativeModeTab> creativeTab) {
+        return BlockRegistry.register(name, new CoralFanBlock(Blocks.FIRE_CORAL, properties), creativeTab);
     }
 }

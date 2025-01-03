@@ -1,6 +1,7 @@
 package com.github.chrisofnormandy.conlib.registry;
 
 import net.minecraft.world.item.Item;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item.Properties;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -17,6 +18,10 @@ public class ItemRegistry {
         ForgeRegistries.ITEMS.register(name, item);
         ModRegister.items.put(name, item);
         return item;
+    }
+
+    public static final <T extends Item> T register(String name, T item, ResourceKey<CreativeModeTab> creativeTab) {
+        return ModRegister.useCreativeTab(creativeTab, register(name, item));
     }
 
     /**
@@ -44,8 +49,8 @@ public class ItemRegistry {
      * @param group
      * @return
      */
-    public static final Item register(String name, CreativeModeTab group) {
-        return register(name, new Item(new Properties().tab(group)));
+    public static final Item register(String name, ResourceKey<CreativeModeTab> creativeTab) {
+        return ModRegister.useCreativeTab(creativeTab, register(name, new Item(new Properties())));
     }
 
     /**
@@ -55,7 +60,7 @@ public class ItemRegistry {
      * @param group
      * @return
      */
-    public static final Item register(String name, Properties properties, CreativeModeTab group) {
-        return register(name, new Item(properties.tab(group)));
+    public static final Item register(String name, Properties properties, ResourceKey<CreativeModeTab> creativeTab) {
+        return ModRegister.useCreativeTab(creativeTab, register(name, new Item(properties)));
     }
 }

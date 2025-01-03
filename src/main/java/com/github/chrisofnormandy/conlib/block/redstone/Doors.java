@@ -10,6 +10,7 @@ import net.minecraft.world.level.block.TrapDoorBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.WoodType;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.CreativeModeTab;
 
 public class Doors {
@@ -28,9 +29,9 @@ public class Doors {
      * @param group
      * @return
      */
-    public static final Block create_fenceGate(String name, CreativeModeTab group) {
+    public static final Block create_fenceGate(String name, ResourceKey<CreativeModeTab> creativeTab) {
         return BlockRegistry.register(name, new FenceGateBlock(Properties.copy(Blocks.OAK_FENCE_GATE), WoodType.OAK),
-                group);
+                creativeTab);
     }
 
     /**
@@ -50,8 +51,9 @@ public class Doors {
      * @param group
      * @return
      */
-    public static final Block create_fenceGate(String name, Properties properties, CreativeModeTab group) {
-        return BlockRegistry.register(name, new FenceGateBlock(properties, WoodType.OAK), group);
+    public static final Block create_fenceGate(String name, Properties properties,
+            ResourceKey<CreativeModeTab> creativeTab) {
+        return BlockRegistry.register(name, new FenceGateBlock(properties, WoodType.OAK), creativeTab);
     }
 
     ////
@@ -71,8 +73,9 @@ public class Doors {
      * @param group
      * @return
      */
-    public static final Block create_door(String name, CreativeModeTab group) {
-        return BlockRegistry.register(name, new DoorBlock(Properties.copy(Blocks.OAK_DOOR), BlockSetType.OAK), group);
+    public static final Block create_door(String name, ResourceKey<CreativeModeTab> creativeTab) {
+        return BlockRegistry.register(name, new DoorBlock(Properties.copy(Blocks.OAK_DOOR), BlockSetType.OAK),
+                creativeTab);
     }
 
     /**
@@ -92,8 +95,9 @@ public class Doors {
      * @param group
      * @return
      */
-    public static final Block create_door(String name, Properties properties, CreativeModeTab group) {
-        return BlockRegistry.register(name, new DoorBlock(properties.noOcclusion(), BlockSetType.OAK), group);
+    public static final Block create_door(String name, Properties properties,
+            ResourceKey<CreativeModeTab> creativeTab) {
+        return BlockRegistry.register(name, new DoorBlock(properties.noOcclusion(), BlockSetType.OAK), creativeTab);
     }
 
     ////
@@ -113,8 +117,9 @@ public class Doors {
      * @param group
      * @return
      */
-    public static final Block create_door_triggered(String name, CreativeModeTab group) {
-        return BlockRegistry.register(name, new DoorBlock(Properties.copy(Blocks.IRON_DOOR), BlockSetType.IRON), group);
+    public static final Block create_door_triggered(String name, ResourceKey<CreativeModeTab> creativeTab) {
+        return BlockRegistry.register(name, new DoorBlock(Properties.copy(Blocks.IRON_DOOR), BlockSetType.IRON),
+                creativeTab);
     }
 
     /**
@@ -134,8 +139,9 @@ public class Doors {
      * @param group
      * @return
      */
-    public static final Block create_door_triggered(String name, Properties properties, CreativeModeTab group) {
-        return BlockRegistry.register(name, new DoorBlock(properties.noOcclusion(), BlockSetType.IRON), group);
+    public static final Block create_door_triggered(String name, Properties properties,
+            ResourceKey<CreativeModeTab> creativeTab) {
+        return BlockRegistry.register(name, new DoorBlock(properties.noOcclusion(), BlockSetType.IRON), creativeTab);
     }
 
     ////
@@ -155,9 +161,9 @@ public class Doors {
      * @param group
      * @return
      */
-    public static final Block create_trapdoor(String name, CreativeModeTab group) {
+    public static final Block create_trapdoor(String name, ResourceKey<CreativeModeTab> creativeTab) {
         return BlockRegistry.register(name, new TrapDoorBlock(Properties.copy(Blocks.OAK_TRAPDOOR), BlockSetType.OAK),
-                group);
+                creativeTab);
     }
 
     /**
@@ -177,8 +183,9 @@ public class Doors {
      * @param group
      * @return
      */
-    public static final Block create_trapdoor(String name, Properties properties, CreativeModeTab group) {
-        return BlockRegistry.register(name, new TrapDoorBlock(properties.noOcclusion(), BlockSetType.OAK), group);
+    public static final Block create_trapdoor(String name, Properties properties,
+            ResourceKey<CreativeModeTab> creativeTab) {
+        return BlockRegistry.register(name, new TrapDoorBlock(properties.noOcclusion(), BlockSetType.OAK), creativeTab);
     }
 
     ////
@@ -199,9 +206,9 @@ public class Doors {
      * @param group
      * @return
      */
-    public static final Block create_trapdoor_triggered(String name, CreativeModeTab group) {
+    public static final Block create_trapdoor_triggered(String name, ResourceKey<CreativeModeTab> creativeTab) {
         return BlockRegistry.register(name, new TrapDoorBlock(Properties.copy(Blocks.IRON_TRAPDOOR), BlockSetType.IRON),
-                group);
+                creativeTab);
     }
 
     /**
@@ -221,7 +228,9 @@ public class Doors {
      * @param group
      * @return
      */
-    public static final Block create_trapdoor_triggered(String name, Properties properties, CreativeModeTab group) {
-        return BlockRegistry.register(name, new TrapDoorBlock(properties.noOcclusion(), BlockSetType.IRON), group);
+    public static final Block create_trapdoor_triggered(String name, Properties properties,
+            ResourceKey<CreativeModeTab> creativeTab) {
+        return BlockRegistry.register(name, new TrapDoorBlock(properties.noOcclusion(), BlockSetType.IRON),
+                creativeTab);
     }
 }

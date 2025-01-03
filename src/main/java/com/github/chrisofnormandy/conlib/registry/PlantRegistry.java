@@ -6,6 +6,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.block.SoundType;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraftforge.common.PlantType;
 
@@ -17,11 +18,12 @@ public class PlantRegistry {
      * @param group
      * @return
      */
-    public static final Block registerPlant(String name, PlantType plantType, CreativeModeTab group) {
+    public static final Block registerPlant(String name, PlantType plantType,
+            ResourceKey<CreativeModeTab> creativeTab) {
         Block.Properties properties = Block.Properties.copy(Blocks.GRASS)
                 .sound(SoundType.GRASS).strength(0.0F)
                 .noCollission();
-        return BlockRegistry.register(name, new PlantBase(properties, plantType), group);
+        return BlockRegistry.register(name, new PlantBase(properties, plantType), creativeTab);
     }
 
     /**

@@ -5,6 +5,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.DropExperienceBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.item.Item;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.CreativeModeTab;
 
 import com.github.chrisofnormandy.conlib.registry.ItemRegistry;
@@ -32,8 +33,8 @@ public class OreBase extends DropExperienceBlock {
          * @param group
          * @return
          */
-        public static final Block single(String name, CreativeModeTab group) {
-            return OreRegistry.register(name, new OreBase(), group);
+        public static final Block single(String name, ResourceKey<CreativeModeTab> creativeTab) {
+            return OreRegistry.register(name, new OreBase(), creativeTab);
         }
 
         /**
@@ -43,8 +44,8 @@ public class OreBase extends DropExperienceBlock {
          * @param group
          * @return
          */
-        public static final Block single(String name, Float strength, CreativeModeTab group) {
-            return OreRegistry.register(name, new OreBase(strength), group);
+        public static final Block single(String name, Float strength, ResourceKey<CreativeModeTab> creativeTab) {
+            return OreRegistry.register(name, new OreBase(strength), creativeTab);
         }
 
         /**
@@ -54,8 +55,8 @@ public class OreBase extends DropExperienceBlock {
          * @param group
          * @return
          */
-        public static final Block single(String name, OreBase block, CreativeModeTab group) {
-            return OreRegistry.register(name, block, group);
+        public static final Block single(String name, OreBase block, ResourceKey<CreativeModeTab> creativeTab) {
+            return OreRegistry.register(name, block, creativeTab);
         }
 
         /**
@@ -70,10 +71,12 @@ public class OreBase extends DropExperienceBlock {
          * @return
          */
         public static final Block asGem(String name, String oreName, OreBase block, ToolMaterial material,
-                CreativeModeTab itemGroup, CreativeModeTab toolGroup, CreativeModeTab blockGroup) {
-            ItemRegistry.register(name, new Item.Properties(), itemGroup);
+                ResourceKey<CreativeModeTab> creativeTab_Item,
+                ResourceKey<CreativeModeTab> creativeTab_Tool,
+                ResourceKey<CreativeModeTab> creativeTab_Block) {
+            ItemRegistry.register(name, new Item.Properties(), creativeTab_Item);
             // Tools.registerAll(name, material, toolGroup);
-            return single(oreName, block, blockGroup);
+            return single(oreName, block, creativeTab_Block);
         }
 
         /**
@@ -88,11 +91,12 @@ public class OreBase extends DropExperienceBlock {
          * @return
          */
         public static final Block asMetal(String name, String oreName, OreBase block, ToolMaterial material,
-                CreativeModeTab itemGroup, CreativeModeTab toolGroup, CreativeModeTab blockGroup) {
-            ItemRegistry.register(name + "_ingot", new Item.Properties(), itemGroup);
-            ItemRegistry.register(name + "_nugget", new Item.Properties(), itemGroup);
+                ResourceKey<CreativeModeTab> creativeTab_Item,
+                ResourceKey<CreativeModeTab> creativeTab_Tool, ResourceKey<CreativeModeTab> creativeTab_Block) {
+            ItemRegistry.register(name + "_ingot", new Item.Properties(), creativeTab_Item);
+            ItemRegistry.register(name + "_nugget", new Item.Properties(), creativeTab_Tool);
             // Tools.registerAll(name, material, toolGroup);
-            return single(oreName, block, blockGroup);
+            return single(oreName, block, creativeTab_Block);
         }
     }
 

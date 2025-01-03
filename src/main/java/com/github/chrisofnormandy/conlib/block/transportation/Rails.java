@@ -8,11 +8,12 @@ import net.minecraft.world.level.block.DetectorRailBlock;
 import net.minecraft.world.level.block.PoweredRailBlock;
 import net.minecraft.world.level.block.RailBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.CreativeModeTab;
 
 public class Rails {
     /**
-     * 
+     *
      * @param name
      * @return
      */
@@ -21,17 +22,17 @@ public class Rails {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param group
      * @return
      */
-    public static final Block create_rail(String name, CreativeModeTab group) {
-        return BlockRegistry.register(name, new RailBlock(Properties.copy(Blocks.RAIL)), group);
+    public static final Block create_rail(String name, ResourceKey<CreativeModeTab> creativeTab) {
+        return BlockRegistry.register(name, new RailBlock(Properties.copy(Blocks.RAIL)), creativeTab);
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @return
@@ -41,20 +42,21 @@ public class Rails {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @param group
      * @return
      */
-    public static final Block create_rail(String name, Properties properties, CreativeModeTab group) {
-        return BlockRegistry.register(name, new RailBlock(properties), group);
+    public static final Block create_rail(String name, Properties properties,
+            ResourceKey<CreativeModeTab> creativeTab) {
+        return BlockRegistry.register(name, new RailBlock(properties), creativeTab);
     }
 
     ////
 
     /**
-     * 
+     *
      * @param name
      * @return
      */
@@ -63,17 +65,17 @@ public class Rails {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param group
      * @return
      */
-    public static final Block create_poweredRail(String name, CreativeModeTab group) {
-        return BlockRegistry.register(name, new PoweredRailsBase(Properties.copy(Blocks.POWERED_RAIL)), group);
+    public static final Block create_poweredRail(String name, ResourceKey<CreativeModeTab> creativeTab) {
+        return BlockRegistry.register(name, new PoweredRailsBase(Properties.copy(Blocks.POWERED_RAIL)), creativeTab);
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @return
@@ -83,20 +85,21 @@ public class Rails {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @param group
      * @return
      */
-    public static final Block create_poweredRail(String name, Properties properties, CreativeModeTab group) {
-        return BlockRegistry.register(name, new PoweredRailsBase(properties), group);
+    public static final Block create_poweredRail(String name, Properties properties,
+            ResourceKey<CreativeModeTab> creativeTab) {
+        return BlockRegistry.register(name, new PoweredRailsBase(properties), creativeTab);
     }
 
     ////
 
     /**
-     * 
+     *
      * @param name
      * @return
      */
@@ -105,17 +108,17 @@ public class Rails {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param group
      * @return
      */
-    public static final Block create_detectorRail(String name, CreativeModeTab group) {
-        return BlockRegistry.register(name, new DetectorRailBlock(Properties.copy(Blocks.DETECTOR_RAIL)), group);
+    public static final Block create_detectorRail(String name, ResourceKey<CreativeModeTab> creativeTab) {
+        return BlockRegistry.register(name, new DetectorRailBlock(Properties.copy(Blocks.DETECTOR_RAIL)), creativeTab);
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @return
@@ -125,20 +128,21 @@ public class Rails {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @param group
      * @return
      */
-    public static final Block create_detectorRail(String name, Properties properties, CreativeModeTab group) {
-        return BlockRegistry.register(name, new DetectorRailBlock(properties), group);
+    public static final Block create_detectorRail(String name, Properties properties,
+            ResourceKey<CreativeModeTab> creativeTab) {
+        return BlockRegistry.register(name, new DetectorRailBlock(properties), creativeTab);
     }
 
     ////
 
     /**
-     * 
+     *
      * @param name
      * @return
      */
@@ -147,17 +151,17 @@ public class Rails {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param group
      * @return
      */
-    public static final Block create_activatorRail(String name, CreativeModeTab group) {
-        return BlockRegistry.register(name, new PoweredRailBlock(Properties.copy(Blocks.ACTIVATOR_RAIL)), group);
+    public static final Block create_activatorRail(String name, ResourceKey<CreativeModeTab> creativeTab) {
+        return BlockRegistry.register(name, new PoweredRailBlock(Properties.copy(Blocks.ACTIVATOR_RAIL)), creativeTab);
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @return
@@ -167,13 +171,14 @@ public class Rails {
     }
 
     /**
-     * 
+     *
      * @param name
      * @param properties
      * @param group
      * @return
      */
-    public static final Block create_activatorRail(String name, Properties properties, CreativeModeTab group) {
-        return BlockRegistry.register(name, new PoweredRailBlock(properties), group);
+    public static final Block create_activatorRail(String name, Properties properties,
+            ResourceKey<CreativeModeTab> creativeTab) {
+        return BlockRegistry.register(name, new PoweredRailBlock(properties), creativeTab);
     }
 }

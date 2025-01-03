@@ -1,7 +1,9 @@
 package com.github.chrisofnormandy.conlib.registry;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 // import java.util.stream.Stream;
+import java.util.List;
 
 import com.github.chrisofnormandy.conlib.Main;
 import com.github.chrisofnormandy.conlib.collections.Tuple;
@@ -9,12 +11,14 @@ import com.github.chrisofnormandy.conlib.collections.JsonBuilder.JsonObject;
 import com.github.chrisofnormandy.conlib.event.BlockBreak;
 import com.github.chrisofnormandy.conlib.tool.ToolMaterial;
 
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 
 public class ModRegister {
     private static String mod_id;
@@ -31,11 +35,7 @@ public class ModRegister {
      *
      */
     public static final void Init() {
-        mod_id = Main.MOD_ID;
-
-        events.put("block_break", BlockBreak.class);
-
-        events.forEach((String key, Object event) -> EventRegistry.register(event));
+        Init(Main.MOD_ID);
     }
 
     /**
@@ -48,6 +48,32 @@ public class ModRegister {
         events.put("block_break", BlockBreak.class);
 
         events.forEach((String key, Object event) -> EventRegistry.register(event));
+    }
+
+    public static void assignCreativeTabs(BuildCreativeModeTabContentsEvent event) {
+        creativeTabs.forEach((ResourceKey<CreativeModeTab> key, List<Item> items) -> {
+            if (event.getTabKey() == key) {
+                items.forEach((Item item) -> event.accept(item));
+            }
+        });
+    }
+
+    // CREATIVE TAB ASSIGNMENTS
+    public static final HashMap<ResourceKey<CreativeModeTab>, List<Item>> creativeTabs = new HashMap<ResourceKey<CreativeModeTab>, List<Item>>();
+
+    public static <T extends Item> T useCreativeTab(ResourceKey<CreativeModeTab> tab, T item) {
+        List<Item> items;
+
+        if (!creativeTabs.containsKey(tab)) {
+            items = new ArrayList<Item>();
+            items.add(item);
+            creativeTabs.put(tab, items);
+        } else {
+            items = creativeTabs.get(tab);
+            items.add(item);
+        }
+
+        return item;
     }
 
     // EVENTS
