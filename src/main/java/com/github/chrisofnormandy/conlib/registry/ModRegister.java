@@ -9,7 +9,6 @@ import com.github.chrisofnormandy.conlib.Main;
 import com.github.chrisofnormandy.conlib.collections.Tuple;
 import com.github.chrisofnormandy.conlib.collections.JsonBuilder.JsonObject;
 import com.github.chrisofnormandy.conlib.event.BlockBreak;
-import com.github.chrisofnormandy.conlib.tool.ToolMaterial;
 
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.ArmorItem;
@@ -85,7 +84,6 @@ public class ModRegister {
     // MATERIALS
     // public static final HashMap<String, Material> materials = new HashMap<String,
     // Material>();
-    public static final HashMap<String, ToolMaterial> toolMaterials = new HashMap<String, ToolMaterial>();
 
     // BLOCKS
     public static final HashMap<String, Block> blocks = new HashMap<String, Block>();

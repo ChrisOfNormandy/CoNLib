@@ -16,13 +16,12 @@ public class ModParticle extends Particle {
     @Override
     public void render(VertexConsumer p_107261_, Camera p_107262_, float p_107263_) {
         // TODO Auto-generated method stub
-
+        throw new UnsupportedOperationException("Unimplemented method 'render'");
     }
 
     @Override
     public ParticleRenderType getRenderType() {
         // TODO Auto-generated method stub
-        return null;
+        throw new UnsupportedOperationException("Unimplemented method 'getRenderType'");
     }
-
 }
