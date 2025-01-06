@@ -12,52 +12,53 @@ import net.minecraft.world.item.CreativeModeTab;
 
 public class Doors {
 
-    public static final Block create(String name) {
+    public static final DoorBlock create(String name) {
         return create(name, Blocks.OAK_DOOR, BlockSetType.OAK);
     }
 
-    public static final Block create(String name, ResourceKey<CreativeModeTab> creativeTab) {
+    public static final DoorBlock create(String name, ResourceKey<CreativeModeTab> creativeTab) {
         return create(name, Blocks.OAK_DOOR, BlockSetType.OAK, creativeTab);
     }
 
-    public static final Block create(String name, Properties properties) {
+    public static final DoorBlock create(String name, Properties properties) {
         return create(name, properties, BlockSetType.OAK);
     }
 
-    public static final Block create(String name, Properties properties, ResourceKey<CreativeModeTab> creativeTab) {
+    public static final DoorBlock create(String name, Properties properties, ResourceKey<CreativeModeTab> creativeTab) {
         return create(name, properties, BlockSetType.OAK, creativeTab);
     }
 
-    public static final Block create(String name, BlockSetType blockSetType) {
+    public static final DoorBlock create(String name, BlockSetType blockSetType) {
         return create(name, Blocks.OAK_DOOR, blockSetType);
     }
 
-    public static final Block create(String name, BlockSetType blockSetType, ResourceKey<CreativeModeTab> creativeTab) {
+    public static final DoorBlock create(String name, BlockSetType blockSetType,
+            ResourceKey<CreativeModeTab> creativeTab) {
         return create(name, Blocks.OAK_DOOR, blockSetType, creativeTab);
     }
 
-    public static final Block create(String name, Block sourceBlock) {
+    public static final DoorBlock create(String name, Block sourceBlock) {
         return create(name, Properties.copy(sourceBlock), BlockSetType.OAK);
     }
 
-    public static final Block create(String name, Block sourceBlock, ResourceKey<CreativeModeTab> creativeTab) {
+    public static final DoorBlock create(String name, Block sourceBlock, ResourceKey<CreativeModeTab> creativeTab) {
         return create(name, Properties.copy(sourceBlock), BlockSetType.OAK, creativeTab);
     }
 
-    public static final Block create(String name, Block sourceBlock, BlockSetType blockSetType) {
+    public static final DoorBlock create(String name, Block sourceBlock, BlockSetType blockSetType) {
         return create(name, Properties.copy(sourceBlock), blockSetType);
     }
 
-    public static final Block create(String name, Block sourceBlock, BlockSetType blockSetType,
+    public static final DoorBlock create(String name, Block sourceBlock, BlockSetType blockSetType,
             ResourceKey<CreativeModeTab> creativeTab) {
         return create(name, Properties.copy(sourceBlock), blockSetType, creativeTab);
     }
 
-    public static final Block create(String name, Properties properties, BlockSetType blockSetType) {
+    public static final DoorBlock create(String name, Properties properties, BlockSetType blockSetType) {
         return BlockRegistry.register(name, new DoorBlock(properties.noOcclusion(), blockSetType));
     }
 
-    public static final Block create(String name, Properties properties, BlockSetType blockSetType,
+    public static final DoorBlock create(String name, Properties properties, BlockSetType blockSetType,
             ResourceKey<CreativeModeTab> creativeTab) {
         return BlockRegistry.register(name, new DoorBlock(properties.noOcclusion(), blockSetType), creativeTab);
     }

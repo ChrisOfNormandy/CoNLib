@@ -5,9 +5,19 @@ import com.github.chrisofnormandy.conlib.registry.BlockRegistry;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 
 public class FullBlocks {
+
+    public static final Block create(String name) {
+        return create(name, Properties.copy(Blocks.DIRT));
+    }
+
+    public static final Block create(String name, ResourceKey<CreativeModeTab> creativeTab) {
+        return create(name, Properties.copy(Blocks.DIRT), creativeTab);
+    }
+
     /**
      * Creates and registers a standard block.
      *

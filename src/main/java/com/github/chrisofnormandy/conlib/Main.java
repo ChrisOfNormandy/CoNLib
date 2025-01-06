@@ -14,7 +14,7 @@ import com.github.chrisofnormandy.conlib.registry.ModRegister;
 public class Main {
     public static final Logger LOG = LogManager.getLogger();
     public static String MOD_ID = "conlib";
-    public static Mod_Config config = new Mod_Config();
+    public static ModConfig config = new ModConfig();
 
     public Main() {
         config.Init();

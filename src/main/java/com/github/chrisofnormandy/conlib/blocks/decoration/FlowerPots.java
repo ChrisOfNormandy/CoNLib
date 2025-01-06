@@ -2,6 +2,9 @@ package com.github.chrisofnormandy.conlib.blocks.decoration;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Supplier;
+
+import javax.annotation.Nullable;
 
 import com.github.chrisofnormandy.conlib.registry.BlockRegistry;
 
@@ -13,63 +16,69 @@ import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 
 public class FlowerPots {
-    @SuppressWarnings("null")
-    public static Block create_emptyPot(String name) {
-        return BlockRegistry.register(name,
-                new FlowerPotBlock(null, () -> Blocks.AIR, Properties.copy(Blocks.FLOWER_POT)));
+    public static class PotWithFlower {
+        public static FlowerPotBlock create(String name, Block flower) {
+            return create(name, Properties.copy(Blocks.FLOWER_POT), flower);
+        }
+
+        public static FlowerPotBlock create(String name, Block flower, ResourceKey<CreativeModeTab> creativeTab) {
+            return create(name, Properties.copy(Blocks.FLOWER_POT), flower, creativeTab);
+        }
+
+        // Can't use "create" methods here because null is allowed for creative tabs.
+
+        public static FlowerPotBlock create(String name, Properties properties, Block flower) {
+            return BlockRegistry.register(name, new FlowerPotBlock(null, () -> flower, properties));
+        }
+
+        public static FlowerPotBlock create(String name, Properties properties, Block flower,
+                ResourceKey<CreativeModeTab> creativeTab) {
+            return BlockRegistry.register(name, new FlowerPotBlock(null, () -> flower, properties), creativeTab);
+        }
+
+        public static FlowerPotBlock create(String name, Properties properties, Block flower,
+                @Nullable Supplier<FlowerPotBlock> emptyPot) {
+            return BlockRegistry.register(name, new FlowerPotBlock(emptyPot, () -> flower, properties));
+        }
+
+        public static FlowerPotBlock create(String name, Properties properties, Block flower,
+                @Nullable Supplier<FlowerPotBlock> emptyPot,
+                ResourceKey<CreativeModeTab> creativeTab) {
+            return BlockRegistry.register(name, new FlowerPotBlock(emptyPot, () -> flower, properties));
+        }
+
+        public static List<FlowerPotBlock> create(String name, List<Block> flowers) {
+            List<FlowerPotBlock> pots = new ArrayList<FlowerPotBlock>();
+
+            flowers.forEach(
+                    (Block flower) -> pots.add(create(name, Properties.copy(Blocks.FLOWER_POT), flower)));
+
+            return pots;
+        }
+
+        public static List<FlowerPotBlock> create(String name, List<Block> flowers, Properties properties) {
+            List<FlowerPotBlock> pots = new ArrayList<FlowerPotBlock>();
+
+            flowers.forEach((Block flower) -> pots.add(create(name, properties, flower)));
+
+            return pots;
+        }
     }
 
-    @SuppressWarnings("null")
-    public static Block create_emptyPot(String name, ResourceKey<CreativeModeTab> creativeTab) {
-        return BlockRegistry.register(name,
-                new FlowerPotBlock(null, () -> Blocks.AIR, Properties.copy(Blocks.FLOWER_POT)), creativeTab);
+    public static FlowerPotBlock create(String name) {
+        return create(name, Properties.copy(Blocks.FLOWER_POT));
     }
 
-    @SuppressWarnings("null")
-    public static Block create_flowerPot(String name, Block flower) {
-        return BlockRegistry.register(name, new FlowerPotBlock(null, () -> flower, Properties.copy(Blocks.FLOWER_POT)));
+    public static FlowerPotBlock create(String name, ResourceKey<CreativeModeTab> creativeTab) {
+        return create(name, Properties.copy(Blocks.FLOWER_POT), creativeTab);
     }
 
-    @SuppressWarnings("null")
-    public static Block create_flowerPot(String name, Block flower, ResourceKey<CreativeModeTab> creativeTab) {
-        return BlockRegistry.register(name, new FlowerPotBlock(null, () -> flower, Properties.copy(Blocks.FLOWER_POT)),
-                creativeTab);
-    }
-
-    @SuppressWarnings("null")
-    public static Block create_emptyPot(String name, Properties properties) {
+    public static FlowerPotBlock create(String name, Properties properties) {
         return BlockRegistry.register(name, new FlowerPotBlock(null, () -> Blocks.AIR, properties));
     }
 
-    @SuppressWarnings("null")
-    public static Block create_emptyPot(String name, Properties properties, ResourceKey<CreativeModeTab> creativeTab) {
-        return BlockRegistry.register(name, new FlowerPotBlock(null, () -> Blocks.AIR, properties), creativeTab);
-    }
-
-    @SuppressWarnings("null")
-    public static Block create_flowerPot(String name, Block flower, Properties properties) {
-        return BlockRegistry.register(name, new FlowerPotBlock(null, () -> flower, properties));
-    }
-
-    @SuppressWarnings("null")
-    public static Block create_flowerPot(String name, Block flower, Properties properties,
+    public static FlowerPotBlock create(String name, Properties properties,
             ResourceKey<CreativeModeTab> creativeTab) {
-        return BlockRegistry.register(name, new FlowerPotBlock(null, () -> flower, properties), creativeTab);
-    }
-
-    public static List<Block> create_flowerPotsFromList(String name, List<Block> flowers) {
-        List<Block> pots = new ArrayList<Block>();
-
-        flowers.forEach((Block flower) -> pots.add(create_flowerPot(name, flower, Properties.copy(Blocks.FLOWER_POT))));
-
-        return pots;
-    }
-
-    public static List<Block> create_flowerPotsFromList(String name, List<Block> flowers, Properties properties) {
-        List<Block> pots = new ArrayList<Block>();
-
-        flowers.forEach((Block flower) -> pots.add(create_flowerPot(name, flower, properties)));
-
-        return pots;
+        return BlockRegistry.register(name, new FlowerPotBlock(null, () -> Blocks.AIR, properties), creativeTab);
     }
 }

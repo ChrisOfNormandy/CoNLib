@@ -11,27 +11,28 @@ import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 
 public class Buttons {
 
-    public static final Block create(String name) {
+    public static final ButtonBase create(String name) {
         return create(name, Properties.copy(Blocks.STONE_BUTTON));
     }
 
-    public static final Block create(String name, ResourceKey<CreativeModeTab> creativeTab) {
+    public static final ButtonBase create(String name, ResourceKey<CreativeModeTab> creativeTab) {
         return create(name, Properties.copy(Blocks.STONE_BUTTON), creativeTab);
     }
 
-    public static final Block create(String name, Block sourceBlock) {
+    public static final ButtonBase create(String name, Block sourceBlock) {
         return create(name, Properties.copy(sourceBlock));
     }
 
-    public static final Block create(String name, Block sourceBlock, ResourceKey<CreativeModeTab> creativeTab) {
+    public static final ButtonBase create(String name, Block sourceBlock, ResourceKey<CreativeModeTab> creativeTab) {
         return create(name, Properties.copy(sourceBlock), creativeTab);
     }
 
-    public static final Block create(String name, Properties properties) {
+    public static final ButtonBase create(String name, Properties properties) {
         return BlockRegistry.register(name, new ButtonBase(properties));
     }
 
-    public static final Block create(String name, Properties properties, ResourceKey<CreativeModeTab> creativeTab) {
+    public static final ButtonBase create(String name, Properties properties,
+            ResourceKey<CreativeModeTab> creativeTab) {
         return BlockRegistry.register(name, new ButtonBase(properties), creativeTab);
     }
 }

@@ -4,25 +4,24 @@ import com.github.chrisofnormandy.conlib.registry.BlockRegistry;
 
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.WaterlilyBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 
 public class Lily {
-    public static final Block create_lilyPad(String name) {
-        return BlockRegistry.register(name, new WaterlilyBlock(Properties.copy(Blocks.LILY_PAD)));
+    public static final WaterlilyBlock create(String name) {
+        return create(name, Properties.copy(Blocks.LILY_PAD));
     }
 
-    public static final Block create_lilyPad(String name, ResourceKey<CreativeModeTab> creativeTab) {
-        return BlockRegistry.register(name, new WaterlilyBlock(Properties.copy(Blocks.LILY_PAD)), creativeTab);
+    public static final WaterlilyBlock create(String name, ResourceKey<CreativeModeTab> creativeTab) {
+        return create(name, Properties.copy(Blocks.LILY_PAD), creativeTab);
     }
 
-    public static final Block create_lilyPad(String name, Properties properties) {
+    public static final WaterlilyBlock create(String name, Properties properties) {
         return BlockRegistry.register(name, new WaterlilyBlock(properties));
     }
 
-    public static final Block create_lilyPad(String name, Properties properties,
+    public static final WaterlilyBlock create(String name, Properties properties,
             ResourceKey<CreativeModeTab> creativeTab) {
         return BlockRegistry.register(name, new WaterlilyBlock(properties), creativeTab);
     }

@@ -13,7 +13,7 @@ import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 
 public class Ore {
 
-    public static class Gem {
+    public static class GemOre {
         public static final void create(String name,
                 net.minecraft.world.item.Item.Properties toolProperties,
                 Tier toolTier,
@@ -24,7 +24,7 @@ public class Ore {
         }
     }
 
-    public static class Metal {
+    public static class MetalOre {
         public static final void create(String name,
                 net.minecraft.world.item.Item.Properties ingotProperties,
                 net.minecraft.world.item.Item.Properties toolProperties,

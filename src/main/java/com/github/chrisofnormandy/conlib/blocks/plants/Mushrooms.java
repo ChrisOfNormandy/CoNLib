@@ -5,28 +5,34 @@ import com.github.chrisofnormandy.conlib.registry.BlockRegistry;
 import net.minecraft.data.worldgen.features.TreeFeatures;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.MushroomBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 
 public class Mushrooms {
-    public static final Block create_mushroom(String name) {
-        return BlockRegistry.register(name,
-                new MushroomBlock(Properties.copy(Blocks.RED_MUSHROOM), TreeFeatures.HUGE_RED_MUSHROOM));
+
+    public static final MushroomBlock create(String name) {
+        return create(name, Properties.copy(Blocks.RED_MUSHROOM), TreeFeatures.HUGE_RED_MUSHROOM);
     }
 
-    public static final Block create_mushroom(String name, ResourceKey<CreativeModeTab> creativeTab) {
-        return BlockRegistry.register(name,
-                new MushroomBlock(Properties.copy(Blocks.RED_MUSHROOM), TreeFeatures.HUGE_RED_MUSHROOM), creativeTab);
+    public static final MushroomBlock create(String name, ResourceKey<CreativeModeTab> creativeTab) {
+        return create(name, Properties.copy(Blocks.RED_MUSHROOM), TreeFeatures.HUGE_RED_MUSHROOM, creativeTab);
     }
 
-    public static final Block create_mushroom(String name, Properties properties) {
-        return BlockRegistry.register(name, new MushroomBlock(properties, TreeFeatures.HUGE_RED_MUSHROOM));
+    // Cannot define methods that implement features and creative tab because
+    // they're the same type.
+
+    public static final MushroomBlock create(String name,
+            Properties properties,
+            ResourceKey<ConfiguredFeature<?, ?>> feature) {
+        return BlockRegistry.register(name, new MushroomBlock(properties, feature));
     }
 
-    public static final Block create_mushroom(String name, Properties properties,
+    public static final MushroomBlock create(String name,
+            Properties properties,
+            ResourceKey<ConfiguredFeature<?, ?>> feature,
             ResourceKey<CreativeModeTab> creativeTab) {
-        return BlockRegistry.register(name, new MushroomBlock(properties, TreeFeatures.HUGE_RED_MUSHROOM), creativeTab);
+        return BlockRegistry.register(name, new MushroomBlock(properties, feature), creativeTab);
     }
 }

@@ -31,8 +31,7 @@ public class Slabs {
         return BlockRegistry.register(name, new SlabBlock(properties));
     }
 
-    public static final SlabBlock create(String name, Properties properties,
-            ResourceKey<CreativeModeTab> creativeTab) {
+    public static final SlabBlock create(String name, Properties properties, ResourceKey<CreativeModeTab> creativeTab) {
         return BlockRegistry.register(name, new SlabBlock(properties), creativeTab);
     }
 }

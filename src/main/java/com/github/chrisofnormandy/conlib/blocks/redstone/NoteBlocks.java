@@ -4,25 +4,25 @@ import com.github.chrisofnormandy.conlib.registry.BlockRegistry;
 
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.NoteBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 
 public class NoteBlocks {
-    public static final Block create_noteBlock(String name) {
-        return BlockRegistry.register(name, new NoteBlock(Properties.copy(Blocks.NOTE_BLOCK)));
+
+    public static final NoteBlock create(String name) {
+        return create(name, Properties.copy(Blocks.NOTE_BLOCK));
     }
 
-    public static final Block create_noteBlock(String name, ResourceKey<CreativeModeTab> creativeTab) {
-        return BlockRegistry.register(name, new NoteBlock(Properties.copy(Blocks.NOTE_BLOCK)), creativeTab);
+    public static final NoteBlock create(String name, ResourceKey<CreativeModeTab> creativeTab) {
+        return create(name, Properties.copy(Blocks.NOTE_BLOCK), creativeTab);
     }
 
-    public static final Block create_noteBlock(String name, Properties properties) {
+    public static final NoteBlock create(String name, Properties properties) {
         return BlockRegistry.register(name, new NoteBlock(properties));
     }
 
-    public static final Block create_noteBlock(String name, Properties properties,
+    public static final NoteBlock create(String name, Properties properties,
             ResourceKey<CreativeModeTab> creativeTab) {
         return BlockRegistry.register(name, new NoteBlock(properties), creativeTab);
     }

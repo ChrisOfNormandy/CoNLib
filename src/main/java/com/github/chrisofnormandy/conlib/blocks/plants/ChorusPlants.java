@@ -1,29 +1,101 @@
 package com.github.chrisofnormandy.conlib.blocks.plants;
 
+import com.github.chrisofnormandy.conlib.collections.Tuple;
 import com.github.chrisofnormandy.conlib.registry.BlockRegistry;
 
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.ChorusFlowerBlock;
 import net.minecraft.world.level.block.ChorusPlantBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 
 public class ChorusPlants {
-    public static final Block create_chorusPlant(String name) {
-        return BlockRegistry.register(name, new ChorusPlantBlock(Properties.copy(Blocks.CHORUS_PLANT)));
+    public static class ChorusStalks {
+        public static final ChorusPlantBlock create(String name) {
+            return create(name, Properties.copy(Blocks.CHORUS_PLANT));
+        }
+
+        public static final ChorusPlantBlock create(String name, ResourceKey<CreativeModeTab> creativeTab) {
+            return create(name, Properties.copy(Blocks.CHORUS_PLANT), creativeTab);
+        }
+
+        public static final ChorusPlantBlock create(String name, Properties properties) {
+            return BlockRegistry.register(name, new ChorusPlantBlock(properties));
+        }
+
+        public static final ChorusPlantBlock create(String name, Properties properties,
+                ResourceKey<CreativeModeTab> creativeTab) {
+            return BlockRegistry.register(name, new ChorusPlantBlock(properties), creativeTab);
+        }
     }
 
-    public static final Block create_chorusPlant(String name, ResourceKey<CreativeModeTab> creativeTab) {
-        return BlockRegistry.register(name, new ChorusPlantBlock(Properties.copy(Blocks.CHORUS_PLANT)), creativeTab);
+    public static class ChorusFlowers {
+
+        public static final ChorusFlowerBlock create(String name) {
+            return create(name, Properties.copy(Blocks.CHORUS_FLOWER));
+        }
+
+        public static final ChorusFlowerBlock create(String name, ResourceKey<CreativeModeTab> creativeTab) {
+            return create(name, Properties.copy(Blocks.CHORUS_FLOWER), creativeTab);
+        }
+
+        public static final ChorusFlowerBlock create(String name, ChorusPlantBlock plantBlock) {
+            return create(name, Properties.copy(Blocks.CHORUS_FLOWER), plantBlock);
+        }
+
+        public static final ChorusFlowerBlock create(String name, ChorusPlantBlock plantBlock,
+                ResourceKey<CreativeModeTab> creativeTab) {
+            return create(name, Properties.copy(Blocks.CHORUS_FLOWER), plantBlock, creativeTab);
+        }
+
+        public static final ChorusFlowerBlock create(String name, Properties properties) {
+            return create(name, properties, (ChorusPlantBlock) Blocks.CHORUS_PLANT);
+        }
+
+        public static final ChorusFlowerBlock create(String name, Properties properties,
+                ResourceKey<CreativeModeTab> creativeTab) {
+            return create(name, properties, (ChorusPlantBlock) Blocks.CHORUS_PLANT, creativeTab);
+        }
+
+        public static final ChorusFlowerBlock create(String name, Properties properties, ChorusPlantBlock plantBlock) {
+            return BlockRegistry.register(name, new ChorusFlowerBlock(plantBlock, properties));
+        }
+
+        public static final ChorusFlowerBlock create(String name, Properties properties, ChorusPlantBlock plantBlock,
+                ResourceKey<CreativeModeTab> creativeTab) {
+            return BlockRegistry.register(name, new ChorusFlowerBlock(plantBlock, properties));
+        }
     }
 
-    public static final Block create_chorusPlant(String name, Properties properties) {
-        return BlockRegistry.register(name, new ChorusPlantBlock(properties));
+    public static final Tuple<ChorusPlantBlock, ChorusFlowerBlock> create(String name) {
+        ChorusPlantBlock plantBlock = ChorusStalks.create(name);
+        ChorusFlowerBlock flowerBlock = ChorusFlowers.create(name, plantBlock);
+
+        return new Tuple<ChorusPlantBlock, ChorusFlowerBlock>(plantBlock, flowerBlock);
     }
 
-    public static final Block create_chorusPlant(String name, Properties properties,
+    public static final Tuple<ChorusPlantBlock, ChorusFlowerBlock> create(String name,
             ResourceKey<CreativeModeTab> creativeTab) {
-        return BlockRegistry.register(name, new ChorusPlantBlock(properties), creativeTab);
+        ChorusPlantBlock plantBlock = ChorusStalks.create(name, creativeTab);
+        ChorusFlowerBlock flowerBlock = ChorusFlowers.create(name, plantBlock, creativeTab);
+
+        return new Tuple<ChorusPlantBlock, ChorusFlowerBlock>(plantBlock, flowerBlock);
+    }
+
+    public static final Tuple<ChorusPlantBlock, ChorusFlowerBlock> create(String name, Properties stalkProperties,
+            Properties flowerProperties) {
+        ChorusPlantBlock plantBlock = ChorusStalks.create(name, stalkProperties);
+        ChorusFlowerBlock flowerBlock = ChorusFlowers.create(name, flowerProperties, plantBlock);
+
+        return new Tuple<ChorusPlantBlock, ChorusFlowerBlock>(plantBlock, flowerBlock);
+    }
+
+    public static final Tuple<ChorusPlantBlock, ChorusFlowerBlock> create(String name, Properties stalkProperties,
+            Properties flowerProperties, ResourceKey<CreativeModeTab> creativeTab) {
+        ChorusPlantBlock plantBlock = ChorusStalks.create(name, stalkProperties, creativeTab);
+        ChorusFlowerBlock flowerBlock = ChorusFlowers.create(name, flowerProperties, plantBlock, creativeTab);
+
+        return new Tuple<ChorusPlantBlock, ChorusFlowerBlock>(plantBlock, flowerBlock);
     }
 }
