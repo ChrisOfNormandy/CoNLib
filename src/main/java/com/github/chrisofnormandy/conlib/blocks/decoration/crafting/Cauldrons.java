@@ -8,6 +8,8 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.CauldronBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 
+// Liquid filled ones...
+
 public class Cauldrons {
 
     public static final CauldronBlock create(String name) {
