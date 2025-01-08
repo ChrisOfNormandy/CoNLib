@@ -1,24 +1,21 @@
 #!/bin/bash
 
-echo Release version: $1
-
-if [[ $# -eq 0 ]] ; then
-    echo 'You must provide a release version.'
-    exit 0
-fi
-
-cwd=$(pwd)
-
 ./gradlew build
 
 rm -r com/github/chrisofnormandy
 
+VERSION="$(./gradlew projectVersion -q | grep 'VERSION:' | awk '{print $NF}' | head -n 1)"
+BUILT_JAR="build/libs/conlib-${VERSION}.jar"
+FINAL_NAME="conlib-${VERSION}"
+
+echo $BUILT_JAR
+
 mvn install:install-file \
+-Dfile=$BUILT_JAR \
+-DlocalRepositoryPath="." \
+-DcreateChecksum=true \
+-Djar.finalName=$FINAL_NAME \
 -DgroupId=com.github.chrisofnormandy \
 -DartifactId=conlib \
--Dversion=$1 \
--Dfile=build/libs/conlib-$1.jar \
--Dpackaging=jar \
--DlocalRepositoryPath=. \
--DcreateChecksum=true \
--Djar.finalName=${artifactId}-${version}
+-Dversion=$VERSION \
+-Dpackaging=jar
