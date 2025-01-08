@@ -1,4 +1,4 @@
-package com.github.chrisofnormandy.conlib.crops;
+package com.github.chrisofnormandy.conlib.crops.types;
 
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.item.ItemNameBlockItem;

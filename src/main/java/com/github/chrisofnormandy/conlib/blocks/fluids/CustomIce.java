@@ -17,6 +17,8 @@ import net.minecraft.world.level.block.HalfTransparentBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 
+// FrostedIceBlock
+
 public class CustomIce extends HalfTransparentBlock {
 
     private Block liquid = Blocks.WATER;

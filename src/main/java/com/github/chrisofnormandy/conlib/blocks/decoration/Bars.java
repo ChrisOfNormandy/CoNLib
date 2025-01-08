@@ -9,6 +9,7 @@ import net.minecraft.world.level.block.IronBarsBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 
 public class Bars {
+
     public static final IronBarsBlock create(String name) {
         return create(name, Properties.copy(Blocks.IRON_BARS));
     }

@@ -1,7 +1,5 @@
 package com.github.chrisofnormandy.conlib.blocks.decoration.crystals;
 
-import com.github.chrisofnormandy.conlib.blocks.basic.FullBlocks;
-
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.level.block.Block;
@@ -14,7 +12,7 @@ public class CrystalSet {
         Block fullCrystal = FullCrystals.create(name + "_cluster");
         Block buddingCrystal = CrystalBudBlocks.create("budding_" + name, smallCrystal, mediumCrystal, largeCrystal,
                 fullCrystal);
-        Block block = FullBlocks.create(name + "_block");
+        Block block = CrystalBlocks.create(name + "_block");
 
         return new Block[] { smallCrystal, mediumCrystal, largeCrystal, fullCrystal, buddingCrystal, block };
     }
@@ -26,7 +24,7 @@ public class CrystalSet {
         Block fullCrystal = FullCrystals.create(name + "_cluster", creativeTab);
         Block buddingCrystal = CrystalBudBlocks.create("budding_" + name, smallCrystal, mediumCrystal, largeCrystal,
                 fullCrystal, creativeTab);
-        Block block = FullBlocks.create(name + "_block", creativeTab);
+        Block block = CrystalBlocks.create(name + "_block", creativeTab);
 
         return new Block[] { smallCrystal, mediumCrystal, largeCrystal, fullCrystal, buddingCrystal, block };
     }

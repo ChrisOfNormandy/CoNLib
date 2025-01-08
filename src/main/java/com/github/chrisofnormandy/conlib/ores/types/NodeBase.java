@@ -1,4 +1,4 @@
-package com.github.chrisofnormandy.conlib.blocks.ores.types;
+package com.github.chrisofnormandy.conlib.ores.types;
 
 import java.util.Random;
 

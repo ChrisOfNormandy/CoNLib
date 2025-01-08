@@ -1,57 +1,5 @@
 # ToDo
 
-HayBlock
-WallBannerBlock
-PitcherCropBlock
-BeetrootBlock
-DirtPathBlock
-EndGatewayBlock
-CommandBlock
-FrostedIceBlock
-MagmaBlock
-CarrotBlock
-PotatoBlock
-GlazedTerracottaBlock
-ConcretePowderBlock
-TurtleEggBlock
-SnifferEggBlock
-BaseCoralPlantBlock
-HalfTransparentBlock (Blue ice)
-ConduitBlock
-LecternBlock
-SweetBerryBushBlock
-NyliumBlock
-FungusBlock
-RootsBlock
-CryingObsidianBlock
-CandleBlock
-CandleCakeBlock
-AmethystBlock
-TintedGlassBlock
-PowderSnowBlock
-SculkSensorBlock
-SculkBlock
-SculkVeinBlock
-SculkCatalystBlock
-SculkShriekerBlock
-LightningRodBlock
-PointedDripstoneBlock
-CaveVinesBlock
-CaveVinesPlantBlock
-SporeBlossomBlock
-AzaleaBlock
-PinkPetalsBlock
-MossBlock
-BigDripleafBlock
-BigDripleafStemBlock
-SmallDripleafBlock
-HangingRootsBlock
-RootedDirtBlock
-MudBlock
-InfestedRotatedPillarBlock
-FrogspawnBlock
-DecoratedPotBlock
-
 # Maybe
 
 BarrierBlock
@@ -59,6 +7,17 @@ LightBlock
 StructureVoidBlock
 BubbleColumnBlock
 JigsawBlock
+EndGatewayBlock
+CommandBlock
+ConduitBlock
+
+# Not Likely cuz why
+
+SculkSensorBlock
+SculkBlock
+SculkVeinBlock
+SculkCatalystBlock
+SculkShriekerBlock
 
 # Custom
 

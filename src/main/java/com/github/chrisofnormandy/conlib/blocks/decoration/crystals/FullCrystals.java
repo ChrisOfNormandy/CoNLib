@@ -9,6 +9,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 
 public class FullCrystals {
+
     public static final AmethystClusterBlock create(String name) {
         return create(name, Properties.copy(Blocks.AMETHYST_CLUSTER));
     }

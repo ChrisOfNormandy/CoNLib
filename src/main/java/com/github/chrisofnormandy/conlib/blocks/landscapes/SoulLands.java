@@ -9,6 +9,7 @@ import net.minecraft.world.level.block.SoulSandBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 
 public class SoulLands {
+
     public static final SoulSandBlock create(String name) {
         return create(name, Properties.copy(Blocks.SOUL_SAND));
     }

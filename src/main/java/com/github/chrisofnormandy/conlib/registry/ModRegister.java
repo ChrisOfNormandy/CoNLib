@@ -22,25 +22,14 @@ import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 public class ModRegister {
     private static String mod_id;
 
-    /**
-     *
-     * @return
-     */
     public static final String getModId() {
         return mod_id;
     }
 
-    /**
-     *
-     */
     public static final void Init() {
         Init(Main.MOD_ID);
     }
 
-    /**
-     *
-     * @param modId
-     */
     public static final void Init(String modId) {
         mod_id = modId;
 

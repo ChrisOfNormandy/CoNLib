@@ -1,4 +1,4 @@
-package com.github.chrisofnormandy.conlib.blocks.decoration;
+package com.github.chrisofnormandy.conlib.blocks.decoration.glass;
 
 import com.github.chrisofnormandy.conlib.registry.BlockRegistry;
 

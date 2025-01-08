@@ -1,6 +1,6 @@
-package com.github.chrisofnormandy.conlib.blocks.ores;
+package com.github.chrisofnormandy.conlib.ores;
 
-import com.github.chrisofnormandy.conlib.blocks.ores.types.NodeBase;
+import com.github.chrisofnormandy.conlib.ores.types.NodeBase;
 
 import net.minecraft.world.level.block.Block;
 
