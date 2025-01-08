@@ -1,59 +1,21 @@
-# Setup Reference
-
-Getting the information down because I know for a fact I'll forget it at some point.
-
-If you would like to see examples of my other projects, come join my Discord - https://discord.gg/EW5JsGJfdt
-Too, my website - The Syren Project / Syren Dev. Tech. - http://www.syren-dev.tech
-Or take a look at my other repositories for other projects I work on in my free time.
-
-# Maven
-
-https://maven.apache.org/download.cgi
-Uses Apache Maven 3.6.3
-
-The directory used is ./com/github/chrisofnormandy/conlib/1.0 and can be imported using:
-```
-repositories{
-    maven {
-        url "https://raw.githubusercontent.com/ChrisOfNormandy/CoNLib/{BRANCH}"
-    }
-}
-...
-dependencies {
-    minecraft 'net.minecraftforge:forge:1.16.5-36.1.0'
-    compile 'com.github.chrisofnormandy:conlib:1.1:deobf'
-}
-```
-
-Given Forge versioning and the frequent changes to this library, ensure the Forge version is correct in the dependencies. Too, that any mod referencing this library uses the same version.
-
-When making edits to the library in development, push to the MC version branch. When using this branch during development, replace {BRANCH} with the Minecraft version (`1.16.5`) in the maven repo settings.
-If you want to use this library locally as an in-dev release, you can replace the maven url with a direct path to the repository directory of this project.
-
-The master branch is used for full releases and should be referenced by the maven repo.
-Else, use the version number of the Minecraft release, such as `1.16.5`.
-
-When releasing a new jar, run the `release.bat` script. It will build a deobf version of the mod using the version defined by the `build.gradle` file. When running the command `release` you must supply a version number equal to the one defined in the build script. For instance, `release 1.1` will run the deobf build, maven build, then rename the deobf files to version 1.1.
-
-There should be a cleaner way of doing this, such as using a POM file, but I'm not bothered by doing such a thing and this hacky method works just fine for the limited scope of this project.
-
 # CoNLib
 
-By standard, the root class for each mod is the `Main.java` file.
+The Syren Project / Syren Dev. Tech. - https://thesyrenproject.wordpress.com
 
-Most things can be registered using a method defined in `conlib/registry/ModRegister.java`, but there are other areas that define more complex and / or refined methods.
+[Jump to Development Setup](#development-setup)
 
-For instance, `block/ModBlock.java` provides a handful of preset methods for registering new block types like stone, wood, bricks and ore. Too, some custom block types I developed are accessable via this interface. 
+## Configs
 
-Some of these presets have even more generous registration capabilities, such as `Ore`, which allows the registration of various resources associated with ore blocks. Things like tools, ingots, nuggets, armour, the base item, etc...
-
-# Configs
-
-Given my dedication to provide avenues of Minecraft modding for less-technical Minecrafters, the classes `Config` and `ConfigGroup` provide fairly well-formed methods for generating config TOML files. These configs can contain subgroups and even be placed with their own directories within the `/config` folder. As such, registering unique configs for individual aspects of a mod is easily accomplished.
+Given my dedication to provide avenues of Minecraft modding for less-technical Minecrafters, the classes `Config` and `ConfigGroup` provide fairly well-formed methods for generating config TOML files.
+These configs can contain subgroups and even be placed with their own directories within the `/config` folder.
+As such, registering unique configs for individual aspects of a mod is easily accomplished.
 
 Furthermore, config properties are stored in a `HashMap` accessable by the `ConfigGroup` class, each defined by their data type. For example, boolean values (flags) are stored under the `flags` map.
 
-Going beyond this, it is possible to define lists within configs, allowing the ability to generate new configs and resources based on definitions within a config. This should be used with caution, however, as registering new content using this method is dangerous if done impropperly. The methods are fairly simple, and they are easily modified. However, once a resource has been registered to the mod and loaded within a world, that resource cannot change without adverse affects to the save. As such, all configuration settings should be supplied **BEFORE** a new world is created.
+Going beyond this, it is possible to define lists within configs, allowing the ability to generate new configs and resources based on definitions within a config.
+This should be used with caution, however, as registering new content using this method is dangerous if done impropperly.
+The methods are fairly simple, and they are easily modified. However, once a resource has been registered to the mod and loaded within a world, that resource cannot change without adverse affects to the save.
+As such, all configuration settings should be supplied **BEFORE** a new world is created.
 
 ***
 
@@ -108,10 +70,54 @@ Finally, we build the config and place it in a separate config map under a uniqu
 
 # Public Usage
 
-Anyone may use this library mod as long as they credit me in some manner. Throwing my name (ChrisOfNormandy) somewhere in the description is completely acceptable. Please do not redistribute this project or misrepresent its purpose - providing easier access to Minecraft modding.
+Anyone may use this library mod as long as they credit me in some manner.
+Throwing my name (ChrisOfNormandy) somewhere in the description is completely acceptable.
+Please do not redistribute this project or misrepresent its purpose - providing easier access to Minecraft modding.
 
-If you would like to contribute to this project, I thank you. I am a fairly picky developer and prefer working on side projects on my own. I consider these things more as "passion projects" and "tinker tools" than something to release out into the public as a product. However, anyone may clone this repository and modify its code for personal use - please do not redistribute a modified version of this library unless you have my explicit consent.
+If you would like to contribute to this project, I thank you.
+I am a fairly picky developer and prefer working on side projects on my own.
+I consider these things more as "passion projects" and "tinker tools" than something to release out into the public as a product.
+However, anyone may clone this repository and modify its code for personal use - please do not redistribute a modified version of this library unless you have my explicit consent.
 
 Modification of this project includes, but is not limited to, renaming variables and properties; adding and / or removing classes; restructuring of package definitions by moving or renaming file structures; adding additional code or removing original code.
 
-Please be an ethical and responsible developer and credit people where credit is due. Do not copy / paste my code as your own. If you would like to use this as a reference, go right on ahead. I am developing a tutorial on the basics of programming in various languages and how to apply these principles in things such as game modding and development. A source will be provided here when available.
+Please be an ethical and responsible developer and credit people where credit is due.
+
+***
+
+# Development Setup
+
+## Maven Setup
+
+> If you don't plan on building and releasing content, ignore this section.
+
+1. Download Apache Maven: https://maven.apache.org/download.cgi (`tar.gz`)
+2. Run: `tar -xvf apache-maven-x.x.x-bin.tar.gz` where `x.x.x` is the downloaded version
+3. Copy `/opt`: `sudo cp -r apache-maven-x.x.x /opt`
+4. Path setup: `PATH=/opt/apache-maven-x.x.x/bin:$PATH` and `echo -e "\nPATH=\"/opt/apache-maven-x.x.x/bin:\$PATH\"" >> ~/.profile` (or `~/.bashrc`)
+
+The directory used is ./com/github/chrisofnormandy/conlib/VERSION and can be imported using:
+
+> The latest version can be found in `build.gradle` or echo with `./gradlew projectVersion`
+
+```
+repositories{
+    maven {
+        url "https://raw.githubusercontent.com/ChrisOfNormandy/CoNLib/{BRANCH}"
+    }
+}
+...
+dependencies {
+    compile 'com.github.chrisofnormandy:conlib:1.1:deobf'
+}
+```
+
+> Replace `BRANCH` with the git branch / Minecraft version like `1.20.1`
+
+Given Forge versioning and the frequent changes to this library, ensure the Forge version is correct in the dependencies. Too, that any mod referencing this library uses the same version.
+
+When making edits to the library in development, push to the MC version branch. When using this branch during development, replace {BRANCH} with the Minecraft version (`1.20.1`) in the maven repo settings.
+If you want to use this library locally as an in-dev release, you can replace the maven url with a direct path to the repository directory of this project.
+
+When releasing a new jar, run the `release.sh` script.
+It will build a deobf version of the mod using the version defined by the `build.gradle` file.
