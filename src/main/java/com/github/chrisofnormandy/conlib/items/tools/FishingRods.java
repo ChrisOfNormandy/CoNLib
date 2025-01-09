@@ -6,30 +6,32 @@ import com.github.chrisofnormandy.conlib.registry.ModRegister;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.FishingRodItem;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Item.Properties;
+import net.minecraftforge.registries.RegistryObject;
 
 public class FishingRods {
 
-    public static final Item create(String name) {
+    public static final RegistryObject<FishingRodItem> create(String name) {
         return create(name, new Properties());
     }
 
-    public static final Item create(String name, ResourceKey<CreativeModeTab> creativeTab) {
+    public static final RegistryObject<FishingRodItem> create(String name,
+            ResourceKey<CreativeModeTab> creativeTab) {
         return create(name, new Properties(), creativeTab);
     }
 
-    public static final Item create(String name, Properties properties) {
-        Item rod = new FishingRodItem(properties);
-        ModRegister.tools.put(name, rod);
+    public static final RegistryObject<FishingRodItem> create(String name, Properties properties) {
+        var fas = ItemRegistry.register(name, () -> new FishingRodItem(properties));
+        ModRegister.tools.put(name, fas);
 
-        return ItemRegistry.register(name, rod);
+        return fas;
     }
 
-    public static final Item create(String name, Properties properties, ResourceKey<CreativeModeTab> creativeTab) {
-        Item rod = new FishingRodItem(properties);
-        ModRegister.tools.put(name, rod);
+    public static final RegistryObject<FishingRodItem> create(String name, Properties properties,
+            ResourceKey<CreativeModeTab> creativeTab) {
+        var fas = ItemRegistry.register(name, () -> new FishingRodItem(properties), creativeTab);
+        ModRegister.tools.put(name, fas);
 
-        return ItemRegistry.register(name, rod, creativeTab);
+        return fas;
     }
 }

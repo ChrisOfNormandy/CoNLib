@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.github.chrisofnormandy.conlib.Main;
+import com.github.chrisofnormandy.conlib.CoNLib;
 import com.github.chrisofnormandy.conlib.registry.features.FeatureRegistry.OreFeatureRegistry;
 
 import net.minecraft.core.Holder;
@@ -63,7 +63,7 @@ public class PlacedFeatureRegistry {
     }
 
     private static ResourceKey<PlacedFeature> registerKey(String name) {
-        return ResourceKey.create(Registries.PLACED_FEATURE, new ResourceLocation(Main.MOD_ID, name));
+        return ResourceKey.create(Registries.PLACED_FEATURE, new ResourceLocation(CoNLib.MOD_ID, name));
     }
 
     private static void register(BootstapContext<PlacedFeature> context, ResourceKey<PlacedFeature> key,

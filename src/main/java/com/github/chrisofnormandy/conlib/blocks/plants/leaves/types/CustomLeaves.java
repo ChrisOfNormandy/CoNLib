@@ -1,4 +1,4 @@
-package com.github.chrisofnormandy.conlib.blocks.plants.leaves;
+package com.github.chrisofnormandy.conlib.blocks.plants.leaves.types;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;

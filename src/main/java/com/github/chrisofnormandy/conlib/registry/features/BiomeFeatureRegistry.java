@@ -3,7 +3,7 @@ package com.github.chrisofnormandy.conlib.registry.features;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.github.chrisofnormandy.conlib.Main;
+import com.github.chrisofnormandy.conlib.CoNLib;
 import com.github.chrisofnormandy.conlib.collections.Tuple;
 import com.github.chrisofnormandy.conlib.registry.features.PlacedFeatureRegistry.PlacedOreFeatureRegistry;
 
@@ -48,6 +48,6 @@ public class BiomeFeatureRegistry {
     }
 
     private static ResourceKey<BiomeModifier> registerKey(String name) {
-        return ResourceKey.create(ForgeRegistries.Keys.BIOME_MODIFIERS, new ResourceLocation(Main.MOD_ID, name));
+        return ResourceKey.create(ForgeRegistries.Keys.BIOME_MODIFIERS, new ResourceLocation(CoNLib.MOD_ID, name));
     }
 }

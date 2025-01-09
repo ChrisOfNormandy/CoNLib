@@ -9,44 +9,50 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.StemBlock;
 import net.minecraft.world.level.block.StemGrownBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+import net.minecraftforge.registries.RegistryObject;
 
 public class Stems {
     public static class AttachedStems {
-        public static final AttachedStemBlock create(String name, StemGrownBlock fruit,
+
+        public static final RegistryObject<AttachedStemBlock> create(String name, StemGrownBlock fruit,
                 Item seeds) {
             return BlockRegistry.register(name,
-                    new AttachedStemBlock(fruit, () -> seeds, Properties.copy(Blocks.ATTACHED_PUMPKIN_STEM)));
+                    () -> new AttachedStemBlock(fruit, () -> seeds, Properties.copy(Blocks.ATTACHED_PUMPKIN_STEM)));
         }
 
-        public static final AttachedStemBlock create(String name, Properties properties, StemGrownBlock fruit,
+        public static final RegistryObject<AttachedStemBlock> create(String name, Properties properties,
+                StemGrownBlock fruit,
                 Item seeds) {
-            return BlockRegistry.register(name, new AttachedStemBlock(fruit, () -> seeds, properties));
+            return BlockRegistry.register(name, () -> new AttachedStemBlock(fruit, () -> seeds, properties));
         }
     }
 
     public static class GrowingStems {
-        public static final StemBlock create(String name, StemGrownBlock fruit, Item seeds) {
+
+        public static final RegistryObject<StemBlock> create(String name, StemGrownBlock fruit, Item seeds) {
             return BlockRegistry.register(name,
-                    new StemBlock(fruit, () -> seeds, Properties.copy(Blocks.PUMPKIN_STEM)));
+                    () -> new StemBlock(fruit, () -> seeds, Properties.copy(Blocks.PUMPKIN_STEM)));
         }
 
-        public static final StemBlock create(String name, Properties properties,
+        public static final RegistryObject<StemBlock> create(String name, Properties properties,
                 StemGrownBlock fruit, Item seeds) {
-            return BlockRegistry.register(name, new StemBlock(fruit, () -> seeds, properties));
+            return BlockRegistry.register(name, () -> new StemBlock(fruit, () -> seeds, properties));
         }
     }
 
-    public static Tuple<StemBlock, AttachedStemBlock> create(String name, Properties properties,
+    public static final Tuple<RegistryObject<StemBlock>, RegistryObject<AttachedStemBlock>> create(String name,
+            Properties properties,
             StemGrownBlock fruit, Item seeds) {
-        StemBlock stem = GrowingStems.create(name, properties, fruit, seeds);
-        AttachedStemBlock attachedStem = AttachedStems.create("attached_" + name, properties, fruit, seeds);
+        var stem = GrowingStems.create(name, properties, fruit, seeds);
+        var attachedStem = AttachedStems.create("attached_" + name, properties, fruit, seeds);
 
         return new Tuple<>(stem, attachedStem);
     }
 
-    public static Tuple<StemBlock, AttachedStemBlock> create(String name, StemGrownBlock fruit, Item seeds) {
-        StemBlock stem = GrowingStems.create(name, fruit, seeds);
-        AttachedStemBlock attachedStem = AttachedStems.create("attached_" + name, fruit, seeds);
+    public static final Tuple<RegistryObject<StemBlock>, RegistryObject<AttachedStemBlock>> create(String name,
+            StemGrownBlock fruit, Item seeds) {
+        var stem = GrowingStems.create(name, fruit, seeds);
+        var attachedStem = AttachedStems.create("attached_" + name, fruit, seeds);
 
         return new Tuple<>(stem, attachedStem);
     }

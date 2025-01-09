@@ -8,29 +8,30 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Item.Properties;
 import net.minecraft.world.item.ShieldItem;
+import net.minecraftforge.registries.RegistryObject;
 
 public class Shields {
 
-    public static final Item create(String name) {
+    public static final RegistryObject<ShieldItem> create(String name) {
         return create(name, new Item.Properties());
     }
 
-    public static final Item create(String name, ResourceKey<CreativeModeTab> creativeTab) {
+    public static final RegistryObject<ShieldItem> create(String name, ResourceKey<CreativeModeTab> creativeTab) {
         return create(name, new Item.Properties(), creativeTab);
     }
 
-    public static final Item create(String name, Properties properties) {
-        Item shield = new ShieldItem(properties);
+    public static final RegistryObject<ShieldItem> create(String name, Properties properties) {
+        var shield = ItemRegistry.register(name, () -> new ShieldItem(properties));
         ModRegister.weapons.put(name, shield);
 
-        return ItemRegistry.register(name, shield);
+        return shield;
     }
 
-    public static final Item create(String name, Properties properties,
+    public static final RegistryObject<ShieldItem> create(String name, Properties properties,
             ResourceKey<CreativeModeTab> creativeTab) {
-        Item shield = new ShieldItem(properties);
+        var shield = ItemRegistry.register(name, () -> new ShieldItem(properties), creativeTab);
         ModRegister.weapons.put(name, shield);
 
-        return ItemRegistry.register(name, shield, creativeTab);
+        return shield;
     }
 }

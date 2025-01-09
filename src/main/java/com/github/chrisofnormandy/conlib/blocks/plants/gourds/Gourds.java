@@ -11,66 +11,65 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.StemBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+import net.minecraftforge.registries.RegistryObject;
 
 public class Gourds {
 
-    public static final Gourd create(String name) {
-        Gourd gourd = new Gourd(Properties.copy(Blocks.PUMPKIN));
-        return BlockRegistry.register(name, gourd);
+    public static final RegistryObject<Gourd> create(String name) {
+        return create(name, Properties.copy(Blocks.PUMPKIN));
     }
 
-    public static final Gourd create(String name, ResourceKey<CreativeModeTab> creativeTab) {
-        Gourd gourd = new Gourd(Properties.copy(Blocks.PUMPKIN));
-        return BlockRegistry.register(name, gourd, creativeTab);
+    public static final RegistryObject<Gourd> create(String name, ResourceKey<CreativeModeTab> creativeTab) {
+        return create(name, Properties.copy(Blocks.PUMPKIN), creativeTab);
     }
 
-    public static final Gourd create(String name, Properties properties) {
-        Gourd gourd = new Gourd(properties);
-        return BlockRegistry.register(name, gourd);
+    public static final RegistryObject<Gourd> create(String name, Properties properties) {
+        return BlockRegistry.register(name, () -> new Gourd(properties));
     }
 
-    public static final Gourd create(String name, Properties properties, ResourceKey<CreativeModeTab> creativeTab) {
-        Gourd gourd = new Gourd(properties);
-        return BlockRegistry.register(name, gourd, creativeTab);
+    public static final RegistryObject<Gourd> create(String name, Properties properties,
+            ResourceKey<CreativeModeTab> creativeTab) {
+        return BlockRegistry.register(name, () -> new Gourd(properties), creativeTab);
     }
 
-    public static final Gourd create(String name,
+    public static final RegistryObject<Gourd> create(String name,
             Block carvedBlock,
             StemBlock stemBlock,
             AttachedStemBlock attachedStemBlock,
             Item seeds) {
-        Gourd gourd = new Gourd(Properties.copy(Blocks.PUMPKIN), carvedBlock, stemBlock, attachedStemBlock, seeds);
-        return BlockRegistry.register(name, gourd);
+        return BlockRegistry.register(name,
+                () -> new Gourd(Properties.copy(Blocks.PUMPKIN), carvedBlock, stemBlock, attachedStemBlock, seeds));
     }
 
-    public static final Gourd create(String name,
+    public static final RegistryObject<Gourd> create(String name,
             Block carvedBlock,
             StemBlock stemBlock,
             AttachedStemBlock attachedStemBlock,
             Item seeds,
             ResourceKey<CreativeModeTab> creativeTab) {
-        Gourd gourd = new Gourd(Properties.copy(Blocks.PUMPKIN), carvedBlock, stemBlock, attachedStemBlock, seeds);
-        return BlockRegistry.register(name, gourd, creativeTab);
+        return BlockRegistry.register(name,
+                () -> new Gourd(Properties.copy(Blocks.PUMPKIN), carvedBlock, stemBlock, attachedStemBlock, seeds),
+                creativeTab);
     }
 
-    public static final Gourd create(String name,
+    public static final RegistryObject<Gourd> create(String name,
             Properties properties,
             Block carvedBlock,
             StemBlock stemBlock,
             AttachedStemBlock attachedStemBlock,
             Item seeds) {
-        Gourd gourd = new Gourd(properties, carvedBlock, stemBlock, attachedStemBlock, seeds);
-        return BlockRegistry.register(name, gourd);
+        return BlockRegistry.register(name,
+                () -> new Gourd(properties, carvedBlock, stemBlock, attachedStemBlock, seeds));
     }
 
-    public static final Gourd create(String name,
+    public static final RegistryObject<Gourd> create(String name,
             Properties properties,
             Block carvedBlock,
             StemBlock stemBlock,
             AttachedStemBlock attachedStemBlock,
             Item seeds,
             ResourceKey<CreativeModeTab> creativeTab) {
-        Gourd gourd = new Gourd(properties, carvedBlock, stemBlock, attachedStemBlock, seeds);
-        return BlockRegistry.register(name, gourd, creativeTab);
+        return BlockRegistry.register(name,
+                () -> new Gourd(properties, carvedBlock, stemBlock, attachedStemBlock, seeds), creativeTab);
     }
 }

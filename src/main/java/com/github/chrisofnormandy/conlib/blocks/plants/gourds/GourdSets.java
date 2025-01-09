@@ -1,33 +1,29 @@
 package com.github.chrisofnormandy.conlib.blocks.plants.gourds;
 
-import com.github.chrisofnormandy.conlib.blocks.plants.gourds.types.CarvedGourd;
-import com.github.chrisofnormandy.conlib.blocks.plants.gourds.types.EquipableCarvedGourd;
-import com.github.chrisofnormandy.conlib.blocks.plants.gourds.types.Gourd;
-import com.github.chrisofnormandy.conlib.collections.Tuple;
 import com.github.chrisofnormandy.conlib.crops.Stems;
 
 import net.minecraft.world.item.Item;
-import net.minecraft.world.level.block.AttachedStemBlock;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.StemBlock;
+import net.minecraftforge.registries.RegistryObject;
 
 public class GourdSets {
-    public static final Block[] create(String name, Item seeds) {
-        // CarvedGourd carved = CarvedGourds.create(name);
-        EquipableCarvedGourd weableCarved = EquipableGourds.create(name);
-        CarvedGourd lantern = CarvedGourdLanterns.create(name);
 
-        Gourd gourd = Gourds.create(name)
-                .setCarvedBlock(weableCarved)
+    public static final RegistryObject<?>[] create(String name, Item seeds) {
+        // CarvedGourd carved = CarvedGourds.create(name);
+        var weableCarved = EquipableGourds.create(name);
+        var lantern = CarvedGourdLanterns.create(name);
+
+        var gourdRegistry = Gourds.create(name);
+        var gourd = gourdRegistry.get();
+        gourd.setCarvedBlock(weableCarved.get())
                 .setSeeds(seeds);
 
-        Tuple<StemBlock, AttachedStemBlock> stems = Stems.create(name, gourd, seeds);
+        var stems = Stems.create(name, gourd, seeds);
 
-        gourd.setStemBlock(stems.x)
-                .setAttachedStemBlock(stems.y);
+        gourd.setStemBlock(stems.x.get())
+                .setAttachedStemBlock(stems.y.get());
 
-        return new Block[] {
-                gourd,
+        return new RegistryObject<?>[] {
+                gourdRegistry,
                 weableCarved,
                 lantern,
                 stems.x,

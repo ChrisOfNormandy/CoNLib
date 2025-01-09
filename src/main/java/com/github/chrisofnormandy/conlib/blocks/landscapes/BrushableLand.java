@@ -9,44 +9,45 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.BrushableBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+import net.minecraftforge.registries.RegistryObject;
 
 public class BrushableLand {
-    public static final BrushableBlock create(String name, Block dustedBlock) {
+    public static final RegistryObject<BrushableBlock> create(String name, Block dustedBlock) {
         return create(name, Properties.copy(dustedBlock), dustedBlock);
     }
 
-    public static final BrushableBlock create(String name, Block dustedBlock,
+    public static final RegistryObject<BrushableBlock> create(String name, Block dustedBlock,
             ResourceKey<CreativeModeTab> creativeTab) {
         return create(name, Properties.copy(dustedBlock), dustedBlock, SoundEvents.BRUSH_SAND,
                 SoundEvents.BRUSH_SAND_COMPLETED, creativeTab);
     }
 
-    public static final BrushableBlock create(String name, Properties properties, Block dustedBlock) {
+    public static final RegistryObject<BrushableBlock> create(String name, Properties properties, Block dustedBlock) {
         return create(name, properties, dustedBlock, SoundEvents.BRUSH_SAND, SoundEvents.BRUSH_SAND_COMPLETED);
     }
 
-    public static final BrushableBlock create(String name, Properties properties, Block dustedBlock,
+    public static final RegistryObject<BrushableBlock> create(String name, Properties properties, Block dustedBlock,
             ResourceKey<CreativeModeTab> creativeTab) {
         return create(name, properties, dustedBlock, SoundEvents.BRUSH_SAND, SoundEvents.BRUSH_SAND_COMPLETED,
                 creativeTab);
     }
 
-    public static final BrushableBlock create(String name,
+    public static final RegistryObject<BrushableBlock> create(String name,
             Properties properties,
             Block dustedBlock,
             SoundEvent dustingSound,
             SoundEvent dustingCompletedSound) {
         return BlockRegistry.register(name,
-                new BrushableBlock(dustedBlock, properties, dustingSound, dustingCompletedSound));
+                () -> new BrushableBlock(dustedBlock, properties, dustingSound, dustingCompletedSound));
     }
 
-    public static final BrushableBlock create(String name,
+    public static final RegistryObject<BrushableBlock> create(String name,
             Properties properties,
             Block dustedBlock,
             SoundEvent dustingSound,
             SoundEvent dustingCompletedSound,
             ResourceKey<CreativeModeTab> creativeTab) {
         return BlockRegistry.register(name,
-                new BrushableBlock(dustedBlock, properties, dustingSound, dustingCompletedSound), creativeTab);
+                () -> new BrushableBlock(dustedBlock, properties, dustingSound, dustingCompletedSound), creativeTab);
     }
 }

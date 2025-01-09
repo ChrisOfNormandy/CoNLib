@@ -7,22 +7,24 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.ChiseledBookShelfBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+import net.minecraftforge.registries.RegistryObject;
 
 public class Bookshelves {
-    public static final ChiseledBookShelfBlock create(String name) {
+    public static final RegistryObject<ChiseledBookShelfBlock> create(String name) {
         return create(name, Properties.copy(Blocks.CHISELED_BOOKSHELF));
     }
 
-    public static final ChiseledBookShelfBlock create(String name, ResourceKey<CreativeModeTab> creativeTab) {
+    public static final RegistryObject<ChiseledBookShelfBlock> create(String name,
+            ResourceKey<CreativeModeTab> creativeTab) {
         return create(name, Properties.copy(Blocks.CHISELED_BOOKSHELF), creativeTab);
     }
 
-    public static final ChiseledBookShelfBlock create(String name, Properties properties) {
-        return BlockRegistry.register(name, new ChiseledBookShelfBlock(properties));
+    public static final RegistryObject<ChiseledBookShelfBlock> create(String name, Properties properties) {
+        return BlockRegistry.register(name, () -> new ChiseledBookShelfBlock(properties));
     }
 
-    public static final ChiseledBookShelfBlock create(String name, Properties properties,
+    public static final RegistryObject<ChiseledBookShelfBlock> create(String name, Properties properties,
             ResourceKey<CreativeModeTab> creativeTab) {
-        return BlockRegistry.register(name, new ChiseledBookShelfBlock(properties), creativeTab);
+        return BlockRegistry.register(name, () -> new ChiseledBookShelfBlock(properties), creativeTab);
     }
 }

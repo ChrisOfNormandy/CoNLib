@@ -8,43 +8,46 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.HoneyBlock;
 import net.minecraft.world.level.block.SlimeBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+import net.minecraftforge.registries.RegistryObject;
 
 public class StickyBlocks {
     public static class SlimeBlocks {
-        public static final SlimeBlock create(String name) {
+
+        public static final RegistryObject<SlimeBlock> create(String name) {
             return create(name, Properties.copy(Blocks.SLIME_BLOCK));
         }
 
-        public static final SlimeBlock create(String name, ResourceKey<CreativeModeTab> creativeTab) {
+        public static final RegistryObject<SlimeBlock> create(String name, ResourceKey<CreativeModeTab> creativeTab) {
             return create(name, Properties.copy(Blocks.SLIME_BLOCK), creativeTab);
         }
 
-        public static final SlimeBlock create(String name, Properties properties) {
-            return BlockRegistry.register(name, new SlimeBlock(properties));
+        public static final RegistryObject<SlimeBlock> create(String name, Properties properties) {
+            return BlockRegistry.register(name, () -> new SlimeBlock(properties));
         }
 
-        public static final SlimeBlock create(String name, Properties properties,
+        public static final RegistryObject<SlimeBlock> create(String name, Properties properties,
                 ResourceKey<CreativeModeTab> creativeTab) {
-            return BlockRegistry.register(name, new SlimeBlock(properties), creativeTab);
+            return BlockRegistry.register(name, () -> new SlimeBlock(properties), creativeTab);
         }
     }
 
     public static class HoneyBlocks {
-        public static final HoneyBlock create(String name) {
+
+        public static final RegistryObject<HoneyBlock> create(String name) {
             return create(name, Properties.copy(Blocks.HONEY_BLOCK));
         }
 
-        public static final HoneyBlock create(String name, ResourceKey<CreativeModeTab> creativeTab) {
+        public static final RegistryObject<HoneyBlock> create(String name, ResourceKey<CreativeModeTab> creativeTab) {
             return create(name, Properties.copy(Blocks.HONEY_BLOCK), creativeTab);
         }
 
-        public static final HoneyBlock create(String name, Properties properties) {
-            return BlockRegistry.register(name, new HoneyBlock(properties));
+        public static final RegistryObject<HoneyBlock> create(String name, Properties properties) {
+            return BlockRegistry.register(name, () -> new HoneyBlock(properties));
         }
 
-        public static final HoneyBlock create(String name, Properties properties,
+        public static final RegistryObject<HoneyBlock> create(String name, Properties properties,
                 ResourceKey<CreativeModeTab> creativeTab) {
-            return BlockRegistry.register(name, new HoneyBlock(properties), creativeTab);
+            return BlockRegistry.register(name, () -> new HoneyBlock(properties), creativeTab);
         }
     }
 }

@@ -7,21 +7,24 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.WebBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+import net.minecraftforge.registries.RegistryObject;
 
 public class Cobwebs {
-    public static final WebBlock create(String name) {
+
+    public static final RegistryObject<WebBlock> create(String name) {
         return create(name, Properties.copy(Blocks.COBWEB));
     }
 
-    public static final WebBlock create(String name, ResourceKey<CreativeModeTab> creativeTab) {
+    public static final RegistryObject<WebBlock> create(String name, ResourceKey<CreativeModeTab> creativeTab) {
         return create(name, Properties.copy(Blocks.COBWEB), creativeTab);
     }
 
-    public static final WebBlock create(String name, Properties properties) {
-        return BlockRegistry.register(name, new WebBlock(properties));
+    public static final RegistryObject<WebBlock> create(String name, Properties properties) {
+        return BlockRegistry.register(name, () -> new WebBlock(properties));
     }
 
-    public static final WebBlock create(String name, Properties properties, ResourceKey<CreativeModeTab> creativeTab) {
-        return BlockRegistry.register(name, new WebBlock(properties), creativeTab);
+    public static final RegistryObject<WebBlock> create(String name, Properties properties,
+            ResourceKey<CreativeModeTab> creativeTab) {
+        return BlockRegistry.register(name, () -> new WebBlock(properties), creativeTab);
     }
 }

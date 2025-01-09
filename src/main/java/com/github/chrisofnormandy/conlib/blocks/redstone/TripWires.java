@@ -8,46 +8,47 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.TripWireBlock;
 import net.minecraft.world.level.block.TripWireHookBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+import net.minecraftforge.registries.RegistryObject;
 
 public class TripWires {
 
-    public static class Hook {
-        public static final TripWireHookBlock create(String name) {
+    public static class TripWireHooks {
+        public static final RegistryObject<TripWireHookBlock> create(String name) {
             return create(name, Properties.copy(Blocks.TRIPWIRE_HOOK));
         }
 
-        public static final TripWireHookBlock create(String name, ResourceKey<CreativeModeTab> creativeTab) {
+        public static final RegistryObject<TripWireHookBlock> create(String name,
+                ResourceKey<CreativeModeTab> creativeTab) {
             return create(name, Properties.copy(Blocks.TRIPWIRE_HOOK), creativeTab);
         }
 
-        public static final TripWireHookBlock create(String name, Properties properties) {
-            return BlockRegistry.register(name, new TripWireHookBlock(properties));
+        public static final RegistryObject<TripWireHookBlock> create(String name, Properties properties) {
+            return BlockRegistry.register(name, () -> new TripWireHookBlock(properties));
         }
 
-        public static final TripWireHookBlock create(String name, Properties properties,
+        public static final RegistryObject<TripWireHookBlock> create(String name, Properties properties,
                 ResourceKey<CreativeModeTab> creativeTab) {
-            return BlockRegistry.register(name, new TripWireHookBlock(properties), creativeTab);
+            return BlockRegistry.register(name, () -> new TripWireHookBlock(properties), creativeTab);
         }
     }
 
-    public static class Wire {
+    public static final RegistryObject<TripWireBlock> create(String name, TripWireHookBlock hookBlock) {
+        return create(name, hookBlock, Properties.copy(Blocks.TRIPWIRE));
+    }
 
-        public static final TripWireBlock create(String name, TripWireHookBlock hookBlock) {
-            return create(name, hookBlock, Properties.copy(Blocks.TRIPWIRE));
-        }
+    public static final RegistryObject<TripWireBlock> create(String name, TripWireHookBlock hookBlock,
+            ResourceKey<CreativeModeTab> creativeTab) {
+        return create(name, hookBlock, Properties.copy(Blocks.TRIPWIRE), creativeTab);
+    }
 
-        public static final TripWireBlock create(String name, TripWireHookBlock hookBlock,
-                ResourceKey<CreativeModeTab> creativeTab) {
-            return create(name, hookBlock, Properties.copy(Blocks.TRIPWIRE), creativeTab);
-        }
+    public static final RegistryObject<TripWireBlock> create(String name, TripWireHookBlock hookBlock,
+            Properties properties) {
+        return BlockRegistry.register(name, () -> new TripWireBlock(hookBlock, properties));
+    }
 
-        public static final TripWireBlock create(String name, TripWireHookBlock hookBlock, Properties properties) {
-            return BlockRegistry.register(name, new TripWireBlock(hookBlock, properties));
-        }
-
-        public static final TripWireBlock create(String name, TripWireHookBlock hookBlock, Properties properties,
-                ResourceKey<CreativeModeTab> creativeTab) {
-            return BlockRegistry.register(name, new TripWireBlock(hookBlock, properties), creativeTab);
-        }
+    public static final RegistryObject<TripWireBlock> create(String name, TripWireHookBlock hookBlock,
+            Properties properties,
+            ResourceKey<CreativeModeTab> creativeTab) {
+        return BlockRegistry.register(name, () -> new TripWireBlock(hookBlock, properties), creativeTab);
     }
 }

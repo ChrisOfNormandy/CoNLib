@@ -1,4 +1,4 @@
-package com.github.chrisofnormandy.conlib.blocks.plants.sponges;
+package com.github.chrisofnormandy.conlib.blocks.plants.sponges.types;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;

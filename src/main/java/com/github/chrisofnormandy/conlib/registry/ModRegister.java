@@ -2,178 +2,57 @@ package com.github.chrisofnormandy.conlib.registry;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-// import java.util.stream.Stream;
 import java.util.List;
 
-import com.github.chrisofnormandy.conlib.Main;
-import com.github.chrisofnormandy.conlib.collections.Tuple;
-import com.github.chrisofnormandy.conlib.collections.JsonBuilder.JsonObject;
-import com.github.chrisofnormandy.conlib.event.BlockBreak;
+import com.github.chrisofnormandy.conlib.registry.BlockRegistry.BlockRegistryInit;
+import com.github.chrisofnormandy.conlib.registry.CreativeTabRegistry.CreativeTabRegistryInit;
+import com.github.chrisofnormandy.conlib.registry.ItemRegistry.ItemRegistryInit;
 
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.levelgen.feature.Feature;
-import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
+import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.registries.RegistryObject;
 
 public class ModRegister {
-    private static String mod_id;
-
-    public static final String getModId() {
-        return mod_id;
-    }
-
-    public static final void Init() {
-        Init(Main.MOD_ID);
-    }
-
-    public static final void Init(String modId) {
-        mod_id = modId;
-
-        events.put("block_break", BlockBreak.class);
-
-        events.forEach((String key, Object event) -> EventRegistry.register(event));
-    }
-
-    public static void assignCreativeTabs(BuildCreativeModeTabContentsEvent event) {
-        creativeTabs.forEach((ResourceKey<CreativeModeTab> key, List<Item> items) -> {
-            if (event.getTabKey() == key) {
-                items.forEach((Item item) -> event.accept(item));
-            }
-        });
-    }
 
     // CREATIVE TAB ASSIGNMENTS
-    public static final HashMap<ResourceKey<CreativeModeTab>, List<Item>> creativeTabs = new HashMap<ResourceKey<CreativeModeTab>, List<Item>>();
+    public static final HashMap<ResourceKey<CreativeModeTab>, List<RegistryObject<? extends Item>>> creativeTabs = new HashMap<>();
 
-    public static <T extends Item> T useCreativeTab(ResourceKey<CreativeModeTab> tab, T item) {
-        List<Item> items;
-
-        if (!creativeTabs.containsKey(tab)) {
-            items = new ArrayList<Item>();
-            items.add(item);
+    public static <T extends Item> RegistryObject<T> useCreativeTab(ResourceKey<CreativeModeTab> tab,
+            RegistryObject<T> item) {
+        var items = creativeTabs.get(tab);
+        if (items == null) {
+            items = new ArrayList<>();
             creativeTabs.put(tab, items);
-        } else {
-            items = creativeTabs.get(tab);
-            items.add(item);
         }
+
+        items.add(item);
 
         return item;
     }
 
-    // EVENTS
-    public static final HashMap<String, Object> events = new HashMap<String, Object>();
+    public static final HashMap<String, Object> events = new HashMap<>();
+    public static final HashMap<String, RegistryObject<CreativeModeTab>> groups = new HashMap<>();
+    public static final HashMap<String, RegistryObject<? extends Block>> blocks = new HashMap<>();
+    public static final HashMap<String, RegistryObject<? extends Block>> transparentBlocks = new HashMap<>();
+    public static final HashMap<String, RegistryObject<? extends Item>> items = new HashMap<>();
+    public static final HashMap<String, RegistryObject<? extends Item>> tools = new HashMap<>();
+    public static final HashMap<String, RegistryObject<? extends Item>> weapons = new HashMap<>();
+    public static final HashMap<String, RegistryObject<? extends ArmorItem>> wearable = new HashMap<>();
+    public static final HashMap<String, RegistryObject<? extends Item>> foods = new HashMap<>();
 
-    // ITEM GROUPS
-    public static final HashMap<String, CreativeModeTab> groups = new HashMap<String, CreativeModeTab>();
-
-    // MATERIALS
-    // public static final HashMap<String, Material> materials = new HashMap<String,
-    // Material>();
-
-    // BLOCKS
-    public static final HashMap<String, Block> blocks = new HashMap<String, Block>();
-    public static final HashMap<String, Block> transparentBlocks = new HashMap<String, Block>();
-
-    // ITEMS
-    public static final HashMap<String, Item> items = new HashMap<String, Item>();
-
-    // TOOLS
-    public static final HashMap<String, Item> tools = new HashMap<String, Item>();
-
-    // WEAPONS
-    public static final HashMap<String, Item> weapons = new HashMap<String, Item>();
-
-    // WEARABLE
-    public static final HashMap<String, ArmorItem> wearable = new HashMap<String, ArmorItem>();
-
-    // FOODS
-    public static final HashMap<String, Item> foods = new HashMap<String, Item>();
-
-    // WORLD GEN
-    public static final HashMap<String, Biome> biomes = new HashMap<String, Biome>();
-
-    // public static final HashMap<RegistryKey<Biome>, BiomeBuilder> biomeBuilders =
-    // new HashMap<RegistryKey<Biome>, BiomeBuilder>();
-    // public static final HashMap<String, RegistryKey<Biome>> overworldKeys = new
-    // HashMap<String, RegistryKey<Biome>>();
-    // public static final HashMap<String, RegistryKey<Biome>> netherKeys = new
-    // HashMap<String, RegistryKey<Biome>>();
-    // public static final HashMap<String, RegistryKey<Biome>> endKeys = new
-    // HashMap<String, RegistryKey<Biome>>();
-    // public static final HashMap<String, RegistryKey<Biome>> customKeys = new
-    // HashMap<String, RegistryKey<Biome>>();
-    // public static final HashMap<RegistryKey<Biome>, RegistryKey<Biome>>
-    // biomeRemaps = new HashMap<>();
-
-    // public static final HashMap<String, ModBiome> modBiomes = new HashMap<String,
-    // ModBiome>();
-
-    // public static final HashMap<String, ModClimate> climates = new
-    // HashMap<String, ModClimate>();
-
-    public static final HashMap<String, Feature<?>> generators = new HashMap<String, Feature<?>>();
-
-    // public static final HashMap<String, SurfaceBuilder<?>> surfaceBuilders = new
-    // HashMap<String, SurfaceBuilder<?>>();
-    // public static final HashMap<String, SurfaceBuilderConfig>
-    // surfaceBuilderConfigs = new HashMap<String, SurfaceBuilderConfig>();
-    // public static final HashMap<String, ConfiguredSurfaceBuilder<?>>
-    // configSurfaceBuilders = new HashMap<String, ConfiguredSurfaceBuilder<?>>();
-
-    public static final HashMap<String, JsonObject> worldgen_biome = new HashMap<String, JsonObject>();
-
-    // /**
-    // *
-    // * @return
-    // */
-    // public static final Stream<RegistryKey<Biome>> getOverworldBiomes() {
-    // return overworldKeys.values().stream();
-    // }
-
-    // /**
-    // *
-    // * @return
-    // */
-    // public static final Stream<RegistryKey<Biome>> getNetherBiomes() {
-    // return netherKeys.values().stream();
-    // }
-
-    // /**
-    // *
-    // * @return
-    // */
-    // public static final Stream<RegistryKey<Biome>> getEndBiomes() {
-    // return endKeys.values().stream();
-    // }
-
-    // SPECIAL
-    public static final HashMap<String, Block> blocks_unbreakable = new HashMap<String, Block>();
-    public static final HashMap<String, Tuple<Block, Block>> blocks_replaceable = new HashMap<String, Tuple<Block, Block>>();
-
-    /**
-     *
-     * @param <T>
-     * @param block
-     * @return
-     */
-    public static final <T extends Block> T setBlock_unbreakable(T block) {
-        blocks_unbreakable.put(block.getName().toString(), block);
-        return block;
+    public static void initRegistries(String modId) {
+        BlockRegistryInit.init(modId);
+        ItemRegistryInit.init(modId);
+        CreativeTabRegistryInit.init(modId);
     }
 
-    /**
-     *
-     * @param <T>
-     * @param blockIn
-     * @param blockOut
-     * @return
-     */
-    public static final <T extends Block> T setBlock_replaceable(T blockIn, T blockOut) {
-        blocks_replaceable.put(blockIn.getName().toString(), new Tuple<Block, Block>(blockIn, blockOut));
-        return blockOut;
+    public static void finishRegistries(IEventBus bus, String modId) {
+        BlockRegistryInit.finish(bus, modId);
+        ItemRegistryInit.finish(bus, modId);
+        CreativeTabRegistryInit.finish(bus, modId);
     }
 }

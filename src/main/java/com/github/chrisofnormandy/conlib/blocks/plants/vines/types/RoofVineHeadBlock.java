@@ -1,4 +1,4 @@
-package com.github.chrisofnormandy.conlib.blocks.plants.vines;
+package com.github.chrisofnormandy.conlib.blocks.plants.vines.types;
 
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.Block;

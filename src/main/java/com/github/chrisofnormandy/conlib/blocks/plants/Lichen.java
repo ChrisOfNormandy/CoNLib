@@ -7,23 +7,24 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.GlowLichenBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+import net.minecraftforge.registries.RegistryObject;
 
 public class Lichen {
 
-    public static final GlowLichenBlock create(String name) {
+    public static final RegistryObject<GlowLichenBlock> create(String name) {
         return create(name, Properties.copy(Blocks.GLOW_LICHEN));
     }
 
-    public static final GlowLichenBlock create(String name, ResourceKey<CreativeModeTab> creativeTab) {
+    public static final RegistryObject<GlowLichenBlock> create(String name, ResourceKey<CreativeModeTab> creativeTab) {
         return create(name, Properties.copy(Blocks.GLOW_LICHEN), creativeTab);
     }
 
-    public static final GlowLichenBlock create(String name, Properties properties) {
-        return BlockRegistry.register(name, new GlowLichenBlock(properties));
+    public static final RegistryObject<GlowLichenBlock> create(String name, Properties properties) {
+        return BlockRegistry.register(name, () -> new GlowLichenBlock(properties));
     }
 
-    public static final GlowLichenBlock create(String name, Properties properties,
+    public static final RegistryObject<GlowLichenBlock> create(String name, Properties properties,
             ResourceKey<CreativeModeTab> creativeTab) {
-        return BlockRegistry.register(name, new GlowLichenBlock(properties), creativeTab);
+        return BlockRegistry.register(name, () -> new GlowLichenBlock(properties), creativeTab);
     }
 }

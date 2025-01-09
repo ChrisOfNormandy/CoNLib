@@ -14,41 +14,44 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+import net.minecraftforge.registries.RegistryObject;
 
 public class FlowerPots {
     public static class PotWithFlower {
-        public static FlowerPotBlock create(String name, Block flower) {
+
+        public static RegistryObject<FlowerPotBlock> create(String name, Block flower) {
             return create(name, Properties.copy(Blocks.FLOWER_POT), flower);
         }
 
-        public static FlowerPotBlock create(String name, Block flower, ResourceKey<CreativeModeTab> creativeTab) {
+        public static RegistryObject<FlowerPotBlock> create(String name, Block flower,
+                ResourceKey<CreativeModeTab> creativeTab) {
             return create(name, Properties.copy(Blocks.FLOWER_POT), flower, creativeTab);
         }
 
         // Can't use "create" methods here because null is allowed for creative tabs.
 
-        public static FlowerPotBlock create(String name, Properties properties, Block flower) {
-            return BlockRegistry.register(name, new FlowerPotBlock(null, () -> flower, properties));
+        public static RegistryObject<FlowerPotBlock> create(String name, Properties properties, Block flower) {
+            return BlockRegistry.register(name, () -> new FlowerPotBlock(null, () -> flower, properties));
         }
 
-        public static FlowerPotBlock create(String name, Properties properties, Block flower,
+        public static RegistryObject<FlowerPotBlock> create(String name, Properties properties, Block flower,
                 ResourceKey<CreativeModeTab> creativeTab) {
-            return BlockRegistry.register(name, new FlowerPotBlock(null, () -> flower, properties), creativeTab);
+            return BlockRegistry.register(name, () -> new FlowerPotBlock(null, () -> flower, properties), creativeTab);
         }
 
-        public static FlowerPotBlock create(String name, Properties properties, Block flower,
+        public static RegistryObject<FlowerPotBlock> create(String name, Properties properties, Block flower,
                 @Nullable Supplier<FlowerPotBlock> emptyPot) {
-            return BlockRegistry.register(name, new FlowerPotBlock(emptyPot, () -> flower, properties));
+            return BlockRegistry.register(name, () -> new FlowerPotBlock(emptyPot, () -> flower, properties));
         }
 
-        public static FlowerPotBlock create(String name, Properties properties, Block flower,
+        public static RegistryObject<FlowerPotBlock> create(String name, Properties properties, Block flower,
                 @Nullable Supplier<FlowerPotBlock> emptyPot,
                 ResourceKey<CreativeModeTab> creativeTab) {
-            return BlockRegistry.register(name, new FlowerPotBlock(emptyPot, () -> flower, properties));
+            return BlockRegistry.register(name, () -> new FlowerPotBlock(emptyPot, () -> flower, properties));
         }
 
-        public static List<FlowerPotBlock> create(String name, List<Block> flowers) {
-            List<FlowerPotBlock> pots = new ArrayList<FlowerPotBlock>();
+        public static List<RegistryObject<FlowerPotBlock>> create(String name, List<Block> flowers) {
+            List<RegistryObject<FlowerPotBlock>> pots = new ArrayList<>();
 
             flowers.forEach(
                     (Block flower) -> pots.add(create(name, Properties.copy(Blocks.FLOWER_POT), flower)));
@@ -56,8 +59,9 @@ public class FlowerPots {
             return pots;
         }
 
-        public static List<FlowerPotBlock> create(String name, List<Block> flowers, Properties properties) {
-            List<FlowerPotBlock> pots = new ArrayList<FlowerPotBlock>();
+        public static List<RegistryObject<FlowerPotBlock>> create(String name, List<Block> flowers,
+                Properties properties) {
+            List<RegistryObject<FlowerPotBlock>> pots = new ArrayList<>();
 
             flowers.forEach((Block flower) -> pots.add(create(name, properties, flower)));
 
@@ -65,20 +69,20 @@ public class FlowerPots {
         }
     }
 
-    public static FlowerPotBlock create(String name) {
+    public static RegistryObject<FlowerPotBlock> create(String name) {
         return create(name, Properties.copy(Blocks.FLOWER_POT));
     }
 
-    public static FlowerPotBlock create(String name, ResourceKey<CreativeModeTab> creativeTab) {
+    public static RegistryObject<FlowerPotBlock> create(String name, ResourceKey<CreativeModeTab> creativeTab) {
         return create(name, Properties.copy(Blocks.FLOWER_POT), creativeTab);
     }
 
-    public static FlowerPotBlock create(String name, Properties properties) {
-        return BlockRegistry.register(name, new FlowerPotBlock(null, () -> Blocks.AIR, properties));
+    public static RegistryObject<FlowerPotBlock> create(String name, Properties properties) {
+        return BlockRegistry.register(name, () -> new FlowerPotBlock(null, () -> Blocks.AIR, properties));
     }
 
-    public static FlowerPotBlock create(String name, Properties properties,
+    public static RegistryObject<FlowerPotBlock> create(String name, Properties properties,
             ResourceKey<CreativeModeTab> creativeTab) {
-        return BlockRegistry.register(name, new FlowerPotBlock(null, () -> Blocks.AIR, properties), creativeTab);
+        return BlockRegistry.register(name, () -> new FlowerPotBlock(null, () -> Blocks.AIR, properties), creativeTab);
     }
 }

@@ -4,13 +4,17 @@ import java.io.File;
 import java.io.PrintWriter;
 import java.nio.file.Path;
 
-import com.github.chrisofnormandy.conlib.Main;
+import org.slf4j.Logger;
+
+import com.mojang.logging.LogUtils;
 
 import net.minecraftforge.fml.loading.FMLPaths;
 
 public class Files {
+    private static final Logger LOGGER = LogUtils.getLogger();
+
     /**
-     * 
+     *
      * @param path
      * @param name
      * @param data
@@ -28,13 +32,13 @@ public class Files {
             out.write(data);
             out.close();
         } catch (Exception err) {
-            Main.LOG.error("Failed to write to file: " + path + "/" + name + ext);
-            Main.LOG.error(err);
+            LOGGER.error("Failed to write to file: " + path + "/" + name + ext);
+            LOGGER.error(err.getStackTrace().toString());
         }
     }
 
     /**
-     * 
+     *
      * @param path
      * @param name
      * @param data
@@ -55,8 +59,8 @@ public class Files {
                 out.write(data);
                 out.close();
             } catch (Exception err) {
-                Main.LOG.error("Failed to write to file: " + p.toString() + "/" + name + ext);
-                Main.LOG.error(err);
+                LOGGER.error("Failed to write to file: " + p.toString() + "/" + name + ext);
+                LOGGER.error(err.getStackTrace().toString());
             }
         }
     }

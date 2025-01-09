@@ -1,7 +1,8 @@
 {
-    "pack": {
-        "description": "conlib resources",
-        "pack_format": 6,
-        "_comment": "A very nice comment..."
-    }
+  "pack": {
+    "description": {
+      "text": "${mod_id} resources"
+    },
+    "pack_format": 15
+  }
 }

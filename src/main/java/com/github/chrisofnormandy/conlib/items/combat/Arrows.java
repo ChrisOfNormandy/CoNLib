@@ -8,29 +8,30 @@ import net.minecraft.world.item.ArrowItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Item.Properties;
+import net.minecraftforge.registries.RegistryObject;
 
 public class Arrows {
 
-    public static final Item create(String name) {
+    public static final RegistryObject<ArrowItem> create(String name) {
         return create(name, new Item.Properties());
     }
 
-    public static final Item create(String name, ResourceKey<CreativeModeTab> creativeTab) {
+    public static final RegistryObject<ArrowItem> create(String name, ResourceKey<CreativeModeTab> creativeTab) {
         return create(name, new Item.Properties(), creativeTab);
     }
 
-    public static final Item create(String name, Properties properties) {
-        Item arrow = new ArrowItem(properties);
+    public static final RegistryObject<ArrowItem> create(String name, Properties properties) {
+        var arrow = ItemRegistry.register(name, () -> new ArrowItem(properties));
         ModRegister.weapons.put(name, arrow);
 
-        return ItemRegistry.register(name, arrow);
+        return arrow;
     }
 
-    public static final Item create(String name, Properties properties,
+    public static final RegistryObject<ArrowItem> create(String name, Properties properties,
             ResourceKey<CreativeModeTab> creativeTab) {
-        Item arrow = new ArrowItem(properties);
+        var arrow = ItemRegistry.register(name, () -> new ArrowItem(properties), creativeTab);
         ModRegister.weapons.put(name, arrow);
 
-        return ItemRegistry.register(name, arrow, creativeTab);
+        return arrow;
     }
 }

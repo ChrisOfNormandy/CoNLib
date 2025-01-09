@@ -7,23 +7,26 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.InfestedRotatedPillarBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+import net.minecraftforge.registries.RegistryObject;
 
 public class InfestedPillarBlocks {
-    public static final InfestedRotatedPillarBlock create(String name, Block hostBlock) {
+    public static final RegistryObject<InfestedRotatedPillarBlock> create(String name, Block hostBlock) {
         return create(name, hostBlock, Properties.copy(hostBlock));
     }
 
-    public static final InfestedRotatedPillarBlock create(String name, Block hostBlock,
+    public static final RegistryObject<InfestedRotatedPillarBlock> create(String name, Block hostBlock,
             ResourceKey<CreativeModeTab> creativeTab) {
         return create(name, hostBlock, Properties.copy(hostBlock), creativeTab);
     }
 
-    public static final InfestedRotatedPillarBlock create(String name, Block hostBlock, Properties properties) {
-        return BlockRegistry.register(name, new InfestedRotatedPillarBlock(hostBlock, properties));
+    public static final RegistryObject<InfestedRotatedPillarBlock> create(String name, Block hostBlock,
+            Properties properties) {
+        return BlockRegistry.register(name, () -> new InfestedRotatedPillarBlock(hostBlock, properties));
     }
 
-    public static final InfestedRotatedPillarBlock create(String name, Block hostBlock, Properties properties,
+    public static final RegistryObject<InfestedRotatedPillarBlock> create(String name, Block hostBlock,
+            Properties properties,
             ResourceKey<CreativeModeTab> creativeTab) {
-        return BlockRegistry.register(name, new InfestedRotatedPillarBlock(hostBlock, properties), creativeTab);
+        return BlockRegistry.register(name, () -> new InfestedRotatedPillarBlock(hostBlock, properties), creativeTab);
     }
 }

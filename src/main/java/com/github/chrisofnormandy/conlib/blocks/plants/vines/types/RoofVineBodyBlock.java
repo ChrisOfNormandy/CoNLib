@@ -1,20 +1,20 @@
-package com.github.chrisofnormandy.conlib.blocks.plants.vines;
+package com.github.chrisofnormandy.conlib.blocks.plants.vines.types;
 
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.GrowingPlantHeadBlock;
-import net.minecraft.world.level.block.TwistingVinesPlantBlock;
+import net.minecraft.world.level.block.WeepingVinesPlantBlock;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class FloorVineBodyBlock extends TwistingVinesPlantBlock {
-    public static final VoxelShape SHAPE = Block.box(4.0D, 0.0D, 4.0D, 12.0D, 16.0D, 12.0D);
+public class RoofVineBodyBlock extends WeepingVinesPlantBlock {
+    public static final VoxelShape SHAPE = Block.box(1.0D, 0.0D, 1.0D, 15.0D, 16.0D, 15.0D);
     private GrowingPlantHeadBlock headBlock;
 
-    public FloorVineBodyBlock(Properties properties, GrowingPlantHeadBlock headBlock) {
+    public RoofVineBodyBlock(Properties properties, GrowingPlantHeadBlock headBlock) {
         super(properties);
         this.headBlock = headBlock;
     }
 
-    public FloorVineBodyBlock(Properties properties) {
+    public RoofVineBodyBlock(Properties properties) {
         super(properties);
     }
 
@@ -23,6 +23,6 @@ public class FloorVineBodyBlock extends TwistingVinesPlantBlock {
     }
 
     protected GrowingPlantHeadBlock getHeadBlock() {
-        return headBlock;
+        return this.headBlock;
     }
 }

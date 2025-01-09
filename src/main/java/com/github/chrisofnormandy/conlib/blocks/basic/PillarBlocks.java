@@ -7,14 +7,16 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+import net.minecraftforge.registries.RegistryObject;
 
 public class PillarBlocks {
 
-    public static final RotatedPillarBlock create(String name) {
+    public static final RegistryObject<RotatedPillarBlock> create(String name) {
         return create(name, Properties.copy(Blocks.DIRT));
     }
 
-    public static final RotatedPillarBlock create(String name, ResourceKey<CreativeModeTab> creativeTab) {
+    public static final RegistryObject<RotatedPillarBlock> create(String name,
+            ResourceKey<CreativeModeTab> creativeTab) {
         return create(name, Properties.copy(Blocks.DIRT), creativeTab);
     }
 
@@ -25,8 +27,8 @@ public class PillarBlocks {
      * @param properties The properties of the block.
      * @return The registered pillar block.
      */
-    public static final RotatedPillarBlock create(String name, Properties properties) {
-        return BlockRegistry.register(name, new RotatedPillarBlock(properties));
+    public static final RegistryObject<RotatedPillarBlock> create(String name, Properties properties) {
+        return BlockRegistry.register(name, () -> new RotatedPillarBlock(properties));
     }
 
     /**
@@ -37,8 +39,8 @@ public class PillarBlocks {
      * @param creativeTab The creative tab to which the block belongs.
      * @return The registered pillar block.
      */
-    public static final RotatedPillarBlock create(String name, Properties properties,
+    public static final RegistryObject<RotatedPillarBlock> create(String name, Properties properties,
             ResourceKey<CreativeModeTab> creativeTab) {
-        return BlockRegistry.register(name, new RotatedPillarBlock(properties), creativeTab);
+        return BlockRegistry.register(name, () -> new RotatedPillarBlock(properties), creativeTab);
     }
 }

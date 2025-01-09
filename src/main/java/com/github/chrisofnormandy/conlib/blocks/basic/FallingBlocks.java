@@ -7,14 +7,15 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FallingBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+import net.minecraftforge.registries.RegistryObject;
 
 public class FallingBlocks {
 
-    public static final FallingBlock create(String name) {
+    public static final RegistryObject<FallingBlock> create(String name) {
         return create(name, Properties.copy(Blocks.SAND));
     }
 
-    public static final FallingBlock create(String name, ResourceKey<CreativeModeTab> creativeTab) {
+    public static final RegistryObject<FallingBlock> create(String name, ResourceKey<CreativeModeTab> creativeTab) {
         return create(name, Properties.copy(Blocks.SAND), creativeTab);
     }
 
@@ -25,8 +26,8 @@ public class FallingBlocks {
      * @param properties The properties of the block.
      * @return The registered falling block.
      */
-    public static final FallingBlock create(String name, Properties properties) {
-        return BlockRegistry.register(name, new FallingBlock(properties));
+    public static final RegistryObject<FallingBlock> create(String name, Properties properties) {
+        return BlockRegistry.register(name, () -> new FallingBlock(properties));
     }
 
     /**
@@ -37,8 +38,8 @@ public class FallingBlocks {
      * @param creativeTab The creative tab to which the block belongs.
      * @return The registered falling block.
      */
-    public static final FallingBlock create(String name, Properties properties,
+    public static final RegistryObject<FallingBlock> create(String name, Properties properties,
             ResourceKey<CreativeModeTab> creativeTab) {
-        return BlockRegistry.register(name, new FallingBlock(properties), creativeTab);
+        return BlockRegistry.register(name, () -> new FallingBlock(properties), creativeTab);
     }
 }

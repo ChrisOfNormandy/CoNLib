@@ -7,23 +7,25 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.EnchantmentTableBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+import net.minecraftforge.registries.RegistryObject;
 
 public class EnchantmentTables {
 
-    public static final EnchantmentTableBlock create(String name) {
+    public static final RegistryObject<EnchantmentTableBlock> create(String name) {
         return create(name, Properties.copy(Blocks.ENCHANTING_TABLE));
     }
 
-    public static final EnchantmentTableBlock create(String name, ResourceKey<CreativeModeTab> creativeTab) {
+    public static final RegistryObject<EnchantmentTableBlock> create(String name,
+            ResourceKey<CreativeModeTab> creativeTab) {
         return create(name, Properties.copy(Blocks.ENCHANTING_TABLE), creativeTab);
     }
 
-    public static final EnchantmentTableBlock create(String name, Properties properties) {
-        return BlockRegistry.register(name, new EnchantmentTableBlock(properties));
+    public static final RegistryObject<EnchantmentTableBlock> create(String name, Properties properties) {
+        return BlockRegistry.register(name, () -> new EnchantmentTableBlock(properties));
     }
 
-    public static final EnchantmentTableBlock create(String name, Properties properties,
+    public static final RegistryObject<EnchantmentTableBlock> create(String name, Properties properties,
             ResourceKey<CreativeModeTab> creativeTab) {
-        return BlockRegistry.register(name, new EnchantmentTableBlock(properties), creativeTab);
+        return BlockRegistry.register(name, () -> new EnchantmentTableBlock(properties), creativeTab);
     }
 }

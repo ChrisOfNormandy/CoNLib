@@ -1,4 +1,4 @@
-package com.github.chrisofnormandy.conlib.blocks.decoration.crystals;
+package com.github.chrisofnormandy.conlib.blocks.decoration.crystals.types;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;

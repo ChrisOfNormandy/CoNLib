@@ -7,14 +7,16 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+import net.minecraftforge.registries.RegistryObject;
 
 public class FullBlocks {
 
-    public static final Block create(String name) {
+    public static final RegistryObject<Block> create(String name) {
         return create(name, Properties.copy(Blocks.DIRT));
     }
 
-    public static final Block create(String name, ResourceKey<CreativeModeTab> creativeTab) {
+    public static final RegistryObject<Block> create(String name,
+            ResourceKey<CreativeModeTab> creativeTab) {
         return create(name, Properties.copy(Blocks.DIRT), creativeTab);
     }
 
@@ -25,8 +27,8 @@ public class FullBlocks {
      * @param properties The properties of the block.
      * @return The registered block.
      */
-    public static final Block create(String name, Properties properties) {
-        return BlockRegistry.register(name, new Block(properties));
+    public static final RegistryObject<Block> create(String name, Properties properties) {
+        return BlockRegistry.register(name, () -> new Block(properties));
     }
 
     /**
@@ -37,7 +39,9 @@ public class FullBlocks {
      * @param creativeTab The creative tab to which the block belongs.
      * @return The registered block.
      */
-    public static final Block create(String name, Properties properties, ResourceKey<CreativeModeTab> creativeTab) {
-        return BlockRegistry.register(name, new Block(properties), creativeTab);
+    public static final RegistryObject<Block> create(String name,
+            Properties properties,
+            ResourceKey<CreativeModeTab> creativeTab) {
+        return BlockRegistry.register(name, () -> new Block(properties), creativeTab);
     }
 }

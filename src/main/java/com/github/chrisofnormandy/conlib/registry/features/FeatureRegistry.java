@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.github.chrisofnormandy.conlib.Main;
+import com.github.chrisofnormandy.conlib.CoNLib;
 import com.github.chrisofnormandy.conlib.collections.Tuple;
 
 import net.minecraft.core.registries.Registries;
@@ -51,7 +51,7 @@ public class FeatureRegistry {
     }
 
     public static ResourceKey<ConfiguredFeature<?, ?>> registerKey(String name) {
-        return ResourceKey.create(Registries.CONFIGURED_FEATURE, new ResourceLocation(Main.MOD_ID, name));
+        return ResourceKey.create(Registries.CONFIGURED_FEATURE, new ResourceLocation(CoNLib.MOD_ID, name));
     }
 
     private static <FC extends FeatureConfiguration, F extends Feature<FC>> void register(

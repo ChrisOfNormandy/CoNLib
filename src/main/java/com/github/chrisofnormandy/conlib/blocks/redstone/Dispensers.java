@@ -7,24 +7,25 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.DispenserBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+import net.minecraftforge.registries.RegistryObject;
 
 public class Dispensers {
 
-    public static final DispenserBlock create(String name) {
+    public static final RegistryObject<DispenserBlock> create(String name) {
         return create(name, Properties.copy(Blocks.DISPENSER));
     }
 
-    public static final DispenserBlock create(String name, ResourceKey<CreativeModeTab> creativeTab) {
+    public static final RegistryObject<DispenserBlock> create(String name, ResourceKey<CreativeModeTab> creativeTab) {
         return create(name, Properties.copy(Blocks.DISPENSER), creativeTab);
     }
 
-    public static final DispenserBlock create(String name, Properties properties) {
-        return BlockRegistry.register(name, new DispenserBlock(properties));
+    public static final RegistryObject<DispenserBlock> create(String name, Properties properties) {
+        return BlockRegistry.register(name, () -> new DispenserBlock(properties));
     }
 
-    public static final DispenserBlock create(String name, Properties properties,
+    public static final RegistryObject<DispenserBlock> create(String name, Properties properties,
             ResourceKey<CreativeModeTab> creativeTab) {
-        return BlockRegistry.register(name, new DispenserBlock(properties), creativeTab);
+        return BlockRegistry.register(name, () -> new DispenserBlock(properties), creativeTab);
     }
 
 }

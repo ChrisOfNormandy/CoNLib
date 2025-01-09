@@ -8,29 +8,30 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CrossbowItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Item.Properties;
+import net.minecraftforge.registries.RegistryObject;
 
 public class Crossbows {
 
-    public static final Item create(String name) {
+    public static final RegistryObject<CrossbowItem> create(String name) {
         return create(name, new Item.Properties());
     }
 
-    public static final Item create(String name, ResourceKey<CreativeModeTab> creativeTab) {
+    public static final RegistryObject<CrossbowItem> create(String name, ResourceKey<CreativeModeTab> creativeTab) {
         return create(name, new Item.Properties(), creativeTab);
     }
 
-    public static final Item create(String name, Properties properties) {
-        Item crossbow = new CrossbowItem(properties);
+    public static final RegistryObject<CrossbowItem> create(String name, Properties properties) {
+        var crossbow = ItemRegistry.register(name, () -> new CrossbowItem(properties));
         ModRegister.weapons.put(name, crossbow);
 
-        return ItemRegistry.register(name, crossbow);
+        return crossbow;
     }
 
-    public static final Item create(String name, Properties properties,
+    public static final RegistryObject<CrossbowItem> create(String name, Properties properties,
             ResourceKey<CreativeModeTab> creativeTab) {
-        Item crossbow = new CrossbowItem(properties);
+        var crossbow = ItemRegistry.register(name, () -> new CrossbowItem(properties), creativeTab);
         ModRegister.weapons.put(name, crossbow);
 
-        return ItemRegistry.register(name, crossbow, creativeTab);
+        return crossbow;
     }
 }

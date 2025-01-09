@@ -7,23 +7,24 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.level.block.BeehiveBlock;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+import net.minecraftforge.registries.RegistryObject;
 
 public class Beehives {
 
-    public static final BeehiveBlock create(String name) {
+    public static final RegistryObject<BeehiveBlock> create(String name) {
         return create(name, Properties.copy(Blocks.BEEHIVE));
     }
 
-    public static final BeehiveBlock create(String name, ResourceKey<CreativeModeTab> creativeTab) {
+    public static final RegistryObject<BeehiveBlock> create(String name, ResourceKey<CreativeModeTab> creativeTab) {
         return create(name, Properties.copy(Blocks.BEEHIVE), creativeTab);
     }
 
-    public static final BeehiveBlock create(String name, Properties properties) {
-        return BlockRegistry.register(name, new BeehiveBlock(properties));
+    public static final RegistryObject<BeehiveBlock> create(String name, Properties properties) {
+        return BlockRegistry.register(name, () -> new BeehiveBlock(properties));
     }
 
-    public static final BeehiveBlock create(String name, Properties properties,
+    public static final RegistryObject<BeehiveBlock> create(String name, Properties properties,
             ResourceKey<CreativeModeTab> creativeTab) {
-        return BlockRegistry.register(name, new BeehiveBlock(properties), creativeTab);
+        return BlockRegistry.register(name, () -> new BeehiveBlock(properties), creativeTab);
     }
 }

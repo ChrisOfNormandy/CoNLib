@@ -7,12 +7,12 @@ import com.github.chrisofnormandy.conlib.blocks.decoration.signs.Signs.WallSigns
 
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+import net.minecraftforge.registries.RegistryObject;
 
 public class SignSets {
-    public static final Block[] create(String name) {
-        return new Block[] {
+    public static final RegistryObject<?>[] create(String name) {
+        return new RegistryObject<?>[] {
                 StandingSigns.create(name),
                 WallSigns.create("wall_" + name),
                 CeilingHangingSigns.create("hanging_" + name),
@@ -20,8 +20,8 @@ public class SignSets {
         };
     }
 
-    public static final Block[] create(String name, ResourceKey<CreativeModeTab> creativeTab) {
-        return new Block[] {
+    public static final RegistryObject<?>[] create(String name, ResourceKey<CreativeModeTab> creativeTab) {
+        return new RegistryObject<?>[] {
                 StandingSigns.create(name, creativeTab),
                 WallSigns.create("wall_" + name, creativeTab),
                 CeilingHangingSigns.create("hanging_" + name, creativeTab),
@@ -29,8 +29,8 @@ public class SignSets {
         };
     }
 
-    public static final Block[] create(String name, Properties properties) {
-        return new Block[] {
+    public static final RegistryObject<?>[] create(String name, Properties properties) {
+        return new RegistryObject<?>[] {
                 StandingSigns.create(name, properties),
                 WallSigns.create("wall_" + name, properties),
                 CeilingHangingSigns.create("hanging_" + name, properties),
@@ -38,8 +38,9 @@ public class SignSets {
         };
     }
 
-    public static final Block[] create(String name, Properties properties, ResourceKey<CreativeModeTab> creativeTab) {
-        return new Block[] {
+    public static final RegistryObject<?>[] create(String name, Properties properties,
+            ResourceKey<CreativeModeTab> creativeTab) {
+        return new RegistryObject<?>[] {
                 StandingSigns.create(name, properties, creativeTab),
                 WallSigns.create("wall_" + name, properties, creativeTab),
                 CeilingHangingSigns.create("hanging_" + name, properties, creativeTab),

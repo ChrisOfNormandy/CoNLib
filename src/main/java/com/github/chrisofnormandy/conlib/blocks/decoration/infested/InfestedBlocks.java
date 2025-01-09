@@ -7,22 +7,25 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.InfestedBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+import net.minecraftforge.registries.RegistryObject;
 
 public class InfestedBlocks {
-    public static final InfestedBlock create(String name, Block hostBlock) {
+
+    public static final RegistryObject<InfestedBlock> create(String name, Block hostBlock) {
         return create(name, hostBlock, Properties.copy(hostBlock));
     }
 
-    public static final InfestedBlock create(String name, Block hostBlock, ResourceKey<CreativeModeTab> creativeTab) {
+    public static final RegistryObject<InfestedBlock> create(String name, Block hostBlock,
+            ResourceKey<CreativeModeTab> creativeTab) {
         return create(name, hostBlock, Properties.copy(hostBlock), creativeTab);
     }
 
-    public static final InfestedBlock create(String name, Block hostBlock, Properties properties) {
-        return BlockRegistry.register(name, new InfestedBlock(hostBlock, properties));
+    public static final RegistryObject<InfestedBlock> create(String name, Block hostBlock, Properties properties) {
+        return BlockRegistry.register(name, () -> new InfestedBlock(hostBlock, properties));
     }
 
-    public static final InfestedBlock create(String name, Block hostBlock, Properties properties,
+    public static final RegistryObject<InfestedBlock> create(String name, Block hostBlock, Properties properties,
             ResourceKey<CreativeModeTab> creativeTab) {
-        return BlockRegistry.register(name, new InfestedBlock(hostBlock, properties), creativeTab);
+        return BlockRegistry.register(name, () -> new InfestedBlock(hostBlock, properties), creativeTab);
     }
 }

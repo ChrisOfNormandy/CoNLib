@@ -8,28 +8,30 @@ import net.minecraft.world.item.BowItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Item.Properties;
+import net.minecraftforge.registries.RegistryObject;
 
 public class Bows {
 
-    public static final Item create(String name) {
+    public static final RegistryObject<BowItem> create(String name) {
         return create(name, new Item.Properties());
     }
 
-    public static final Item create(String name, ResourceKey<CreativeModeTab> creativeTab) {
+    public static final RegistryObject<BowItem> create(String name, ResourceKey<CreativeModeTab> creativeTab) {
         return create(name, new Item.Properties(), creativeTab);
     }
 
-    public static final Item create(String name, Properties properties) {
-        Item bow = new BowItem(properties);
+    public static final RegistryObject<BowItem> create(String name, Properties properties) {
+        var bow = ItemRegistry.register(name, () -> new BowItem(properties));
         ModRegister.weapons.put(name, bow);
 
-        return ItemRegistry.register(name, bow);
+        return bow;
     }
 
-    public static final Item create(String name, Properties properties, ResourceKey<CreativeModeTab> creativeTab) {
-        Item bow = new BowItem(properties);
+    public static final RegistryObject<BowItem> create(String name, Properties properties,
+            ResourceKey<CreativeModeTab> creativeTab) {
+        var bow = ItemRegistry.register(name, () -> new BowItem(properties), creativeTab);
         ModRegister.weapons.put(name, bow);
 
-        return ItemRegistry.register(name, bow, creativeTab);
+        return bow;
     }
 }

@@ -7,23 +7,25 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.DetectorRailBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+import net.minecraftforge.registries.RegistryObject;
 
 public class DetectorRails {
 
-    public static final DetectorRailBlock create(String name) {
+    public static final RegistryObject<DetectorRailBlock> create(String name) {
         return create(name, Properties.copy(Blocks.DETECTOR_RAIL));
     }
 
-    public static final DetectorRailBlock create(String name, ResourceKey<CreativeModeTab> creativeTab) {
+    public static final RegistryObject<DetectorRailBlock> create(String name,
+            ResourceKey<CreativeModeTab> creativeTab) {
         return create(name, Properties.copy(Blocks.DETECTOR_RAIL), creativeTab);
     }
 
-    public static final DetectorRailBlock create(String name, Properties properties) {
-        return BlockRegistry.register(name, new DetectorRailBlock(properties));
+    public static final RegistryObject<DetectorRailBlock> create(String name, Properties properties) {
+        return BlockRegistry.register(name, () -> new DetectorRailBlock(properties));
     }
 
-    public static final DetectorRailBlock create(String name, Properties properties,
+    public static final RegistryObject<DetectorRailBlock> create(String name, Properties properties,
             ResourceKey<CreativeModeTab> creativeTab) {
-        return BlockRegistry.register(name, new DetectorRailBlock(properties), creativeTab);
+        return BlockRegistry.register(name, () -> new DetectorRailBlock(properties), creativeTab);
     }
 }

@@ -7,23 +7,25 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.level.block.AmethystClusterBlock;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+import net.minecraftforge.registries.RegistryObject;
 
 public class FullCrystals {
 
-    public static final AmethystClusterBlock create(String name) {
+    public static final RegistryObject<AmethystClusterBlock> create(String name) {
         return create(name, Properties.copy(Blocks.AMETHYST_CLUSTER));
     }
 
-    public static final AmethystClusterBlock create(String name, ResourceKey<CreativeModeTab> creativeTab) {
+    public static final RegistryObject<AmethystClusterBlock> create(String name,
+            ResourceKey<CreativeModeTab> creativeTab) {
         return create(name, Properties.copy(Blocks.AMETHYST_CLUSTER), creativeTab);
     }
 
-    public static final AmethystClusterBlock create(String name, Properties properties) {
-        return BlockRegistry.register(name, new AmethystClusterBlock(7, 3, properties));
+    public static final RegistryObject<AmethystClusterBlock> create(String name, Properties properties) {
+        return BlockRegistry.register(name, () -> new AmethystClusterBlock(7, 3, properties));
     }
 
-    public static final AmethystClusterBlock create(String name, Properties properties,
+    public static final RegistryObject<AmethystClusterBlock> create(String name, Properties properties,
             ResourceKey<CreativeModeTab> creativeTab) {
-        return BlockRegistry.register(name, new AmethystClusterBlock(7, 3, properties), creativeTab);
+        return BlockRegistry.register(name, () -> new AmethystClusterBlock(7, 3, properties), creativeTab);
     }
 }

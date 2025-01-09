@@ -7,22 +7,24 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.GravelBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+import net.minecraftforge.registries.RegistryObject;
 
 public class GravelLand {
-    public static final GravelBlock create(String name) {
+
+    public static final RegistryObject<GravelBlock> create(String name) {
         return create(name, Properties.copy(Blocks.GRAVEL));
     }
 
-    public static final GravelBlock create(String name, ResourceKey<CreativeModeTab> creativeTab) {
+    public static final RegistryObject<GravelBlock> create(String name, ResourceKey<CreativeModeTab> creativeTab) {
         return create(name, Properties.copy(Blocks.GRAVEL), creativeTab);
     }
 
-    public static final GravelBlock create(String name, Properties properties) {
-        return BlockRegistry.register(name, new GravelBlock(properties));
+    public static final RegistryObject<GravelBlock> create(String name, Properties properties) {
+        return BlockRegistry.register(name, () -> new GravelBlock(properties));
     }
 
-    public static final GravelBlock create(String name, Properties properties,
+    public static final RegistryObject<GravelBlock> create(String name, Properties properties,
             ResourceKey<CreativeModeTab> creativeTab) {
-        return BlockRegistry.register(name, new GravelBlock(properties), creativeTab);
+        return BlockRegistry.register(name, () -> new GravelBlock(properties), creativeTab);
     }
 }

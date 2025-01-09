@@ -1,4 +1,4 @@
-package com.github.chrisofnormandy.conlib.blocks.plants.flowers;
+package com.github.chrisofnormandy.conlib.blocks.plants.flowers.types;
 
 import java.util.function.Supplier;
 

@@ -7,23 +7,24 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.TallFlowerBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+import net.minecraftforge.registries.RegistryObject;
 
 public class TallFlowers {
 
-    public static final TallFlowerBlock create(String name) {
+    public static final RegistryObject<TallFlowerBlock> create(String name) {
         return create(name, Properties.copy(Blocks.ROSE_BUSH));
     }
 
-    public static final TallFlowerBlock create(String name, ResourceKey<CreativeModeTab> creativeTab) {
+    public static final RegistryObject<TallFlowerBlock> create(String name, ResourceKey<CreativeModeTab> creativeTab) {
         return create(name, Properties.copy(Blocks.ROSE_BUSH), creativeTab);
     }
 
-    public static final TallFlowerBlock create(String name, Properties properties) {
-        return BlockRegistry.register(name, new TallFlowerBlock(properties));
+    public static final RegistryObject<TallFlowerBlock> create(String name, Properties properties) {
+        return BlockRegistry.register(name, () -> new TallFlowerBlock(properties));
     }
 
-    public static final TallFlowerBlock create(String name, Properties properties,
+    public static final RegistryObject<TallFlowerBlock> create(String name, Properties properties,
             ResourceKey<CreativeModeTab> creativeTab) {
-        return BlockRegistry.register(name, new TallFlowerBlock(properties), creativeTab);
+        return BlockRegistry.register(name, () -> new TallFlowerBlock(properties), creativeTab);
     }
 }
