@@ -4,6 +4,7 @@ import com.github.chrisofnormandy.conlib.registry.BlockRegistry;
 
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.TrapDoorBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
@@ -27,6 +28,15 @@ public class TrapDoors {
     public static final RegistryObject<TrapDoorBlock> create(String name, Properties properties,
             ResourceKey<CreativeModeTab> creativeTab) {
         return create(name, properties, BlockSetType.OAK, creativeTab);
+    }
+
+    public static final RegistryObject<TrapDoorBlock> create(String name, Block block) {
+        return create(name, Properties.copy(block), BlockSetType.OAK);
+    }
+
+    public static final RegistryObject<TrapDoorBlock> create(String name, Block block,
+            ResourceKey<CreativeModeTab> creativeTab) {
+        return create(name, Properties.copy(block), BlockSetType.OAK, creativeTab);
     }
 
     public static final RegistryObject<TrapDoorBlock> create(String name, BlockSetType blockSetType) {

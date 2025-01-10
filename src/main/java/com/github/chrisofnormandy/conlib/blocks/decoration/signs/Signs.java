@@ -103,8 +103,8 @@ public class Signs {
     public static final Tuple<RegistryObject<WallSignBlock>, RegistryObject<StandingSignBlock>> create(String name,
             Properties properties,
             ResourceKey<CreativeModeTab> creativeTab) {
-        var standing = StandingSigns.create(name, properties, creativeTab);
-        var wall = WallSigns.create(name, properties, creativeTab);
+        var standing = StandingSigns.create(name + "_sign", properties, creativeTab);
+        var wall = WallSigns.create(name + "_wall_sign", properties, creativeTab);
 
         return new Tuple<>(wall, standing);
     }

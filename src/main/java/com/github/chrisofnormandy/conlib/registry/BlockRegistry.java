@@ -7,6 +7,7 @@ import java.util.function.Supplier;
 import org.slf4j.Logger;
 
 import com.github.chrisofnormandy.conlib.CoNLib;
+import com.github.chrisofnormandy.conlib.registry.ItemRegistry.ItemRegistryInit;
 import com.mojang.logging.LogUtils;
 
 import net.minecraft.world.level.block.Block;
@@ -56,6 +57,10 @@ public class BlockRegistry {
             Supplier<T> block,
             ResourceKey<CreativeModeTab> creativeTab) {
         var blockRegistry = BlockRegistryInit.get().register(name, block);
+        ModRegister.blocks.put(name, blockRegistry);
+
+        LOGGER.info("Registered new block: " + BlockRegistryInit.MOD_ID + ":" + name);
+
         ItemRegistry.register(name, () -> new BlockItem(blockRegistry.get(), new Item.Properties()),
                 creativeTab);
 

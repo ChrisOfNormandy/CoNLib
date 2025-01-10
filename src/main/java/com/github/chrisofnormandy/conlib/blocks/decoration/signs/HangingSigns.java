@@ -106,8 +106,8 @@ public class HangingSigns {
     public static final Tuple<RegistryObject<WallHangingSignBlock>, RegistryObject<CeilingHangingSignBlock>> create(
             String name, Properties properties,
             ResourceKey<CreativeModeTab> creativeTab) {
-        var ceiling = CeilingHangingSigns.create(name, properties, creativeTab);
-        var wall = WallHangingSigns.create(name, properties, creativeTab);
+        var ceiling = CeilingHangingSigns.create("hanging_" + name + "_sign", properties, creativeTab);
+        var wall = WallHangingSigns.create("hanging_" + name + "_wall_sign", properties, creativeTab);
 
         return new Tuple<>(wall, ceiling);
     }
