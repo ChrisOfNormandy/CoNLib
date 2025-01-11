@@ -7,7 +7,6 @@ import java.util.function.Supplier;
 import org.slf4j.Logger;
 
 import com.github.chrisofnormandy.conlib.CoNLib;
-import com.github.chrisofnormandy.conlib.registry.ItemRegistry.ItemRegistryInit;
 import com.mojang.logging.LogUtils;
 
 import net.minecraft.world.level.block.Block;

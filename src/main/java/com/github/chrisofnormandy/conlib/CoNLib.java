@@ -1,9 +1,13 @@
 package com.github.chrisofnormandy.conlib;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.model.geom.ModelLayerLocation;
+import net.minecraft.client.renderer.entity.EntityRenderers;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
+import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -14,6 +18,9 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 import org.slf4j.Logger;
 
+import com.github.chrisofnormandy.conlib.mobs.types.CustomAnimal;
+import com.github.chrisofnormandy.conlib.mobs.types.CustomAnimalModel;
+import com.github.chrisofnormandy.conlib.mobs.types.CustomMobRenderer;
 import com.github.chrisofnormandy.conlib.registry.ModRegister;
 import com.mojang.logging.LogUtils;
 
@@ -65,6 +72,25 @@ public class CoNLib {
             // Some client setup code
             LOGGER.info("HELLO FROM CLIENT SETUP");
             LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
+
+            ModRegister.entityRendering.forEach((key, value) -> {
+                EntityRenderers.register(value.y.get(),
+                        context -> new CustomMobRenderer(context, new CustomAnimalModel<CustomAnimal>(context.bakeLayer(
+                                new ModelLayerLocation(new ResourceLocation(value.x, key), "main"))),
+                                0.5F) {
+                            @Override
+                            public ResourceLocation getTextureLocation(CustomAnimal entity) {
+                                return new ResourceLocation(value.x, "textures/entity/" + key + ".png");
+                            }
+                        });
+            });
         }
+    }
+
+    @SubscribeEvent
+    public void onEntityAttributeCreation(EntityAttributeCreationEvent event) {
+        ModRegister.entityAttributes.forEach((key, value) -> {
+            event.put(key.get(), value.get().build());
+        });
     }
 }
